@@ -1,0 +1,108 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* signup-login style */
+#outer_container {
+    padding: 100px;
+    height: 100vh;
+    background:
+    radial-gradient(black 3px, transparent 4px),
+    radial-gradient(black 3px, transparent 4px),
+    linear-gradient(#fff 4px, transparent 0),
+    linear-gradient(45deg, transparent 74px, transparent 75px, #a4a4a4 75px, #a4a4a4 76px, transparent 77px, transparent 109px),
+    linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px),
+    #fff;
+    background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+    background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+}
+.container {
+    max-width: 450px;
+    margin: 0px auto;
+    padding: 40px;
+    /* height: 60vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-shadow: 2px 4px 29px -16px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 4px 29px -16px rgba(0,0,0,0.75);
+    box-shadow: 2px 4px 29px -16px rgba(0,0,0,0.75);
+    background-color: #ffffff;
+}
+
+.form {
+    margin: 20px auto;
+    width: 320px;
+}
+
+.form_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#login_header, #signup_header {
+    font-size: 15px;
+    font-weight: 500;
+    color: #102529;
+    padding: 10px;
+}
+
+.active {
+    font-weight: 600;
+    border-bottom: 5px solid #102529;
+}
+
+
+
+.form input, .form input {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    padding: 15px 16px;
+    width: 100%;
+    font-size: 13px;
+    border: 1px solid rgba(16, 37, 41, 0.5);
+}
+
+
+::placeholder {
+    color: #102529;
+    font-size: 15px;
+    font-weight: bold;
+    opacity: .4; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #102529;
+    font-weight: bold;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #102529;
+    font-weight: bold;
+  }
+
+.form p:last-child {
+    margin-top: 25px;
+}
+
+.form p:last-child input, .form p:last-child input {
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+#login_form {
+    display: none;
+}
+
+a {
+    text-decoration: none;    
+}
+
