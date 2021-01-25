@@ -17,35 +17,18 @@
     padding: 10px 0 0 0;
     flex: 1;
 }
-
-
-.main-menu {
-    display: flex;
-    align-items: center;
-    flex: 2;
-}
-
-.main-menu a, .second-menu a{
-    text-decoration: none;
-    color: rgb(16, 37, 41);
-    margin-left: 15px;
-}
-
-.main-menu li {
-    list-style-type: none;
-}
-
-.second-menu {
-    display: flex;
-    align-items: center;
-}
-
 /* header of the page style #END */
 
 /* add category Form #START */
+
+.section-container {
+    max-width: 420px;
+    margin: 70px auto;
+}
+
 .form {
     margin: 100px auto;
-    width: 420px;
+    width: 100%;
 }
 
 .form p {
@@ -66,8 +49,7 @@
 
 .form p:last-child input{
     flex: 0;
-    margin: 0 0 0 auto;
-    width: 40%;
+    margin: 15px 0 0 auto;
     background-color: rgb(16, 37, 41);
     color: #fff;
     cursor: pointer;

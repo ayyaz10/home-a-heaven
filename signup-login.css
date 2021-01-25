@@ -5,9 +5,9 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* signup-login style */
-#outer_container {
-    padding: 100px;
+
+#container {
+    /* padding: 100px; */
     height: 100vh;
     background:
     radial-gradient(black 3px, transparent 4px),
@@ -19,11 +19,55 @@
     background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
 }
-.container {
+
+/* header of the page style #START */
+.header-container {
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(16, 37, 41, .1);
+}
+
+.header {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header .logo {
+    padding: 10px 0 0 0;
+    flex: 1;
+}
+
+
+.main-menu {
+    display: flex;
+    align-items: center;
+    flex: 2;
+}
+
+.main-menu a, .second-menu a{
+    text-decoration: none;
+    color: rgb(16, 37, 41);
+    margin-left: 15px;
+}
+
+.main-menu li {
+    list-style-type: none;
+}
+
+.second-menu {
+    display: flex;
+    align-items: center;
+}
+
+/* header of the page style #END */
+
+/* signup-login style #START*/
+
+.section-container {
     max-width: 450px;
-    margin: 0px auto;
+    margin: 70px auto;
     padding: 40px;
-    /* height: 60vh; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +80,7 @@
 
 .form {
     margin: 20px auto;
-    width: 320px;
+    width: 95%;
 }
 
 .form_header {
@@ -105,4 +149,6 @@
 a {
     text-decoration: none;    
 }
+
+/* signup-login style #END*/
 
