@@ -39,7 +39,6 @@ loginForm.addEventListener('submit', function(e) {
                     password: userPassword
                 })
         }).then(response => {
-            console.log(response)
             return response.json()
         }).then(data => {
             console.log(data)
@@ -64,7 +63,6 @@ signupForm.addEventListener('submit', function(e) {
                     lastname: lastName
                 })
         }).then(response => {
-            console.log(response)
             return response.json()
         }).then(data => {
             console.log(data)
