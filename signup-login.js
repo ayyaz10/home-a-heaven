@@ -7,6 +7,7 @@ const loginFormData = document.querySelectorAll("#login_form input");
 const signupFormData = document.querySelectorAll("#signup_form input");
 
 
+
 login.addEventListener('click', ()=>{
     signupForm.style.display = "none";
     loginForm.style.display = "block";
@@ -23,10 +24,55 @@ signup.addEventListener('click', ()=>{
 //switch between login and signup #END
 
 //collecting data from form
-for(let i = 0; i < signupFormData.length; i++) {
-    console.log(signupFormData[i].value)
-}
-// console.log(loginInputField[0].value)
+
+//collecting user data from login form
+loginForm.addEventListener('submit', function(e) {
+	e.preventDefault();
+    const userEmail = loginFormData[0].value;
+    const userPassword = loginFormData[1].value;
+
+    fetch('http://localhost:5500/login', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    email: userEmail,
+                    password: userPassword
+                })
+        }).then(response => {
+            console.log(response)
+            return response.json()
+        }).then(data => {
+            console.log(data)
+        }).catch(err => console.log(err))
+})
+
+//collecting user data from signup form
+signupForm.addEventListener('submit', function(e) {
+	e.preventDefault();
+    const userEmail = signupFormData[0].value;
+    const userPassword = signupFormData[1].value;
+    const firstName = signupFormData[2].value;
+    const lastName = signupFormData[3].value;
+
+    fetch('http://localhost:5500/signup', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    email: userEmail,
+                    password: userPassword,
+                    firstname: firstName,
+                    lastname: lastName
+                })
+        }).then(response => {
+            console.log(response)
+            return response.json()
+        }).then(data => {
+            console.log(data)
+        }).catch(err => console.log(err))
+})
+
+
+
 
 
 

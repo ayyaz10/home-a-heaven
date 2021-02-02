@@ -1,0 +1,29 @@
+{
+  "name": "home-a-heaven",
+  "version": "1.0.0",
+  "description": "FYP",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codementee/home-a-heaven.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codementee/home-a-heaven/issues"
+  },
+  "homepage": "https://github.com/codementee/home-a-heaven#readme",
+  "dependencies": {
+    "a": "^2.1.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "knex": "^0.21.17",
+    "nodemon": "^2.0.7",
+    "pg": "^8.5.1"
+  }
+}
