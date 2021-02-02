@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const ejs = require('ejs');
 const knex = require('knex');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
@@ -77,6 +78,20 @@ app.post('/login', (req, res) => {
     })
 	})
 	.catch(err => res.status(400).json('error getting user'))
+})
+
+
+app.post('/category', (req, res) => {
+    const { categoryname } = req.body;
+    db('product_category')
+    .returning('category_name')
+    .insert({
+      category_name: categoryname
+    })
+    .then(category_name =>{
+      res.json(category_name[0])
+    })
+    .catch(err => console.log(err))
 })
 
 

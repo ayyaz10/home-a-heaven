@@ -5,6 +5,8 @@ const loginForm = document.querySelector("#login_form");
 const signupForm = document.querySelector("#signup_form");
 const loginFormData = document.querySelectorAll("#login_form input");
 const signupFormData = document.querySelectorAll("#signup_form input");
+const registrationSuccess = document.querySelector('.registration_success_response');
+const registrationFail = document.querySelector('.registration_fail_response');
 
 
 
@@ -41,7 +43,7 @@ loginForm.addEventListener('submit', function(e) {
         }).then(response => {
             return response.json()
         }).then(data => {
-            console.log(data)
+            console.log('success')
         }).catch(err => console.log(err))
 })
 
@@ -65,11 +67,23 @@ signupForm.addEventListener('submit', function(e) {
         }).then(response => {
             return response.json()
         }).then(data => {
-            console.log(data)
-        }).catch(err => console.log(err))
+            if(data != "unable to register"){
+                registrationSuccess.style.display = "block";
+                registrationSuccess.classList.add('success_message');
+                registrationFail.style.display = "none";
+            } else {
+                registrationFail.style.display = "block";
+                registrationFail.classList.add('failed_message');
+                registrationSuccess.style.display = "none";
+            }
+
+        }).catch(err => {
+            // console.log(err)
+
+        })
 })
 
-
+// success_message
 
 
 

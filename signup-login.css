@@ -8,7 +8,7 @@
 
 #container {
     /* padding: 100px; */
-    height: 100vh;
+    height: 120vh;
     background:
     radial-gradient(black 3px, transparent 4px),
     radial-gradient(black 3px, transparent 4px),
@@ -66,7 +66,8 @@
 
 .section-container {
     max-width: 450px;
-    margin: 70px auto;
+    margin: 40px auto;
+    /* margin-bottom: 100px; */
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -79,7 +80,7 @@
 }
 
 .form {
-    margin: 20px auto;
+    margin: 15px auto;
     width: 95%;
 }
 
@@ -149,6 +150,23 @@
 a {
     text-decoration: none;    
 }
+.registration_success_response, .registration_fail_response {
+    display: none;
+}
+.success_message p{
+    background: rgb(202, 255, 200);
+    color: rgba(17, 141, 10);
+    border-left: 1px solid  rgba(17, 141, 10);
+    padding: 10px;
+}
 
+.failed_message p{
+    background: rgb(255, 224, 224);
+    color: #F32013;
+    border-left: 1px solid #F32013;
+    padding: 10px;
+}
 /* signup-login style #END*/
+
+
 
