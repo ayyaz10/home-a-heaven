@@ -1,0 +1,95 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.header_container {
+    width: 100%;
+    box-shadow: 0 0px 4px 0 rgba(0,0,0,.2);
+}
+.main_header {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.main_header .logo {
+    padding: 10px 0 0 0;
+    flex: 1;
+}
+
+.main-menu {
+    display: flex;
+    align-items: center;
+    flex: 2;
+
+}
+.main-menu li {
+    height: 100%;
+    list-style-type: none;
+    padding: 25px 15px;
+}
+.main-menu a:after {
+    content: '';
+    display: block;
+    border-bottom: 2px solid #fff;
+    width: 0%;
+    height: 100%;
+    transition: all 0.5s ease;
+}
+
+.main-menu a:hover:after {
+    width: 100%;
+    border-bottom: 2px solid #000;
+}
+
+.main-menu a, .second-menu a{
+    text-decoration: none;
+    color: rgb(16, 37, 41);
+    text-align: center;
+}
+.main-menu a {
+    transition: text-shadow .3s;
+    letter-spacing: .08em;
+}
+.main-menu a:hover {
+    text-shadow: 0 0 .65px #333, 0 0 .65px #333;
+}
+
+.second-menu a:not(:first-child){
+    margin-left: 10px;
+}
+
+.second-menu {
+    display: flex;
+    align-items: center;
+}
+
+.second-menu .search, .second-menu .account, .second-menu .cart {
+    background-image: url('/assets/search-icon.png');
+    background-repeat: no-repeat;
+    opacity: 0.74;
+    padding: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.second-menu .account, .second-menu .cart {
+    background-image: url('/assets/account-icon.png');
+    width: 25px;
+    height: 25px;
+}
+
+.second-menu .cart {
+    background-image: url('/assets/cart-icon.png');
+}
+
+
+
+
+

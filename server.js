@@ -23,7 +23,27 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static('public'));
 app.use(cors());
+
+app.set('view engine', 'ejs');
+
+
+app.get('/', (req, res) =>{
+  db.select().table('product_category')
+  .then(data => {
+    // console.log(data[0].category_name)
+    // console.log(data[1].category_name)
+    res.render('index', {
+      category: data
+    });
+  })
+});
+
+app.get('/adminPanel', (req, res) =>{
+  res.render('adminPanel')
+})
+
 
 app.post('/signup', (req, res) => {
   const { email, password, firstname, lastname} = req.body;
@@ -89,7 +109,11 @@ app.post('/category', (req, res) => {
       category_name: categoryname
     })
     .then(category_name =>{
-      res.json(category_name[0])
+      if(category_name[0] === categoryname){
+        return res.json(true);
+      } else {
+        return res.json(false);
+      }
     })
     .catch(err => console.log(err))
 })

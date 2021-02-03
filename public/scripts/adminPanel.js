@@ -1,13 +1,15 @@
 const adminPanelForm = document.querySelector('#adminPanelForm')
 const adminPanelFormData = document.querySelectorAll('#adminPanelForm input');
+const adminPanelAddCategoryInput = document.querySelector('#adminPanelForm p input');
+const categoryAddedMsg = document.querySelector('.category_added_message');
 const categoryName = adminPanelFormData[0];
 const categoryThumbnail = adminPanelFormData[1];
 
-
+adminPanelAddCategoryInput.addEventListener('click', ()=>{
+    categoryAddedMsg.classList.remove('success_response');
+})
 adminPanelForm.addEventListener('submit', (e)=>{
-    // console.log(categoryName.value)
     e.preventDefault();
-    // console.log(categoryName)
     fetch('http://localhost:5500/category', {
         method: "post",
         headers: {'Content-Type': 'application/json'},
@@ -17,8 +19,14 @@ adminPanelForm.addEventListener('submit', (e)=>{
             })
     }).then(response => {
         return response.json()
-    }).then(data => {
+    }).then(isValid => {
+        if(isValid) {
+            categoryAddedMsg.classList.add('success_response');
+            adminPanelAddCategoryInput.value = "";
+        }
     }).catch(err => console.log(err))
 })
+
+
 
 

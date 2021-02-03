@@ -54,4 +54,20 @@
     color: #fff;
     cursor: pointer;
 }
+#adminPanelForm form p {
+    position: relative;
+}
+
+.category_added_message {
+    display: none;
+}
+
+.success_response {
+    display: block;
+    position: absolute;
+    line-height: 2.5;
+    right: -145px;
+    color: rgba(17, 141, 10);
+    transition: all 0.5s ease;
+}
 /* add category Form #END */
