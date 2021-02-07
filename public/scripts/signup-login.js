@@ -7,6 +7,7 @@ const loginFormData = document.querySelectorAll("#login_form input");
 const signupFormData = document.querySelectorAll("#signup_form input");
 const registrationSuccess = document.querySelector('.registration_success_response');
 const registrationFail = document.querySelector('.registration_fail_response');
+const loginFail = document.querySelector('.login_fail_response');
 
 
 
@@ -43,8 +44,22 @@ loginForm.addEventListener('submit', function(e) {
         }).then(response => {
             return response.json()
         }).then(data => {
-            console.log('success')
-        }).catch(err => console.log(err))
+            console.log(data)
+         if(data) {
+                window.location = "http://localhost:5500/";
+            } else {
+                setInterval(function(){
+                    window.location = "http://localhost:5500/signup-login"
+               }, 2000);
+            }
+
+            if(!data){
+                loginFail.style.display = "block";
+                loginFail.classList.add('failed_message');
+            }
+            
+        })
+        .catch(err => console.log(err))
 })
 
 //collecting user data from signup form
@@ -55,7 +70,7 @@ signupForm.addEventListener('submit', function(e) {
     const firstName = signupFormData[2].value;
     const lastName = signupFormData[3].value;
 
-    fetch('http://localhost:5500/signup', {
+    fetch('http://localhost:5500/register', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -67,7 +82,18 @@ signupForm.addEventListener('submit', function(e) {
         }).then(response => {
             return response.json()
         }).then(data => {
-            if(data != "unable to register"){
+            if(data) {
+                setInterval(function(){ 
+                    window.location = "http://localhost:5500/";
+            }, 2000);
+                
+            } else {
+                setInterval(function(){ 
+                    window.location = "http://localhost:5500/signup-login"
+            }, 2000);
+
+            }
+            if(data){
                 registrationSuccess.style.display = "block";
                 registrationSuccess.classList.add('success_message');
                 registrationFail.style.display = "none";
@@ -83,7 +109,6 @@ signupForm.addEventListener('submit', function(e) {
         })
 })
 
-// success_message
 
 
 

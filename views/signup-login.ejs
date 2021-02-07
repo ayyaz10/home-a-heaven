@@ -12,23 +12,16 @@
 </head>
 <body>
     <div id="container">
-        <header class="header-container">
-            <div class="header">
+        <header class="header_container">
+            <div class="main_header">
                 <div class="logo">
-                    <a href="#"><img src="assets/logo.png" width="140px" alt="Home a Heaven logo"></a>
+                    <a href="#"><img src="assets/logo.png" width="150px" alt="Home a Heaven logo"></a>
                 </div>
-                <ul class="main-menu">
-                    <li><a href="#">Category</a></li>
-                    <li><a href="#">Category</a></li>
-                    <li><a href="#">Category</a></li>
-                    <li><a href="#">Category</a></li>
-                    <li><a href="#">Category</a></li>
-                    <li><a href="#">Category</a></li>
-                </ul>
+    
                 <div class="second-menu">
-                    <a href="#" class="search">Search</a>
-                    <a href="#" class="search">Search</a>
-                    <a href="#" class="search">Search</a>
+                    <a href="#" class="search"></a>
+                    <a href="/signup-login" class="account"></a>
+                    <a href="#" class="cart"></a>
                 </div>
             </div>
         </header>
@@ -39,25 +32,27 @@
             </div>
             <div id="login_form" class="form">
                 <form>
-                    <p><input type="email" name="email" class="email" placeholder="Email"></p>
-                    <p><input type="password" name="password" class="password" placeholder="Password"></p>
+                    <p><input type="email" name="email" class="email" placeholder="Email" required></p>
+                    <p><input type="password" name="password" class="password" placeholder="Password" required></p>
                     <p><input type="submit" value="LOGIN" id="login"></p>
-                    <!-- <p><button type="submit">LOGIN</button></p> -->
                 </form>
+                <div class="login_fail_response">
+                    <p>Please enter correct Email or Password!</p>
+                </div>
             </div>
             <div id="signup_form" class="form">
                 <form>
-                    <p><input type="email" name="email" class="email" placeholder="Email"></p>
-                    <p><input type="password" name="password" class="password" placeholder="Password"></p>
-                    <p><input type="text" name="firstName" class="first_name" placeholder="First Name"></p>
-                    <p><input type="text" name="lastName" class="last_name" placeholder="Last Name"></p>
+                    <p><input type="email" name="email" class="email" placeholder="Email" required></p>
+                    <p><input type="password" name="password" class="password" placeholder="Password" required></p>
+                    <p><input type="text" name="firstName" class="first_name" placeholder="First Name" required></p>
+                    <p><input type="text" name="lastName" class="last_name" placeholder="Last Name" required></p>
                     <p><input type="submit" value="SIGN UP" id="signup"></p>
                 </form>
                 <div class="registration_success_response">
                     <p>Registration Completed, You can now login!</p>
                 </div>
                 <div class="registration_fail_response">
-                    <p>You can't register, please try again!</p>
+                    <p>Please enter with different Email!</p>
                 </div>
             </div>
         </section>
