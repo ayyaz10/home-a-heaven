@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const knex = require('knex');
+// const ejs = require('ejs')
+const env = require('dotenv')
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
@@ -12,6 +14,7 @@ const auth = require('./auth');
 
 const { 
   PORT = 5500,
+  COOKIE_SECRET = 'HELLO'
  } = process.env;
 
 
@@ -27,18 +30,22 @@ const db = knex({
 
 const app = express();
 
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser('process.env.COOKIE_SECRET'));
+
 app.use(express.static('public'));
-app.use(cors());
+app.use(cookieParser(COOKIE_SECRET));
+app.use(cors({
+  credentials: true
+}));
 
 app.use('/auth', auth);
 
-
+// console.log(COOKIE_SECRET)
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) =>{
+app.get('/', (req, res) => {
     db.select().table('product_category')
     .then(data => {
       res.render('index', {
@@ -48,6 +55,7 @@ app.get('/', (req, res) =>{
 });
 
 app.get('/adminPanel', (req, res) =>{
+  console.log("hello")
   res.render('adminPanel')
 })
 
@@ -60,65 +68,6 @@ app.get('/signup-login', (req, res) => {
   })
 })
 
-
-// app.post('/register', (req, res) => {
-//   const { email, password, firstname, lastname} = req.body;
-  
-//   bcrypt.genSalt(10, function(err, salt) {
-//       bcrypt.hash(password, salt, function(err, hash) {
-//         db.transaction(trx => {
-//           trx.insert({
-//             hash: hash, 
-//             email: email
-//           })
-//           .into('login')
-//           .returning('email')
-//           .then(loginEmail => {
-//             return trx('customer')
-//             .returning('*')
-//             .insert({
-//               email: loginEmail[0],
-//               first_name: firstname,
-//               last_name: lastname,
-//               created_on: new Date()
-//             }).then(cust => {
-//               if(cust[0]){
-//                 return res.json(true);
-//               }
-//             })
-//           })
-//           .then(trx.commit)
-//           .catch(trx.rollback)
-//         })
-//         .catch(err => res.json(false));
-//       });
-//   });
-// });
-
-
-// app.post('/login', (req, res) => {
-//   const { email, password} = req.body;
-// 	db.select('email', 'hash').from('login')
-// 	.where('email', '=', email)
-// 	.then(data => {
-// 		bcrypt.compare(password, data[0].hash, (err, isValid) => {
-// 			if(isValid){
-// 				db.select('*').from('customer')
-// 				.where('email', '=', email)
-// 				.then(customerData => {
-//           if(customerData[0]){
-//            return res.json(true);
-//           }
-//         })
-//         .catch(err => res.status(400).json('unable to login'))
-// 			} else {
-// 				res.status(400).json(false)
-// 			}
-//     })
-// 	})
-//   .catch(err => res.status(400).json('wrong credentials'))
-
-// })
 
 
 // app.post('/category', (req, res) => {

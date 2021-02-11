@@ -1,7 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const cors = require('cors');
 const router = express.Router();
-const User  = require('../database/queries')
+const User  = require('../database/queries');
 
 router.get('/', (req, res) => {
     res.json({
@@ -67,27 +68,32 @@ router.post('/login', (req, res, next) => {
                 // compare password with the hash
                 User.getOneByEmail(req.body.email)
                 .then(user => {
-                    console.log('passowrd', user.password)
                     bcrypt.compare(req.body.password, user.password, function(err, result) {
                         if(result){
                             // setting the set-cookie header
+                            
                             const isSecure =  req.app.get('env') != 'development';
                             res.cookie('user_id', user.user_id, {
                                 httpOnly: true,
-                                signed: isSecure,
-                                secure: true
+                                signed: true,
+                                maxAge: 1000 * 60 * 60 * 2,
+                                secure: false
                             });
                             res.json({
+                                id: user.user_id,
                                 result,
                                 message: 'Logged in'
                             })
                         } else {
-                            res.json({
-                                result,
-                                message: 'Invalid password'
-                            })
+                            // console.log(result)
+                            // console.log(err)
+                             res.json({
+                                    result,
+                                    message: 'Invalid password'
+                                })
+   
                         }
-                    });
+                    })
                 })
 
             } else {

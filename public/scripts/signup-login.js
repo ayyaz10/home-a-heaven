@@ -31,11 +31,13 @@ signup.addEventListener('click', ()=>{
 //collecting user data from login form
 loginForm.addEventListener('submit', function(e) {
 	e.preventDefault();
-    const userEmail = loginFormData[0].value;
-    const userPassword = loginFormData[1].value;
+    let userEmail = loginFormData[0].value;
+    let userPassword = loginFormData[1].value;
 
-    fetch('http://localhost:5500/login', {
+    fetch('http://localhost:5500/auth/login', {
             method: "post",
+            mode: 'cors',
+            credentials: 'include',
             headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     email: userEmail,
@@ -44,22 +46,28 @@ loginForm.addEventListener('submit', function(e) {
         }).then(response => {
             return response.json()
         }).then(data => {
-            console.log(data)
-         if(data) {
-                window.location = "http://localhost:5500/";
+            if(data.result) {
+                console.log(data.result)
+                      // window.location = `/index.ejs?id=${result.id}`;
+                      window.location = 'http://localhost:5500/'
+                // console.log(result.id)
             } else {
-                setInterval(function(){
-                    window.location = "http://localhost:5500/signup-login"
-               }, 2000);
-            }
-
-            if(!data){
+                console.log(data.result)
                 loginFail.style.display = "block";
                 loginFail.classList.add('failed_message');
+                setTimeout(()=>{
+                    loginFail.style.display = "none";
+                    loginFormData[0].value = "";
+                    loginFormData[1].value = "";
+                }, 2200)
+
+ 
             }
             
         })
-        .catch(err => console.log(err))
+        .catch(err=> {
+            console.log(err)
+        })
 })
 
 //collecting user data from signup form
