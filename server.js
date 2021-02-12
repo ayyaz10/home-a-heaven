@@ -8,8 +8,7 @@ const bcrypt = require('bcryptjs');
 const cors = require('cors');
 
 const auth = require('./auth');
-
-
+const authMiddleware = require('./auth/middleware');
 
 
 const { 
@@ -21,7 +20,7 @@ const {
 const db = knex({
   client: 'pg',
   connection: {
-    host : '127.0.0.1',
+    host : 'localhost',
     user : 'postgres',
     password : '1234',
     database : 'fypdb'
@@ -42,20 +41,28 @@ app.use(cors({
 
 app.use('/auth', auth);
 
-// console.log(COOKIE_SECRET)
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
     db.select().table('product_category')
     .then(data => {
-      res.render('index', {
-        category: data
+      res.render('guest', {
+        category: data,
       });
     })
 });
 
+app.get('/authorizedUser', authMiddleware.ensureLoggedIn, (req, res) => {
+  db.select().table('product_category')
+  .then(data => {
+    res.render('index', {
+      category: data
+    });
+  })
+
+});
+
 app.get('/adminPanel', (req, res) =>{
-  console.log("hello")
   res.render('adminPanel')
 })
 
@@ -68,24 +75,22 @@ app.get('/signup-login', (req, res) => {
   })
 })
 
-
-
-// app.post('/category', (req, res) => {
-//     const { categoryname } = req.body;
-//     db('product_category')
-//     .returning('category_name')
-//     .insert({
-//       category_name: categoryname
-//     })
-//     .then(category_name =>{
-//       if(category_name[0] === categoryname){
-//         return res.json(true);
-//       } else {
-//         return res.json(false);
-//       }
-//     })
-//     .catch(err => console.log(err))
-// })
+app.post('/category', (req, res) => {
+    const { categoryname } = req.body;
+    db('product_category')
+    .returning('category_name')
+    .insert({
+      category_name: categoryname
+    })
+    .then(category_name =>{
+      if(category_name[0] === categoryname){
+        return res.json(true);
+      } else {
+        return res.json(false);
+      }
+    })
+    .catch(err => console.log(err))
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -101,7 +106,7 @@ app.use((err, req, res, next) => {
   // res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
+  res.status(err.status || res.statusCode || 500);
   // res.render('error');
 
   res.json({

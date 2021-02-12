@@ -7,6 +7,7 @@ const categoryThumbnail = adminPanelFormData[1];
 
 adminPanelAddCategoryInput.addEventListener('click', ()=>{
     categoryAddedMsg.classList.remove('success_response');
+    adminPanelAddCategoryInput.value = "";
 })
 adminPanelForm.addEventListener('submit', (e)=>{
     e.preventDefault();
@@ -22,7 +23,6 @@ adminPanelForm.addEventListener('submit', (e)=>{
     }).then(isValid => {
         if(isValid) {
             categoryAddedMsg.classList.add('success_response');
-            adminPanelAddCategoryInput.value = "";
         }
     }).catch(err => console.log(err))
 })

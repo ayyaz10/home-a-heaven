@@ -1,3 +1,11 @@
+function redirectIfLoggedIn() {
+    if(localStorage.user_id) {
+        window.location = "/authorizedUser";
+    }
+}
+redirectIfLoggedIn()
+
+
 //switch between login and signup #START
 const login = document.getElementById("login_header");
 const signup = document.querySelector("#signup_header");
@@ -46,13 +54,10 @@ loginForm.addEventListener('submit', function(e) {
         }).then(response => {
             return response.json()
         }).then(data => {
+            localStorage.user_id = data.id;
             if(data.result) {
-                console.log(data.result)
-                      // window.location = `/index.ejs?id=${result.id}`;
-                      window.location = 'http://localhost:5500/'
-                // console.log(result.id)
+                      window.location = 'http://localhost:5500/authorizedUser'
             } else {
-                console.log(data.result)
                 loginFail.style.display = "block";
                 loginFail.classList.add('failed_message');
                 setTimeout(()=>{
@@ -60,7 +65,6 @@ loginForm.addEventListener('submit', function(e) {
                     loginFormData[0].value = "";
                     loginFormData[1].value = "";
                 }, 2200)
-
  
             }
             
@@ -70,6 +74,7 @@ loginForm.addEventListener('submit', function(e) {
         })
 })
 
+
 //collecting user data from signup form
 signupForm.addEventListener('submit', function(e) {
 	e.preventDefault();
@@ -78,7 +83,7 @@ signupForm.addEventListener('submit', function(e) {
     const firstName = signupFormData[2].value;
     const lastName = signupFormData[3].value;
 
-    fetch('http://localhost:5500/register', {
+    fetch('http://localhost:5500/auth/register', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -90,26 +95,33 @@ signupForm.addEventListener('submit', function(e) {
         }).then(response => {
             return response.json()
         }).then(data => {
-            if(data) {
+            // console.log(data.id)
+            if(!isNaN(data.id)){
+                localStorage.user_id = data.id;
+                                registrationSuccess.style.display = "block";
+                registrationSuccess.classList.add('success_message');
+                registrationFail.style.display = "none";
                 setInterval(function(){ 
-                    window.location = "http://localhost:5500/";
+                    window.location = "http://localhost:5500/authorizedUser";
             }, 2000);
-                
-            } else {
+            }else {
+                registrationFail.style.display = "block";
+                registrationFail.classList.add('failed_message');
+                registrationSuccess.style.display = "none";
                 setInterval(function(){ 
                     window.location = "http://localhost:5500/signup-login"
             }, 2000);
 
             }
-            if(data){
-                registrationSuccess.style.display = "block";
-                registrationSuccess.classList.add('success_message');
-                registrationFail.style.display = "none";
-            } else {
-                registrationFail.style.display = "block";
-                registrationFail.classList.add('failed_message');
-                registrationSuccess.style.display = "none";
-            }
+            // if(data){
+            //     registrationSuccess.style.display = "block";
+            //     registrationSuccess.classList.add('success_message');
+            //     registrationFail.style.display = "none";
+            // } else {
+            //     registrationFail.style.display = "block";
+            //     registrationFail.classList.add('failed_message');
+            //     registrationSuccess.style.display = "none";
+            // }
 
         }).catch(err => {
             // console.log(err)

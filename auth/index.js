@@ -23,13 +23,12 @@ router.post('/register', (req, res, next) => {
         User
         .getOneByEmail(req.body.email)
         .then(user => {
-            console.log(user);
+            // console.log(user);
             if(!user) {
                 // console.log(user)
                 bcrypt.genSalt(10, function(err, salt) {
                     bcrypt.hash(req.body.password, salt, function(err, hash) {
                         // Store hash in your password DB.
-                      
                         const user = {
                             email: req.body.email,
                             password: hash,
@@ -37,14 +36,22 @@ router.post('/register', (req, res, next) => {
                             last_name: req.body.lastname,
                             created_on: new Date()   
                         }
-                        console.log(user)
                         User
                         .create(user)
                         .then(id => {
-                            res.json({
-                                id,
-                                message: 'working'
-                            })
+                            if(id) {
+                                res.cookie('user_id', user.user_id, {
+                                    httpOnly: true,
+                                    signed: true,
+                                    maxAge: 1000 * 60 * 60 * 2,
+                                    secure: false
+                                });
+                                res.json({
+                                    id,
+                                    message: 'working'
+                                })
+                            }
+
                         })
                     });
                 });
@@ -63,7 +70,6 @@ router.post('/login', (req, res, next) => {
         User
         .getOneByEmail(req.body.email)
         .then(user => {
-            // console.log('user', user)
             if(user) {
                 // compare password with the hash
                 User.getOneByEmail(req.body.email)
@@ -71,7 +77,6 @@ router.post('/login', (req, res, next) => {
                     bcrypt.compare(req.body.password, user.password, function(err, result) {
                         if(result){
                             // setting the set-cookie header
-                            
                             const isSecure =  req.app.get('env') != 'development';
                             res.cookie('user_id', user.user_id, {
                                 httpOnly: true,
@@ -81,17 +86,15 @@ router.post('/login', (req, res, next) => {
                             });
                             res.json({
                                 id: user.user_id,
+                                user_name: user.first_name,
                                 result,
                                 message: 'Logged in'
                             })
                         } else {
-                            // console.log(result)
-                            // console.log(err)
                              res.json({
                                     result,
                                     message: 'Invalid password'
                                 })
-   
                         }
                     })
                 })
@@ -103,6 +106,13 @@ router.post('/login', (req, res, next) => {
     } else {
         next(new Error('Invalid login'));
     }
+})
+
+router.get('/logout', (req, res) => {
+    res.clearCookie('user_id');
+    res.json({
+        message: 'logged out'
+    })
 })
 
 module.exports = router;
