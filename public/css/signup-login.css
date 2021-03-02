@@ -1,3 +1,16 @@
+:root {
+    /* --primary: rgb(59,59,59); */
+    --primary: hsl(190, 43%, 11%);
+    --primary-hover: hsl(180, 2%, 24%);
+    --nav_hover: rgb(51, 51, 51);
+    --secondary: hsl(15, 79%, 41%);
+    --success: rgba(17, 141, 10);
+    --danger: hsl(3, 90%, 51%);
+    --gray: hsl(270, 2%, 39%);
+    --white: hsl(0, 0%, 100%);
+
+    --nav_shadow: 0 0px 4px 0 hsla(0, 0%, 0%, 0.2);
+}
 * {
     padding: 0;
     margin: 0;
@@ -56,7 +69,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBo
 .main-menu a:after {
     content: '';
     display: block;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid var(--white);
     width: 0%;
     height: 100%;
     transition: all 0.5s ease;
@@ -64,12 +77,12 @@ background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBo
 
 .main-menu a:hover:after {
     width: 100%;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid var(--primary);
 }
 
 .main-menu a, .second-menu a{
     text-decoration: none;
-    color: rgb(16, 37, 41);
+    color: var(--primary);
     text-align: center;
 }
 .main-menu a {
@@ -78,7 +91,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBo
 }
 
 .main-menu a:hover {
-    text-shadow: 0 0 .65px #333, 0 0 .65px #333;
+    text-shadow: 0 0 .65px var(--nav_hover), 0 0 .65px var(--nav_hover);
 }
 
 .second-menu a:not(:first-child){
@@ -124,8 +137,6 @@ background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBo
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    -webkit-box-shadow: 2px 4px 29px -16px rgba(0,0,0,0.75);
-    -moz-box-shadow: 2px 4px 29px -16px rgba(0,0,0,0.75);
     box-shadow: 2px 4px 29px -16px rgba(0,0,0,0.75);
     background-color: #ffffff;
 }
@@ -144,13 +155,13 @@ background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBo
 #login_header, #signup_header {
     font-size: 15px;
     font-weight: 500;
-    color: #102529;
+    color: var(--primary);
     padding: 10px;
 }
 
 .active {
     font-weight: 600;
-    border-bottom: 5px solid #102529;
+    border-bottom: 5px solid var(--primary);
 }
 
 
@@ -162,24 +173,40 @@ background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBo
     padding: 15px 16px;
     width: 100%;
     font-size: 13px;
-    border: 1px solid rgba(16, 37, 41, 0.5);
+    border: 1px solid var(--gray);
 }
 
 
+::-moz-placeholder {
+    color: var(--primary);
+    font-size: 15px;
+    font-weight: bold;
+    opacity: .4; /* Firefox */
+  }
+
+
+:-ms-input-placeholder {
+    color: var(--primary);
+    font-size: 15px;
+    font-weight: bold;
+    opacity: .4; /* Firefox */
+  }
+
+
 ::placeholder {
-    color: #102529;
+    color: var(--primary);
     font-size: 15px;
     font-weight: bold;
     opacity: .4; /* Firefox */
   }
   
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #102529;
+    color: var(--primary);
     font-weight: bold;
   }
   
   ::-ms-input-placeholder { /* Microsoft Edge */
-    color: #102529;
+    color: var(--primary);
     font-weight: bold;
   }
 
@@ -206,15 +233,15 @@ a {
 }
 .success_message p{
     background: rgb(202, 255, 200);
-    color: rgba(17, 141, 10);
-    border-left: 1px solid  rgba(17, 141, 10);
+    color: var(--success);
+    border-left: 1px solid  var(--success);
     padding: 10px;
 }
 
 .failed_message p{
     background: rgb(255, 224, 224);
-    color: #F32013;
-    border-left: 1px solid #F32013;
+    color: var(--danger);
+    border-left: 1px solid var(--danger);
     padding: 10px;
 }
 
@@ -237,6 +264,7 @@ a {
     background-image: url('/assets/cart-icon.png');
 }
 /* signup-login style #END*/
+
 
 
 

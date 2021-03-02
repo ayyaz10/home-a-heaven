@@ -54,9 +54,9 @@ loginForm.addEventListener('submit', function(e) {
         }).then(response => {
             return response.json()
         }).then(data => {
-            localStorage.user_id = data.id;
             if(data.result) {
-                      window.location = 'http://localhost:5500/authorizedUser'
+                localStorage.user_id = data.id;
+                window.location = 'http://localhost:5500/authorizedUser'
             } else {
                 loginFail.style.display = "block";
                 loginFail.classList.add('failed_message');
@@ -65,7 +65,6 @@ loginForm.addEventListener('submit', function(e) {
                     loginFormData[0].value = "";
                     loginFormData[1].value = "";
                 }, 2200)
- 
             }
             
         })
@@ -95,10 +94,9 @@ signupForm.addEventListener('submit', function(e) {
         }).then(response => {
             return response.json()
         }).then(data => {
-            // console.log(data.id)
             if(!isNaN(data.id)){
                 localStorage.user_id = data.id;
-                                registrationSuccess.style.display = "block";
+                registrationSuccess.style.display = "block";
                 registrationSuccess.classList.add('success_message');
                 registrationFail.style.display = "none";
                 setInterval(function(){ 
@@ -113,16 +111,6 @@ signupForm.addEventListener('submit', function(e) {
             }, 2000);
 
             }
-            // if(data){
-            //     registrationSuccess.style.display = "block";
-            //     registrationSuccess.classList.add('success_message');
-            //     registrationFail.style.display = "none";
-            // } else {
-            //     registrationFail.style.display = "block";
-            //     registrationFail.classList.add('failed_message');
-            //     registrationSuccess.style.display = "none";
-            // }
-
         }).catch(err => {
             // console.log(err)
 

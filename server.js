@@ -12,7 +12,7 @@ const authMiddleware = require('./auth/middleware');
 
 
 const { 
-  PORT = 5500,
+  PORT = 3333,
   COOKIE_SECRET = 'HELLO'
  } = process.env;
 
@@ -20,7 +20,7 @@ const {
 const db = knex({
   client: 'pg',
   connection: {
-    host : 'localhost',
+    host : '127.0.0.1',
     user : 'postgres',
     password : '1234',
     database : 'fypdb'

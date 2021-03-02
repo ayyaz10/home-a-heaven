@@ -5,7 +5,7 @@ const categoryAddedMsg = document.querySelector('.category_added_message');
 const categoryName = adminPanelFormData[0];
 const categoryThumbnail = adminPanelFormData[1];
 
-adminPanelAddCategoryInput.addEventListener('click', ()=>{
+adminPanelAddCategoryInput.addEventListener('n', ()=>{
     categoryAddedMsg.classList.remove('success_response');
     adminPanelAddCategoryInput.value = "";
 })

@@ -1,0 +1,13 @@
+:root {
+    /* --primary: rgb(59,59,59); */
+    --primary: hsl(190, 43%, 11%);
+    --primary-hover: hsl(180, 2%, 24%);
+    --nav_hover: rgb(51, 51, 51);
+    --secondary: hsl(15, 79%, 41%);
+    --success: rgba(17, 141, 10);
+    --danger: hsl(3, 90%, 51%);
+    --gray: hsl(270, 2%, 39%);
+    --white: hsl(0, 0%, 100%);
+
+    --nav_shadow: 0 0px 4px 0 hsla(0, 0%, 0%, 0.2);
+}
