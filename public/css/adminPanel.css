@@ -8,14 +8,14 @@
 
 /* header of the page style #START */
 .header {
-    max-width: 1180px;
+    max-width: 73.75em;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
 }
 
 .header .logo {
-    padding: 10px 0 0 0;
+    padding: 0.625rem 0 0 0;
     flex: 1;
 }
 /* header of the page style #END */
@@ -23,12 +23,12 @@
 /* add category Form #START */
 
 .section-container {
-    max-width: 420px;
-    margin: 70px auto;
+    max-width: 26.25rem;
+    margin: 4.375rem auto;
 }
 
 #adminPanelForm {
-    margin: 100px auto;
+    margin: 6.25rem auto;
     width: 100%;
 }
 
@@ -42,15 +42,15 @@
 
 #adminPanelForm input {
     flex: 2;
-    margin-bottom: 5px;
-    padding: 12px 16px;
-    font-size: 13px;
+    margin-bottom: 0.3125rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
     border: 1px solid rgba(16, 37, 41, 0.5);
 }
 
 #adminPanelForm p:last-child input{
     flex: 0;
-    margin: 15px 0 0 auto;
+    margin: 0.9375rem 0 0 auto;
     background-color: rgb(16, 37, 41);
     color: #fff;
     cursor: pointer;
@@ -67,7 +67,7 @@
     display: block;
     position: absolute;
     line-height: 2.5;
-    right: -145px;
+    right: -9.0625rem;
     color: rgba(17, 141, 10);
     transition: all 0.5s ease;
 }
