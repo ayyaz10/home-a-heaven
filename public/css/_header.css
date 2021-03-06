@@ -20,7 +20,7 @@ a {
     box-shadow: var(--nav_shadow);
 }
 .main_header {
-    max-width: 80em;
+    max-width: 80rem;
     margin: 0 auto;
     display: flex;
     justify-content: space-between; 

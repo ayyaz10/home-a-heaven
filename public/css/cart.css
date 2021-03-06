@@ -1,0 +1,132 @@
+@import './_variables.css';
+@import './_header.css';
+@import './_footer.css';
+
+
+.cart-container {
+    max-width: 75rem;
+    margin: 0 auto;
+    display: flex;
+    padding-bottom: 100px;
+}
+
+/* continue shopping style */
+a.cont-shopping {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--primary-hover);
+    padding: 15px 0 0px 55px; 
+}
+
+/* cart-product-area style */
+
+.cart-product-area {
+    flex: 2;
+    padding: 15px 0 0 0;
+}
+
+h1.cart-heading, h2.summary-heading {
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.product-in-cart {
+    display: flex;
+    padding: 20px 0 40px 0;
+}
+
+.product-image-thumb > img {
+    height: 100%;
+}
+
+.product-name {
+    font-size: 14px;
+    margin-left: 8px;
+    font-weight: 500;
+}
+
+/* product infor style */
+
+.product-info {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 60px;
+}
+
+.product-info > .price {
+    font-size: 18px;
+}
+
+/* select style */
+
+select {
+    padding: 1.0625rem 1.875rem 0.625rem 1.875rem;
+    color: #000;
+    border: 1px solid var(--primary);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    cursor: pointer;
+}
+
+.remove {
+    align-self: flex-end;
+
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* summary area style */
+
+.summary-area {
+    flex: 1;
+    margin-left: auto;
+    box-shadow: 2px 4px 29px -16px rgba(0,0,0,0.75);
+}
+
+h2.summary-heading {
+    padding: 15px 0 0 25px;
+}
+
+.summary-container {
+    height: 100%;
+    padding: 20px 40px 70px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-subtotal, .subtotal-amount, .total, .total-amount {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+hr {
+    margin: 10px 0 0 0;
+}
+
+.subtotal-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total-wrapper {
+   display: flex;
+    justify-content: space-between;
+}
+
+.check-button {
+    display: block;
+    background-color: var(--primary);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+.check-button:hover {
+    background-color: var(--primary-hover);
+}
