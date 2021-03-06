@@ -7,7 +7,7 @@
     max-width: 75rem;
     margin: 0 auto;
     display: flex;
-    padding-bottom: 100px;
+    padding-bottom: 6.25rem;
 }
 
 /* continue shopping style */
@@ -15,24 +15,24 @@ a.cont-shopping {
     display: block;
     font-size: 0.8rem;
     color: var(--primary-hover);
-    padding: 15px 0 0px 55px; 
+    padding: 0.9375rem 0 0 3.4375rem; 
 }
 
 /* cart-product-area style */
 
 .cart-product-area {
     flex: 2;
-    padding: 15px 0 0 0;
+    padding: 0.9375rem 0 0 0;
 }
 
 h1.cart-heading, h2.summary-heading {
-    font-size: 19px;
+    font-size: 1.1875rem;
     font-weight: 500;
 }
 
 .product-in-cart {
     display: flex;
-    padding: 20px 0 40px 0;
+    padding: 1.25rem 0 2.5rem 0;
 }
 
 .product-image-thumb > img {
@@ -40,8 +40,8 @@ h1.cart-heading, h2.summary-heading {
 }
 
 .product-name {
-    font-size: 14px;
-    margin-left: 8px;
+    font-size: 0.875rem;
+    margin-left: 0.5rem;
     font-weight: 500;
 }
 
@@ -52,11 +52,11 @@ h1.cart-heading, h2.summary-heading {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-right: 60px;
+    padding-right: 3.75rem;
 }
 
 .product-info > .price {
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 /* select style */
@@ -74,7 +74,7 @@ select {
 .remove {
     align-self: flex-end;
 
-    font-size: 12px;
+    font-size: 0.75rem;
     cursor: pointer;
 }
 
@@ -82,37 +82,34 @@ select {
 
 .summary-area {
     flex: 1;
+
     margin-left: auto;
     box-shadow: 2px 4px 29px -16px rgba(0,0,0,0.75);
 }
 
 h2.summary-heading {
-    padding: 15px 0 0 25px;
+    padding: 0.9375rem 0 0 1.5625rem;
 }
 
 .summary-container {
-    height: 100%;
-    padding: 20px 40px 70px 40px;
     display: flex;
     flex-direction: column;
+
+    height: 100%;
+    padding: 1.25rem  2.5rem 4.375rem  2.5rem;
 }
 
 .item-subtotal, .subtotal-amount, .total, .total-amount {
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 400;
 }
 
 hr {
-    margin: 10px 0 0 0;
+    margin: 0.625rem 0 0 0;
 }
 
-.subtotal-wrapper {
+.subtotal-wrapper, .total-wrapper {
     display: flex;
-    justify-content: space-between;
-}
-
-.total-wrapper {
-   display: flex;
     justify-content: space-between;
 }
 
@@ -120,7 +117,7 @@ hr {
     display: block;
     background-color: var(--primary);
     color: #fff;
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
     border: none;
     text-align: center;
     cursor: pointer;
