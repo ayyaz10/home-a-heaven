@@ -3,9 +3,11 @@
 
 #footer {
     background-color: var(--primary);
+    margin-top: auto;
 }
 
-#footer .button > button {
+.button .footer-button {
+    color: var(--primary);
     padding: 0.625em 1.5em;
     background-color: var(--white);
     font-size: 0.9375rem;

@@ -36,7 +36,7 @@ h1.cart-heading, h2.summary-heading {
 }
 
 .product-image-thumb > img {
-    height: 100%;
+    /* height: 60%; */
 }
 
 .product-name {

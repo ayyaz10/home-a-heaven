@@ -2,6 +2,11 @@
 @import './_header.css';
 @import './_footer.css';
 
+/* body {
+    display: flex;
+    flex-direction: column;
+} */
+
 /* main content style */
 .main-section {
     width: 100%;

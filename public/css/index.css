@@ -2,20 +2,10 @@
 @import './_header.css';
 @import './_footer.css';
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-li {
-    list-style-type: none;
-}
-
-a {
-    text-decoration: none;
-}
+/* body {
+    display: flex;
+    flex-direction: column;
+} */
 
 /* hero section */
 
@@ -50,12 +40,13 @@ a {
     flex: 1;
 }
 
-.button > button {
-    padding: 0.625em 1.5em;
-    background-color: var(--white);
+.button > .hero-button {
     font-size: 0.9375rem;
+    color: var(--primary);
+    background-color: var(--white);
     font-weight: 600;
     border: none;
+    padding: 0.625em 1.5em;
     cursor: pointer;
 }
 
@@ -114,5 +105,5 @@ a {
     color: var(--primary);
     text-align: center;
     font-weight: 600;
-    margin: 3.75rem 0 2.8125rem 0;
+    padding: 3.75rem 0 2.8125rem 0;
 }
