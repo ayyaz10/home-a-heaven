@@ -1,5 +1,7 @@
 :root {
     --primary: #424244;
+    --primary-border: rgba(66, 66, 68, 0.5);
+    /* --primary: rgb(16, 37, 41); */
     /* --primary: hsl(190, 43%, 11%); */
     /* --primary-hover: hsl(180, 2%, 24%); */
     --primary-hover: #5e5e5e;

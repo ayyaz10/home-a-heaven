@@ -1,3 +1,5 @@
+@import "./_variables.css";
+
 * {
     padding: 0;
     margin: 0;
@@ -24,11 +26,19 @@
 
 .section-container {
     max-width: 26.25rem;
-    margin: 4.375rem auto;
+    margin: 3.375rem auto;
+}
+
+.edit-product-heading {
+    color: var(--primary);
+     /* text-align: center; */
+     font-size: 1.5625rem; /* 25px */
+     font-weight: 500;
+     padding: 0 0 .9375rem 0;
 }
 
 #adminPanelForm {
-    margin: 6.25rem auto;
+    margin: 0 auto;
     width: 100%;
 }
 
@@ -41,22 +51,31 @@
 }
 
 #adminPanelForm input {
+    color: var(--primary);
     flex: 2;
     margin-bottom: 0.3125rem;
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 1rem;
     font-size: 0.8125rem;
-    border: 1px solid rgba(16, 37, 41, 0.5);
+    border: 1px solid var(--primary-border);
 }
 
 #adminPanelForm p:last-child input{
     flex: 0;
-    margin: 0.9375rem 0 0 auto;
-    background-color: rgb(16, 37, 41);
+    /* padding: 0px 40px; */
+    margin: 0.9375rem 0 0 0;
+    padding: 0.6rem 10.6rem;
+    background-color: var(--primary);
     color: #fff;
     cursor: pointer;
 }
-#adminPanelForm form p {
+#adminPanelForm p {
+    color: var(--primary);
     position: relative;
+}
+
+textarea {
+    color: var(--primary);
+    padding: .625rem;
 }
 
 .category_added_message {
@@ -68,7 +87,7 @@
     position: absolute;
     line-height: 2.5;
     right: -9.0625rem;
-    color: rgba(17, 141, 10);
+    color: var(--success);
     transition: all 0.5s ease;
 }
 /* add category Form #END */

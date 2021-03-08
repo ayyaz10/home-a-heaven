@@ -19,42 +19,37 @@
     </header>
     <section class="section-container">
         <div id="adminPanelForm">
+            <h1 class="edit-product-heading">Edit Product</h1>
             <form>
                 <p>
-                    <label for="category-name">Category</label>
-                    <input type="text" name="catName" id="category-name" class="category">
-                    <span class="category_added_message">Category Added</span>
+                    <label for="prod-name">Name</label>
+                    <input type="text" name="prodName" id="prod-name" class="product-name">
                 </p>
                 <p>
-                    <label for="category-name">Category</label>
-                    <input type="text" name="catName" id="category-name" class="category">
-                    <span class="category_added_message">Category Added</span>
-                </p><p>
-                    <label for="category-name">Category</label>
-                    <input type="text" name="catName" id="category-name" class="category">
-                    <span class="category_added_message">Category Added</span>
-                </p><p>
-                    <label for="category-name">Category</label>
-                    <input type="text" name="catName" id="category-name" class="category">
-                    <span class="category_added_message">Category Added</span>
-                </p><p>
-                    <label for="category-name">Category</label>
-                    <input type="text" name="catName" id="category-name" class="category">
-                    <span class="category_added_message">Category Added</span>
-                </p><p>
-                    <label for="category-name">Category</label>
-                    <input type="text" name="catName" id="category-name" class="category">
-                    <span class="category_added_message">Category Added</span>
-                </p><p>
-                    <label for="category-name">Category</label>
-                    <input type="text" name="catName" id="category-name" class="category">
-                    <span class="category_added_message">Category Added</span>
+                    <label for="prod-price">Price</label>
+                    <input type="text" name="prodPrice" id="prod-price" class="product-price">
                 </p>
                 <p>
-                    <label for="category-thumbnail">Thumbnail</label>
-                    <input type="file" name="catThumbnail" id="category-thumbnail" class="thumbnail">
+                    <label for="prod-image">Image</label>
+                    <input type="file" name="prodImage" id="prod-image" class="product-image">
                 </p>
-                <p><input type="submit" value="Add Category" id="update"></p>
+                <p>
+                    <label for="count-in-stock">Count in Stock</label>
+                    <input type="text" name="prodInStock" id="count-in-stock" class="product-in-stock">
+                </p>
+                <p>
+                    <label for="prod-category">Category</label>
+                    <input type="text" name="prodCategory" id="prod-category" class="product-category">
+                </p>
+                <p>
+                    <label for="prod-name">Description</label>
+                    <textarea name="prodName" id="prod-name" class="product-name" rows="2" cols="42"></textarea>
+                </p>
+                    <!-- <label for="category-name">Category</label> -->
+                    <!-- <input type="text" name="catName" id="category-name" class="category"> -->
+                    <!-- <span class="category_added_message">Category Added</span> -->
+                <!-- </p> -->
+                <p><input type="submit" value="Add Product" id="update"></p>
             </form>
         </div>
     </section>
