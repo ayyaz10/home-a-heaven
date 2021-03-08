@@ -1,0 +1,54 @@
+@import './_variables.css';
+@import './_header.css';
+@import './_footer.css';
+
+
+.content-section {
+    display: flex;
+    background-color: var(--primary-nav);
+}
+
+.left-panel {
+    padding: 20px 20px 0 20px;
+}
+
+.profile-wrapper, .edit-profile-wrapper {
+    margin: 30px;
+    background-color: var(--white);
+    padding: 20px 20px 20px 20px;
+}
+
+.profile-wrapper h1, .edit-profile-wrapper h1 {
+    color: var(--primary);
+    /* text-align: center; */
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 0 0 .9375rem 0;
+}
+
+.profile-wrapper p, .edit-profile-wrapper p {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.edit-profile-btn, .save-profile-btn {
+    font-size: 14px;
+    text-align: center;
+    margin: 01.9375rem 0 0 0;
+    padding: 0.6rem 2.6rem;
+    background-color: var(--primary);
+    cursor: pointer;
+}
+
+.edit-profile-btn a, .save-profile-btn a {
+    color: #fff;
+}
+
+.edit-profile-wrapper input {
+    font-size: 0.8125rem;
+    padding: 0.3rem 4rem 0.3rem 0.4rem;
+    color: var(--primary);
+    margin-bottom: 0.3125rem;
+    border: 1px solid var(--primary-border);
+}

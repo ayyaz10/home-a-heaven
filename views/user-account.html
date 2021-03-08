@@ -7,9 +7,9 @@
     <link rel=icon href="../public/assets/favicon.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../public/css/adminPanel.css">
-    <script src="../public/js/adminPanel.js" defer></script>
-    <title>Admin Panel | Home A Heaven</title>
+    <link rel="stylesheet" href="../public/css/user-account.css">
+    <script src="../public/js/user-account.js" defer></script>
+    <title>Manage My Account</title>
 </head>
 <body>
     <header class="header_container">
@@ -31,42 +31,56 @@
           </div>
        </div>
     </header>
-    <section class="section-container">
-        <div id="adminPanelForm">
-            <h1 class="edit-product-heading">Edit Product</h1>
-            <form>
-                <p>
-                    <label for="prod-name">Name</label>
-                    <input type="text" name="prodName" id="prod-name" class="product-name">
-                </p>
-                <p>
-                    <label for="prod-price">Price</label>
-                    <input type="text" name="prodPrice" id="prod-price" class="product-price">
-                </p>
-                <p>
-                    <label for="prod-image">Image</label>
-                    <input type="file" name="prodImage" id="prod-image" class="product-image">
-                </p>
-                <p>
-                    <label for="count-in-stock">Count in Stock</label>
-                    <input type="text" name="prodInStock" id="count-in-stock" class="product-in-stock">
-                </p>
-                <p>
-                    <label for="prod-category">Category</label>
-                    <input type="text" name="prodCategory" id="prod-category" class="product-category">
-                </p>
-                <p>
-                    <label for="prod-name">Description</label>
-                    <textarea name="prodName" id="prod-name" class="product-name" rows="2" cols="42"></textarea>
-                </p>
-                    <!-- <label for="category-name">Category</label> -->
-                    <!-- <input type="text" name="catName" id="category-name" class="category"> -->
-                    <!-- <span class="category_added_message">Category Added</span> -->
-                <!-- </p> -->
-                <p><input type="submit" value="Add Product" id="update"></p>
-            </form>
+
+<section class="content-section">
+    <section class="left-panel">
+        <h2>Manage My Account</h2>
+        <p>My Profile</p>
+        <p>My Orders</p>
+        <p>Address Book</p>
+    </section>
+    <section class="profile-wrapper">
+        <h1>My Profile</h1>
+        <div class="personal-info">
+            <p>First Name</p>
+            <p>Ayyaz</p>
+            <p>Last Name</p>
+            <p>Ahmed</p>
+        </div>
+        <div class="security-info">
+            <p>Email</p>
+            <p>ayyaz@gmail.com</p>
+            <p>Password</p>
+            <p>*******</p>
+            <p>Phone</p>
+            <p>03331234567</p>
+        </div>
+        <div class="edit-profile-btn">
+            <a href="#" class="btn">Edit Profile</a>
         </div>
     </section>
+    <section class="edit-profile-wrapper">
+        <h1>My Profile</h1>
+        <div class="personal-info">
+            <p>First Name</p>
+            <p><input type="text" name="firstName" class="first_name" placeholder="First Name" required></p>
+            <p>Last Name</p>
+            <p><input type="text" name="lastName" class="last_name" placeholder="Last Name" required></p>
+        </div>
+        <div class="security-info">
+            <p>Email</p>
+            <p><input type="email" name="email" class="email" placeholder="Email" required></p>
+            <p>Password</p>
+            <p><input type="password" name="password" class="password" placeholder="Password" required></p>
+            <p>Phone</p>
+            <p><input type="text" name="phone" class="phone" placeholder="phone" required></p>
+        </div>
+        <div class="save-profile-btn">
+            <a href="#" class="btn">Save Changes</a>
+        </div>
+    </section>
+</section>
+
     <footer id="footer">
         <div class="footer-container">
           <div class="footer-logo-social">

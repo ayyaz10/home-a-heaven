@@ -1,12 +1,6 @@
-@import "./_variables.css";
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
+@import './_variables.css';
+@import './_header.css';
+@import './_footer.css';
 
 /* header of the page style #START */
 .header {
