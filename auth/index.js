@@ -2,14 +2,13 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
 const router = express.Router();
-const User  = require('../database/queries');
+const User  = require('../db/queries');
 
 router.get('/', (req, res) => {
     res.json({
         message: 'hello'
     });
 });
-
 
 function validUser(user) {
     const validEmail = typeof user.email == 'string' && user.email.trim() != '';
@@ -51,7 +50,6 @@ router.post('/register', (req, res, next) => {
                                     message: 'working'
                                 })
                             }
-
                         })
                     });
                 });

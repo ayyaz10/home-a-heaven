@@ -11,9 +11,11 @@
 
 .hero-section {
     width: 100%;
+    /* z-index: 1; */
 }
 
 .hero-section > .hero-image {
+    z-index: 1;
     background-image: url("../assets/hero.jpg"), linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2));
     background-blend-mode: overlay;
     background-repeat: no-repeat;

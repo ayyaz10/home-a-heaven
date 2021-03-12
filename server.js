@@ -1,8 +1,9 @@
+const router = require('./routes');
 const express = require('express');
 const bodyParser = require('body-parser');
 const knex = require('knex');
 // const ejs = require('ejs')
-const env = require('dotenv')
+const env = require('dotenv');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
@@ -39,18 +40,10 @@ app.use(cors({
   credentials: true
 }));
 
+app.use(router);
 app.use('/auth', auth);
-
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-    db.select().table('product_category')
-    .then(data => {
-      res.render('guest', {
-        category: data,
-      });
-    })
-});
 
 app.get('/authorizedUser', authMiddleware.ensureLoggedIn, (req, res) => {
   db.select().table('product_category')
@@ -58,12 +51,11 @@ app.get('/authorizedUser', authMiddleware.ensureLoggedIn, (req, res) => {
     res.render('index', {
       category: data
     });
-  })
-
+  });
 });
 
 app.get('/adminPanel', (req, res) =>{
-  res.render('adminPanel')
+  res.render('adminPanel');
 })
 
 app.get('/signup-login', (req, res) => {

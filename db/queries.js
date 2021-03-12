@@ -1,4 +1,4 @@
-const knex = require('./knex'); //this require is for the connection to the database. 
+const knex = require('./db'); //this require is for the connection to the database. 
 
 
 module.exports = {
@@ -13,8 +13,8 @@ module.exports = {
         }).first();
     },
     create: function(user) {
-        return knex('customer').insert(user, 'user_id').then(ids => {
+            return knex('customer').insert(user, 'user_id').then(ids => {
             return ids[0];
-        })
+        }); 
     }
 }

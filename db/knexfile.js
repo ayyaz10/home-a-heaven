@@ -9,6 +9,13 @@ module.exports = {
       password : '1234',
       database : 'fypdb'
       // 'postgres://localhost/fypdb'
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
     }
   },
 };
