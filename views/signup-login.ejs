@@ -7,93 +7,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/signup-login.css">
-    <script src="js/signup-login.js" defer></script>
+    <script src="js/signup-login.js" async></script>
     <title>Home a Heaven</title>
 </head>
 <body>
-    <div id="container">
-        <header class="header_container">
-            <div class="main_header">
-                <div class="logo">
-                    <a href="/"><img src="assets/logo.png" width="150px" alt="Home a Heaven logo"></a>
-                </div>
-    
-                <div class="second-menu">
-                    <a href="#" class="search"></a>
-                    <a href="signup-login.html" class="account"></a>
-                    <a href="#" class="cart"></a>
-                </div>
+    <%- include('header'); -%>
+    <section class="section-container">
+        <div class="form_header">
+            <a href="#" id="login_header">Log In</a>
+            <a href="#" id="signup_header" class="active">Sign Up</a>
+        </div>
+        <div id="login_form" class="form">
+            <form>
+                <p><input type="email" name="email" class="email" placeholder="Email" required></p>
+                <p><input type="password" name="password" class="password" placeholder="Password" required></p>
+                <p><input type="submit" value="LOGIN" id="login"></p>
+            </form>
+            <div class="login_fail_response">
+                <p>Please enter correct Email or Password!</p>
             </div>
-        </header>
-        <section class="section-container">
-            <div class="form_header">
-                <a href="#" id="login_header">Log In</a>
-                <a href="#" id="signup_header" class="active">Sign Up</a>
+        </div>
+        <div id="signup_form" class="form">
+            <form>
+                <p><input type="email" name="email" class="email" placeholder="Email" required></p>
+                <p><input type="password" name="password" class="password" placeholder="Password" required></p>
+                <p><input type="text" name="firstName" class="first_name" placeholder="First Name" required></p>
+                <p><input type="text" name="lastName" class="last_name" placeholder="Last Name" required></p>
+                <p><input type="submit" value="SIGN UP" id="signup"></p>
+            </form>
+            <div class="registration_success_response">
+                <p>Registration Completed, You can now login!</p>
             </div>
-            <div id="login_form" class="form">
-                <form>
-                    <p><input type="email" name="email" class="email" placeholder="Email" required></p>
-                    <p><input type="password" name="password" class="password" placeholder="Password" required></p>
-                    <p><input type="submit" value="LOGIN" id="login"></p>
-                </form>
-                <div class="login_fail_response">
-                    <p>Please enter correct Email or Password!</p>
-                </div>
+            <div class="registration_fail_response">
+                <p>Please enter with different Email!</p>
             </div>
-            <div id="signup_form" class="form">
-                <form>
-                    <p><input type="email" name="email" class="email" placeholder="Email" required></p>
-                    <p><input type="password" name="password" class="password" placeholder="Password" required></p>
-                    <p><input type="text" name="firstName" class="first_name" placeholder="First Name" required></p>
-                    <p><input type="text" name="lastName" class="last_name" placeholder="Last Name" required></p>
-                    <p><input type="submit" value="SIGN UP" id="signup"></p>
-                </form>
-                <div class="registration_success_response">
-                    <p>Registration Completed, You can now login!</p>
-                </div>
-                <div class="registration_fail_response">
-                    <p>Please enter with different Email!</p>
-                </div>
-            </div>
-        </section>
-        <footer id="footer">
-            <div class="footer-container">
-                <div class="footer-logo-social">
-                  <div class="footer-logo">
-                    <a href="index.ejs"><img src="assets/white-logo.png" width="150px" alt="logo"></a>
-                  </div>
-                  <div class="footer-social">
-                    <a class="fb" href="#"></a>
-                    <a class="yt" href="#"></a>
-                    <a class="tw" href="#"></a>
-                    <a class="pin" href="#"></a>
-                    <a class="inst" href="#"></a>
-                  </div>
-                  <div class="footer-second"></div>
-               </div>
-      
-              <nav class="footer-nav footer-nav-1">
-                <ul>
-                  <li class="nav-list"><a href="#">About Us</a></li>
-                  <li class="nav-list"><a href="#">Contact</a></li>
-                  <li class="nav-list"><a href="#">Blog</a></li>
-                </ul>
-              </nav>
-              <nav class="footer-nav footer-nav-2">
-              <ul>
-                <li class="nav-list"><a href="#">Careers</a></li>
-                <li class="nav-list"><a href="#">Support</a></li>
-                <li class="nav-list"><a href="#">Privacy Policy</a></li>
-              </ul>
-            </nav>
-              <div class="footer-btn-copyright">
-                <div class="button">
-                    <a href="" class="footer-button">Shop Now</a>
-              </div>
-                  <p class="footer-copyright">© Easybank. All Rights Reserved</p>
-              </div>
-            </div>
-          </footer>
-    </div>
-</body>
-</html>
+        </div>
+    </section>
+    <%- include('footer'); -%>

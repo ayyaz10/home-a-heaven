@@ -2,10 +2,11 @@ const router = require('./routes');
 const express = require('express');
 const bodyParser = require('body-parser');
 const knex = require('knex');
-// const ejs = require('ejs')
+const ejs = require('ejs');
+const expressLayout = require('express-ejs-layouts');
 const env = require('dotenv');
 const cookieParser = require('cookie-parser');
-const bcrypt = require('bcryptjs');
+const db = require('./db/db');
 const cors = require('cors');
 
 const auth = require('./auth');
@@ -17,33 +18,52 @@ const {
   COOKIE_SECRET = 'HELLO'
  } = process.env;
 
+ 
+ const app = express();
 
-const db = knex({
-  client: 'pg',
-  connection: {
-    host : '127.0.0.1',
-    user : 'postgres',
-    password : '1234',
-    database : 'fypdb'
-  }
-});
-
-const app = express();
-
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use(express.static('public'));
 app.use(cookieParser(COOKIE_SECRET));
 app.use(cors({
   credentials: true
 }));
+// app.use(expressLayout)
+app.set('view engine', 'ejs');
 
 app.use(router);
 app.use('/auth', auth);
-app.set('view engine', 'ejs');
 
+
+app.get('/product', (req, res) => {
+  db.select().table('product_category')
+  .then(data => {
+    res.render('products', {
+      category: data
+    });
+  });
+})
+
+// app.get('/', (req, res) => {
+//     db.select().table('product_category')
+//     .then(data => {
+//       res.render('guest', {
+//         category: data,
+//       });
+//     })
+// });
+// app.get('/signup-login', (req, res) => {
+//   db.select().table('product_category')
+//   .then(data => {
+//     res.render('signup-login', {
+//       category: data
+//     });
+//   })
+// })
+
+// app.post('/register', (req,res) => {
+//   console.log(req.body)
+// })
 
 app.get('/authorizedUser', authMiddleware.ensureLoggedIn, (req, res) => {
   db.select().table('product_category')
@@ -58,14 +78,6 @@ app.get('/adminPanel', (req, res) =>{
   res.render('adminPanel');
 })
 
-app.get('/signup-login', (req, res) => {
-  db.select().table('product_category')
-  .then(data => {
-    res.render('signup-login', {
-      category: data
-    });
-  })
-})
 
 app.post('/category', (req, res) => {
     const { categoryname } = req.body;

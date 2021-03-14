@@ -4,13 +4,17 @@ const cors = require('cors');
 const router = express.Router();
 const User  = require('../db/queries');
 
-router.get('/', (req, res) => {
-    res.json({
-        message: 'hello'
-    });
-});
 
-function validUser(user) {
+function isValidRegisterUser(user) {
+    const validEmail = typeof user.email == 'string' && user.email.trim() != '';
+    const validPassword = typeof user.password == 'string' && user.password.trim() != '' && user.password.trim().length >= 6;
+    const validFirstName = typeof user.firstname == 'string' && user.firstname.trim() != '';
+    const validLastName = typeof user.last == 'string' && user.last.trim() != '';
+
+    return validEmail && validPassword && validFirstName && validLastName;
+}
+
+function isValidLoginUser(user) {
     const validEmail = typeof user.email == 'string' && user.email.trim() != '';
     const validPassword = typeof user.password == 'string' && user.password.trim() != '' && user.password.trim().length >= 6;
 
@@ -18,7 +22,7 @@ function validUser(user) {
 }
 
 router.post('/register', (req, res, next) => {
-    if(validUser(req.body)){ 
+    if(isValidRegisterUser(req.body)){ 
         User
         .getOneByEmail(req.body.email)
         .then(user => {
@@ -63,7 +67,7 @@ router.post('/register', (req, res, next) => {
 })
 
 router.post('/login', (req, res, next) => {
-    if(validUser(req.body)) {
+    if(isValidLoginUser(req.body)) {
         // check to see if user is in the database
         User
         .getOneByEmail(req.body.email)

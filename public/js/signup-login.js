@@ -9,8 +9,9 @@ function redirectIfLoggedIn() {
   }
 }
 
-redirectIfLoggedIn(); //switch between login and signup #START
+redirectIfLoggedIn();
 
+//switch between login and signup #START
 var login = document.getElementById("login_header");
 var signup = document.querySelector("#signup_header");
 var loginForm = document.querySelector("#login_form");
