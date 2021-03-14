@@ -13,12 +13,12 @@ const auth = require('./auth');
 const authMiddleware = require('./auth/middleware');
 
 
-const { 
+const {
   PORT = 3333,
   COOKIE_SECRET = 'HELLO'
  } = process.env;
 
- 
+
  const app = express();
 
 app.use(express.json());
@@ -44,27 +44,6 @@ app.get('/product', (req, res) => {
   });
 })
 
-// app.get('/', (req, res) => {
-//     db.select().table('product_category')
-//     .then(data => {
-//       res.render('guest', {
-//         category: data,
-//       });
-//     })
-// });
-// app.get('/signup-login', (req, res) => {
-//   db.select().table('product_category')
-//   .then(data => {
-//     res.render('signup-login', {
-//       category: data
-//     });
-//   })
-// })
-
-// app.post('/register', (req,res) => {
-//   console.log(req.body)
-// })
-
 app.get('/authorizedUser', authMiddleware.ensureLoggedIn, (req, res) => {
   db.select().table('product_category')
   .then(data => {
@@ -74,9 +53,9 @@ app.get('/authorizedUser', authMiddleware.ensureLoggedIn, (req, res) => {
   });
 });
 
-app.get('/adminPanel', (req, res) =>{
-  res.render('adminPanel');
-})
+// app.get('/adminPanel', (req, res) =>{
+//   res.render('adminPanel');
+// })
 
 
 app.post('/category', (req, res) => {

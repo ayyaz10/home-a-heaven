@@ -6,12 +6,13 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', homeController().index);
-// customer controllers 
+// customer controllers
 router.get('/cart', cartController().index);
 router.get('/addToCart', addToCartController().index);
 
-// admin controllers 
+// admin controllers
 router.get('/adminPanel', adminPanelController().index);
+router.post('/product', adminPanelController().product);
 
 
 module.exports = router;

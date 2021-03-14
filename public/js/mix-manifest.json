@@ -1,5 +1,5 @@
 {
     "/index.js": "/index.js",
-    "/adminPanel.js": "/adminPanel.js",
+    "/js/admin-panel.js": "/js/admin-panel.js",
     "/signup-login.js": "/signup-login.js"
 }

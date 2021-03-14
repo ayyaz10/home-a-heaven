@@ -9,9 +9,8 @@ function redirectIfLoggedIn() {
   }
 }
 
-redirectIfLoggedIn();
+redirectIfLoggedIn(); //switch between login and signup #START
 
-//switch between login and signup #START
 var login = document.getElementById("login_header");
 var signup = document.querySelector("#signup_header");
 var loginForm = document.querySelector("#login_form");
@@ -40,7 +39,7 @@ loginForm.addEventListener('submit', function (e) {
   e.preventDefault();
   var userEmail = loginFormData[0].value;
   var userPassword = loginFormData[1].value;
-  fetch('http://localhost:3333/auth/login', {
+  fetch('http://localhost:5500/auth/login', {
     method: "post",
     mode: 'cors',
     credentials: 'include',
@@ -56,7 +55,7 @@ loginForm.addEventListener('submit', function (e) {
   }).then(function (data) {
     if (data.result) {
       localStorage.user_id = data.id;
-      window.location = 'http://localhost:3333/authorizedUser';
+      window.location = 'http://localhost:5500/authorizedUser';
     } else {
       loginFail.style.display = "block";
       loginFail.classList.add('failed_message');
@@ -77,7 +76,7 @@ signupForm.addEventListener('submit', function (e) {
   var userPassword = signupFormData[1].value;
   var firstName = signupFormData[2].value;
   var lastName = signupFormData[3].value;
-  fetch('http://localhost:3333/auth/register', {
+  fetch('http://localhost:5500/auth/register', {
     method: "post",
     headers: {
       'Content-Type': 'application/json'
@@ -97,14 +96,14 @@ signupForm.addEventListener('submit', function (e) {
       registrationSuccess.classList.add('success_message');
       registrationFail.style.display = "none";
       setInterval(function () {
-        window.location = "http://localhost:3333/authorizedUser";
+        window.location = "http://localhost:5500/authorizedUser";
       }, 2000);
     } else {
       registrationFail.style.display = "block";
       registrationFail.classList.add('failed_message');
       registrationSuccess.style.display = "none";
       setInterval(function () {
-        window.location = "http://localhost:3333/signup-login";
+        window.location = "http://localhost:5500/signup-login";
       }, 2000);
     }
   })["catch"](function (err) {// console.log(err)
