@@ -15,6 +15,12 @@ module.exports = {
     create: function(user) {
             return knex('customer').insert(user, 'user_id').then(ids => {
             return ids[0];
-        }); 
+        });
+    },
+    createProduct (product) {
+        knex('product').insert(product, 'product_id').returning('*')
+        .then(data => {
+            console.log(data)
+        })
     }
 }
