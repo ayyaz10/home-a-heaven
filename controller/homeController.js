@@ -1,13 +1,12 @@
 const db = require('../db/db');
+const { getAllProducts } = require('../db/queries');
 
 const homeController = () => {
   return {
-    index (req, res) {
-      db.select().table('product_category')
-      .then(categories => {
-        res.render('index', {
-        category: categories,
-       })
+    async index (req, res) {
+      const products = await getAllProducts();
+      res.render('index', {
+        products
       })
     }
   }

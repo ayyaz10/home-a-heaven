@@ -11,7 +11,7 @@ var productName = adminPanelFormData[0];
 var productPrice = adminPanelFormData[1];
 var productImage = adminPanelFormData[2];
 var stockCount = adminPanelFormData[3];
-var categoryName = adminPanelFormData[4];
+var productCategory = adminPanelFormData[4];
 var description = document.querySelector('.product-description');
 console.log(description);
 adminPanelAddCategoryInput.addEventListener('n', function () {
@@ -30,7 +30,7 @@ adminPanelForm.addEventListener('submit', function (e) {
       productprice: productPrice.value,
       // productimage: productImage.value,
       stockcount: stockCount.value,
-      categoryname: categoryName.value,
+      productcategory: productCategory.value,
       description: description.value
     })
   }).then(function (response) {

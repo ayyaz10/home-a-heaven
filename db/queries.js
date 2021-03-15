@@ -1,6 +1,5 @@
 const knex = require('./db'); //this require is for the connection to the database. 
 
-
 module.exports = {
     getOneByEmail: function(email) {
         return knex('customer').where({
@@ -17,10 +16,35 @@ module.exports = {
             return ids[0];
         });
     },
-    createProduct (product) {
-        knex('product').insert(product, 'product_id').returning('*')
-        .then(data => {
-            console.log(data)
+     createProduct (product, productCategory) {
+         try {
+             knex.transaction(async trx => {
+                 const dbProduct =
+                     await trx.insert(product, 'product_id')
+                     .into('product')
+                     .returning('*')
+                 const cat = await trx.insert({
+                    product_id: dbProduct[0].product_id,
+                    product_category: dbProduct[0].product_category,
+                    image: dbProduct[0].image,
+                    created_on: new Date()
+                 })
+                     .into('product_category')
+             })
+         } catch (error) {
+                console.log(error)
+         }
+    },
+    getAllProducts () {
+        const allProducts = knex.select('*').from('product')
+        .then(result => {
+            return result;
         })
+        return allProducts;
+    },
+    async getALlCategories () {
+        const allCategories = await knex.select('product_category')
+        return allCategories;
+
     }
 }

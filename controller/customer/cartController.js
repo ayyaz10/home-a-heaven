@@ -1,7 +1,11 @@
+const { getAllProducts } = require('../../db/queries');
 const cartController = () => {
   return {
-    index (req, res) {
-      res.render('cart')
+    async index (req, res) {
+      const products = await getAllProducts();
+      res.render('cart', {
+        products
+      })
     }
   }
 }

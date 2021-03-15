@@ -4,10 +4,13 @@
           <a href="/"><img src="assets/logo.png" width="150px" alt="Home a Heaven logo"></a>
         </div>
         <ul class="main-menu">
+          <% for(let i = 0; i < 6; i++){ %>
+            <li><a href="#"><%= products[i].product_category %></a></li>
+          <% } %>
         </ul>
         <div class="second-menu">
             <a href="#" class="search"></a>
-            <a href="/signup-login" class="account"> 
+            <a href="/signup-login" class="account">
                 <a href="" class="logout" >Logout</a>
             </a>
             <a href="/cart" class="cart"></a>

@@ -1,30 +1,65 @@
+require('dotenv').config();
+// const db = require('./db/knexfile');
+const Pool = require('pg-pool');
+const flash = require('express-flash');
+const { Client } = require('pg');
 const router = require('./routes');
-const express = require('express');
 const bodyParser = require('body-parser');
 const knex = require('knex');
 const ejs = require('ejs');
 const expressLayout = require('express-ejs-layouts');
-const env = require('dotenv');
 const cookieParser = require('cookie-parser');
-const db = require('./db/db');
 const cors = require('cors');
+
+const express = require('express');
+const app = express();
+
+const session = require('express-session');
+const KnexSessionStore = require('connect-session-knex')(session);
 
 const auth = require('./auth');
 const authMiddleware = require('./auth/middleware');
 
+const db = knex({
+  client: 'pg',
+  connection: {
+    host : '127.0.0.1',
+    user : 'postgres',
+    password : '1234',
+    database : 'fypdb'
+  }
+})
 
 const {
   PORT = 3333,
-  COOKIE_SECRET = 'HELLO'
+  // COOKIE_SECRET = 'HELLO'
  } = process.env;
 
 
- const app = express();
+
+const store = new KnexSessionStore({
+  knex: db,
+  clearInterval : 1000 * 60 * 60 * 24, // removes session id from database
+  // after 24 hours
+});
+
+
+app.use(session({
+  secret: process.env.COOKIE_SECRET,
+  resave: false,
+  store,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24, //24 hours
+   }
+}))
+
+// app.use(flash());
 
 app.use(express.json());
 
 app.use(express.static('public'));
-app.use(cookieParser(COOKIE_SECRET));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(cors({
   credentials: true
 }));
@@ -34,6 +69,12 @@ app.set('view engine', 'ejs');
 app.use(router);
 app.use('/auth', auth);
 
+// app.use('/', (req, res) => {
+//   const n = req.session.views || 0;
+//   req.session.views = n + 1;
+//   console.log(n)
+//   res.end(`${n} views`);
+// });
 
 app.get('/product', (req, res) => {
   db.select().table('product_category')
