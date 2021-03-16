@@ -1,8 +1,6 @@
 require('dotenv').config();
 // const db = require('./db/knexfile');
-const Pool = require('pg-pool');
 const flash = require('express-flash');
-const { Client } = require('pg');
 const router = require('./routes');
 const bodyParser = require('body-parser');
 const knex = require('knex');
