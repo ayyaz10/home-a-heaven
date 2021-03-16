@@ -41,15 +41,16 @@
               <img src="assets/homepage-categories.png"  alt="">
           </div>
       </div>
+      </div>
   </section>
   <section class="new-arrivals-section">
       <h1>New Arrivals</h1>
       <div class="new-arrivals-section-row">
           <!-- <% for(let i = 0; i < 6; i++) { %> -->
             <div class="product">
-                <a href="#"><img src=<%- `assets/${products[i].image}` %> class="product-image" alt="product"></a>
-                <a href="#"><h2><%- products[i].product_name %></h2></a>
-                <a href="#"><p><%- products[i].price %></p></a>
+                <a href="/cart"><img src=<%- `assets/${products[i].image}` %> class="product-image" alt="product"></a>
+                <a href="/cart"><h2><%- products[i].product_name %></h2></a>
+                <a href="/cart"><p><%- products[i].price %></p></a>
             </div>
          <!-- <% } %> -->
       </div>
@@ -57,3 +58,4 @@
   <%- include('footer'); -%>
 </body>
 </html>
+d

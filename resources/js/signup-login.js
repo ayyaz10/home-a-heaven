@@ -42,7 +42,7 @@ loginForm.addEventListener('submit', function(e) {
     let userEmail = loginFormData[0].value;
     let userPassword = loginFormData[1].value;
 
-    fetch('http://localhost:5500/auth/login', {
+    fetch('http://localhost:3333/auth/login', {
             method: "post",
             mode: 'cors',
             credentials: 'include',
@@ -56,7 +56,7 @@ loginForm.addEventListener('submit', function(e) {
         }).then(data => {
             if(data.result) {
                 localStorage.user_id = data.id;
-                window.location = 'http://localhost:5500/authorizedUser'
+                window.location = 'http://localhost:3333/authorizedUser'
             } else {
                 loginFail.style.display = "block";
                 loginFail.classList.add('failed_message');
@@ -82,7 +82,7 @@ signupForm.addEventListener('submit', function(e) {
     const firstName = signupFormData[2].value;
     const lastName = signupFormData[3].value;
 
-    fetch('http://localhost:5500/auth/register', {
+    fetch('http://localhost:3333/auth/register', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -100,14 +100,14 @@ signupForm.addEventListener('submit', function(e) {
                 registrationSuccess.classList.add('success_message');
                 registrationFail.style.display = "none";
                 setInterval(function(){ 
-                    window.location = "http://localhost:5500/authorizedUser";
+                    window.location = "http://localhost:3333/authorizedUser";
             }, 2000);
             }else {
                 registrationFail.style.display = "block";
                 registrationFail.classList.add('failed_message');
                 registrationSuccess.style.display = "none";
                 setInterval(function(){ 
-                    window.location = "http://localhost:5500/signup-login"
+                    window.location = "http://localhost:3333/signup-login"
             }, 2000);
 
             }

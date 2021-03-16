@@ -1,5 +1,6 @@
 {
     "/public/js/index.js": "/public/js/index.js",
+    "/public/js/products.js": "/public/js/products.js",
     "/public/js/admin-panel.js": "/public/js/admin-panel.js",
     "/public/js/signup-login.js": "/public/js/signup-login.js"
 }

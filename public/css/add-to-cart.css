@@ -74,15 +74,15 @@
 }
 
 
-.bag-button > .button {
+.bag-button > a {
     background-color: var(--primary);
     color: #fff;
     padding: 1.0625rem 13.75rem;
-    border: none;
     cursor: pointer;
+    display: block;
 }
 
-.bag-button > .button:hover {
+.bag-button > a:hover {
     background-color: var(--primary-hover);
 }
 

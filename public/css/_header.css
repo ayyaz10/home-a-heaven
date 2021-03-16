@@ -100,5 +100,17 @@ a {
 }
 
 .second-menu .cart {
+    position: relative;
     background-image: url('../assets/cart-icon.png');
+}
+
+.cartCount {
+    font-size: 12px;
+    position: absolute;
+    top: 10px;
+    border-radius: 50%;
+    padding: 2px 4px;
+    background: black;
+    color: white;
+    
 }
