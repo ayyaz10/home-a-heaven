@@ -82,7 +82,7 @@ select {
 
 .summary-area {
     flex: 1;
-
+    height: 100%;
     margin-left: auto;
     box-shadow: 2px 4px 29px -16px rgba(0,0,0,0.75);
 }
@@ -92,11 +92,11 @@ h2.summary-heading {
 }
 
 .summary-container {
+    position: relative;
     display: flex;
     flex-direction: column;
 
-    height: 100%;
-    padding: 1.25rem  2.5rem 4.375rem  2.5rem;
+    padding: 1.25rem  2.5rem 2.275rem  2.5rem;
 }
 
 .item-subtotal, .subtotal-amount, .total, .total-amount {
@@ -114,6 +114,7 @@ hr {
 }
 
 .check-button {
+    position: relative;
     display: block;
     background-color: var(--primary);
     color: #fff;
@@ -121,7 +122,7 @@ hr {
     border: none;
     text-align: center;
     cursor: pointer;
-    margin-top: auto;
+    margin-top: 40px;
 }
 
 .check-button:hover {

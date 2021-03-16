@@ -12,45 +12,44 @@
 <body>
   <%- include('header'); -%>
     <div id="container">
-        <!-- <header class="header_container">
-            <div class="main_header">
-                <div class="logo">
-                    <a href="/"><img src="../public/assets/logo.png" width="150px" alt="Home a Heaven logo"></a>
-                </div>
-                <div class="second-menu">
-                    <a href="#" class="search"></a>
-                    <a href="signup-login.html" class="account"></a>
-                    <a href="#" class="cart"></a>
-                </div>
-            </div>
-        </header> -->
-        <a href="# " class="cont-shopping">Continue Shopping</a>
+        <a href="/products " class="cont-shopping">Continue Shopping</a>
         <section class="cart-container">
           <div class="cart-product-area">
             <h1 class="cart-heading">My Bag</h1>
+            <% for(let product of Object.values(session.cart.items)) {%>
             <div class="product-in-cart">
               <div class="product-image-thumb">
-                  <img src="assets/product.png" width="120px" alt="">
+
+                  <img src="assets/<%= product.item.product.image %>" width="120px" alt="">
               </div>
-              <p class="product-name">Alexendra Clock</p>
+              <p class="product-name"><%= product.item.product.product_name %></p>
               <div class="product-info">
-                <span class="price">Rs5,000</span>
+                <span class="price"><%= product.item.product.price * product.qty %></span>
+                <span class="price"></span>
                 <select class="product-quantity">
+                  <option value="<%= product.qty %>"><%= product.qty %></option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                </select>
                <span class="remove">Remove</span>
             </div>
            </div>
+           <% } %>
           </div>
           <div class="summary-area">
             <h2 class="summary-heading">Summary</h2>
             <div class="summary-container">
               <div class="subtotal-wrapper">
                 <span class="item-subtotal">Item Subtotal: </span>
-                <span class="subtotal-amount">Rs5,000</span>
+                <span class="subtotal-amount"><%= session.cart.totalPrice %></span>
               </div>
               <hr>
               <div class="total-wrapper">

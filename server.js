@@ -58,6 +58,13 @@ app.use(session({
 app.use(express.static('public'));
 app.use(express.json());
 
+// Global Middleware
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  // console.log(req.session.cart.items[51].item.product.image)
+  next();
+})
+
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(cors({
   credentials: true
