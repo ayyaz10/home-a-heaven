@@ -66,14 +66,15 @@ const cartController = () => {
       // console.log(session[0].sess.cart)
     },
     async updates(req, res) {
+      const { productId, counterVal, newPrice } = req.body;
       let cart = req.session.cart;
-      
+      console.log(req.body)
       // for(let product of Object.values(cart)) {
 
         // await console.log(product)
         cart.totalQty = cart.totalQty - 1;
       // }
-      console.log(cart.items)
+      // console.log(cart.items)
       
       // cart.totalQty  = cart.totalQty - 1;
       // cart.totalPrice = cart.totalPrice + req.body.product.price;

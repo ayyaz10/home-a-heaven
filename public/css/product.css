@@ -26,23 +26,23 @@
 }
 
 
-.product img{
+.products img{
  width: 100%;
  /* height: 100%; */
 }
 
-.product a {
+.products a {
     color: var(--primary);
 }
 
-.product h2 {
+.products h2 {
     font-size: 0.75rem;
     width: 100%;
     font-weight: 500;
     line-height: 1.5;
 }
 
-.product p {
+.products p {
     font-size: 0.75rem;
     font-weight: 500;
     line-height: 1.5;

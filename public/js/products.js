@@ -1323,9 +1323,6 @@ var notyf = new notyf__WEBPACK_IMPORTED_MODULE_1__.Notyf({
   position: {
     x: 'right',
     y: 'center'
-  },
-  INotyfIcon: {
-    color: 'blue'
   }
 });
 var addToCart = document.querySelectorAll('.add-to-cart');
@@ -1375,31 +1372,40 @@ function _updateCart() {
   return _updateCart.apply(this, arguments);
 }
 
-function sessionLocalStorage() {
+function sessionLocalStorage(_x2) {
   return _sessionLocalStorage.apply(this, arguments);
 }
 
 function _sessionLocalStorage() {
-  _sessionLocalStorage = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-    var response, result;
+  _sessionLocalStorage = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+    var products, productPrice, oldItems, response, result;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            _context3.next = 2;
+            products = document.querySelectorAll('.products');
+            productPrice = document.querySelectorAll('.product-price');
+            oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
+            productPrice.forEach(function (each) {
+              oldItems.push(parseInt(each.innerText));
+              localStorage.setItem('priceLisd', JSON.stringify(oldItems));
+            }); // check if item does not exist in the cart
+            //   let cart = product;
+
+            _context3.next = 6;
             return fetch('http://localhost:3333/getSessionData');
 
-          case 2:
+          case 6:
             response = _context3.sent;
-            _context3.next = 5;
+            _context3.next = 9;
             return response.json();
 
-          case 5:
+          case 9:
             result = _context3.sent;
             // const obj = { items: {}, totalQty: 3, totalPrice: 0, }
             localStorage.setItem('obj', JSON.stringify(result));
 
-          case 7:
+          case 11:
           case "end":
             return _context3.stop();
         }
@@ -1423,7 +1429,7 @@ addToCart.forEach(function (cartBtn) {
             case 2:
               product = _context.sent;
               updateCart(product);
-              sessionLocalStorage(product);
+              sessionLocalStorage(e);
 
             case 5:
             case "end":
@@ -1433,7 +1439,7 @@ addToCart.forEach(function (cartBtn) {
       }, _callee);
     }));
 
-    return function (_x2) {
+    return function (_x3) {
       return _ref.apply(this, arguments);
     };
   }());
