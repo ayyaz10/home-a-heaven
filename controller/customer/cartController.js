@@ -31,15 +31,14 @@ const cartController = () => {
         cart.items[req.body.product.product_id] = { 
           item: req.body,
           qty: 1,
-          selected: 'selected',
         }
           cart.totalQty = cart.totalQty + 1;
           cart.totalPrice = cart.totalPrice + req.body.product.price;
+          console.log(cart.totalPrice)
       } else {
-        cart.selected = 'selected';
         cart.items[req.body.product.product_id].qty = cart.items[req.body.product.product_id].qty + 1;
         cart.totalQty  = cart.totalQty + 1;
-        cart.totalPrice = cart.totalPrice + Number(req.body.product.price);
+        cart.totalPrice = cart.totalPrice + req.body.product.price;
         // console.log(cart.totalPrice)
       }
       console.log(cart)

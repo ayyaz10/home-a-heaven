@@ -30,6 +30,7 @@ module.exports = {
                     created_on: new Date()
                  })
                      .into('product_category')
+                    //  console.log(cat)
              })
          } catch (error) {
                 console.log(error)
