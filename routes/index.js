@@ -19,4 +19,7 @@ router.get('/adminPanel', adminPanelController().index);
 router.post('/product', adminPanelController().product);
 
 
+router.get('/getSessionData', cartController().getSessionData);
+
+
 module.exports = router;

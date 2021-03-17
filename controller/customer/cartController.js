@@ -1,4 +1,5 @@
 const { getAllProducts } = require('../../db/queries');
+const db = require('../../db/db');
 const cartController = () => {
   return {
     async index (req, res) {
@@ -41,9 +42,17 @@ const cartController = () => {
         cart.totalPrice = cart.totalPrice + req.body.product.price;
         // console.log(cart.totalPrice)
       }
-      console.log(cart)
+      // console.log(cart)
       return res.json(  {totalQty: req.session.cart.totalQty})
+    },
+    async getSessionData(req, res) {
+      const sessions = await db.select('*').from('sessions');
+      sessions.forEach(session => {
+        res.json(session.sess.cart)
+      })
+      // console.log(session[0].sess.cart)
     }
+    
   }
 }
 
