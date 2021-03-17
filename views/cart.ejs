@@ -28,9 +28,12 @@
               <div class="product-info">
                 <span class="price"><%= product.item.product.price * product.qty %></span>
                 <span class="price"></span>
-                <select class="product-quantity">
-                  <option value="<%= product.qty %>"><%= product.qty %></option>
-                  <option value="1">1</option>
+                <div class="product-quantity">
+                  <button class="add-btn">+</button>
+                  <span class="counter-value"><%= product.qty %></span>
+                  <button class="sub-btn">-</button>
+                  <!-- <option class="" value="</option> -->
+                  <!-- <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
@@ -39,8 +42,8 @@
                   <option value="7">7</option>
                   <option value="8">8</option>
                   <option value="9">9</option>
-                  <option value="10">10</option>
-               </select>
+                  <option value="10">10</option> -->
+                </div>
                <span class="remove">Remove</span>
             </div>
            </div>

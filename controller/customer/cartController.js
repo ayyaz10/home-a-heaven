@@ -64,6 +64,19 @@ const cartController = () => {
         // res.json( {sessionData: session.sess.cart })
       })
       // console.log(session[0].sess.cart)
+    },
+    async updates(req, res) {
+      let cart = req.session.cart;
+      
+      // for(let product of Object.values(cart)) {
+
+        // await console.log(product)
+        cart.totalQty = cart.totalQty - 1;
+      // }
+      console.log(cart.items)
+      
+      // cart.totalQty  = cart.totalQty - 1;
+      // cart.totalPrice = cart.totalPrice + req.body.product.price;
     }
     
   }

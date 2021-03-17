@@ -25,20 +25,56 @@
     // console.log(removeItem)
     removeItem.forEach((remove)=>{
             remove.addEventListener('click', async (e)=>{
+                const option = document.querySelector('.')
                 const id = document.querySelector('.product-in-cart')
-                const productId = Number(e.target.parentElement.parentElement.attributes[1].value);
-                // const productId = Number(id.parentElement.firstElementChild.nextElementSibling.attributes[1].value);
+                const productId = e.target.parentElement.parentElement.attributes[1].value;
                 console.log(productId)
             // remove.parentElement.parentElement.remove();
 
-            const data = await fetch('http://localhost:3333/getSessionData')
-            const session = await data.json();
-            for(let product of Object.values(session)) {
-            // console.log(product.items)
-            }
+
+            const response = await fetch('http://localhost:3333/updates', {
+            method: "post",
+            mode: 'cors',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                productId
+            })
+        })
+
+
+
+
+            // const data = await fetch('http://localhost:3333/getSessionData')
+            // const session = await data.json();
+            // for(let product of Object.values(session)) {
+            // // console.log(product.items)
+            // }
             removeFromDb()
         });
     })
+
+
+const counterValue = document.querySelector('.counter-value');
+const addButton = document.querySelectorAll('.add-btn');
+const subButton = document.querySelectorAll('.sub-btn')
+for(let i = 0; i < addButton.length; i++) {
+    addButton[i].addEventListener('click', (e) => {
+        const counter = e.target.nextElementSibling;
+        counter.innerText = Number(counter.innerText) + 1;
+    })
+}
+for(let i = 0; i < addButton.length; i++) {
+    subButton[i].addEventListener('click', (e) => {
+        const counter = e.target.parentElement.firstElementChild.nextElementSibling;
+        if(counter.innerText <= 0) {
+            counter.innerText = 0;
+        } else {
+            counter.innerText = Number(counter.innerText) - 1;
+
+        }
+    })
+}
 
 
         //   if(!cart.items[req.body.product.product_id]) {

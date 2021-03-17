@@ -899,36 +899,39 @@ function _removeFromDb() {
 removeItem.forEach(function (remove) {
   remove.addEventListener('click', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-      var id, productId, data, session, _i, _Object$values, _product;
-
+      var option, id, productId, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              option = document.querySelector('.');
               id = document.querySelector('.product-in-cart');
-              productId = Number(e.target.parentElement.parentElement.attributes[1].value); // const productId = Number(id.parentElement.firstElementChild.nextElementSibling.attributes[1].value);
-
+              productId = e.target.parentElement.parentElement.attributes[1].value;
               console.log(productId); // remove.parentElement.parentElement.remove();
 
-              _context.next = 5;
-              return fetch('http://localhost:3333/getSessionData');
+              _context.next = 6;
+              return fetch('http://localhost:3333/updates', {
+                method: "post",
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  productId: productId
+                })
+              });
 
-            case 5:
-              data = _context.sent;
-              _context.next = 8;
-              return data.json();
-
-            case 8:
-              session = _context.sent;
-
-              for (_i = 0, _Object$values = Object.values(session); _i < _Object$values.length; _i++) {// console.log(product.items)
-
-                _product = _Object$values[_i];
-              }
-
+            case 6:
+              response = _context.sent;
+              // const data = await fetch('http://localhost:3333/getSessionData')
+              // const session = await data.json();
+              // for(let product of Object.values(session)) {
+              // // console.log(product.items)
+              // }
               removeFromDb();
 
-            case 11:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -940,7 +943,29 @@ removeItem.forEach(function (remove) {
       return _ref.apply(this, arguments);
     };
   }());
-}); //   if(!cart.items[req.body.product.product_id]) {
+});
+var counterValue = document.querySelector('.counter-value');
+var addButton = document.querySelectorAll('.add-btn');
+var subButton = document.querySelectorAll('.sub-btn');
+
+for (var i = 0; i < addButton.length; i++) {
+  addButton[i].addEventListener('click', function (e) {
+    var counter = e.target.nextElementSibling;
+    counter.innerText = Number(counter.innerText) + 1;
+  });
+}
+
+for (var _i = 0; _i < addButton.length; _i++) {
+  subButton[_i].addEventListener('click', function (e) {
+    var counter = e.target.parentElement.firstElementChild.nextElementSibling;
+
+    if (counter.innerText <= 0) {
+      counter.innerText = 0;
+    } else {
+      counter.innerText = Number(counter.innerText) - 1;
+    }
+  });
+} //   if(!cart.items[req.body.product.product_id]) {
 //     cart.items[req.body.product.product_id] = { 
 //       item: req.body,
 //       qty: 1,
