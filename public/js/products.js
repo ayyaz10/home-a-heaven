@@ -1362,7 +1362,6 @@ function _updateCart() {
 
           case 6:
             result = _context2.sent;
-            // console.log(result)
             notyf.success('Item added to cart');
             cartCounter.innerText = result.totalQty;
 

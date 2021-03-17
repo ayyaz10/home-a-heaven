@@ -23,7 +23,7 @@ async function updateCart(product) {
         })
     })
         const result = await response.json();
-        // console.log(result)
+        
         notyf.success('Item added to cart');
         cartCounter.innerText = result.totalQty;
 }

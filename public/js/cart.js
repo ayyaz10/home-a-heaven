@@ -856,19 +856,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var removeItem = document.querySelectorAll('span.remove');
 var product = document.querySelector('.product-in-cart');
 var price = document.querySelector('.price');
+var data = JSON.parse(localStorage.getItem('obj')); // console.log(data)
 
 function removeFromDb() {
   return _removeFromDb.apply(this, arguments);
-}
+} // console.log(removeItem)
+
 
 function _removeFromDb() {
-  _removeFromDb = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+  _removeFromDb = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
     var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
-            _context.next = 2;
+            _context2.next = 2;
             return fetch('http://localhost:3333/updateCart', {
               method: "post",
               mode: 'cors',
@@ -882,24 +884,76 @@ function _removeFromDb() {
             });
 
           case 2:
-            response = _context.sent;
+            response = _context2.sent;
 
           case 3:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee);
+    }, _callee2);
   }));
   return _removeFromDb.apply(this, arguments);
 }
 
 removeItem.forEach(function (remove) {
-  remove.addEventListener('click', function () {
-    remove.parentElement.parentElement.remove();
-    removeFromDb();
-  });
-});
+  remove.addEventListener('click', /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+      var id, productId, data, session, _i, _Object$values, _product;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              id = document.querySelector('.product-in-cart');
+              productId = Number(e.target.parentElement.parentElement.attributes[1].value); // const productId = Number(id.parentElement.firstElementChild.nextElementSibling.attributes[1].value);
+
+              console.log(productId); // remove.parentElement.parentElement.remove();
+
+              _context.next = 5;
+              return fetch('http://localhost:3333/getSessionData');
+
+            case 5:
+              data = _context.sent;
+              _context.next = 8;
+              return data.json();
+
+            case 8:
+              session = _context.sent;
+
+              for (_i = 0, _Object$values = Object.values(session); _i < _Object$values.length; _i++) {// console.log(product.items)
+
+                _product = _Object$values[_i];
+              }
+
+              removeFromDb();
+
+            case 11:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+}); //   if(!cart.items[req.body.product.product_id]) {
+//     cart.items[req.body.product.product_id] = { 
+//       item: req.body,
+//       qty: 1,
+//     }
+//       cart.totalQty = cart.totalQty + 1;
+//       cart.totalPrice = cart.totalPrice + req.body.product.price;
+//       console.log(cart.totalPrice)
+//   } else {
+//     cart.items[req.body.product.product_id].qty = cart.items[req.body.product.product_id].qty + 1;
+//     cart.totalQty  = cart.totalQty + 1;
+//     cart.totalPrice = cart.totalPrice + req.body.product.price;
+//     // console.log(cart.totalPrice)
+//   }
 })();
 
 /******/ })()

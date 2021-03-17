@@ -3,7 +3,11 @@ const db = require('../../db/db');
 const cartController = () => {
   return {
     async index (req, res) {
+      // console.log(products)
+
       const products = await getAllProducts();
+      // console.log(products)
+      
       res.render('cart', {
         products
       })
@@ -13,6 +17,15 @@ const cartController = () => {
         //   items: {
         //     productId : { item: productObject, qty: 0},
         //   },
+        //   totalQty: 0,
+        //   totalPrice:0
+        // }
+        // let cart = {
+        //   items:
+                //  {
+                      // item: productObject,
+                      // qty: 0
+              // },
         //   totalQty: 0,
         //   totalPrice:0
         // }
@@ -42,13 +55,13 @@ const cartController = () => {
         cart.totalPrice = cart.totalPrice + req.body.product.price;
         // console.log(cart.totalPrice)
       }
-      // console.log(cart)
+      // console.log(req.body)
       return res.json(  {totalQty: req.session.cart.totalQty})
     },
     async getSessionData(req, res) {
       const sessions = await db.select('*').from('sessions');
       sessions.forEach(session => {
-        res.json(session.sess.cart)
+        // res.json( {sessionData: session.sess.cart })
       })
       // console.log(session[0].sess.cart)
     }
@@ -57,4 +70,3 @@ const cartController = () => {
 }
 
 module.exports = cartController;
-
