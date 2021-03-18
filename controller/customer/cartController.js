@@ -38,26 +38,29 @@ const cartController = () => {
           totalPrice: 0,
         }
       }
-
       // check if item does not exist in the cart
       let cart = req.session.cart;
       if(!cart.items[req.body.product.product_id]) {
         cart.items[req.body.product.product_id] = { 
           item: req.body,
+          price: req.body.product.price,
           qty: 1,
         }
           cart.totalQty = cart.totalQty + 1;
           cart.totalPrice = cart.totalPrice + req.body.product.price;
-          console.log(cart.totalPrice)
+          // console.log(cart.totalPrice)
       } else {
         cart.items[req.body.product.product_id].qty = cart.items[req.body.product.product_id].qty + 1;
+        cart.items[req.body.product.product_id].price = cart.items[req.body.product.product_id].price + req.body.product.price;
         cart.totalQty  = cart.totalQty + 1;
         cart.totalPrice = cart.totalPrice + req.body.product.price;
         // console.log(cart.totalPrice)
       }
+      // console.log(cart)
       // console.log(req.body)
       return res.json(  {totalQty: req.session.cart.totalQty})
     },
+
     async getSessionData(req, res) {
       const sessions = await db.select('*').from('sessions');
       sessions.forEach(session => {
@@ -65,22 +68,28 @@ const cartController = () => {
       })
       // console.log(session[0].sess.cart)
     },
-    async updates(req, res) {
-      const { productId, counterVal, newPrice } = req.body;
-      let cart = req.session.cart;
-      console.log(req.body)
-      // for(let product of Object.values(cart)) {
+    async removeCartItem(req, res) {
+      // console.log(req.body)
+    },
 
-        // await console.log(product)
-        cart.totalQty = cart.totalQty - 1;
-      // }
-      // console.log(cart.items)
+    async editCartValues(req, res) {
+      const { productid, counterval, price, cartqty, subtotal, total } = req.body;
+      let cart = req.session.cart;
+      // cart.totalQty
+      cart.items[productid].price = price;
+      cart.items[productid].qty = counterval;
+      cart.totalQty = cartqty;
+      cart.totalPrice = total;
+      return res.json(  {totalPrice: req.session.cart.totalPrice})
+
+
+
       
-      // cart.totalQty  = cart.totalQty - 1;
-      // cart.totalPrice = cart.totalPrice + req.body.product.price;
     }
     
   }
 }
 
 module.exports = cartController;
+
+

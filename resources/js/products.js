@@ -54,3 +54,20 @@ addToCart.forEach(cartBtn => {
         
     })
 })
+
+{
+    items: {
+      '28': { item: [Object], qty: 13 },
+      '29': { item: [Object], qty: 30 },
+      '30': { item: [Object], qty: 5 },
+      '31': { item: [Object], qty: 5 },
+      '32': { item: [Object], qty: 2 },
+      '33': { item: [Object], qty: 2 },
+      '34': { item: [Object], qty: 1 },
+      '35': { item: [Object], qty: 2 }
+    },
+    totalQty: 60,
+    totalPrice: 62600
+  }
+
+  <%= product.item.product.price * product.qty %>

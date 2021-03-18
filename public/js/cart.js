@@ -867,16 +867,18 @@ var subtotalAmount = document.querySelector('.subtotal-amount');
 var totalAmount = document.querySelector('.total-amount');
 var addButton = document.querySelectorAll('.add-btn');
 var subButton = document.querySelectorAll('.sub-btn');
+var productId = 0;
 var actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
 
 var _loop = function _loop(i) {
   addButton[i].addEventListener('click', function (e) {
-    var counter = e.target.nextElementSibling; // let price = e.target.parentElement.parentElement.firstElementChild;
-
+    var counter = e.target.nextElementSibling;
+    var price = e.target.parentElement.parentElement.firstElementChild;
     price.innerText = parseInt(price.innerText) + actualPrice[i];
     subtotalAmount.innerText = parseInt(subtotalAmount.innerText) + actualPrice[i];
     totalAmount.innerText = parseInt(totalAmount.innerText) + actualPrice[i];
     counter.innerText = parseInt(counter.innerText) + 1;
+    updateSession(e, counter);
   });
 };
 
@@ -887,8 +889,7 @@ for (var i = 0; i < addButton.length; i++) {
 var _loop2 = function _loop2(_i) {
   subButton[_i].addEventListener('click', function (e) {
     var counter = e.target.parentElement.firstElementChild.nextElementSibling;
-    var price = e.target.parentElement.parentElement.firstElementChild;
-    console.log(e.target.parentElement.parentElement.firstElementChild);
+    var price = e.target.parentElement.parentElement.firstElementChild; // console.log(e.target.parentElement.parentElement.firstElementChild)
 
     if (counter.innerText <= 0) {
       price.innerText = 0;
@@ -897,7 +898,8 @@ var _loop2 = function _loop2(_i) {
       price.innerText = parseInt(price.innerText) - actualPrice[_i];
       subtotalAmount.innerText = parseInt(subtotalAmount.innerText) - actualPrice[_i];
       totalAmount.innerText = parseInt(totalAmount.innerText) - actualPrice[_i];
-      counter.innerText = Number(counter.innerText) - 1;
+      counter.innerText = parseInt(counter.innerText) - 1;
+      updateSession(e, counter);
     }
   });
 };
@@ -909,28 +911,7 @@ for (var _i = 0; _i < subButton.length; _i++) {
 var removeItem = document.querySelectorAll('span.remove');
 var product = document.querySelector('.product-in-cart');
 var price = document.querySelector('.price');
-var data = JSON.parse(localStorage.getItem('obj')); // console.log(data)
-
-function removeFromDb() {
-  return _removeFromDb.apply(this, arguments);
-} // console.log(removeItem)
-
-
-function _removeFromDb() {
-  _removeFromDb = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-  return _removeFromDb.apply(this, arguments);
-}
-
+var data = JSON.parse(localStorage.getItem('obj'));
 removeItem.forEach(function (remove) {
   remove.addEventListener('click', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
@@ -944,7 +925,6 @@ removeItem.forEach(function (remove) {
               price = parseInt(e.target.parentElement.firstElementChild.innerText);
               productId = e.target.parentElement.parentElement.attributes[1].value;
               counterVal = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText);
-              console.log(counterVal);
               subtotal = parseInt(subtotalAmount.innerText);
               total = parseInt(totalAmount.innerText);
               newPrice = price * counterVal;
@@ -956,7 +936,7 @@ removeItem.forEach(function (remove) {
                 total: total
               }; // console.log(obj)
 
-              _context.next = 11;
+              _context.next = 10;
               return fetch('http://localhost:3333/updates', {
                 method: "post",
                 mode: 'cors',
@@ -969,7 +949,7 @@ removeItem.forEach(function (remove) {
                 })
               });
 
-            case 11:
+            case 10:
               response = _context.sent;
               // remove.parentElement.parentElement.remove();
               // const data = await fetch('http://localhost:3333/getSessionData')
@@ -979,7 +959,7 @@ removeItem.forEach(function (remove) {
               // }
               removeFromDb();
 
-            case 13:
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -991,20 +971,60 @@ removeItem.forEach(function (remove) {
       return _ref.apply(this, arguments);
     };
   }());
-}); //   if(!cart.items[req.body.product.product_id]) {
-//     cart.items[req.body.product.product_id] = { 
-//       item: req.body,
-//       qty: 1,
-//     }
-//       cart.totalQty = cart.totalQty + 1;
-//       cart.totalPrice = cart.totalPrice + req.body.product.price;
-//       console.log(cart.totalPrice)
-//   } else {
-//     cart.items[req.body.product.product_id].qty = cart.items[req.body.product.product_id].qty + 1;
-//     cart.totalQty  = cart.totalQty + 1;
-//     cart.totalPrice = cart.totalPrice + req.body.product.price;
-//     // console.log(cart.totalPrice)
-//   }
+});
+
+var updateSession = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e, counter) {
+    var price, cartqty, productid, counterval, subtotal, total, obj, response, result;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            price = parseInt(e.target.parentElement.parentElement.firstElementChild.innerText);
+            cartqty = parseInt(document.querySelector('.cart-count').innerText);
+            productid = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value);
+            counterval = parseInt(counter.innerText);
+            subtotal = parseInt(subtotalAmount.innerText);
+            total = parseInt(totalAmount.innerText);
+            obj = {
+              productid: productid,
+              counterval: counterval,
+              price: price,
+              cartqty: cartqty,
+              subtotal: subtotal,
+              total: total
+            };
+            _context2.next = 9;
+            return fetch('http://localhost:3333/editCartValues', {
+              method: "post",
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(obj)
+            });
+
+          case 9:
+            response = _context2.sent;
+            _context2.next = 12;
+            return response.json();
+
+          case 12:
+            result = _context2.sent;
+
+          case 13:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function updateSession(_x2, _x3) {
+    return _ref2.apply(this, arguments);
+  };
+}();
 })();
 
 /******/ })()

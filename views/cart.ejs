@@ -26,7 +26,7 @@
               </div>
               <p class="product-name"><%= product.item.product.product_name %></p>
               <div class="product-info">
-                <span class="price"><%= product.item.product.price * product.qty %></span>
+                <span class="price"><%= product.price %></span>
                 <div class="product-quantity">
                   <button class="add-btn">+</button>
                   <span class="counter-value"><%= product.qty %></span>
@@ -68,7 +68,7 @@
         <section class="empty-cart">
           <h1 class="empty-heading">Your bag is empty</h1>
           <div class="button">
-              <button class="shop-button">Shop Now</button>
+              <button class="shop-button"><a href="/products">Shop Now</a></button>
           </div>
         </section>
         <% } %>

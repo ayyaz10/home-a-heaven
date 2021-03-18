@@ -20,7 +20,8 @@ router.post('/product', adminPanelController().product);
 
 
 router.get('/getSessionData', cartController().getSessionData);
-router.post('/updates', cartController().updates);
+router.post('/editCartValues', cartController().editCartValues);
+router.post('/removeCartItem', cartController().removeCartItem);
 
 
 module.exports = router;
