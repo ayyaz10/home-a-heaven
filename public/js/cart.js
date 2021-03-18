@@ -965,21 +965,13 @@ var updateDelSession = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            //     let price = parseInt(e.target.parentElement.firstElementChild.innerText);
             cartqty = document.querySelector('.cart-count');
             productid = parseInt(e.target.parentElement.parentElement.attributes[1].value);
-            counterval = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText); //     let subtotal = parseInt(subtotalAmount.innerText);
-            //     // let total = parseInt(totalAmount.innerText);
-            //     let total = parseInt((e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.innerText))
-            //    console.log(total)
-            //    removeItem[i].parentElement.parentElement.remove();
-
-            console.log(productid);
+            counterval = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText);
             obj = {
-              productid: productid // , counterval, price, cartqty, subtotal, total
-
+              productid: productid
             };
-            _context.next = 7;
+            _context.next = 6;
             return fetch('http://localhost:3333/removeCartItem', {
               method: "post",
               mode: 'cors',
@@ -990,22 +982,33 @@ var updateDelSession = /*#__PURE__*/function () {
               body: JSON.stringify(obj)
             });
 
-          case 7:
+          case 6:
             response = _context.sent;
+            _context.prev = 7;
             _context.next = 10;
             return response.json();
 
           case 10:
             result = _context.sent;
-            console.log(result);
-            cartqty.innerText = result.totalQty; // console.log(cartqty)
 
-          case 13:
+            if (result.totalQty < 1) {
+              location += '';
+            }
+
+            cartqty.innerText = result.totalQty;
+            _context.next = 17;
+            break;
+
+          case 15:
+            _context.prev = 15;
+            _context.t0 = _context["catch"](7);
+
+          case 17:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee);
+    }, _callee, null, [[7, 15]]);
   }));
 
   return function updateDelSession(_x) {

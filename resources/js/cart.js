@@ -87,19 +87,10 @@ for(let i = 0; i < removeItem.length; i++) {
 // })
 
 const updateDelSession = async (e, ) => {
-//     let price = parseInt(e.target.parentElement.firstElementChild.innerText);
     let cartqty = document.querySelector('.cart-count');
     let productid = parseInt(e.target.parentElement.parentElement.attributes[1].value);
     let counterval = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText);
-//     let subtotal = parseInt(subtotalAmount.innerText);
-//     // let total = parseInt(totalAmount.innerText);
-//     let total = parseInt((e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.innerText))
-//    console.log(total)
-//    removeItem[i].parentElement.parentElement.remove();
-console.log(productid)
-    const obj = { productid
-        // , counterval, price, cartqty, subtotal, total
-    };
+    const obj = { productid };
     const response = await fetch('http://localhost:3333/removeCartItem', {
         method: "post",
         mode: 'cors',
@@ -107,13 +98,15 @@ console.log(productid)
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(obj)
      })
-    const result = await response.json();
-     console.log(result)
-
-        cartqty.innerText = result.totalQty;
-    // console.log(cartqty)
-     
-
+     try {
+         const result = await response.json();
+         if(result.totalQty < 1) {
+            location += '';
+         }
+         cartqty.innerText = result.totalQty;
+     } catch (error) {
+        //  console.log(error)
+     }
 }
 
 const updateSession = async (e, counter) => {
@@ -133,5 +126,4 @@ const updateSession = async (e, counter) => {
         body: JSON.stringify(obj)
     })
     const result = await response.json();
-    
 }

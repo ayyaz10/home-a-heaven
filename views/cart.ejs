@@ -14,7 +14,7 @@
   <%- include('header'); -%>
 
     <div id="container">
-      <%if (session.cart) {%>
+      <%if (session.cart && session.cart.totalQty) {%>
         <a href="/products " class="cont-shopping">Continue Shopping</a>
         <section class="cart-container">
           <div class="cart-product-area">
@@ -31,17 +31,6 @@
                   <button class="add-btn">+</button>
                   <span class="counter-value"><%= product.qty %></span>
                   <button class="sub-btn">-</button>
-                  <!-- <option class="" value="</option> -->
-                  <!-- <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option> -->
                 </div>
                <span class="remove">Remove</span>
             </div>
