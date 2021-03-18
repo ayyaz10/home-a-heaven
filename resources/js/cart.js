@@ -14,6 +14,7 @@ const subtotalAmount = document.querySelector('.subtotal-amount');
 const totalAmount = document.querySelector('.total-amount');
 const addButton = document.querySelectorAll('.add-btn');
 const subButton = document.querySelectorAll('.sub-btn');
+const cartQty = document.querySelector('.cart-count');
 let productId = 0;
 
 const actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
@@ -27,6 +28,7 @@ for(let i = 0; i < addButton.length; i++) {
         subtotalAmount.innerText = parseInt(subtotalAmount.innerText) + actualPrice[i];
         totalAmount.innerText = parseInt(totalAmount.innerText) + actualPrice[i];
         counter.innerText = parseInt(counter.innerText) + 1;
+        cartQty.innerText = parseInt(cartQty.innerText) + 1;
         updateSession(e, counter);
     })
 }
@@ -44,6 +46,7 @@ for(let i = 0; i < subButton.length; i++) {
             subtotalAmount.innerText = parseInt(subtotalAmount.innerText) - actualPrice[i];
             totalAmount.innerText = parseInt(totalAmount.innerText) - actualPrice[i];
             counter.innerText = parseInt(counter.innerText) - 1;
+            cartQty.innerText = parseInt(cartQty.innerText) - 1;
             updateSession(e, counter);
         }
     })
@@ -62,35 +65,36 @@ remove.addEventListener('click', async (e)=>{
     const id = document.querySelector('.product-in-cart')
     // const price = e.target
     const price = parseInt(e.target.parentElement.firstElementChild.innerText);
-
-    const productId = e.target.parentElement.parentElement.attributes[1].value;
-    const counterVal = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText);
+    const cartqty = parseInt(document.querySelector('.cart-count').innerText);
+    const productid = parseInt(e.target.parentElement.parentElement.attributes[1].value);
+    const counterval = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText);
     const subtotal = parseInt(subtotalAmount.innerText);
-    const total = parseInt(totalAmount.innerText);
+    // let total = parseInt(totalAmount.innerText);
+   const total = parseInt((e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.innerText))
+   console.log(total)
+    // remove.parentElement.parentElement.remove();
+    // total = total - price;
+    // console.log(total)
+    // parseInt(totalAmount.innerText);
 
-    const newPrice = price * counterVal;
-
-    const obj = {
-        productId,
-        counterVal,
-        price,
-        subtotal,
-        total,
-    };
+    // const newPrice = price * counterval;
+    // console.log(price)
+    const obj = { productid, counterval, price, cartqty, subtotal, total};
     
     // console.log(obj)
 
-    const response = await fetch('http://localhost:3333/updates', {
+    const response = await fetch('http://localhost:3333/removeCartItem', {
         method: "post",
         mode: 'cors',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            obj
-    })
+        body: JSON.stringify(obj)
+
 })
+const result = await response.json();
+// console.log(result)
             
-            // remove.parentElement.parentElement.remove();
+            
             
             
             
@@ -99,7 +103,7 @@ remove.addEventListener('click', async (e)=>{
             // for(let product of Object.values(session)) {
                 // // console.log(product.items)
                 // }
-        removeFromDb()
+        // removeFromDb()
     });
 })
 
@@ -112,7 +116,7 @@ remove.addEventListener('click', async (e)=>{
         const subtotal = parseInt(subtotalAmount.innerText);
         let total = parseInt(totalAmount.innerText);
 
-        const obj = { productid, counterval, price,cartqty, subtotal, total};
+        const obj = { productid, counterval, price, cartqty, subtotal, total};
         const response = await fetch('http://localhost:3333/editCartValues', {
             method: "post",
             mode: 'cors',

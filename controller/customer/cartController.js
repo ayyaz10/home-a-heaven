@@ -68,17 +68,47 @@ const cartController = () => {
       })
       // console.log(session[0].sess.cart)
     },
+
     async removeCartItem(req, res) {
-      // console.log(req.body)
+      try {
+        
+        const { productid, counterval, price, cartqty, subtotal, total } = req.body;
+        let cart = req.session.cart;
+        // cart.totalPrice = cart.totalPrice - cart.items[productid].price;
+        // console.log(cart.items[productid])
+      //  cart.totalPrice = cart.totalPrice - total;
+        console.log(cart)
+        // console.log(req.session.cart)
+        // console.log(cart.totalPrice)
+      } catch (error) {
+        console.log(error)
+      }
     },
 
     async editCartValues(req, res) {
-      const { productid, counterval, price, cartqty, subtotal, total } = req.body;
+      const { productid, counterval, price, cartqty, subtotal, total } = await req.body;
       let cart = req.session.cart;
+      // console.log(cartqty)
       // cart.totalQty
       cart.items[productid].price = price;
       cart.items[productid].qty = counterval;
-      cart.totalQty = cartqty;
+      let arrayOfQty= [];
+      for(let prop of Object.values(cart.items)) {
+        arrayOfQty.push(prop.qty)
+      }
+      const sumOfTotalQty = arrayOfQty.reduce((a,b) => a+b,0)
+      console.log(sumOfTotalQty)
+    
+      cart.totalQty = sumOfTotalQty;
+      // function sum(obj) {
+        //   return Object.keys(obj).reduce((sum,key)=>sum+parseFloat(obj[key]||0),0);
+        // }
+      // let sample = { a: 1 , b: 2 , c:3 };
+      
+      // console.log(`sum:${sum(cart.items[productid].price)}`);
+      // console.log(cart.items[productid].price)
+
+
       cart.totalPrice = total;
       return res.json(  {totalPrice: req.session.cart.totalPrice})
 

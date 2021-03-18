@@ -867,6 +867,7 @@ var subtotalAmount = document.querySelector('.subtotal-amount');
 var totalAmount = document.querySelector('.total-amount');
 var addButton = document.querySelectorAll('.add-btn');
 var subButton = document.querySelectorAll('.sub-btn');
+var cartQty = document.querySelector('.cart-count');
 var productId = 0;
 var actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
 
@@ -878,6 +879,7 @@ var _loop = function _loop(i) {
     subtotalAmount.innerText = parseInt(subtotalAmount.innerText) + actualPrice[i];
     totalAmount.innerText = parseInt(totalAmount.innerText) + actualPrice[i];
     counter.innerText = parseInt(counter.innerText) + 1;
+    cartQty.innerText = parseInt(cartQty.innerText) + 1;
     updateSession(e, counter);
   });
 };
@@ -899,6 +901,7 @@ var _loop2 = function _loop2(_i) {
       subtotalAmount.innerText = parseInt(subtotalAmount.innerText) - actualPrice[_i];
       totalAmount.innerText = parseInt(totalAmount.innerText) - actualPrice[_i];
       counter.innerText = parseInt(counter.innerText) - 1;
+      cartQty.innerText = parseInt(cartQty.innerText) - 1;
       updateSession(e, counter);
     }
   });
@@ -915,7 +918,7 @@ var data = JSON.parse(localStorage.getItem('obj'));
 removeItem.forEach(function (remove) {
   remove.addEventListener('click', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-      var id, price, productId, counterVal, subtotal, total, newPrice, obj, response;
+      var id, price, cartqty, productid, counterval, subtotal, total, obj, response, result;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -923,43 +926,48 @@ removeItem.forEach(function (remove) {
               id = document.querySelector('.product-in-cart'); // const price = e.target
 
               price = parseInt(e.target.parentElement.firstElementChild.innerText);
-              productId = e.target.parentElement.parentElement.attributes[1].value;
-              counterVal = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText);
-              subtotal = parseInt(subtotalAmount.innerText);
-              total = parseInt(totalAmount.innerText);
-              newPrice = price * counterVal;
+              cartqty = parseInt(document.querySelector('.cart-count').innerText);
+              productid = parseInt(e.target.parentElement.parentElement.attributes[1].value);
+              counterval = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText);
+              subtotal = parseInt(subtotalAmount.innerText); // let total = parseInt(totalAmount.innerText);
+
+              total = parseInt(e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.innerText);
+              console.log(total); // remove.parentElement.parentElement.remove();
+              // total = total - price;
+              // console.log(total)
+              // parseInt(totalAmount.innerText);
+              // const newPrice = price * counterval;
+              // console.log(price)
+
               obj = {
-                productId: productId,
-                counterVal: counterVal,
+                productid: productid,
+                counterval: counterval,
                 price: price,
+                cartqty: cartqty,
                 subtotal: subtotal,
                 total: total
               }; // console.log(obj)
 
-              _context.next = 10;
-              return fetch('http://localhost:3333/updates', {
+              _context.next = 11;
+              return fetch('http://localhost:3333/removeCartItem', {
                 method: "post",
                 mode: 'cors',
                 credentials: 'include',
                 headers: {
                   'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                  obj: obj
-                })
+                body: JSON.stringify(obj)
               });
 
-            case 10:
+            case 11:
               response = _context.sent;
-              // remove.parentElement.parentElement.remove();
-              // const data = await fetch('http://localhost:3333/getSessionData')
-              // const session = await data.json();
-              // for(let product of Object.values(session)) {
-              // // console.log(product.items)
-              // }
-              removeFromDb();
+              _context.next = 14;
+              return response.json();
 
-            case 12:
+            case 14:
+              result = _context.sent;
+
+            case 15:
             case "end":
               return _context.stop();
           }
