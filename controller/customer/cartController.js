@@ -13,6 +13,7 @@ const cartController = () => {
       })
     },
     async update(req, res) {
+      console.log(req.body)
         // let cart = {
         //   items: {
         //     productId : { item: productObject, qty: 0},
@@ -41,23 +42,19 @@ const cartController = () => {
       // check if item does not exist in the cart
       let cart = req.session.cart;
       if(!cart.items[req.body.product.product_id]) {
-        cart.items[req.body.product.product_id] = { 
+        cart.items[req.body.product.product_id] = {
           item: req.body,
           price: req.body.product.price,
           qty: 1,
         }
           cart.totalQty = cart.totalQty + 1;
           cart.totalPrice = cart.totalPrice + req.body.product.price;
-          // console.log(cart.totalPrice)
       } else {
         cart.items[req.body.product.product_id].qty = cart.items[req.body.product.product_id].qty + 1;
         cart.items[req.body.product.product_id].price = cart.items[req.body.product.product_id].price + req.body.product.price;
         cart.totalQty  = cart.totalQty + 1;
         cart.totalPrice = cart.totalPrice + req.body.product.price;
-        // console.log(cart.totalPrice)
       }
-      // console.log(cart)
-      // console.log(req.body)
       return res.json(  {totalQty: req.session.cart.totalQty})
     },
 
@@ -70,53 +67,39 @@ const cartController = () => {
     },
 
     async removeCartItem(req, res) {
-      try {
-        
-        const { productid, counterval, price, cartqty, subtotal, total } = req.body;
+        const { productid, counterval, price, cartqty, subtotal, total } = await req.body;
         let cart = req.session.cart;
-        // cart.totalPrice = cart.totalPrice - cart.items[productid].price;
-        // console.log(cart.items[productid])
-      //  cart.totalPrice = cart.totalPrice - total;
-        console.log(cart)
-        // console.log(req.session.cart)
-        // console.log(cart.totalPrice)
-      } catch (error) {
-        console.log(error)
-      }
+        // delete cart.items[productid]
+        // cart.items[productid].qty = cart.items[productid].qty - counterval;
+        // cart.totalQty = cart.totalQty - counterval;
+        const session = req.session;
+        console.log(cart.totalPrice)
+        cart.totalPrice = cart.totalPrice - cart.items[productid].price;
+        cart.totalQty = cart.totalQty - cart.items[productid].qty;
+        delete cart.items[productid];
+            // delete cart.totalPrice;
+            console.log(cart)
+            return res.json({
+              totalQty: req.session.cart.totalQty,
+              totalPrice: req.session.cart.totalPrice
+            })
     },
 
     async editCartValues(req, res) {
       const { productid, counterval, price, cartqty, subtotal, total } = await req.body;
       let cart = req.session.cart;
-      // console.log(cartqty)
-      // cart.totalQty
+      // console.log(cart)
       cart.items[productid].price = price;
       cart.items[productid].qty = counterval;
       let arrayOfQty= [];
       for(let prop of Object.values(cart.items)) {
         arrayOfQty.push(prop.qty)
       }
-      const sumOfTotalQty = arrayOfQty.reduce((a,b) => a+b,0)
-      console.log(sumOfTotalQty)
-    
+      const sumOfTotalQty = arrayOfQty.reduce((a , b) => a + b , 0)
       cart.totalQty = sumOfTotalQty;
-      // function sum(obj) {
-        //   return Object.keys(obj).reduce((sum,key)=>sum+parseFloat(obj[key]||0),0);
-        // }
-      // let sample = { a: 1 , b: 2 , c:3 };
-      
-      // console.log(`sum:${sum(cart.items[productid].price)}`);
-      // console.log(cart.items[productid].price)
-
-
       cart.totalPrice = total;
       return res.json(  {totalPrice: req.session.cart.totalPrice})
-
-
-
-      
     }
-    
   }
 }
 

@@ -911,75 +911,107 @@ for (var _i = 0; _i < subButton.length; _i++) {
   _loop2(_i);
 }
 
-var removeItem = document.querySelectorAll('span.remove');
-var product = document.querySelector('.product-in-cart');
-var price = document.querySelector('.price');
-var data = JSON.parse(localStorage.getItem('obj'));
-removeItem.forEach(function (remove) {
-  remove.addEventListener('click', /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-      var id, price, cartqty, productid, counterval, subtotal, total, obj, response, result;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+var removeItem = document.querySelectorAll('span.remove'); // const product = document.querySelector('.product-in-cart');
+// const price = document.querySelector('.price')
+// const data = JSON.parse(localStorage.getItem('obj'))
+
+var _loop3 = function _loop3(_i2) {
+  removeItem[_i2].addEventListener('click', /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+      var price, counterval, subtotal, total, cartqty;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              id = document.querySelector('.product-in-cart'); // const price = e.target
-
-              price = parseInt(e.target.parentElement.firstElementChild.innerText);
+              price = e.target.parentElement.firstElementChild;
+              counterval = e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling;
+              subtotal = e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.firstElementChild.firstElementChild.nextElementSibling;
+              total = e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling;
               cartqty = parseInt(document.querySelector('.cart-count').innerText);
-              productid = parseInt(e.target.parentElement.parentElement.attributes[1].value);
-              counterval = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText);
-              subtotal = parseInt(subtotalAmount.innerText); // let total = parseInt(totalAmount.innerText);
+              total.innerText = total.innerText - price.innerText;
+              subtotal.innerText = subtotal.innerText - price.innerText;
+              cartqty = cartqty - counterval.innerText;
+              updateDelSession(e);
 
-              total = parseInt(e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.innerText);
-              console.log(total); // remove.parentElement.parentElement.remove();
-              // total = total - price;
-              // console.log(total)
-              // parseInt(totalAmount.innerText);
-              // const newPrice = price * counterval;
-              // console.log(price)
+              removeItem[_i2].parentElement.parentElement.remove();
 
-              obj = {
-                productid: productid,
-                counterval: counterval,
-                price: price,
-                cartqty: cartqty,
-                subtotal: subtotal,
-                total: total
-              }; // console.log(obj)
-
-              _context.next = 11;
-              return fetch('http://localhost:3333/removeCartItem', {
-                method: "post",
-                mode: 'cors',
-                credentials: 'include',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(obj)
-              });
-
-            case 11:
-              response = _context.sent;
-              _context.next = 14;
-              return response.json();
-
-            case 14:
-              result = _context.sent;
-
-            case 15:
+            case 10:
             case "end":
-              return _context.stop();
+              return _context3.stop();
           }
         }
-      }, _callee);
+      }, _callee3);
     }));
 
-    return function (_x) {
-      return _ref.apply(this, arguments);
+    return function (_x4) {
+      return _ref3.apply(this, arguments);
     };
   }());
-});
+};
+
+for (var _i2 = 0; _i2 < removeItem.length; _i2++) {
+  _loop3(_i2);
+} // removeItem.forEach((remove)=>{
+// remove.addEventListener('click', async (e)=>{
+// // remove.parentElement.parentElement.remove();
+//     });
+// })
+
+
+var updateDelSession = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+    var cartqty, productid, counterval, obj, response, result;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            //     let price = parseInt(e.target.parentElement.firstElementChild.innerText);
+            cartqty = document.querySelector('.cart-count');
+            productid = parseInt(e.target.parentElement.parentElement.attributes[1].value);
+            counterval = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText); //     let subtotal = parseInt(subtotalAmount.innerText);
+            //     // let total = parseInt(totalAmount.innerText);
+            //     let total = parseInt((e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.innerText))
+            //    console.log(total)
+            //    removeItem[i].parentElement.parentElement.remove();
+
+            console.log(productid);
+            obj = {
+              productid: productid // , counterval, price, cartqty, subtotal, total
+
+            };
+            _context.next = 7;
+            return fetch('http://localhost:3333/removeCartItem', {
+              method: "post",
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(obj)
+            });
+
+          case 7:
+            response = _context.sent;
+            _context.next = 10;
+            return response.json();
+
+          case 10:
+            result = _context.sent;
+            console.log(result);
+            cartqty.innerText = result.totalQty; // console.log(cartqty)
+
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function updateDelSession(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
 
 var updateSession = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e, counter) {

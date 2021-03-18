@@ -64,5 +64,13 @@ addToCart.forEach(cartBtn => {
 //     totalQty: 60,
 //     totalPrice: 62600
 //   }
+// {
+//     productid: 30,
+//     counterval: 4,
+//     price: 4000,
+//     cartqty: 35,
+//     subtotal: 36800,
+//     total: 36800
+//   }
 
 //   <%= product.item.product.price * product.qty %>
