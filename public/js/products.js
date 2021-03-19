@@ -859,40 +859,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 // });
 var addToCart = document.querySelectorAll('.add-to-cart');
 
-function updateCart(_x, _x2) {
+function updateCart(_x) {
   return _updateCart.apply(this, arguments);
 }
 
 function _updateCart() {
-  _updateCart = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(product, e) {
-    var cartCounter, response, result;
+  _updateCart = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+    var cartCounter;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            cartCounter = document.querySelector('.cart-count');
-            _context2.next = 3;
-            return fetch('http://localhost:3333/updateCart', {
-              method: "post",
-              mode: 'cors',
-              credentials: 'include',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                product: product
-              })
-            });
+            cartCounter = document.querySelector('.cart-count'); // const product = JSON.parse(localStorage.getItem('itemsArray'));
+            // console.log(product)
+            // const response = await fetch('http://localhost:3333/updateCart', {
+            //     method: "post",
+            //     mode: 'cors',
+            //     credentials: 'include',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({
+            //         product
+            //     })
+            // })
+            // const result = await response.json();
+            // notyf.success('Item added to cart');
+            // cartCounter.innerText = result.totalQty;
 
-          case 3:
-            response = _context2.sent;
-            _context2.next = 6;
-            return response.json();
-
-          case 6:
-            result = _context2.sent;
-
-          case 7:
+          case 1:
           case "end":
             return _context2.stop();
         }
@@ -902,7 +895,7 @@ function _updateCart() {
   return _updateCart.apply(this, arguments);
 }
 
-function sessionLocalStorage(_x3) {
+function sessionLocalStorage(_x2) {
   return _sessionLocalStorage.apply(this, arguments);
 }
 
@@ -948,7 +941,7 @@ function _sessionLocalStorage() {
 addToCart.forEach(function (cartBtn) {
   cartBtn.addEventListener('click', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-      var product;
+      var product, items, oldItems, i;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -958,11 +951,26 @@ addToCart.forEach(function (cartBtn) {
 
             case 2:
               product = _context.sent;
-              localStorage.setItem('productId', product.product_id); // console.log(product.product_id)
+              localStorage.setItem('productId', product.product_id);
+              items = {
+                item: product
+              };
+              oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
+              localStorage.setItem('itemsArray', JSON.stringify(items));
 
-              updateCart(product, e);
+              for (i = 0; i < oldItems.length; i++) {
+                if (oldItems[i].item.product_id === items.item.product_id) {
+                  oldItems.push(items);
+                  localStorage.setItem('itemsArray', JSON.stringify(oldItems));
+                }
+              } // location.replace('/addInCart')
+              // }
+              // console.log(product.product_id)
 
-            case 5:
+
+              updateCart(e);
+
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -970,7 +978,7 @@ addToCart.forEach(function (cartBtn) {
       }, _callee);
     }));
 
-    return function (_x4) {
+    return function (_x3) {
       return _ref.apply(this, arguments);
     };
   }());

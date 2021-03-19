@@ -18,8 +18,8 @@
             <img src="assets/addToCartProd1.png" alt="product">
         </div>
         <div class="product-info-wrapper">
-            <h1 class="product-name"><%= session.cart.items[session.cart.productid].item.product.product_name %></h1>
-            <p class="price">Rs<%= session.cart.items[session.cart.productid].item.product.price %></p>
+            <h1 class="product-name"></h1>
+            <p class="price">Rs</p>
             <h2 class="product-description-heading">Product Description</h2>
             <div class="product-properties">
                 <p>Size: 14 inches</p>
@@ -27,7 +27,7 @@
                 <p>Made in Thailand</p>
             </div>
             <h3 class="about-heading">About</h3>
-            <p class="about-paragraph"><%= session.cart.items[session.cart.productid].item.product.product_description %></p>
+            <p class="about-paragraph"></p>
             <div class="qty-and-btn-wrapper">
                 <select class="quantity">
                     <option value="1">1</option>
@@ -36,14 +36,7 @@
                     <option value="4">4</option>
                 </select>
                 <div class="bag-button">
-                    <% let obj = {};%>
-                    <% for (let i = 0; i < products.length; i++) { %>
-                        <% if(products[i].product_id === session.cart.productid) { %>
-                            <% obj = products[i]; %>
-                        <% } %>
-                    <% } %>
-
-                    <a href="#" class="cart-btn" data-product="<%= JSON.stringify(obj) %>">Add to Bag</a>
+                    <a href="#" class="cart-btn">Add to Bag</a>
                 </div>
             </div>
         </div>

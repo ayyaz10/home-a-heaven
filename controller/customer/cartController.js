@@ -19,6 +19,7 @@ const cartController = () => {
       })
   },
     async update(req, res) {
+      console.log(req.body)
       // console.log(req.body)
         // let cart = {
         //   items: {
@@ -37,26 +38,28 @@ const cartController = () => {
         //   totalPrice:0
         // }
 
-      // for the first time creating cart and adding basic object structure
-      if(!req.session.cart) {
-        req.session.cart = {
-          items: {},
-        }
-      }
-      // check if item does not exist in the cart
-      let cart = req.session.cart;
-      console.log(req.body.product.product_id)
-      if(!cart.items[req.body.product.product_id]) {
-        cart.items[req.body.product.product_id] = {
-          item: req.body,
-        }
-        productid = req.body.product.product_id;
-      } else {
-        productid = req.body.product.product_id;
-      }
-      cart.productid = req.body.product.product_id
-      console.log(req.session)
-      return res.json("success")
+      // // for the first time creating cart and adding basic object structure
+      // if(!req.session.cart) {
+      //   req.session.cart = {
+      //     items: {},
+      //   }
+      // }
+      // // check if item does not exist in the cart
+      // let cart = req.session.cart;
+      // console.log(req.body.product.product_id)
+      // if(!cart.items[req.body.product.product_id]) {
+      //   cart.items[req.body.product.product_id] = {
+      //     item: req.body,
+      //   }
+      //   productid = req.body.product.product_id;
+      // } else {
+      //   productid = req.body.product.product_id;
+      // }
+      // cart.productid = req.body.product.product_id
+      // console.log(req.session)
+
+      // return res.json("success")
+      
     },
 
     async getSessionData(req, res) {
@@ -67,7 +70,46 @@ const cartController = () => {
       // console.log(session[0].sess.cart)
     },
     async addToCart(req, res) {
-      console.log(req.body)
+      // console.log(req.body)
+      // console.log(req.session.cart)
+
+              // let cart = {
+        //   items: {
+        //     productId : { item: productObject, qty: 0},
+        //   },
+        //   totalQty: 0,
+        //   totalPrice:0
+        // }
+      // for the first time creating cart and adding basic object structure
+      // console.log('helo')
+      console.log(req.session)
+      if(!req.session.cart) {
+        req.session.cart = {
+          items: {},
+          totalQty: 0,
+          totalPrice: 0,
+        }
+      }
+      // check if item does not exist in the cart
+      let cart = req.session.cart;
+      if(!cart.items[req.body.product.item.product_id]) {
+        cart.items[req.body.product.item.product_id] = {
+          item: req.body,
+          price: req.body.product.item.price,
+          qty: 1,
+        }
+          cart.totalQty = cart.totalQty + 1;
+          cart.totalPrice = cart.totalPrice + req.body.product.item.price;
+      } else {
+        cart.items[req.body.product.item.product_id].qty = cart.items[req.body.product.item.product_id].qty + 1;
+        cart.items[req.body.product.item.product_id].price = cart.items[req.body.product.item.product_id].price + req.body.product.item.price;
+        cart.totalQty  = cart.totalQty + 1;
+        cart.totalPrice = cart.totalPrice + req.body.product.item.price;
+      }
+      
+      return res.json(  {totalQty: req.session.cart.totalQty})
+
+
     },
 
     async removeCartItem(req, res) {

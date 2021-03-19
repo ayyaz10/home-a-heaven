@@ -864,8 +864,7 @@ function _updateCart() {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            cartCounter = document.querySelector('.cart-count'); // console.log(e.target.parent)
-
+            cartCounter = document.querySelector('.cart-count');
             _context2.next = 3;
             return fetch('http://localhost:3333/addToCart', {
               method: "post",
@@ -886,8 +885,11 @@ function _updateCart() {
 
           case 6:
             result = _context2.sent;
+            console.log(result); // notyf.success('Item added to cart');
 
-          case 7:
+            cartCounter.innerText = result.totalQty;
+
+          case 9:
           case "end":
             return _context2.stop();
         }
@@ -905,14 +907,12 @@ cartBtn.addEventListener('click', /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
-            return JSON.parse(cartBtn.dataset.product);
+            // let product = await JSON.parse(cartBtn.dataset.product);
+            product = JSON.parse(localStorage.getItem('itemsArray'));
+            console.log(product);
+            updateCart(product, e);
 
-          case 2:
-            product = _context.sent;
-            console.log(product); // updateCart(product, e);
-
-          case 4:
+          case 3:
           case "end":
             return _context.stop();
         }
@@ -924,6 +924,20 @@ cartBtn.addEventListener('click', /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }());
+
+var loadContent = function loadContent() {
+  var item = JSON.parse(localStorage.getItem('itemsArray'));
+  var heading = document.querySelector('.product-name');
+  var price = document.querySelector('.price');
+  var about = document.querySelector('.about-paragraph');
+  var image = document.querySelector('.product-image');
+  heading.innerText = item.item.product_name;
+  price.innerText = item.item.price;
+  about.innerText = item.item.product_description;
+  image.src = "assets/".concat(item.item.image);
+};
+
+loadContent();
 })();
 
 /******/ })()
