@@ -19,11 +19,11 @@ async function updateCart(product, e) {
             product
         })
     })
-
-        const result = await response.json();
-        
-        // notyf.success('Item added to cart');
-        // cartCounter.innerText = result.totalQty;
+    const result = await response.json();
+    
+    
+    // notyf.success('Item added to cart');
+    // cartCounter.innerText = result.totalQty;
 }
 
 async function sessionLocalStorage(e){

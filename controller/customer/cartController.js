@@ -66,6 +66,9 @@ const cartController = () => {
       })
       // console.log(session[0].sess.cart)
     },
+    async addToCart(req, res) {
+      console.log(req.body)
+    },
 
     async removeCartItem(req, res) {
         const { productid, counterval, price, cartqty, subtotal, total } = await req.body;
