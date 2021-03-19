@@ -9,18 +9,20 @@
 
 /* main content style */
 .main-section {
+    padding-top: 20px;
     width: 100%;
     display: flex;
 }
 
 /* Product image style */
 .product-image {
+    width: 100%;
     flex: 1;
     
 }
 
 .product-image > img {
-    width: 100%;
+    max-width: 600px;
 }
 
 /* Product info section */
@@ -32,7 +34,7 @@
 }
 
 .product-info-wrapper > h1.product-name {
-    font-size: 2.5rem;
+    font-size: 2.1rem;
     width: 100%;
     font-weight: 500;
     line-height: 1.5;
@@ -40,7 +42,7 @@
 }
 
 .product-info-wrapper > .price {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 500;
     line-height: 1.3;
 }
@@ -65,6 +67,8 @@
 
 .product-info-wrapper > .about-paragraph {
     font-size: 0.8125rem;
+    word-break: break-all;
+    max-width: 80%;
 }
 
 .qty-and-btn-wrapper {

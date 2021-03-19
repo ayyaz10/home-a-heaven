@@ -1,14 +1,14 @@
-import { Notyf } from 'notyf';
+// import { Notyf } from 'notyf';
 
-const notyf = new Notyf({
-    position: {x: 'right', y: 'center'},
-});
+// const notyf = new Notyf({
+//     position: {x: 'right', y: 'center'},
+// });
 
 const addToCart = document.querySelectorAll('.add-to-cart');
 
 
 
-async function updateCart(product) {
+async function updateCart(product, e) {
     const cartCounter = document.querySelector('.cart-count');
     const response = await fetch('http://localhost:3333/updateCart', {
         method: "post",
@@ -19,10 +19,11 @@ async function updateCart(product) {
             product
         })
     })
+
         const result = await response.json();
         
-        notyf.success('Item added to cart');
-        cartCounter.innerText = result.totalQty;
+        // notyf.success('Item added to cart');
+        // cartCounter.innerText = result.totalQty;
 }
 
 async function sessionLocalStorage(e){
@@ -46,11 +47,10 @@ async function sessionLocalStorage(e){
 
 addToCart.forEach(cartBtn => {
     cartBtn.addEventListener('click', async (e) => {
-        // console.log(cartCounter)
         let product = await JSON.parse(cartBtn.dataset.product);
-        updateCart(product);
-        sessionLocalStorage(e);
-
+        localStorage.setItem('productId', product.product_id)
+        // console.log(product.product_id)
+        updateCart(product, e);
         
     })
 })

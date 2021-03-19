@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/add-to-cart.css">
+    <script src="js/add-to-cart.js"></script>
     <title>Product</title>
 </head>
 <body>
@@ -17,8 +18,8 @@
             <img src="assets/addToCartProd1.png" alt="product">
         </div>
         <div class="product-info-wrapper">
-            <h1 class="product-name">Alexendra Clock</h1>
-            <p class="price">Rs5,000</p>
+            <h1 class="product-name"><%= session.cart.items[session.cart.productid].item.product.product_name %></h1>
+            <p class="price">Rs<%= session.cart.items[session.cart.productid].item.product.price %></p>
             <h2 class="product-description-heading">Product Description</h2>
             <div class="product-properties">
                 <p>Size: 14 inches</p>
@@ -26,7 +27,7 @@
                 <p>Made in Thailand</p>
             </div>
             <h3 class="about-heading">About</h3>
-            <p class="about-paragraph">The detailing on this clock is amazingly beautiful and this will b a unique add on to the decor of your house. The material is high quality thick plastic which looks like metal, giving it a premium ruggid feel. It also comes with a 1 year warranty.</p>
+            <p class="about-paragraph"><%= session.cart.items[session.cart.productid].item.product.product_description %></p>
             <div class="qty-and-btn-wrapper">
                 <select class="quantity">
                     <option value="1">1</option>

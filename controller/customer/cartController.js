@@ -12,8 +12,14 @@ const cartController = () => {
         products
       })
     },
+    async addInCart (req, res) {
+      const products = await getAllProducts();
+      res.render('add-to-cart', {
+        products
+      })
+  },
     async update(req, res) {
-      console.log(req.body)
+      // console.log(req.body)
         // let cart = {
         //   items: {
         //     productId : { item: productObject, qty: 0},
@@ -35,27 +41,22 @@ const cartController = () => {
       if(!req.session.cart) {
         req.session.cart = {
           items: {},
-          totalQty: 0,
-          totalPrice: 0,
         }
       }
       // check if item does not exist in the cart
       let cart = req.session.cart;
+      console.log(req.body.product.product_id)
       if(!cart.items[req.body.product.product_id]) {
         cart.items[req.body.product.product_id] = {
           item: req.body,
-          price: req.body.product.price,
-          qty: 1,
         }
-          cart.totalQty = cart.totalQty + 1;
-          cart.totalPrice = cart.totalPrice + req.body.product.price;
+        productid = req.body.product.product_id;
       } else {
-        cart.items[req.body.product.product_id].qty = cart.items[req.body.product.product_id].qty + 1;
-        cart.items[req.body.product.product_id].price = cart.items[req.body.product.product_id].price + req.body.product.price;
-        cart.totalQty  = cart.totalQty + 1;
-        cart.totalPrice = cart.totalPrice + req.body.product.price;
+        productid = req.body.product.product_id;
       }
-      return res.json(  {totalQty: req.session.cart.totalQty})
+      cart.productid = req.body.product.product_id
+      console.log(req.session)
+      return res.json("success")
     },
 
     async getSessionData(req, res) {
@@ -104,5 +105,9 @@ const cartController = () => {
 }
 
 module.exports = cartController;
+
+
+
+
 
 

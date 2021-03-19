@@ -9,7 +9,8 @@
     "development": "mix",
     "watch": "mix watch",
     "watch-poll": "mix watch -- --watch-options-poll=1000",
-    "production": "mix --production"
+    "production": "mix --production",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

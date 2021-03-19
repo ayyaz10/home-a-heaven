@@ -20,9 +20,9 @@
     <section class="product-items-section">
          <% for(let i = 0; i < products.length; i++) { %>
         <div class="products">
-            <a href="#" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart"><img src=<%- `assets/${products[i].image}` %> class="product-image" alt="product"></a>
-            <a href="#" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart"><h2><%- products[i].product_name %></h2></a>
-            <a href="#" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart"><p class="product-price"><%- products[i].price %></p></a>
+            <a href="/addToCart" data-product="<%= JSON.stringify(products[i]) %>" class="product-image add-to-cart <%= products[i].price %>"><img src=<%- `assets/${products[i].image}` %> alt="product"></a>
+            <a href="/addToCart" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart <%= products[i].price %>"><h2><%- products[i].product_name %></h2></a>
+            <a href="/addToCart" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart <%= products[i].price %>"><p class="product-price"><%- products[i].price %></p></a>
         </div>
          <% } %>
 

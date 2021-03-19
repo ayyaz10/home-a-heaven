@@ -12,7 +12,7 @@ router.get('/', homeController().index);
 router.get('/products', productsController().index);
 router.get('/cart', cartController().index);
 router.post('/updateCart', cartController().update);
-// router.get('/addToCart', addToCartController().index);
+router.get('/addToCart', cartController().addInCart);
 
 // admin controllers
 router.get('/adminPanel', adminPanelController().index);
