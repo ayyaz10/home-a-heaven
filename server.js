@@ -2,6 +2,7 @@ require('dotenv').config();
 // const db = require('./db/knexfile');
 const flash = require('express-flash');
 const router = require('./routes');
+const path = require('path')
 const bodyParser = require('body-parser');
 const knex = require('knex');
 const ejs = require('ejs');
@@ -15,8 +16,7 @@ const app = express();
 const session = require('express-session');
 const KnexSessionStore = require('connect-session-knex')(session);
 
-const auth = require('./auth');
-const authMiddleware = require('./auth/middleware');
+const authMiddleware = require('./controller/auth/middleware');
 
 const db = knex({
   client: 'pg',
@@ -56,6 +56,7 @@ app.use(session({
 
 
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
 
 // Global Middleware
@@ -71,9 +72,9 @@ app.use(cors({
 }));
 // app.use(expressLayout)
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(router);
-app.use('/auth', auth);
 
 // app.use('/', (req, res) => {
 //   const n = req.session.views || 0;
@@ -91,14 +92,14 @@ app.get('/product', (req, res) => {
   });
 })
 
-app.get('/authorizedUser', authMiddleware.ensureLoggedIn, (req, res) => {
-  db.select().table('product_category')
-  .then(data => {
-    res.render('index', {
-      category: data
-    });
-  });
-});
+// app.get('/authorizedUser', authMiddleware.ensureLoggedIn, (req, res) => {
+//   db.select().table('product_category')
+//   .then(data => {
+//     res.render('index', {
+//       category: data
+//     });
+//   });
+// });
 
 // app.get('/adminPanel', (req, res) =>{
 //   res.render('adminPanel');

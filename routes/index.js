@@ -4,10 +4,15 @@ const cartController = require('../controller/customer/cartController');
 const adminPanelController = require('../controller/admin/adminPanelController');
 const productsController = require('../controller/customer/productsController');
 const homeController = require('../controller/homeController');
+const authController = require('../controller/auth/authController');
 const express = require('express');
 const router = express.Router();
 
 router.get('/', homeController().index);
+
+// auth controllers
+router.get('/signup-login', authController().registerLogin)
+
 // customer controllers
 router.get('/products', productsController().index);
 router.get('/cart', cartController().index);
