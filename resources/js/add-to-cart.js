@@ -10,7 +10,7 @@ async function updateCart(product, e) {
         })
     })
     const result = await response.json();
-    console.log(result)
+    // console.log(result)
     
     
     // notyf.success('Item added to cart');
@@ -22,10 +22,30 @@ const cartBtn = document.querySelector('.cart-btn')
     cartBtn.addEventListener('click', async (e) => {
         // let product = await JSON.parse(cartBtn.dataset.product);
         const product = JSON.parse(localStorage.getItem('itemsArray'));
-        console.log(product)
         updateCart(product, e);
-        
+        addPriceToLocalStorage();
     })
+
+    const addPriceToLocalStorage = () => {
+        const productPrice = document.querySelector('.price');
+        console.log(productPrice)
+        var oldItems = JSON.parse(localStorage.getItem('priceList')) || [];
+
+            oldItems.push(parseInt(productPrice.innerText))
+            localStorage.setItem('priceList', JSON.stringify(oldItems))
+
+        // const product = JSON.parse(localStorage.getItem('itemsArray'));
+        // var oldItems = JSON.parse(localStorage.getItem('priceList')) || [];
+        // oldItems.push(product)
+        // localStorage.setItem('priceList', JSON.stringify(oldItems))
+        // let productArray = JSON.parse(localStorage.getItem('priceList'))
+        // productArray.forEach((p)=>{
+        //     if(p.item.product_id !== product.item.product_id){
+        //         oldItems.push(product)
+        //         localStorage.setItem('priceList', JSON.stringify(oldItems))
+        //     }
+        // })
+    }
 
     const loadContent = () => {
         const item = JSON.parse(localStorage.getItem('itemsArray'));

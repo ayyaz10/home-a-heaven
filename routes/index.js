@@ -13,6 +13,7 @@ router.get('/products', productsController().index);
 router.get('/cart', cartController().index);
 router.post('/updateCart', cartController().update);
 router.get('/addInCart', cartController().addInCart);
+router.get('/getProductDetail', cartController().getProductDetail);
 router.post('/addToCart', cartController().addToCart);
 
 

@@ -22,11 +22,17 @@ const actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
 
 for(let i = 0; i < addButton.length; i++) {
     addButton[i].addEventListener('click', (e) => {
+        let productPrice = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value); 
+        console.log(productPrice)
         let counter = e.target.nextElementSibling;
         let price = e.target.parentElement.parentElement.firstElementChild;
-        price.innerText = parseInt(price.innerText) + actualPrice[i];
-        subtotalAmount.innerText = parseInt(subtotalAmount.innerText) + actualPrice[i];
-        totalAmount.innerText = parseInt(totalAmount.innerText) + actualPrice[i];
+        const total = parseInt(counter.innerText * price.innerText);
+        //  const product = JSON.parse(localStorage.getItem('itemsArray'));
+        //  console.log(product)
+
+        price.innerText = parseInt(price.innerText) + productPrice;
+        subtotalAmount.innerText = parseInt(subtotalAmount.innerText) + productPrice;
+        totalAmount.innerText = parseInt(totalAmount.innerText) + productPrice;
         counter.innerText = parseInt(counter.innerText) + 1;
         cartQty.innerText = parseInt(cartQty.innerText) + 1;
         updateSession(e, counter);
@@ -35,6 +41,7 @@ for(let i = 0; i < addButton.length; i++) {
 
 for(let i = 0; i < subButton.length; i++) {
     subButton[i].addEventListener('click', (e) => {
+        let productPrice = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value); 
         let counter = e.target.parentElement.firstElementChild.nextElementSibling;
         let price = e.target.parentElement.parentElement.firstElementChild;
         // console.log(e.target.parentElement.parentElement.firstElementChild)
@@ -42,9 +49,9 @@ for(let i = 0; i < subButton.length; i++) {
             price.innerText = 0;
             counter.innerText = 0;
         } else {
-            price.innerText = parseInt(price.innerText) - actualPrice[i];
-            subtotalAmount.innerText = parseInt(subtotalAmount.innerText) - actualPrice[i];
-            totalAmount.innerText = parseInt(totalAmount.innerText) - actualPrice[i];
+            price.innerText = parseInt(price.innerText) - productPrice;
+            subtotalAmount.innerText = parseInt(subtotalAmount.innerText) - productPrice;
+            totalAmount.innerText = parseInt(totalAmount.innerText) - productPrice;
             counter.innerText = parseInt(counter.innerText) - 1;
             cartQty.innerText = parseInt(cartQty.innerText) - 1;
             updateSession(e, counter);
@@ -53,7 +60,13 @@ for(let i = 0; i < subButton.length; i++) {
 }
 
 
+const getProductDetailFromSession = async () => {
+    const response = await fetch('http://localhost:3333/getProductDetail');
+    const productDetail = await response.json();
+    console.log(productDetail)
+}
 
+// getProductDetailFromSession()
 
 const removeItem = document.querySelectorAll('span.remove');
 // const product = document.querySelector('.product-in-cart');
@@ -77,18 +90,9 @@ for(let i = 0; i < removeItem.length; i++) {
 })
 }
 
-
-// removeItem.forEach((remove)=>{
-// remove.addEventListener('click', async (e)=>{
-    
-
-// // remove.parentElement.parentElement.remove();
-//     });
-// })
-
 const updateDelSession = async (e, ) => {
     let cartqty = document.querySelector('.cart-count');
-    let productid = parseInt(e.target.parentElement.parentElement.attributes[1].value);
+    let productid = parseInt(e.target.attributes[1].value);
     let counterval = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText);
     const obj = { productid };
     const response = await fetch('http://localhost:3333/removeCartItem', {
@@ -100,6 +104,7 @@ const updateDelSession = async (e, ) => {
      })
      try {
          const result = await response.json();
+         console.log(result)
          if(result.totalQty < 1) {
             location += '';
          }
@@ -112,11 +117,10 @@ const updateDelSession = async (e, ) => {
 const updateSession = async (e, counter) => {
     const price = parseInt(e.target.parentElement.parentElement.firstElementChild.innerText);
     const cartqty = parseInt(document.querySelector('.cart-count').innerText);
-    const productid = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value);
+    const productid = parseInt(e.target.attributes[1].value);
     const counterval = parseInt(counter.innerText);
     const subtotal = parseInt(subtotalAmount.innerText);
     let total = parseInt(totalAmount.innerText);
-
     const obj = { productid, counterval, price, cartqty, subtotal, total};
     const response = await fetch('http://localhost:3333/editCartValues', {
         method: "post",
@@ -126,4 +130,5 @@ const updateSession = async (e, counter) => {
         body: JSON.stringify(obj)
     })
     const result = await response.json();
+    console.log(result)
 }

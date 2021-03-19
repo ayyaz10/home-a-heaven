@@ -885,11 +885,11 @@ function _updateCart() {
 
           case 6:
             result = _context2.sent;
-            console.log(result); // notyf.success('Item added to cart');
-
+            // console.log(result)
+            // notyf.success('Item added to cart');
             cartCounter.innerText = result.totalQty;
 
-          case 9:
+          case 8:
           case "end":
             return _context2.stop();
         }
@@ -909,8 +909,8 @@ cartBtn.addEventListener('click', /*#__PURE__*/function () {
           case 0:
             // let product = await JSON.parse(cartBtn.dataset.product);
             product = JSON.parse(localStorage.getItem('itemsArray'));
-            console.log(product);
             updateCart(product, e);
+            addPriceToLocalStorage();
 
           case 3:
           case "end":
@@ -924,6 +924,24 @@ cartBtn.addEventListener('click', /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }());
+
+var addPriceToLocalStorage = function addPriceToLocalStorage() {
+  var productPrice = document.querySelector('.price');
+  console.log(productPrice);
+  var oldItems = JSON.parse(localStorage.getItem('priceList')) || [];
+  oldItems.push(parseInt(productPrice.innerText));
+  localStorage.setItem('priceList', JSON.stringify(oldItems)); // const product = JSON.parse(localStorage.getItem('itemsArray'));
+  // var oldItems = JSON.parse(localStorage.getItem('priceList')) || [];
+  // oldItems.push(product)
+  // localStorage.setItem('priceList', JSON.stringify(oldItems))
+  // let productArray = JSON.parse(localStorage.getItem('priceList'))
+  // productArray.forEach((p)=>{
+  //     if(p.item.product_id !== product.item.product_id){
+  //         oldItems.push(product)
+  //         localStorage.setItem('priceList', JSON.stringify(oldItems))
+  //     }
+  // })
+};
 
 var loadContent = function loadContent() {
   var item = JSON.parse(localStorage.getItem('itemsArray'));

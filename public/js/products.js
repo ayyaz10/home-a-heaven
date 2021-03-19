@@ -911,7 +911,7 @@ function _sessionLocalStorage() {
             oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
             productPrice.forEach(function (each) {
               oldItems.push(parseInt(each.innerText));
-              localStorage.setItem('priceLisd', JSON.stringify(oldItems));
+              localStorage.setItem('priceList', JSON.stringify(oldItems));
             }); // check if item does not exist in the cart
             //   let cart = product;
 

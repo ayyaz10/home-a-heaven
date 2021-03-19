@@ -35,9 +35,8 @@ async function sessionLocalStorage(e){
     var oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
     productPrice.forEach(each => {
         oldItems.push(parseInt(each.innerText))
-        localStorage.setItem('priceLisd', JSON.stringify(oldItems))
+        localStorage.setItem('priceList', JSON.stringify(oldItems))
     })
-        
         // check if item does not exist in the cart
         //   let cart = product;
         const response = await fetch('http://localhost:3333/getSessionData')

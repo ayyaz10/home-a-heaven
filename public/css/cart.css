@@ -129,6 +129,18 @@ hr {
     background-color: var(--primary-hover);
 }
 
+.add-btn, .sub-btn {
+    position: relative;
+    /* display: block; */
+    background-color: var(--primary);
+    color: #fff;
+    padding: 0.525rem 0.95rem;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    /* margin-top: 40px; */
+}
+
 
 /* Empty cart style */
 

@@ -871,25 +871,27 @@ var cartQty = document.querySelector('.cart-count');
 var productId = 0;
 var actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
 
-var _loop = function _loop(i) {
+for (var i = 0; i < addButton.length; i++) {
   addButton[i].addEventListener('click', function (e) {
+    var productPrice = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value);
+    console.log(productPrice);
     var counter = e.target.nextElementSibling;
     var price = e.target.parentElement.parentElement.firstElementChild;
-    price.innerText = parseInt(price.innerText) + actualPrice[i];
-    subtotalAmount.innerText = parseInt(subtotalAmount.innerText) + actualPrice[i];
-    totalAmount.innerText = parseInt(totalAmount.innerText) + actualPrice[i];
+    var total = parseInt(counter.innerText * price.innerText); //  const product = JSON.parse(localStorage.getItem('itemsArray'));
+    //  console.log(product)
+
+    price.innerText = parseInt(price.innerText) + productPrice;
+    subtotalAmount.innerText = parseInt(subtotalAmount.innerText) + productPrice;
+    totalAmount.innerText = parseInt(totalAmount.innerText) + productPrice;
     counter.innerText = parseInt(counter.innerText) + 1;
     cartQty.innerText = parseInt(cartQty.innerText) + 1;
     updateSession(e, counter);
   });
-};
-
-for (var i = 0; i < addButton.length; i++) {
-  _loop(i);
 }
 
-var _loop2 = function _loop2(_i) {
+for (var _i = 0; _i < subButton.length; _i++) {
   subButton[_i].addEventListener('click', function (e) {
+    var productPrice = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value);
     var counter = e.target.parentElement.firstElementChild.nextElementSibling;
     var price = e.target.parentElement.parentElement.firstElementChild; // console.log(e.target.parentElement.parentElement.firstElementChild)
 
@@ -897,31 +899,60 @@ var _loop2 = function _loop2(_i) {
       price.innerText = 0;
       counter.innerText = 0;
     } else {
-      price.innerText = parseInt(price.innerText) - actualPrice[_i];
-      subtotalAmount.innerText = parseInt(subtotalAmount.innerText) - actualPrice[_i];
-      totalAmount.innerText = parseInt(totalAmount.innerText) - actualPrice[_i];
+      price.innerText = parseInt(price.innerText) - productPrice;
+      subtotalAmount.innerText = parseInt(subtotalAmount.innerText) - productPrice;
+      totalAmount.innerText = parseInt(totalAmount.innerText) - productPrice;
       counter.innerText = parseInt(counter.innerText) - 1;
       cartQty.innerText = parseInt(cartQty.innerText) - 1;
       updateSession(e, counter);
     }
   });
-};
-
-for (var _i = 0; _i < subButton.length; _i++) {
-  _loop2(_i);
 }
+
+var getProductDetailFromSession = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+    var response, productDetail;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return fetch('http://localhost:3333/getProductDetail');
+
+          case 2:
+            response = _context.sent;
+            _context.next = 5;
+            return response.json();
+
+          case 5:
+            productDetail = _context.sent;
+            console.log(productDetail);
+
+          case 7:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function getProductDetailFromSession() {
+    return _ref.apply(this, arguments);
+  };
+}(); // getProductDetailFromSession()
+
 
 var removeItem = document.querySelectorAll('span.remove'); // const product = document.querySelector('.product-in-cart');
 // const price = document.querySelector('.price')
 // const data = JSON.parse(localStorage.getItem('obj'))
 
-var _loop3 = function _loop3(_i2) {
+var _loop = function _loop(_i2) {
   removeItem[_i2].addEventListener('click', /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(e) {
       var price, counterval, subtotal, total, cartqty;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
               price = e.target.parentElement.firstElementChild;
               counterval = e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling;
@@ -937,41 +968,36 @@ var _loop3 = function _loop3(_i2) {
 
             case 10:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3);
+      }, _callee4);
     }));
 
     return function (_x4) {
-      return _ref3.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     };
   }());
 };
 
 for (var _i2 = 0; _i2 < removeItem.length; _i2++) {
-  _loop3(_i2);
-} // removeItem.forEach((remove)=>{
-// remove.addEventListener('click', async (e)=>{
-// // remove.parentElement.parentElement.remove();
-//     });
-// })
-
+  _loop(_i2);
+}
 
 var updateDelSession = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
     var cartqty, productid, counterval, obj, response, result;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
             cartqty = document.querySelector('.cart-count');
-            productid = parseInt(e.target.parentElement.parentElement.attributes[1].value);
+            productid = parseInt(e.target.attributes[1].value);
             counterval = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText);
             obj = {
               productid: productid
             };
-            _context.next = 6;
+            _context2.next = 6;
             return fetch('http://localhost:3333/removeCartItem', {
               method: "post",
               mode: 'cors',
@@ -983,49 +1009,50 @@ var updateDelSession = /*#__PURE__*/function () {
             });
 
           case 6:
-            response = _context.sent;
-            _context.prev = 7;
-            _context.next = 10;
+            response = _context2.sent;
+            _context2.prev = 7;
+            _context2.next = 10;
             return response.json();
 
           case 10:
-            result = _context.sent;
+            result = _context2.sent;
+            console.log(result);
 
             if (result.totalQty < 1) {
               location += '';
             }
 
             cartqty.innerText = result.totalQty;
-            _context.next = 17;
+            _context2.next = 18;
             break;
 
-          case 15:
-            _context.prev = 15;
-            _context.t0 = _context["catch"](7);
+          case 16:
+            _context2.prev = 16;
+            _context2.t0 = _context2["catch"](7);
 
-          case 17:
+          case 18:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee, null, [[7, 15]]);
+    }, _callee2, null, [[7, 16]]);
   }));
 
   return function updateDelSession(_x) {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }();
 
 var updateSession = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e, counter) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e, counter) {
     var price, cartqty, productid, counterval, subtotal, total, obj, response, result;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             price = parseInt(e.target.parentElement.parentElement.firstElementChild.innerText);
             cartqty = parseInt(document.querySelector('.cart-count').innerText);
-            productid = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value);
+            productid = parseInt(e.target.attributes[1].value);
             counterval = parseInt(counter.innerText);
             subtotal = parseInt(subtotalAmount.innerText);
             total = parseInt(totalAmount.innerText);
@@ -1037,7 +1064,7 @@ var updateSession = /*#__PURE__*/function () {
               subtotal: subtotal,
               total: total
             };
-            _context2.next = 9;
+            _context3.next = 9;
             return fetch('http://localhost:3333/editCartValues', {
               method: "post",
               mode: 'cors',
@@ -1049,23 +1076,24 @@ var updateSession = /*#__PURE__*/function () {
             });
 
           case 9:
-            response = _context2.sent;
-            _context2.next = 12;
+            response = _context3.sent;
+            _context3.next = 12;
             return response.json();
 
           case 12:
-            result = _context2.sent;
+            result = _context3.sent;
+            console.log(result);
 
-          case 13:
+          case 14:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
 
   return function updateSession(_x2, _x3) {
-    return _ref2.apply(this, arguments);
+    return _ref3.apply(this, arguments);
   };
 }();
 })();

@@ -20,19 +20,19 @@
           <div class="cart-product-area">
             <h1 class="cart-heading">My Bag</h1>
             <% for(let product of Object.values(session.cart.items)) {%>
-            <div class="product-in-cart" id="<%= product.item.product.product_id%>">
+            <div class="product-in-cart" id="<%= product.item.product.item.price%>">
               <div class="product-image-thumb">
-                  <img src="assets/<%= product.item.product.image %>" width="120px" alt="">
+                  <img src="assets/<%= product.item.product.item.image %>" width="120px" alt="">
               </div>
-              <p class="product-name"><%= product.item.product.product_name %></p>
+              <p class="product-name"><%= product.item.product.item.product_name %></p>
               <div class="product-info">
                 <span class="price"><%= product.price %></span>
                 <div class="product-quantity">
-                  <button class="add-btn">+</button>
+                  <button class="add-btn" id="<%= product.item.product.item.product_id%>">+</button>
                   <span class="counter-value"><%= product.qty %></span>
-                  <button class="sub-btn">-</button>
+                  <button class="sub-btn" id="<%= product.item.product.item.product_id%>">-</button>
                 </div>
-               <span class="remove">Remove</span>
+               <span class="remove" id="<%= product.item.product.item.product_id%>">Remove</span>
             </div>
            </div>
            <% } %>
