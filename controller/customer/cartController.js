@@ -150,7 +150,16 @@ const cartController = () => {
       cart.totalQty = sumOfTotalQty;
       cart.totalPrice = total;
       return res.json(  {totalPrice: req.session.cart.totalPrice})
-    }
+    },
+    async checkout (req, res) {
+      const products = await getAllProducts();
+      res.render('checkout', {
+        products
+      })
+    },
+    async shipping (req, res) {
+      console.log(req.body)
+    },
   }
 }
 

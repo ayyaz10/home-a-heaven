@@ -5,6 +5,7 @@ mix.js('resources/js/index.js', 'public/js/index.js');
 mix.js('resources/js/products.js', 'public/js/products.js');
 mix.js('resources/js/add-to-cart.js', 'public/js/add-to-cart.js');
 mix.js('resources/js/cart.js', 'public/js/cart.js');
+mix.js('resources/js/checkout.js', 'public/js/checkout.js');
 mix.js('resources/js/admin-panel.js', 'public/js/admin-panel.js');
 mix.js('resources/js/signup-login.js', 'public/js/signup-login.js');
 // mix.css('resources/css/adminPanel.css', 'public/css/adminPanel.css');

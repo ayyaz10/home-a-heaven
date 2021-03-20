@@ -4,6 +4,7 @@
     "/public/js/products.js": "/public/js/products.js",
     "/public/js/add-to-cart.js": "/public/js/add-to-cart.js",
     "/public/js/cart.js": "/public/js/cart.js",
+    "/public/js/checkout.js": "/public/js/checkout.js",
     "/public/js/admin-panel.js": "/public/js/admin-panel.js",
     "/public/js/signup-login.js": "/public/js/signup-login.js"
 }

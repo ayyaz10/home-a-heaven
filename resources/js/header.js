@@ -1,6 +1,6 @@
 const logoutHeader  = document.querySelector('#logout');
 const loginHeader = document.querySelector('#login');
-const registerHeader  = document.querySelector('#register');
+// const registerHeader  = document.querySelector('#register');
 const userId = JSON.parse(localStorage.getItem('user_id'))
 const logoutButton = document.querySelector('.logout');
 logoutButton.addEventListener('click', ()=>{
@@ -18,14 +18,12 @@ logoutButton.addEventListener('click', ()=>{
         }
     logout();
 })
-// console.log(userId)
 if(userId) {
     loginHeader.style.display = "none";
-    registerHeader.style.display = "none";
+    // registerHeader.style.display = "none";
     logoutHeader.style.display = "block";
 } else {
     logoutHeader.style.display = "none";
 }
-// console.log(loginHeader)
 
 

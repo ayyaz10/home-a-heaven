@@ -24,7 +24,8 @@ router.post('/updateCart', cartController().update);
 router.get('/addInCart', cartController().addInCart);
 router.get('/getProductDetail', cartController().getProductDetail);
 router.post('/addToCart', cartController().addToCart);
-
+router.get('/checkout', cartController().checkout);
+router.post('/shipping', cartController().shipping);
 
 // admin controllers
 router.get('/adminPanel', adminPanelController().index);
