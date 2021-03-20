@@ -52,8 +52,8 @@ app.use(session({
    }
 }))
 
-// app.use(flash());
 
+app.use(flash());
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }))

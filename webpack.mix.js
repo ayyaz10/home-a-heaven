@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 
+mix.js('resources/js/header.js', 'public/js/header.js');
 mix.js('resources/js/index.js', 'public/js/index.js');
 mix.js('resources/js/products.js', 'public/js/products.js');
 mix.js('resources/js/add-to-cart.js', 'public/js/add-to-cart.js');

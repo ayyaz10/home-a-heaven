@@ -3,14 +3,13 @@ var __webpack_exports__ = {};
 /*!**************************************!*\
   !*** ./resources/js/signup-login.js ***!
   \**************************************/
-function redirectIfLoggedIn() {
-  if (localStorage.user_id) {
-    window.location = "/authorizedUser";
-  }
-}
-
-redirectIfLoggedIn(); //switch between login and signup #START
-
+// function redirectIfLoggedIn() {
+//     if(localStorage.user_id) {
+//         window.location = "/authorizedUser";
+//     }
+// }
+// redirectIfLoggedIn()
+//switch between login and signup #START
 var login = document.getElementById("login_header");
 var signup = document.querySelector("#signup_header");
 var loginForm = document.querySelector("#login_form");
@@ -39,7 +38,8 @@ loginForm.addEventListener('submit', function (e) {
   e.preventDefault();
   var userEmail = loginFormData[0].value;
   var userPassword = loginFormData[1].value;
-  fetch('http://localhost:3333/auth/login', {
+  var loginFailMsgField = document.querySelector('.login_fail_response p');
+  fetch('http://localhost:3333/login', {
     method: "post",
     mode: 'cors',
     credentials: 'include',
@@ -53,17 +53,20 @@ loginForm.addEventListener('submit', function (e) {
   }).then(function (response) {
     return response.json();
   }).then(function (data) {
+    console.log(data);
+
     if (data.result) {
       localStorage.user_id = data.id;
-      window.location = 'http://localhost:3333/authorizedUser';
+      loginFail.style.display = "none";
+      window.location = 'http://localhost:3333/';
     } else {
       loginFail.style.display = "block";
       loginFail.classList.add('failed_message');
-      setTimeout(function () {
-        loginFail.style.display = "none";
-        loginFormData[0].value = "";
-        loginFormData[1].value = "";
-      }, 2200);
+      loginFailMsgField.innerText = data.message;
+      loginFormData[1].value = ""; // setTimeout(()=>{
+      //     loginFail.style.display = "none";
+      //     loginFormData[1].value = "";
+      // }, 2200)
     }
   })["catch"](function (err) {
     console.log(err);
@@ -76,7 +79,8 @@ signupForm.addEventListener('submit', function (e) {
   var userPassword = signupFormData[1].value;
   var firstName = signupFormData[2].value;
   var lastName = signupFormData[3].value;
-  fetch('http://localhost:3333/auth/register', {
+  var failMessageField = document.querySelector('.registration_fail_response p');
+  fetch('http://localhost:3333/register', {
     method: "post",
     headers: {
       'Content-Type': 'application/json'
@@ -90,21 +94,24 @@ signupForm.addEventListener('submit', function (e) {
   }).then(function (response) {
     return response.json();
   }).then(function (data) {
+    console.log(data);
+
     if (!isNaN(data.id)) {
       localStorage.user_id = data.id;
       registrationSuccess.style.display = "block";
       registrationSuccess.classList.add('success_message');
       registrationFail.style.display = "none";
       setInterval(function () {
-        window.location = "http://localhost:3333/authorizedUser";
+        window.location = "http://localhost:3333/";
       }, 2000);
     } else {
+      registrationSuccess.style.display = "none";
       registrationFail.style.display = "block";
       registrationFail.classList.add('failed_message');
-      registrationSuccess.style.display = "none";
-      setInterval(function () {
-        window.location = "http://localhost:3333/signup-login";
-      }, 2000);
+      failMessageField.innerText = data.message;
+      setInterval(function () {// registrationFail.style.display = "none";
+        // window.location = "http://localhost:3333/signup-login"
+      }, 6000);
     }
   })["catch"](function (err) {// console.log(err)
   });

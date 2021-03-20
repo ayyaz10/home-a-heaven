@@ -3,11 +3,7 @@ const db = require('../../db/db');
 const cartController = () => {
   return {
     async index (req, res) {
-      // console.log(products)
-
       const products = await getAllProducts();
-      // console.log(products)
-      
       res.render('cart', {
         products
       })

@@ -1,3 +1,4 @@
+const guest = require('../controller/middlewares/guest');
 const updateCartController = require('../controller/customer/addToCartController');
 const addToCartController = require('../controller/customer/addToCartController');
 const cartController = require('../controller/customer/cartController');
@@ -11,7 +12,9 @@ const router = express.Router();
 router.get('/', homeController().index);
 
 // auth controllers
-router.get('/signup-login', authController().registerLogin)
+router.get('/signup-login', guest, authController().registerLogin);
+router.post('/register', authController().register);
+router.post('/login', authController().login);
 
 // customer controllers
 router.get('/products', productsController().index);
