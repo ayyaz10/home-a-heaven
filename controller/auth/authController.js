@@ -122,6 +122,9 @@ const authController = () => {
             }
         },
         logout (req, res) {
+            req.session.destroy((err) => {
+                // res.redirect('/') // will always fire after session is destroyed
+              })
              res.clearCookie('user_id');
             res.json({
                 message: 'logged out'
