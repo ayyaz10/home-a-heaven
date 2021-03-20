@@ -15,6 +15,7 @@ router.get('/', homeController().index);
 router.get('/signup-login', guest, authController().registerLogin);
 router.post('/register', authController().register);
 router.post('/login', authController().login);
+router.get('/logout', authController().logout);
 
 // customer controllers
 router.get('/products', productsController().index);

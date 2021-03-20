@@ -3,12 +3,6 @@ var __webpack_exports__ = {};
 /*!**************************************!*\
   !*** ./resources/js/signup-login.js ***!
   \**************************************/
-// function redirectIfLoggedIn() {
-//     if(localStorage.user_id) {
-//         window.location = "/authorizedUser";
-//     }
-// }
-// redirectIfLoggedIn()
 //switch between login and signup #START
 var login = document.getElementById("login_header");
 var signup = document.querySelector("#signup_header");
@@ -53,8 +47,6 @@ loginForm.addEventListener('submit', function (e) {
   }).then(function (response) {
     return response.json();
   }).then(function (data) {
-    console.log(data);
-
     if (data.result) {
       localStorage.user_id = data.id;
       loginFail.style.display = "none";
@@ -68,8 +60,7 @@ loginForm.addEventListener('submit', function (e) {
       //     loginFormData[1].value = "";
       // }, 2200)
     }
-  })["catch"](function (err) {
-    console.log(err);
+  })["catch"](function (err) {// console.log(err)
   });
 }); //collecting user data from signup form
 
@@ -94,8 +85,6 @@ signupForm.addEventListener('submit', function (e) {
   }).then(function (response) {
     return response.json();
   }).then(function (data) {
-    console.log(data);
-
     if (!isNaN(data.id)) {
       localStorage.user_id = data.id;
       registrationSuccess.style.display = "block";
@@ -116,5 +105,13 @@ signupForm.addEventListener('submit', function (e) {
   })["catch"](function (err) {// console.log(err)
   });
 });
+
+function redirectIfLoggedIn() {
+  if (localStorage.user_id) {
+    window.location = "/";
+  }
+}
+
+redirectIfLoggedIn();
 /******/ })()
 ;

@@ -1,11 +1,3 @@
-// function redirectIfLoggedIn() {
-//     if(localStorage.user_id) {
-//         window.location = "/authorizedUser";
-//     }
-// }
-// redirectIfLoggedIn()
-
-
 //switch between login and signup #START
 const login = document.getElementById("login_header");
 const signup = document.querySelector("#signup_header");
@@ -16,8 +8,6 @@ const signupFormData = document.querySelectorAll("#signup_form input");
 const registrationSuccess = document.querySelector('.registration_success_response');
 const registrationFail = document.querySelector('.registration_fail_response');
 const loginFail = document.querySelector('.login_fail_response');
-
-
 
 login.addEventListener('click', ()=>{
     signupForm.style.display = "none";
@@ -55,7 +45,6 @@ loginForm.addEventListener('submit', function(e) {
         }).then(response => {
             return response.json()
         }).then(data => {
-            console.log(data)
             if(data.result) {
                 localStorage.user_id = data.id;
                 loginFail.style.display = "none";
@@ -72,7 +61,7 @@ loginForm.addEventListener('submit', function(e) {
             }
         })
         .catch(err=> {
-            console.log(err)
+            // console.log(err)
         })
 })
 
@@ -98,7 +87,6 @@ signupForm.addEventListener('submit', function(e) {
         }).then(response => {
             return response.json()
         }).then(data => {
-            console.log(data)
             if(!isNaN(data.id)){
                 localStorage.user_id = data.id;
                 registrationSuccess.style.display = "block";
@@ -129,3 +117,10 @@ signupForm.addEventListener('submit', function(e) {
 
 
 
+
+function redirectIfLoggedIn() {
+    if(localStorage.user_id) {
+        window.location = "/";
+    }
+}
+redirectIfLoggedIn();

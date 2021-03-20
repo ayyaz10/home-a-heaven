@@ -25,6 +25,7 @@ function isValidLoginUser(user) {
 const authController = () => {
     return {
         async registerLogin (req, res) {
+            // console.log('helo')
             const products = await getAllProducts();
             res.render('signup-login', {
               products
@@ -119,16 +120,16 @@ const authController = () => {
             } else {
                 next(new Error('Please enter correct Email or Password!'));
             }
-        }
+        },
+        logout (req, res) {
+             res.clearCookie('user_id');
+            res.json({
+                message: 'logged out'
+            })
+        },
     }
 
 }
 
-// router.get('/logout', (req, res) => {
-//     res.clearCookie('user_id');
-//     res.json({
-//         message: 'logged out'
-//     })
-// })
 
 module.exports = authController;
