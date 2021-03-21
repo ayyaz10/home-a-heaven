@@ -15,7 +15,7 @@ const adminPanelController = () => {
     async product (req, res) {
       const { productname, productprice, stockcount, productcategory, description } = req.body;
       const product = {
-        customer_id: 1,
+        // user_id: 1,
         admin_id: 1,
         product_name: productname,
         price: productprice,

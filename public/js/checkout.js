@@ -29,6 +29,9 @@ shippingForm.addEventListener('submit', function (e) {
     })
   }).then(function (response) {
     return response.json();
+  }).then(function (data) {
+    console.log(data); // if(data.isError) {
+    // }
   });
 });
 /******/ })()

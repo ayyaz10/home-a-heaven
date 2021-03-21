@@ -53,7 +53,7 @@ const authController = () => {
                                 .create(user)
                                 .then(id => {
                                     if(id) {
-                                        res.cookie('user_id', user.user_id, {
+                                        res.cookie('user_id', id, {
                                             secret: 'process.env.COOKIE_SECRET,',
                                             httpOnly: true,
                                             signed: true,

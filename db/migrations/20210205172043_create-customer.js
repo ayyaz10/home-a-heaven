@@ -6,7 +6,6 @@ exports.up = function(knex) {
       table.string('password', 255).notNullable();
       table.string('first_name', 255).notNullable();
       table.string('last_name', 255).notNullable();
-      table.integer('order_id', 50).unique().references('order_id');
       table.date('created_on').notNullable();
   });
 };

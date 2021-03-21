@@ -865,7 +865,8 @@ function _updateCart() {
         switch (_context2.prev = _context2.next) {
           case 0:
             cartCounter = document.querySelector('.cart-count');
-            _context2.next = 3;
+            console.log(product.item.product_id);
+            _context2.next = 4;
             return fetch('http://localhost:3333/addToCart', {
               method: "post",
               mode: 'cors',
@@ -874,22 +875,23 @@ function _updateCart() {
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({
-                product: product
+                product: product // productid: product.item.product_id,
+
               })
             });
 
-          case 3:
+          case 4:
             response = _context2.sent;
-            _context2.next = 6;
+            _context2.next = 7;
             return response.json();
 
-          case 6:
+          case 7:
             result = _context2.sent;
-            // console.log(result)
-            // notyf.success('Item added to cart');
+            console.log(result); // notyf.success('Item added to cart');
+
             cartCounter.innerText = result.totalQty;
 
-          case 8:
+          case 10:
           case "end":
             return _context2.stop();
         }

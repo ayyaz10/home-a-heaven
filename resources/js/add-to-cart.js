@@ -1,18 +1,19 @@
 async function updateCart(product, e) {
     const cartCounter = document.querySelector('.cart-count');
+    console.log(product.item.product_id)
     const response = await fetch('http://localhost:3333/addToCart', {
         method: "post",
         mode: 'cors',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            product
+            product,
+            // productid: product.item.product_id,
         })
     })
     const result = await response.json();
-    // console.log(result)
-    
-    
+    console.log(result)
+
     // notyf.success('Item added to cart');
     cartCounter.innerText = result.totalQty;
 }

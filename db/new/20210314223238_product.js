@@ -2,7 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('product', (table) => {
         table.increments('product_id');
-        // table.integer('customer').references('user_id').inTable('customer');
+        table.foreign('customer_id').references('customer_id').inTable('customer');
         table.integer('admin_id').unsigned();
         table.string('product_name', 255).notNullable();
         table.integer('price', 255).unsigned().notNullable();

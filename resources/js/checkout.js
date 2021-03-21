@@ -24,4 +24,10 @@ shippingForm.addEventListener('submit', function(e) {
         }).then(response => {
             return response.json()
         })
+        .then(data => {
+            console.log(data)
+            // if(data.isError) {
+
+            // }
+        })
 })
