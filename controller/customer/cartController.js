@@ -171,64 +171,81 @@ const cartController = () => {
         })
       }
 
-
-      let itemsName = "";
+      // console.log(req.body)
       const cart = req.session.cart;
       let parsedItems = Object.keys(cart.items);
+      let productID;
+      let itemName;
+      let price;
+      let quantity;
+      let itemId;
+      let productIdArr = [];
+      let itemIdArr = [];
+
+
       for(let i = 0; i < parsedItems.length; i++) {
-  
-        // console.log(cart.items[parseInt(parsedItems[i])].item.product.item.product_name)
-        // itemsName = cart.items[parseInt(parsedItems[i])].item.product.item.product_name + ",";
-        console.log(cart.items[parseInt(parsedItems[i])])
- 
-      console.log(req.signedCookies.user_id)
+        // console.log(cart.items[parseInt(parsedItems[i])])
+        productID = cart.items[parseInt(parsedItems[i])].item.product.item.product_id;
+        itemName = cart.items[parseInt(parsedItems[i])].item.product.item.product_name;
+        price = cart.items[parseInt(parsedItems[i])].price;
+        quantity = cart.items[parseInt(parsedItems[i])].qty;
+      // console.log(req.signedCookies.user_id)
+      const itemObj = {
+        product_id: productID,
+        item_name: itemName,
+        price: price,
+        qty: quantity,
+        created_on: new Date()
+      }
+      itemId = await createItem(itemObj);
+      itemIdArr.push(itemId)
+      productIdArr.push(productID)
+    }
+    // console.log(itemId)
+    // console.log(itemIdArr.toString()) 
+      const customerId = req.signedCookies.user_id;
+      const totalQty = cart.totalQty;
+      const totalPrice = cart.totalPrice;
+      // console.log(req.signedCookies.user_id)
       if(req.signedCookies.user_id){
-        const productID = cart.items[parseInt(parsedItems[i])];
-        const price = cart.items[parseInt(parsedItems[i])].price;
-        const quantity = cart.items[parseInt(parsedItems[i])].qty;
-        console.log(quantity)
-        const itemObj = {
-          product_id: productID,
-          price,
-          qty: quantity,
-          created_on: new Date()
-        }
-        // console.log(cart.items[parseInt(parsedItems[i])].price)
-
-        // const customerId = req.signedCookies.user_id;
-        const items = req.session.cart.items;
-        createItem(itemObj);
-        // console.log(items)
-        // const order = {
-        //   customer_id: req.signedCookies.user_id,
-        //   product_id: cart.items[parseInt(parsedItems[i])],
-        //   items: itemsName,
-        //   // qty: ,
-        //   address,
-        //   city,
-        //   phone,
-        //   paymentType: 'COD',
-        //   order_status: 'order_placed',
-        // }
-
-      } else {
-        // console.log(req.signedCookies.user_id)
+        // const items = req.session.cart.items;
         const order = {
+          customer_id: customerId,
+          product_id: productIdArr,
+          item_id: itemIdArr,
           full_name: fullname,
           email,
-          items: itemsName,
-          // qty: cart.items[parseInt(parsedItems[i])],
+          qty: totalQty,
+          total_price: totalPrice,
+          address,
+          city,
+          phone: "2392193",
+          paymentType: 'COD',
+          order_status: 'order_placed',
+          created_on: new Date()
+        }
+        // console.log(order)
+        const result = await createOrder(order);
+
+      } else {
+        const order = {
+          product_id: productID,
+          full_name: fullname,
+          email,
+          item_id: itemIdArr,
+          qty: totalQty,
+          total_price: totalPrice,
           address,
           city,
           phone,
           paymentType: 'COD',
           order_status: 'order_placed',
-
+          created_on: new Date()
         }
+        const result = await createOrder(order);
+        console.log(result)
       }
-    }
 
-      // createOrder();
     },
   }
 }

@@ -3,10 +3,12 @@ exports.up = function(knex) {
     return knex.schema.createTable('shipping_detail', (table) => {
         table.increments('order_id');
         table.integer('customer_id', 255).unsigned();
-        table.integer('product_id', 255).unsigned();
-        table.integer('item_id').references('item_id').inTable('item').onDelete('CASCADE');
+        table.string('product_id', 255);
+        table.string('item_id');
+        // .references('item_id').inTable('item').onDelete('CASCADE');
         table.string('full_name', 255).unsigned().notNullable();
         table.integer('qty', 50).unsigned().notNullable();
+        table.integer('total_price', 255).unsigned().notNullable();
         table.string('email', 255).notNullable();
         table.string('address', 255).notNullable();
         table.string('city', 255).notNullable();
