@@ -4,7 +4,7 @@ exports.up = function(knex) {
       // table.integer('product_id').references('product_id').inTable('product');
       table.string('product_category', 255).notNullable();
       table.string('image', 255).notNullable();
-      table.date('created_on').notNullable();
+      table.datetime('created_at').notNullable();
   })
 };
 

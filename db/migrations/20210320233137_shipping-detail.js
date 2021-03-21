@@ -15,7 +15,7 @@ exports.up = function(knex) {
         table.string('phone', 50).notNullable();
         table.string('paymentType', 50).notNullable();
         table.string('order_status', 50).notNullable();
-        table.date('created_on').notNullable();
+        table.datetime('created_at').notNullable();
     });
 };
 

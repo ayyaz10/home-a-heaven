@@ -57,7 +57,7 @@ const authController = () => {
                                             secret: 'process.env.COOKIE_SECRET,',
                                             httpOnly: true,
                                             signed: true,
-                                            maxAge: 1000 * 60 * 60 * 2,
+                                            maxAge: 1000 * 60 * 60 * 24,
                                             secure: false
                                         });
                                         res.json({
@@ -95,7 +95,7 @@ const authController = () => {
                                 res.cookie('user_id', user.user_id, {
                                     httpOnly: true,
                                     signed: true,
-                                    maxAge: 1000 * 60 * 60 * 2,
+                                    maxAge: 1000 * 60 * 60 * 24,
                                     secure: false
                                 });
                                 res.json({

@@ -11,7 +11,7 @@ exports.up = function(knex) {
         table.integer('discount').unsigned().notNullable();
         table.string('image', 255).notNullable();
         table.string('product_description', 255);
-        table.date('created_on').notNullable();
+        table.datetime('created_at').notNullable();
     })
 };
 

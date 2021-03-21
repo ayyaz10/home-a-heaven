@@ -49,24 +49,32 @@ module.exports = {
     },
     async createOrder (order) {
         const shippingDetail = await knex('shipping_detail').insert(order, 'order_id').returning("*");
-        let rawProductId = shippingDetail[0].product_id.split(',').join("");
-        let rawItemId = shippingDetail[0].item_id.split(',').join("");
-        const convertRawToIntArr = async (rawData) => {
-            let resultArray = rawData.split('"').map(function(strVale){return Number(strVale);});
-            const convertedData = resultArray.filter((arr) => {
-                if(!(isNaN(arr) && arr === 0)) {
-                    return arr;
-                }
-            })
-            return convertedData;
-        }
-        const productIds = await convertRawToIntArr(rawProductId)
-        const itemIds = await convertRawToIntArr(rawItemId)
-        console.log(productIds, itemIds)
+        return shippingDetail;
     },
     async createItem (itemObj) {
         return knex('item').insert(itemObj, 'item_id').then(ids => {
            return ids[0];
         });
+    },
+    async orders (customerId) {
+        // console.log(customerId)
+        const customerOrders = await knex('shipping_detail').where('customer_id', customerId).returning('*')
+        return customerOrders
+    },
+    async getItem (itemId) {
+        // const items = await itemIdsArr.map( async (itemId) => {
+            const items = await knex('item').where('item_id', itemId).returning('*')
+        // })
+        // console.log(items)
+        return items;
+    // console.log(items)       
+        // items.forEach(item => {
+        //     item.then(ite => console.log(ite))
+        // });
+
+        
+
+
+
     }
 }

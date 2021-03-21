@@ -4,7 +4,7 @@ exports.up = function(knex) {
       table.increments('admin_id');
       table.string('admin_username', 255).notNullable();
       table.string('admin_password', 255).notNullable();
-      table.date('created_on').notNullable();
+      table.datetime('created_at').notNullable();
   });
 };
 

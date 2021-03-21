@@ -9,7 +9,7 @@ shippingForm.addEventListener('submit', function(e) {
     const address = shippingFormData[2].value;
     const city = shippingFormData[3].value;
     const phone = shippingFormData[4].value;
-    fetch('http://localhost:3333/shipping', {
+    fetch('http://localhost:3333/order', {
             method: "post",
             mode: 'cors',
             credentials: 'include',

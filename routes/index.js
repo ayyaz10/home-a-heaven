@@ -1,3 +1,4 @@
+const orderController = require('../controller/customer/orderController');
 const guest = require('../controller/middlewares/guest');
 const updateCartController = require('../controller/customer/addToCartController');
 const addToCartController = require('../controller/customer/addToCartController');
@@ -24,8 +25,6 @@ router.post('/updateCart', cartController().update);
 router.get('/addInCart', cartController().addInCart);
 router.get('/getProductDetail', cartController().getProductDetail);
 router.post('/addToCart', cartController().addToCart);
-router.get('/checkout', cartController().checkout);
-router.post('/shipping', cartController().shipping);
 
 // admin controllers
 router.get('/adminPanel', adminPanelController().index);
@@ -35,6 +34,11 @@ router.post('/product', adminPanelController().product);
 router.get('/getSessionData', cartController().getSessionData);
 router.post('/editCartValues', cartController().editCartValues);
 router.post('/removeCartItem', cartController().removeCartItem);
+
+// customer router
+router.get('/orders', orderController().index);
+router.get('/checkout', orderController().checkout);
+router.post('/order', orderController().order);
 
 
 module.exports = router;

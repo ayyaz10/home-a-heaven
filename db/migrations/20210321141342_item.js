@@ -6,7 +6,7 @@ exports.up = function(knex) {
         table.string('item_name', 255).notNullable();
         table.integer('price', 255).unsigned().notNullable();
         table.integer('qty', 50).unsigned().notNullable();
-        table.date('created_on').notNullable();
+        table.datetime('created_at').notNullable();
     });
 };
 

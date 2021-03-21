@@ -13,7 +13,7 @@ shippingForm.addEventListener('submit', function (e) {
   var address = shippingFormData[2].value;
   var city = shippingFormData[3].value;
   var phone = shippingFormData[4].value;
-  fetch('http://localhost:3333/shipping', {
+  fetch('http://localhost:3333/order', {
     method: "post",
     mode: 'cors',
     credentials: 'include',
