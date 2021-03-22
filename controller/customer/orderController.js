@@ -1,4 +1,4 @@
-const { getAllProducts, createItem, createOrder, orders, getItem } = require('../../db/queries');
+const { getAllProducts, createItem, createOrder, orders, getItem, getOrdersItems } = require('../../db/queries');
 const moment = require('moment');
 // const { createItem, createOrder } = require('../../db/queries');
 const db = require('../../db/db');
@@ -13,70 +13,14 @@ const orderController = () => {
         },
         async index (req, res) {
             const customerId = req.signedCookies.user_id;
+            const products = await getAllProducts();
             const customerOrders = await orders(customerId);
-            // customer
-            // customerOrders.forEach(each => {
-                
-            //     for(const key of Object.entries(each)) {
-            //         console.log(key) 
-            //     }
-            // })
-            for (const enry of Object.entries(customerOrders)) {
-
-                console.log(customerOrders[enry])
-            }
-            // console.log(customerOrders)
-            // console.log(customerOrders)
-            // let rawProductId;
-            let rawItemId = [];
-            customerOrders.forEach(order => {
-                // console.log(order.item_id)
-                // rawProductId = order.product_id.split(',').join("");
-                rawItemId.push(order.item_id.split(',').join(""));
-            })
-            let itemIdsArr = [];
-            for(let i = 0; i < rawItemId.length; i++ ) {
-
-                // console.log(rawItemId[i].split('"'))
-            const convertRawToIntArr = async (rawData) => {
-                let resultArray = rawData.split('"').map(function(strVale){return Number(strVale);});
-                const convertedData = resultArray.filter((arr) => {
-                    if(!(isNaN(arr) && arr === 0)) {
-                        return arr;
-                    }
-                })
-                return convertedData;
-            }
-            itemIdsArr.push(await convertRawToIntArr(rawItemId[i]))
-        }
-        // itemIdsArr[0].split('')
-        // const helo = itemIdsArr.map(id => {
-        //     return id.split(',')
-        // })
-        // const c = itemIdsArr
-        // console.log(itemIdsArr[1])
-        const products = await getAllProducts();
-        let item = [];
-        for(let i = 0; i < itemIdsArr.length; i++) {
-            for(let j = 0; j < itemIdsArr.length; j++) {
-                // console.log(itemIdsArr[i][j])
-                 item.push(await getItem(itemIdsArr[i][j]))
-            }
-        }
-        // console.log(item)
-            // const productIds = await convertRawToIntArr(rawProductId)
-
-            // itemIdsArr.forEach( async itemId => {
-            //     // console.log(items)
-            // })
-
-
-          
+            const   customerOrdersItems = await getOrdersItems(customerId);
             res.render('orders', {
-            products,
-            customerOrders,
-            moment,
-            item
+                products,
+                customerOrdersItems,
+                customerOrders,
+                moment
             })
         },
         async order (req, res) {
@@ -98,30 +42,16 @@ const orderController = () => {
             let itemIdArr = [];
 
 
-            for(let i = 0; i < parsedItems.length; i++) {
-            productID = cart.items[parseInt(parsedItems[i])].item.product.item.product_id;
-            itemName = cart.items[parseInt(parsedItems[i])].item.product.item.product_name;
-            price = cart.items[parseInt(parsedItems[i])].price;
-            quantity = cart.items[parseInt(parsedItems[i])].qty;
-            const itemObj = {
-            product_id: productID,
-            item_name: itemName,
-            price: price,
-            qty: quantity,
-            created_at: new Date()
-            }
-            itemId = await createItem(itemObj);
-            itemIdArr.push(itemId)
-            productIdArr.push(productID)
-        }
+  
             const customerId = req.signedCookies.user_id;
             const totalQty = cart.totalQty;
             const totalPrice = cart.totalPrice;
+            let result;
             if(req.signedCookies.user_id){
             const order = {
                 customer_id: customerId,
-                product_id: productIdArr,
-                item_id: itemIdArr,
+                // product_id: productIdArr,
+                // item_id: itemIdArr,
                 full_name: fullname,
                 email,
                 qty: totalQty,
@@ -133,7 +63,8 @@ const orderController = () => {
                 order_status: 'order_placed',
                 created_at: new Date()
             }
-            const result = await createOrder(order);
+            result = await createOrder(order);
+            
             res.json({
                 message: "Product Added",
                 result
@@ -153,12 +84,34 @@ const orderController = () => {
                 order_status: 'order_placed',
                 created_at: new Date()
             }
-            const result = await createOrder(order);
+            // const result = await createOrder(order);
             res.json({
                 message: "Product Added",
                 result
             })
             }
+            
+        for(let i = 0; i < parsedItems.length; i++) {
+            const orderId = result[0].order_id;
+            productID = cart.items[parseInt(parsedItems[i])].item.product.item.product_id;
+            itemName = cart.items[parseInt(parsedItems[i])].item.product.item.product_name;
+            price = cart.items[parseInt(parsedItems[i])].price;
+            quantity = cart.items[parseInt(parsedItems[i])].qty;
+            const itemObj = {
+                order_id: orderId,
+                customer_id: customerId,
+            // product_id: productID,
+            // order_id: result.order_id,
+            item_name: itemName,
+            price: price,
+            qty: quantity,
+            created_at: new Date()
+            }
+            itemId = await createItem(itemObj);
+            // console.log(itemId)
+            itemIdArr.push(itemId)
+            productIdArr.push(productID)
+        }
 
         },
     }

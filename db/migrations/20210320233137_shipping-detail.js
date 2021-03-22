@@ -2,7 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('shipping_detail', (table) => {
         table.increments('order_id');
-        table.integer('customer_id', 255).unsigned();
+        table.integer('customer_id', 255);
         table.string('product_id', 255);
         table.string('item_id');
         // .references('item_id').inTable('item').onDelete('CASCADE');

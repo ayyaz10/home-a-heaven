@@ -32,35 +32,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% if(customerOrders.length) {%>
-                        <% customerOrders.forEach(order => { %>
-                            <% for(let i = 0; i < item.length; i++) { %>
+                <%  if(customerOrdersItems) { %> 
+                    <% customerOrdersItems.forEach(order => { %>
+
                         <tr>
                             <td>
-                                <a href="#"><%= order.order_id %></a>
+                                <%= order.item_id %>
                             </td>
 
                             <td>
-                                <%= item[i][0].item_name %>
+                                <%= order.item_name %>
                             </td>
 
                             <td>
-                                <%= item[i][0].qty %>
+                                <%= order.qty %>
                             </td>
                             <td>
-                                <%= item[i][0].price %>
+                                <%= order.price %>
                             </td>
                             <td>
                                 <%= moment(order.created_at).format('hh:mm AM') %>
                             </td>
-                         </tr>
-                         <% } %>
-                        <% })%>
-                    <% } else  {%>
-                        <tr>
-                            <td>No Orders</td>
                         </tr>
-                    <% } %>
+
+                    <% }) %> 
+                <% } else {%>
+                    <tr>
+                        <td>No Orders</td>
+                    </tr>
+                <% } %>
                 </tbody>
             </table>
         </div>

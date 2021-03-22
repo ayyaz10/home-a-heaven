@@ -62,19 +62,13 @@ module.exports = {
         return customerOrders
     },
     async getItem (itemId) {
-        // const items = await itemIdsArr.map( async (itemId) => {
             const items = await knex('item').where('item_id', itemId).returning('*')
-        // })
-        // console.log(items)
         return items;
-    // console.log(items)       
-        // items.forEach(item => {
-        //     item.then(ite => console.log(ite))
-        // });
-
-        
-
-
-
+    },
+    async getCustOrdersItems(customerId) {
+        const allItems = await knex('item').where({
+            customer_id: customerId
+        })
+        return allItems;
     }
 }
