@@ -1,10 +1,11 @@
 exports.up = function(knex) {
   return knex.schema.createTable('product_category', (table) => {
       table.increments('category_id');
-      // table.integer('product_id').references('product_id').inTable('product');
+      // table.integer('product_id')
       table.string('product_category', 255).notNullable();
       table.string('image', 255).notNullable();
       table.datetime('created_at').notNullable();
+      // table.foreign('product_id').references('product.product_id');
   })
 };
 

@@ -61,7 +61,6 @@ const orderController = () => {
                 created_at: new Date()
             }
             result = await createOrder(order);
-            
             res.json({
                 message: "Product Added",
                 customer: true,
@@ -84,7 +83,6 @@ const orderController = () => {
                 created_at: new Date()
             }
             result = await createOrder(order);
-            // console.log(result[0])
             res.json({
                 message: "Guest product Added",
                 customer: false,
@@ -99,8 +97,8 @@ const orderController = () => {
             price = cart.items[parseInt(parsedItems[i])].price;
             quantity = cart.items[parseInt(parsedItems[i])].qty;
             const itemObj = {
-                order_id: orderId,
-                customer_id: customerId,
+            order_id: orderId,
+            customer_id: customerId,
             // product_id: productID,
             // order_id: result.order_id,
             item_name: itemName,
@@ -109,9 +107,6 @@ const orderController = () => {
             created_at: new Date()
             }
             itemId = await createItem(itemObj);
-            // console.log(itemId)
-            // itemIdArr.push(itemId)
-            // productIdArr.push(productID)
         }
     } else {
         for(let i = 0; i < parsedItems.length; i++) {
@@ -131,10 +126,6 @@ const orderController = () => {
             created_at: new Date()
             }
             itemId = await createItem(itemObj);
-            
-            // console.log(itemId)
-            // itemIdArr.push(itemId)
-            // productIdArr.push(productID)
             }
         }
         // destroying cart session

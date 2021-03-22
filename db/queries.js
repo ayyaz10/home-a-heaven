@@ -16,21 +16,38 @@ module.exports = {
             return ids[0];
         });
     },
-     createProduct (product, productCategory) {
+     createProduct (productObj, productCategoryObj) {
          try {
              knex.transaction(async trx => {
-                 const dbProduct =
-                     await trx.insert(product, 'product_id')
-                     .into('product')
-                     .returning('*')
-                 const cat = await trx.insert({
-                    product_id: dbProduct[0].product_id,
-                    product_category: dbProduct[0].product_category,
-                    image: dbProduct[0].image,
-                    created_on: new Date()
-                 })
+                // const data = await knex.column('product_category').select().from('product_category')
+                const allCategories = await knex('product_category').where({
+                    product_category: productCategoryObj.product_category
+                })
+                // const d = data.map(e => {
+                //     if(!(e.product_category === productCategoryObj.product_category)) {
+                //        //  console.log(true)
+                //        return productCategoryObj.product_category;
+                //     }
+                // })
+                console.log(allCategories)
+                if(!allCategories.length) {
+                    
+     
+                // productCategoryObj.product_category = d[0];
+                 const dbProductCategory =
+                     await trx.insert(productCategoryObj, 'category_id')
                      .into('product_category')
+                     .returning('*')
+                //  const allCategories = await knex.select('product_category')
+                
+                //  console.log(dbProductCategory)
+
+                 productObj.category_id = dbProductCategory[0].category_id;
+                //  console.log(productObj)
+                 const cat = await trx.insert(productObj, 'product_id')
+                     .into('product')
                     //  console.log(cat)
+                }
              })
          } catch (error) {
                 console.log(error)
@@ -43,24 +60,21 @@ module.exports = {
         })
         return allProducts;
     },
-    async getALlCategories () {
-        const allCategories = await knex.select('product_category')
-        return allCategories;
-    },
+    // async getAllCategories () {
+    //     const allCategories = await knex.select('product_category')
+    //     // console.log(allCategories)
+    //     return allCategories;
+    // },
     async createOrder (order) {
         const shippingDetail = await knex('shipping_detail').insert(order, 'order_id').returning("*");
-        // console.log(shippingDetail[0])
-        console.log(shippingDetail)
         return shippingDetail;
     },
     async createItem (itemObj) {
-        console.log(itemObj)
         return knex('item').insert(itemObj, 'item_id').then(ids => {
            return ids[0];
         });
     },
     async orders (customerId) {
-        // console.log(customerId)
         const customerOrders = await knex('shipping_detail').where('customer_id', customerId).returning('*')
         return customerOrders
     },
