@@ -49,9 +49,12 @@ module.exports = {
     },
     async createOrder (order) {
         const shippingDetail = await knex('shipping_detail').insert(order, 'order_id').returning("*");
+        // console.log(shippingDetail[0])
+        console.log(shippingDetail)
         return shippingDetail;
     },
     async createItem (itemObj) {
+        console.log(itemObj)
         return knex('item').insert(itemObj, 'item_id').then(ids => {
            return ids[0];
         });

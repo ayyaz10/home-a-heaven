@@ -66,13 +66,7 @@ const getProductDetailFromSession = async () => {
     console.log(productDetail)
 }
 
-// getProductDetailFromSession()
-
 const removeItem = document.querySelectorAll('span.remove');
-// const product = document.querySelector('.product-in-cart');
-// const price = document.querySelector('.price')
-// const data = JSON.parse(localStorage.getItem('obj'))
-
 for(let i = 0; i < removeItem.length; i++) {
     removeItem[i].addEventListener('click', async (e) => {
         let price = e.target.parentElement.firstElementChild;

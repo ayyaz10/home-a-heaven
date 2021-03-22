@@ -939,12 +939,9 @@ var getProductDetailFromSession = /*#__PURE__*/function () {
   return function getProductDetailFromSession() {
     return _ref.apply(this, arguments);
   };
-}(); // getProductDetailFromSession()
+}();
 
-
-var removeItem = document.querySelectorAll('span.remove'); // const product = document.querySelector('.product-in-cart');
-// const price = document.querySelector('.price')
-// const data = JSON.parse(localStorage.getItem('obj'))
+var removeItem = document.querySelectorAll('span.remove');
 
 var _loop = function _loop(_i2) {
   removeItem[_i2].addEventListener('click', /*#__PURE__*/function () {

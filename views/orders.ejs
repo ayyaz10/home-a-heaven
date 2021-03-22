@@ -32,9 +32,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                <%  if(customerOrdersItems) { %> 
+                <%  if(customerOrdersItems.length) { %> 
                     <% customerOrdersItems.forEach(order => { %>
-
                         <tr>
                             <td>
                                 <%= order.item_id %>
@@ -54,7 +53,6 @@
                                 <%= moment(order.created_at).format('hh:mm AM') %>
                             </td>
                         </tr>
-
                     <% }) %> 
                 <% } else {%>
                     <tr>

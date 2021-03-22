@@ -1,4 +1,4 @@
-const { getAllProducts, createItem, createOrder, orders, getItem, getOrdersItems } = require('../../db/queries');
+const { getAllProducts, createItem, createOrder, orders, getItem, getCustOrdersItems } = require('../../db/queries');
 const moment = require('moment');
 // const { createItem, createOrder } = require('../../db/queries');
 const db = require('../../db/db');
@@ -15,7 +15,7 @@ const orderController = () => {
             const customerId = req.signedCookies.user_id;
             const products = await getAllProducts();
             const customerOrders = await orders(customerId);
-            const   customerOrdersItems = await getOrdersItems(customerId);
+            const   customerOrdersItems = await getCustOrdersItems(customerId);
             res.render('orders', {
                 products,
                 customerOrdersItems,
@@ -40,9 +40,6 @@ const orderController = () => {
             let itemId;
             let productIdArr = [];
             let itemIdArr = [];
-
-
-  
             const customerId = req.signedCookies.user_id;
             const totalQty = cart.totalQty;
             const totalPrice = cart.totalPrice;
@@ -67,14 +64,16 @@ const orderController = () => {
             
             res.json({
                 message: "Product Added",
+                customer: true,
                 result
             })
             } else {
             const order = {
-                product_id: productID,
+                customer_id: null,
+                // product_id: productID,
                 full_name: fullname,
                 email,
-                item_id: itemIdArr,
+                // item_id: itemIdArr,
                 qty: totalQty,
                 total_price: totalPrice,
                 address,
@@ -84,13 +83,15 @@ const orderController = () => {
                 order_status: 'order_placed',
                 created_at: new Date()
             }
-            // const result = await createOrder(order);
+            result = await createOrder(order);
+            // console.log(result[0])
             res.json({
-                message: "Product Added",
+                message: "Guest product Added",
+                customer: false,
                 result
             })
             }
-            
+    if(req.signedCookies.user_id){
         for(let i = 0; i < parsedItems.length; i++) {
             const orderId = result[0].order_id;
             productID = cart.items[parseInt(parsedItems[i])].item.product.item.product_id;
@@ -109,10 +110,35 @@ const orderController = () => {
             }
             itemId = await createItem(itemObj);
             // console.log(itemId)
-            itemIdArr.push(itemId)
-            productIdArr.push(productID)
+            // itemIdArr.push(itemId)
+            // productIdArr.push(productID)
         }
-
+    } else {
+        for(let i = 0; i < parsedItems.length; i++) {
+        const orderId = result[0].order_id;
+            productID = cart.items[parseInt(parsedItems[i])].item.product.item.product_id;
+            itemName = cart.items[parseInt(parsedItems[i])].item.product.item.product_name;
+            price = cart.items[parseInt(parsedItems[i])].price;
+            quantity = cart.items[parseInt(parsedItems[i])].qty;
+            const itemObj = {
+                order_id: orderId,
+                customer_id: null,
+            // product_id: productID,
+            // order_id: result.order_id,
+            item_name: itemName,
+            price: price,
+            qty: quantity,
+            created_at: new Date()
+            }
+            itemId = await createItem(itemObj);
+            
+            // console.log(itemId)
+            // itemIdArr.push(itemId)
+            // productIdArr.push(productID)
+            }
+        }
+        // destroying cart session
+        req.session.destroy()
         },
     }
 }
