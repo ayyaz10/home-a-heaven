@@ -1,4 +1,4 @@
-const { getAllProducts } = require('../../db/queries');
+const { getAllProducts, getAllCategories } = require('../../db/queries');
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
@@ -27,8 +27,10 @@ const authController = () => {
         async registerLogin (req, res) {
             // console.log('helo')
             const products = await getAllProducts();
+            const categories = await getAllCategories();
             res.render('signup-login', {
-              products
+              products,
+              categories
             })
           },
         register (req, res, next) {

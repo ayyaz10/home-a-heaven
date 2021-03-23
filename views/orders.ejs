@@ -49,8 +49,8 @@
                             <td>
                                 <%= order.price %>
                             </td>
-                            <td>
-                                <%= moment(order.created_at).format('hh:mm AM') %>
+                            <td class="time">
+                                <%= moment(order.created_at).format('h:mm:ss a, Do MMMM YYYY') %>
                             </td>
                         </tr>
                     <% }) %> 

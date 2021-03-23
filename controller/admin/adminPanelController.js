@@ -3,10 +3,10 @@ const { createProduct, getAllCategories } = require('../../db/queries');
 const adminPanelController = () => {
   return {
     async index (req, res) {
-      const products = await getAllCategories();
-      console.log(products)
+      const categories = await getAllCategories();
+      // console.log(products)
       res.render('admin-panel', {
-        products
+        categories
       });
     },
     async product (req, res) {

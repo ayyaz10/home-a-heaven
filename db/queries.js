@@ -71,9 +71,10 @@ module.exports = {
         return items;
     },
     async getCustOrdersItems(customerId) {
-        const allItems = await knex('item').where({
+        const allItems = await knex('item').orderBy('created_at', 'desc').where({
             customer_id: customerId
         })
+        console.log(allItems)
         return allItems;
     }
 }

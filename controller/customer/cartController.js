@@ -1,18 +1,22 @@
-const { getAllProducts, createItem, createOrder } = require('../../db/queries');
+const { getAllProducts, getAllCategories, createItem, createOrder } = require('../../db/queries');
 // const { createItem, createOrder } = require('../../db/queries');
 const db = require('../../db/db');
 const cartController = () => {
   return {
     async index (req, res) {
       const products = await getAllProducts();
+      const categories = await getAllCategories();
       res.render('cart', {
-        products
+        products,
+        categories
       })
     },
     async addInCart (req, res) {
       const products = await getAllProducts();
+      const categories = await getAllCategories();
       res.render('add-to-cart', {
-        products
+        products,
+        categories
       })
   },
     async update(req, res) {

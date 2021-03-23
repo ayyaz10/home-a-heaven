@@ -4,7 +4,7 @@
           <a href="/"><img src="assets/logo.png" width="150px" alt="Home a Heaven logo"></a>
         </div>
         <ul class="main-menu">
-           <% if(products.length < 6) { %>
+           <% if(categories.length < 6) { %>
                <li><a href="#">Living Room</a></li>
                <li><a href="#">Living Room</a></li>
                <li><a href="#">Living Room</a></li>
@@ -12,7 +12,7 @@
                <li><a href="#">Living Room</a></li>
                <% } else {%>
              <% for(let i = 0; i < 6; i++){ %>
-                   <li><a href="#"><%= products[i].product_category %></a></li>
+                   <li><a href="#"><%= categories[i].product_category %></a></li>
                  <% } %>
              <% } %>
         </ul>
