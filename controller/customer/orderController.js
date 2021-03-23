@@ -11,17 +11,22 @@ const orderController = () => {
             products
             })
         },
-        async index (req, res) {
+        async index (req, res, next) {
             const customerId = req.signedCookies.user_id;
             const products = await getAllProducts();
-            const customerOrders = await orders(customerId);
-            const   customerOrdersItems = await getCustOrdersItems(customerId);
+            let customerOrders;
+            if(customerId) {
+                customerOrders = await orders(customerId);
+            } else {
+                next();
+            }
+            const customerOrdersItems = await getCustOrdersItems(customerId);
             res.render('orders', {
                 products,
                 customerOrdersItems,
                 customerOrders,
                 moment
-            })
+            });
         },
         async order (req, res) {
             const { fullname, email, address, city, phone } = req.body;

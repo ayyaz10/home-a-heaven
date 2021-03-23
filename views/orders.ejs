@@ -14,21 +14,19 @@
     <title>Products</title>
 </head>
 <body>
-    
     <%- include('header'); -%>
-
-    <section class="orders">
+    <section class="orders-container">
         <div>
             <h1>All Orders</h1>
-            <table border>
+            <table class="table">
                 <thead>
                     <tr>
-                        <th>Orders</th>
-                        <th>Item</th>
+                        <th class="th">Orders</th>
+                        <th class="th">Item</th>
                         <!-- <th>Address</th> -->
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Time</th>
+                        <th class="th">Quantity</th>
+                        <th class="th">Price</th>
+                        <th class="th">Time</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,7 +34,7 @@
                     <% customerOrdersItems.forEach(order => { %>
                         <tr>
                             <td>
-                                <%= order.item_id %>
+                                <a href="#"><%= order.item_id %></a>
                             </td>
 
                             <td>

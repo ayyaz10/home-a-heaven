@@ -1,13 +1,10 @@
-const db = require('../../db/db');
-const { createProduct, getAllProducts } = require('../../db/queries');
-
-
+const { createProduct, getAllCategories } = require('../../db/queries');
 
 const adminPanelController = () => {
   return {
     async index (req, res) {
-      const products = await getAllProducts();
-      console.log(products.length)
+      const products = await getAllCategories();
+      console.log(products)
       res.render('admin-panel', {
         products
       });
@@ -27,19 +24,8 @@ const adminPanelController = () => {
         product_category: productcategory,
         image: 'product.png',
         created_at: new Date()
-
       }
-      // console.log(productcategory)
-      // console.log(productcategory)
-      // not workign
-      // const productCategory = {
-      //   // product_id: 1,
-      //   product_category: productcategory,
-      //   image: 'product.png',
-      //   created_on: new Date()
-      // }
       const dbProduct = await createProduct(productObj, productCategoryObj)
-        // console.log(dbProduct)
     }
   }
 }
