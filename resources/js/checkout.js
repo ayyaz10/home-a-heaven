@@ -29,6 +29,7 @@ shippingForm.addEventListener('submit', function(e) {
             if(data.customer) {
                 document.querySelector('.cart').innerText = "";
                 window.location = "http://localhost:3333/orders";
+                localStorage.setItem('isOrdered', JSON.stringify(true));
             } else {
                 document.querySelector('.cart').innerText = "";
             }
