@@ -17,13 +17,21 @@
       <div class="hero-image">
           <h1>Make Your Home A Heaven</h1>
           <div class="button">
-              <a href="/products" class="hero-button">Shop Now</a>
+              <a href="/collections" class="hero-button">Shop Now</a>
           </div>
       </div>
       <div class="categories-section">
         <h1>Categories</h1>
         <div class="categories-section-row">
-          <div class="category cat1">
+            <% for(let i = 0; i < categories.length; i++) { %>
+                <div class="category">
+                    <h1><%- `${categories[i].category_name}` %> </h1>
+                    <a href="products"><img src=<%- `assets/${categories[i].image}` %> class="product-image" alt="product"></a>
+                    <a href="products"><h2><%- categories[i].product_name %></h2></a>
+                    <a href="products"><p><%- categories[i].price %></p></a>
+                </div>
+             <% } %>
+          <!-- <div class="category cat1">
               <img src="assets/homepage-categories.png"  alt="">
           </div>
           <div class="category cat2">
@@ -40,7 +48,7 @@
           </div>
           <div class="category cat6">
               <img src="assets/homepage-categories.png"  alt="">
-          </div>
+          </div> -->
       </div>
       </div>
   </section>

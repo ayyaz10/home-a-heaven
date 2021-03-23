@@ -4,28 +4,29 @@ const adminPanelController = () => {
   return {
     async index (req, res) {
       const categories = await getAllCategories();
-      // console.log(products)
       res.render('admin-panel', {
         categories
       });
     },
     async product (req, res) {
-      const { productname, productprice, stockcount, productcategory, description } = req.body;
+      const { productname, productprice, stockcount, categoryname, description } = req.body;
       const productObj = {
         product_name: productname,
         price: productprice,
         inStock: stockcount,
+        category_name: categoryname,
         image: 'product.png',
         discount: '0',
         product_description: description,
         created_at: new Date()
       }
       const productCategoryObj = {
-        product_category: productcategory,
+        category_name: categoryname,
         image: 'product.png',
         created_at: new Date()
       }
-      const dbProduct = await createProduct(productObj, productCategoryObj)
+      const status = await createProduct(productObj, productCategoryObj)
+      return status;
     }
   }
 }

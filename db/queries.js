@@ -19,23 +19,35 @@ module.exports = {
      async createProduct (productObj, productCategoryObj) {
          try {
                 const categoryExist = await knex('product_category').where({
-                    product_category: productCategoryObj.product_category
+                    category_name: productCategoryObj.category_name
                 })
-                // console.log(categoryExist)
-                if(!categoryExist.length) {
-                 const dbProductCategory =
+                const productExist = await knex('product').where({
+                    product_name: productObj.product_name
+                })
+
+
+                if(!categoryExist.length && !productExist.length) {
+                    let dbProductCategory =
                      await knex.insert(productCategoryObj, 'category_id')
                      .into('product_category')
-                     .returning('*')
-
-                 productObj.category_id = dbProductCategory[0].category_id;
-                 const cat = await knex.insert(productObj, 'product_id')
+                     .returning('*');
+                let cat;
+                 productObj.category_name = dbProductCategory[0].category_name;
+                  await knex.insert(productObj, 'product_id')
                      .into('product')
-                } else {
-                    productObj.category_id = categoryExist[0].category_id;
-                     const cat = await knex.insert(productObj, 'product_id')
+
+                } else if(!productExist.length){
+                    await knex.insert(productObj, 'product_id')
                          .into('product')
                 }
+                if(categoryExist.length && productExist.length) {
+                    return {message: 'Product and Category already exist'}
+                } else if(productExist.length) {
+                    return {message: 'Product already exist'}
+                } else {
+                    return {message: 'Product added'}
+                }
+
          } catch (error) {
                 console.log(error)
          }
@@ -50,8 +62,18 @@ module.exports = {
     async getAllCategories () {
         // const allCategories = await knex.select('product_category')
         const allCategories = await knex.select().table('product_category')
-        console.log(allCategories)
+        // console.log(allCategories)
         return allCategories;
+    },
+    async getAllByCategory (categoryQuery) {
+        // const allCategories = await knex.select('product_category')
+        // const allCategories = await knex.select().table('product_category')
+        const allItems = await knex('product').where({
+            category_name: categoryQuery
+        })
+        // console.log(allItems)
+        return allItems;
+        // return allCategories;
     },
     async createOrder (order) {
         const shippingDetail = await knex('shipping_detail').insert(order, 'order_id').returning("*");
@@ -71,10 +93,10 @@ module.exports = {
         return items;
     },
     async getCustOrdersItems(customerId) {
-        const allItems = await knex('item').orderBy('created_at', 'desc').where({
+        const allItems = await knex('item').orderBy('created_at', desc).where({
             customer_id: customerId
         })
-        console.log(allItems)
+        // console.log(allItems)
         return allItems;
     }
 }

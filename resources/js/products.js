@@ -1,12 +1,6 @@
-// import { Notyf } from 'notyf';
-
-// const notyf = new Notyf({
-//     position: {x: 'right', y: 'center'},
-// });
-
 const addToCart = document.querySelectorAll('.add-to-cart');
-
-
+const categoryName = document.querySelector('.category-name');
+categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
 
 async function updateCart(e) {
     const cartCounter = document.querySelector('.cart-count');
@@ -29,7 +23,6 @@ async function updateCart(e) {
 }
 
 async function sessionLocalStorage(e){
-
     const products = document.querySelectorAll('.products')
     const productPrice = document.querySelectorAll('.product-price');
     var oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
@@ -43,12 +36,10 @@ async function sessionLocalStorage(e){
         const result = await response.json();
         // const obj = { items: {}, totalQty: 3, totalPrice: 0, }
         localStorage.setItem('obj', JSON.stringify(result))
-        
     }
 
 addToCart.forEach(cartBtn => {
     cartBtn.addEventListener('click', async (e) => {
-
         let product = await JSON.parse(cartBtn.dataset.product);
         localStorage.setItem('productId', product.product_id)
         let items = {
@@ -63,11 +54,9 @@ addToCart.forEach(cartBtn => {
             }
         }
         // location.replace('/addInCart')
-            
         // }
         // console.log(product.product_id)
         updateCart(e);
-        
     })
 })
 

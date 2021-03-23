@@ -84,7 +84,7 @@ const cartController = () => {
         // }
       // for the first time creating cart and adding basic object structure
       // console.log('helo')
-      console.log(req.session)
+
       if(!req.session.cart) {
         req.session.cart = {
           items: {},

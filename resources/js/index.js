@@ -1,3 +1,25 @@
+// const e = require("express");
+
+
+// const shopNow = document.querySelector('.hero-button');
+// shopNow.addEventListener('click', (e) => {
+//     e.preventDefault();
+
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const logoutButton = document.querySelector('.logout');
 
 // logoutButton.addEventListener('click', ()=>{

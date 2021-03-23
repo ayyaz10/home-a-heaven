@@ -30,7 +30,7 @@ adminPanelForm.addEventListener('submit', function (e) {
       productprice: productPrice.value,
       // productimage: productImage.value,
       stockcount: stockCount.value,
-      productcategory: categoryName.value,
+      categoryname: categoryName.value,
       description: description.value
     })
   }).then(function (response) {
