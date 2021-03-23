@@ -16,39 +16,28 @@ module.exports = {
             return ids[0];
         });
     },
-     createProduct (productObj, productCategoryObj) {
+     async createProduct (productObj, productCategoryObj) {
          try {
-             knex.transaction(async trx => {
-                // const data = await knex.column('product_category').select().from('product_category')
-                const allCategories = await knex('product_category').where({
+                const existingCategory = await knex('product_category').where({
                     product_category: productCategoryObj.product_category
                 })
-                // const d = data.map(e => {
-                //     if(!(e.product_category === productCategoryObj.product_category)) {
-                //        //  console.log(true)
-                //        return productCategoryObj.product_category;
-                //     }
-                // })
-                console.log(allCategories)
-                if(!allCategories.length) {
-                    
-     
+                console.log(existingCategory)
+                if(!existingCategory.length) {
                 // productCategoryObj.product_category = d[0];
                  const dbProductCategory =
-                     await trx.insert(productCategoryObj, 'category_id')
+                     await knex.insert(productCategoryObj, 'category_id')
                      .into('product_category')
                      .returning('*')
-                //  const allCategories = await knex.select('product_category')
-                
-                //  console.log(dbProductCategory)
 
                  productObj.category_id = dbProductCategory[0].category_id;
-                //  console.log(productObj)
-                 const cat = await trx.insert(productObj, 'product_id')
+                 const cat = await knex.insert(productObj, 'product_id')
                      .into('product')
-                    //  console.log(cat)
+                } else {
+                    productObj.category_id = existingCategory[0].category_id;
+                    //  console.log(productObj)
+                     const cat = await knex.insert(productObj, 'product_id')
+                         .into('product')
                 }
-             })
          } catch (error) {
                 console.log(error)
          }
