@@ -12,12 +12,15 @@ const productsController = () => {
     },
     async collectionOfProducts(req, res) {
       const categoryQuery = req.session.categorySession.categoryName;
+      console.log(categoryQuery)
       const products = await getAllByCategory(categoryQuery);
       const categories = await getAllCategories();
       res.render('products', {
         categories,
         products
       })
+
+        // req.session.destroy()
     },
     // async index (req, res) {
     //   console.log(req.body)
@@ -32,8 +35,6 @@ const productsController = () => {
     // },
     async reqByCategory (req, res) {
       const requiredCategory = req.body.categoryName;
-
-      // req.session.destroy()
 
       if(!req.session.categoryname) {
         req.session.categorySession = {
