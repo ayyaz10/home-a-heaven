@@ -1,4 +1,6 @@
+const notFoundController = require('../controller/notFoundController');
 const orderController = require('../controller/customer/orderController');
+const ensureLoggedIn = require('../controller/middlewares/ensureLoggedIn');
 const guest = require('../controller/middlewares/guest');
 const updateCartController = require('../controller/customer/addToCartController');
 const addToCartController = require('../controller/customer/addToCartController');
@@ -36,9 +38,11 @@ router.post('/editCartValues', cartController().editCartValues);
 router.post('/removeCartItem', cartController().removeCartItem);
 
 // customer router
-router.get('/orders', orderController().index);
+router.get('/orders', ensureLoggedIn, orderController().index);
 router.get('/checkout', orderController().checkout);
 router.post('/order', orderController().order);
+// 404 router
+router.get('/404', notFoundController().index);
 
 
 module.exports = router;

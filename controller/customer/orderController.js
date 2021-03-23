@@ -1,4 +1,4 @@
-const { getAllProducts, createItem, createOrder, orders, getItem, getCustOrdersItems } = require('../../db/queries');
+const { getAllProducts, getAllCategories, createItem, createOrder, orders, getItem, getCustOrdersItems } = require('../../db/queries');
 const moment = require('moment');
 // const { createItem, createOrder } = require('../../db/queries');
 const db = require('../../db/db');
@@ -14,6 +14,7 @@ const orderController = () => {
         async index (req, res, next) {
             const customerId = req.signedCookies.user_id;
             const products = await getAllProducts();
+            const categories = await getAllCategories();
             let customerOrders;
             if(customerId) {
                 customerOrders = await orders(customerId);
@@ -23,6 +24,7 @@ const orderController = () => {
             const customerOrdersItems = await getCustOrdersItems(customerId);
             res.render('orders', {
                 products,
+                categories,
                 customerOrdersItems,
                 customerOrders,
                 moment

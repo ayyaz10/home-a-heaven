@@ -16,7 +16,7 @@ const app = express();
 const session = require('express-session');
 const KnexSessionStore = require('connect-session-knex')(session);
 
-const authMiddleware = require('./controller/auth/middleware');
+// const authMiddleware = require('./controller/auth/middleware');
 
 const db = knex({
   client: 'pg',
@@ -122,12 +122,16 @@ app.post('/category', (req, res) => {
     })
     .catch(err => console.log(err))
 })
-
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+const { getAllCategories } = require('./db/queries');
+app.use(async function(req, res, next) {
+      const categories = await getAllCategories();
+      res.render('404', {
+        categories
+      })
+  // var err = new Error('Not Found');
+  // err.status = 404;
+  next();
 });
 
 // error handler
