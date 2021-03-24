@@ -6,6 +6,7 @@ const { raw } = require('../../db/db');
 const orderController = () => {
   return {
         async checkout (req, res) {
+            console.log(req.session)
             const products = await getAllProducts();
             const categories = await getAllCategories();
             res.render('checkout', {

@@ -18,8 +18,7 @@ const cartController = () => {
         products,
         categories
       })
-  },
-
+    },
     async addToCart(req, res) {
        // let cart = {
         //   items: {

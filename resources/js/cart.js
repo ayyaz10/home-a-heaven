@@ -4,20 +4,67 @@
 // const productPrice = document.querySelectorAll('.price')
 
 // for(let i = 0; i < productPrice.length; i++) {
-//     prices.push(parseInt(productPrice[i].innerText))
-// }
+    //     prices.push(parseInt(productPrice[i].innerText))
+    // }
+    
+    // prices.push(productsPrice)
+    // console.log(productPrice)
+    
+    const productName = document.querySelector('.product-name');
+    const productImg = document.querySelector('.img');
+    const productPrice = document.querySelector('.price');
+    const counterValue = document.querySelector('.counter-value');
+    const subtotalAmount = document.querySelector('.subtotal-amount');
+    const totalAmount = document.querySelector('.total-amount');
+    const cartQty = document.querySelector('.cart-count');
+    const addButton = document.querySelectorAll('.add-btn');
+    const subButton = document.querySelectorAll('.sub-btn');
+    let productId = 0;
+    
+    const actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
+const checkoutBtn = document.querySelector('.checkout-button');
+// console.log(subtotalAmount)
 
-// prices.push(productsPrice)
-// console.log(productPrice)
-const counterValue = document.querySelector('.counter-value');
-const subtotalAmount = document.querySelector('.subtotal-amount');
-const totalAmount = document.querySelector('.total-amount');
-const addButton = document.querySelectorAll('.add-btn');
-const subButton = document.querySelectorAll('.sub-btn');
-const cartQty = document.querySelector('.cart-count');
-let productId = 0;
+checkoutBtn.addEventListener('click', () => {
+    const productName = document.querySelectorAll('.product-name');
+    const productImg = document.querySelectorAll('.product-image-thumb img');
+    const productPrice = document.querySelectorAll('.price');
+    const counterValue = document.querySelectorAll('.counter-value');
+    // const subtotalAmount = document.querySelectorAll('.subtotal-amount');
+    const totalAmount = document.querySelector('.total-amount');
+    const cartQty = document.querySelector('.cart-count');
 
-const actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
+    if(!JSON.parse(localStorage.getItem('categoryArray'))) {
+        productArray = [{
+            productName: '',
+            productImg: '',
+            price: 0,
+            counter: 0,
+            totalAmount: 0,
+        }]
+    }
+    let productArray = [];
+    for(let i = 0; i < productName.length; i++) {
+         productArray.push({
+            productName: productName[i].innerText,
+            productImg: productImg[i].src,
+            price: productPrice[i].innerText,
+            counter: counterValue[i].innerText,
+            totalAmount: totalAmount.innerText,
+        }) 
+    }
+    // console.log(productName.length)
+
+        console.log(productArray)
+    // let productArray = JSON.parse(localStorage.getItem('categoryArray')) || [];
+
+    // productArray = categoryContainer.firstElementChild.innerText;
+    localStorage.setItem('checkoutProducts', JSON.stringify(productArray));
+})
+
+// console.log(cartQty)
+
+
 
 
 for(let i = 0; i < addButton.length; i++) {

@@ -862,14 +862,56 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 // }
 // prices.push(productsPrice)
 // console.log(productPrice)
+var productName = document.querySelector('.product-name');
+var productImg = document.querySelector('.img');
+var productPrice = document.querySelector('.price');
 var counterValue = document.querySelector('.counter-value');
 var subtotalAmount = document.querySelector('.subtotal-amount');
 var totalAmount = document.querySelector('.total-amount');
+var cartQty = document.querySelector('.cart-count');
 var addButton = document.querySelectorAll('.add-btn');
 var subButton = document.querySelectorAll('.sub-btn');
-var cartQty = document.querySelector('.cart-count');
 var productId = 0;
 var actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
+var checkoutBtn = document.querySelector('.checkout-button'); // console.log(subtotalAmount)
+
+checkoutBtn.addEventListener('click', function () {
+  var productName = document.querySelectorAll('.product-name');
+  var productImg = document.querySelectorAll('.product-image-thumb img');
+  var productPrice = document.querySelectorAll('.price');
+  var counterValue = document.querySelectorAll('.counter-value'); // const subtotalAmount = document.querySelectorAll('.subtotal-amount');
+
+  var totalAmount = document.querySelector('.total-amount');
+  var cartQty = document.querySelector('.cart-count');
+
+  if (!JSON.parse(localStorage.getItem('categoryArray'))) {
+    productArray = [{
+      productName: '',
+      productImg: '',
+      price: 0,
+      counter: 0,
+      totalAmount: 0
+    }];
+  }
+
+  var productArray = [];
+
+  for (var i = 0; i < productName.length; i++) {
+    productArray.push({
+      productName: productName[i].innerText,
+      productImg: productImg[i].src,
+      price: productPrice[i].innerText,
+      counter: counterValue[i].innerText,
+      totalAmount: totalAmount.innerText
+    });
+  } // console.log(productName.length)
+
+
+  console.log(productArray); // let productArray = JSON.parse(localStorage.getItem('categoryArray')) || [];
+  // productArray = categoryContainer.firstElementChild.innerText;
+
+  localStorage.setItem('checkoutProducts', JSON.stringify(productArray));
+}); // console.log(cartQty)
 
 for (var i = 0; i < addButton.length; i++) {
   addButton[i].addEventListener('click', function (e) {
