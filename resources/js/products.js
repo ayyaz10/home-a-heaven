@@ -1,3 +1,11 @@
+// var myVar = setInterval(reloadPage, 1000);
+// const reloadPage = () => {
+//     window.location.reload()
+// }
+// setTimeout(()=>{
+//     clearInterval(myVar)
+// }, 2000)
+
 const addToCart = document.querySelectorAll('.add-to-cart');
 const categoryName = document.querySelector('.category-name');
 categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
@@ -32,8 +40,8 @@ async function sessionLocalStorage(e){
     })
         // check if item does not exist in the cart
         //   let cart = product;
-        const response = await fetch('http://localhost:3333/getSessionData')
-        const result = await response.json();
+        // const response = await fetch('http://localhost:3333/getSessionData')
+        // const result = await response.json();
         // const obj = { items: {}, totalQty: 3, totalPrice: 0, }
         localStorage.setItem('obj', JSON.stringify(result))
     }
@@ -79,3 +87,59 @@ addToCart.forEach(cartBtn => {
 //   }
 
 //   <%= product.item.product.price * product.qty %>
+
+
+const logout = document.querySelector('.logout');
+// const categoryName = 
+
+logout.addEventListener('click', ()=> {
+    location.reload();
+    reqByCategory()
+    location.reload();
+})
+
+
+
+// var myVar = setInterval(reloadPage, 200);
+// const reloadPage = () => {
+    // reqByCategory()
+    // location.reload();
+    // console.log('helo')
+    // window.location.reload()
+// }
+
+// setTimeout(()=>{
+//     location.reload();
+//     reqByCategory()
+//     location.reload();
+// }, 6000)
+// setTimeout(()=>{
+    // clearInterval(myVar)
+// }, 500)
+
+
+// setTimeout(()=>{
+    reqByCategory()
+//     // location.reload();
+// }, 200)
+
+async function reqByCategory() {
+    // const categoryName = JSON.parse(localStorage.getItem('categoryArray'))
+    const response = await fetch('http://localhost:3333/add-data', {
+        method: "post",
+        mode: 'cors',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            categoryName: JSON.parse(localStorage.getItem('categoryArray')),
+        })
+    })
+    // console.log(response.json())
+    // const result = await response.json();
+    // console.log(result)
+}
+
+
+// console.log(result)
+// console.log(JSON.parse(localStorage.getItem('categoryArray')))
+

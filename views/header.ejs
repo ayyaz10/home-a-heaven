@@ -12,14 +12,14 @@
                <li><a href="#">Living Room</a></li>
                <% } else {%>
              <% for(let i = 0; i < 6; i++){ %>
-                   <li><a href="#"><%= categories[i].category_name %></a></li>
+                   <li><a href="/collections/products"><%= categories[i].category_name %></a></li>
                  <% } %>
              <% } %>
         </ul>
         <div class="second-menu">
             <a href="#" class="search"></a>
             <a href="#" class="account" id="account">
-                <a href="" class="logout" id="logout">Logout</a>
+                <a href="#" class="logout" id="logout">Logout</a>
                 <a href="/signup-login" class="login" id="login">Login</a>
                 <!-- <a href="/signup-login" class="Register" id="register">Register</a> -->
             </a>

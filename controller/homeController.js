@@ -8,7 +8,8 @@ const homeController = () => {
       // console.log(req.signedCookies.user_id)
       const products = await getAllProducts();
       const categories = await getAllCategories();
-      console.log(categories)
+      // console.log(categories)
+      // res.clearCookie('user_id');
       res.render('index', {
         products,
         categories

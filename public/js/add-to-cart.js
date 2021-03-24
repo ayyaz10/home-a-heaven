@@ -853,20 +853,67 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function updateCart(_x, _x2) {
-  return _updateCart.apply(this, arguments);
+var categoryQuery = JSON.parse(localStorage.getItem('categoryArray'));
+; // // categoryName.innerText = categoryQuery;
+
+reqByCategory(categoryQuery);
+
+function reqByCategory(_x) {
+  return _reqByCategory.apply(this, arguments);
 }
 
-function _updateCart() {
-  _updateCart = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(product, e) {
-    var cartCounter, response, result;
+function _reqByCategory() {
+  _reqByCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(categoryQuery) {
+    var response, result;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
+            _context2.next = 2;
+            return fetch('http://localhost:3333/req-by-category', {
+              method: "post",
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                categoryQuery: categoryQuery
+              })
+            });
+
+          case 2:
+            response = _context2.sent;
+            _context2.next = 5;
+            return response.json();
+
+          case 5:
+            result = _context2.sent;
+
+          case 6:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+  return _reqByCategory.apply(this, arguments);
+}
+
+function updateCart(_x2, _x3) {
+  return _updateCart.apply(this, arguments);
+}
+
+function _updateCart() {
+  _updateCart = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(product, e) {
+    var cartCounter, response, result;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
             cartCounter = document.querySelector('.cart-count');
             console.log(product.item.product_id);
-            _context2.next = 4;
+            _context3.next = 4;
             return fetch('http://localhost:3333/addToCart', {
               method: "post",
               mode: 'cors',
@@ -881,22 +928,22 @@ function _updateCart() {
             });
 
           case 4:
-            response = _context2.sent;
-            _context2.next = 7;
+            response = _context3.sent;
+            _context3.next = 7;
             return response.json();
 
           case 7:
-            result = _context2.sent;
+            result = _context3.sent;
             console.log(result); // notyf.success('Item added to cart');
 
             cartCounter.innerText = result.totalQty;
 
           case 10:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
   return _updateCart.apply(this, arguments);
 }
@@ -922,7 +969,7 @@ cartBtn.addEventListener('click', /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function (_x3) {
+  return function (_x4) {
     return _ref.apply(this, arguments);
   };
 }());
@@ -957,7 +1004,18 @@ var loadContent = function loadContent() {
   image.src = "assets/".concat(item.item.image);
 };
 
-loadContent();
+loadContent(); // stops user to go back
+// if (history.pushState) {
+//     //Chrome and modern browsers
+//     history.pushState(null, document.title, location.href);
+//     window.addEventListener('popstate', function (event) {
+//         history.pushState(null, document.title, location.href);
+//     });
+// }
+// else {
+//     //IE
+//     history.forward();
+// }
 })();
 
 /******/ })()

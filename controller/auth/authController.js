@@ -80,7 +80,7 @@ const authController = () => {
         },
 
         login(req, res, next) {
-            console.log(req.body)
+            // console.log(req.body)
         if(isValidLoginUser(req.body)) {
             // check to see if user is in the database
             User
@@ -125,9 +125,11 @@ const authController = () => {
         },
         logout (req, res) {
             res.clearCookie('user_id');
+            // console.log(req.session)
             req.session.destroy((err) => {
-                // res.redirect('/') // will always fire after session is destroyed
-              })
+            })
+            // res.redirect('/') 
+            // will always fire after session is destroyed
             res.json({
                 message: 'logged out'
             })

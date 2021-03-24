@@ -11,31 +11,25 @@ const productsController = () => {
       })
     },
     async collectionOfProducts(req, res) {
-      const categoryQuery = req.session.categorySession.categoryName;
-      console.log(categoryQuery)
-      const products = await getAllByCategory(categoryQuery);
-      const categories = await getAllCategories();
-      res.render('products', {
-        categories,
-        products
-      })
+      try {
+        const categoryQuery = req.session.categorySession.categoryName;
+        console.log(req.session.categorySession)
+  
+        const products = await getAllByCategory(categoryQuery);
+        const categories = await getAllCategories();
+        res.render('products', {
+          categories,
+          products
+        })
+      } catch (error) {
+        res.redirect('/collections')
+      }
 
-        // req.session.destroy()
     },
-    // async index (req, res) {
-    //   console.log(req.body)
-    //   // const products = await getAllByCategory();
-    //   const reqCategories = await getAllByCategory()
-    //   const categories = await getAllCategories();
-    //   res.render('products', {
-    //     // products,
-    //     reqCategories,
-    //     categories
-    //   })
-    // },
     async reqByCategory (req, res) {
       const requiredCategory = req.body.categoryName;
-
+      // console.log(req.session.categoryname)
+      console.log(requiredCategory + "helo")
       if(!req.session.categoryname) {
         req.session.categorySession = {
           categoryName: {}
@@ -43,7 +37,6 @@ const productsController = () => {
       }
       let categorySession = req.session.categorySession;
       categorySession.categoryName = requiredCategory;
-      // console.log(categorySession)
       res.json({
         message: 'category added added'
       })

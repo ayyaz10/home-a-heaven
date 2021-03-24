@@ -853,6 +853,13 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+// var myVar = setInterval(reloadPage, 1000);
+// const reloadPage = () => {
+//     window.location.reload()
+// }
+// setTimeout(()=>{
+//     clearInterval(myVar)
+// }, 2000)
 var addToCart = document.querySelectorAll('.add-to-cart');
 var categoryName = document.querySelector('.category-name');
 categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
@@ -899,7 +906,7 @@ function sessionLocalStorage(_x2) {
 
 function _sessionLocalStorage() {
   _sessionLocalStorage = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
-    var products, productPrice, oldItems, response, result;
+    var products, productPrice, oldItems;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -912,21 +919,13 @@ function _sessionLocalStorage() {
               localStorage.setItem('priceList', JSON.stringify(oldItems));
             }); // check if item does not exist in the cart
             //   let cart = product;
-
-            _context3.next = 6;
-            return fetch('http://localhost:3333/getSessionData');
-
-          case 6:
-            response = _context3.sent;
-            _context3.next = 9;
-            return response.json();
-
-          case 9:
-            result = _context3.sent;
+            // const response = await fetch('http://localhost:3333/getSessionData')
+            // const result = await response.json();
             // const obj = { items: {}, totalQty: 3, totalPrice: 0, }
+
             localStorage.setItem('obj', JSON.stringify(result));
 
-          case 11:
+          case 5:
           case "end":
             return _context3.stop();
         }
@@ -998,6 +997,71 @@ addToCart.forEach(function (cartBtn) {
 //     total: 36800
 //   }
 //   <%= product.item.product.price * product.qty %>
+
+var logout = document.querySelector('.logout'); // const categoryName = 
+
+logout.addEventListener('click', function () {
+  location.reload();
+  reqByCategory();
+  location.reload();
+}); // var myVar = setInterval(reloadPage, 200);
+// const reloadPage = () => {
+// reqByCategory()
+// location.reload();
+// console.log('helo')
+// window.location.reload()
+// }
+// setTimeout(()=>{
+//     location.reload();
+//     reqByCategory()
+//     location.reload();
+// }, 6000)
+// setTimeout(()=>{
+// clearInterval(myVar)
+// }, 500)
+// setTimeout(()=>{
+
+reqByCategory(); //     // location.reload();
+// }, 200)
+
+function reqByCategory() {
+  return _reqByCategory.apply(this, arguments);
+} // console.log(result)
+// console.log(JSON.parse(localStorage.getItem('categoryArray')))
+
+
+function _reqByCategory() {
+  _reqByCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return fetch('http://localhost:3333/add-data', {
+              method: "post",
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                categoryName: JSON.parse(localStorage.getItem('categoryArray'))
+              })
+            });
+
+          case 2:
+            response = _context4.sent;
+
+          case 3:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+  return _reqByCategory.apply(this, arguments);
+}
 })();
 
 /******/ })()
