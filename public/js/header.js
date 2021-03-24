@@ -853,14 +853,13 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+// main menu getting products by category functionality
 var headerMenu = document.querySelectorAll('.main-menu li');
 headerMenu.forEach(function (li) {
   li.addEventListener('click', function (e) {
-    var categoryContainer = e.target.innerText; // console.log(categoryContainer)
-    // adding category data to localstorage
+    var categoryContainer = e.target.innerText; // adding category data to localstorage
 
-    var categoryArray = JSON.parse(localStorage.getItem('categoryArray')) || " "; // categoryArray = categoryContainer.firstElementChild.innerText;
-
+    var categoryArray = JSON.parse(localStorage.getItem('categoryArray')) || " ";
     localStorage.setItem('categoryArray', JSON.stringify(categoryContainer));
     reqByCategory(JSON.parse(localStorage.getItem('categoryArray')));
   });
@@ -910,8 +909,7 @@ function _reqByCategory() {
 }
 
 var logoutHeader = document.querySelector('#logout');
-var loginHeader = document.querySelector('#login'); // const registerHeader  = document.querySelector('#register');
-
+var loginHeader = document.querySelector('#login');
 var userId = JSON.parse(localStorage.getItem('user_id'));
 var logoutButton = document.querySelector('.logout');
 logoutButton.addEventListener('click', function (e) {
@@ -934,8 +932,7 @@ logoutButton.addEventListener('click', function (e) {
 });
 
 if (userId) {
-  loginHeader.style.display = "none"; // registerHeader.style.display = "none";
-
+  loginHeader.style.display = "none";
   logoutHeader.style.display = "block";
 } else {
   logoutHeader.style.display = "none";

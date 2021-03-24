@@ -30,7 +30,7 @@ router.get('/collections', productsController().index)
 router.get('/collections/products', productsController().collectionOfProducts);
 router.post('/req-by-category', productsController().reqByCategory);
 router.get('/cart', cartController().index);
-router.post('/updateCart', cartController().update);
+// router.post('/updateCart', cartController().update);
 router.get('/addInCart', cartController().addInCart);
 router.get('/getProductDetail', cartController().getProductDetail);
 router.post('/addToCart', cartController().addToCart);
@@ -40,7 +40,6 @@ router.get('/adminPanel', adminPanelController().index);
 router.post('/product', adminPanelController().product);
 
 
-router.get('/getSessionData', cartController().getSessionData);
 router.post('/editCartValues', cartController().editCartValues);
 router.post('/removeCartItem', cartController().removeCartItem);
 

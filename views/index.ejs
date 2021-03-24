@@ -25,10 +25,12 @@
         <div class="categories-section-row">
             <% for(let i = 0; i < categories.length; i++) { %>
                 <div class="category">
-                    <h1><%- `${categories[i].category_name}` %> </h1>
-                    <a href="products"><img src=<%- `assets/${categories[i].image}` %> class="product-image" alt="product"></a>
-                    <a href="products"><h2><%- categories[i].product_name %></h2></a>
-                    <a href="products"><p><%- categories[i].price %></p></a>
+                    <a href="collections/products">
+                        <h1><%- `${categories[i].category_name}` %> </h1>
+                        <img src=<%- `assets/${categories[i].image}` %> class="product-image" alt="product">
+                        <h2><%- categories[i].product_name %></h2>
+                        <p><%- categories[i].price %></p>
+                    </a>
                 </div>
              <% } %>
           <!-- <div class="category cat1">
@@ -57,9 +59,9 @@
       <div class="new-arrivals-section-row">
           <% for(let i = 0; i < products.length; i++) { %>
             <div class="product">
-                <a href="/cart"><img src=<%- `assets/${products[i].image}` %> class="product-image" alt="product"></a>
-                <a href="/cart"><h2><%- products[i].product_name %></h2></a>
-                <a href="/cart"><p><%- products[i].price %></p></a>
+                <a href="collections/products"><img src=<%- `assets/${products[i].image}` %> class="product-image" alt="product"></a>
+                <a href="collections/products"><h2><%- products[i].product_name %></h2></a>
+                <a href="collections/products"><p><%- products[i].price %></p></a>
             </div>
          <% } %>
       </div>

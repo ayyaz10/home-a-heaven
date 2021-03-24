@@ -863,78 +863,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var addToCart = document.querySelectorAll('.add-to-cart');
 var categoryName = document.querySelector('.category-name');
 categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
-
-function updateCart(_x) {
-  return _updateCart.apply(this, arguments);
-}
-
-function _updateCart() {
-  _updateCart = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-    var cartCounter;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            cartCounter = document.querySelector('.cart-count'); // const product = JSON.parse(localStorage.getItem('itemsArray'));
-            // console.log(product)
-            // const response = await fetch('http://localhost:3333/updateCart', {
-            //     method: "post",
-            //     mode: 'cors',
-            //     credentials: 'include',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({
-            //         product
-            //     })
-            // })
-            // const result = await response.json();
-            // notyf.success('Item added to cart');
-            // cartCounter.innerText = result.totalQty;
-
-          case 1:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-  return _updateCart.apply(this, arguments);
-}
-
-function sessionLocalStorage(_x2) {
-  return _sessionLocalStorage.apply(this, arguments);
-}
-
-function _sessionLocalStorage() {
-  _sessionLocalStorage = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
-    var products, productPrice, oldItems;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            products = document.querySelectorAll('.products');
-            productPrice = document.querySelectorAll('.product-price');
-            oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
-            productPrice.forEach(function (each) {
-              oldItems.push(parseInt(each.innerText));
-              localStorage.setItem('priceList', JSON.stringify(oldItems));
-            }); // check if item does not exist in the cart
-            //   let cart = product;
-            // const response = await fetch('http://localhost:3333/getSessionData')
-            // const result = await response.json();
-            // const obj = { items: {}, totalQty: 3, totalPrice: 0, }
-
-            localStorage.setItem('obj', JSON.stringify(result));
-
-          case 5:
-          case "end":
-            return _context3.stop();
-        }
-      }
-    }, _callee3);
-  }));
-  return _sessionLocalStorage.apply(this, arguments);
-}
-
 addToCart.forEach(function (cartBtn) {
   cartBtn.addEventListener('click', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
@@ -960,14 +888,9 @@ addToCart.forEach(function (cartBtn) {
                   oldItems.push(items);
                   localStorage.setItem('itemsArray', JSON.stringify(oldItems));
                 }
-              } // location.replace('/addInCart')
-              // }
-              // console.log(product.product_id)
+              }
 
-
-              updateCart(e);
-
-            case 9:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -975,93 +898,28 @@ addToCart.forEach(function (cartBtn) {
       }, _callee);
     }));
 
-    return function (_x3) {
+    return function (_x) {
       return _ref.apply(this, arguments);
     };
   }());
-}); // {
-//     items: {
-//         '29': { item: [Object], price: 1000, qty: 1 },
-//         '30': { item: [Object], price: 4000, qty: 4 },
-//         '31': { item: [Object], price: 4000, qty: 4 }
-//     },
-//     totalQty: 60,
-//     totalPrice: 62600
-//   }
-// {
-//     productid: 30,
-//     counterval: 4,
-//     price: 4000,
-//     cartqty: 35,
-//     subtotal: 36800,
-//     total: 36800
-//   }
-//   <%= product.item.product.price * product.qty %>
-
-var logout = document.querySelector('.logout'); // const categoryName = 
-
-logout.addEventListener('click', function () {
-  location.reload();
-  reqByCategory();
-  location.reload();
-}); // var myVar = setInterval(reloadPage, 200);
-// const reloadPage = () => {
-// reqByCategory()
-// location.reload();
-// console.log('helo')
-// window.location.reload()
-// }
-// setTimeout(()=>{
+}); // const logout = document.querySelector('.logout');
+// logout.addEventListener('click', ()=> {
 //     location.reload();
 //     reqByCategory()
 //     location.reload();
-// }, 6000)
-// setTimeout(()=>{
-// clearInterval(myVar)
-// }, 500)
-// setTimeout(()=>{
-
-reqByCategory(); //     // location.reload();
-// }, 200)
-
-function reqByCategory() {
-  return _reqByCategory.apply(this, arguments);
-} // console.log(result)
-// console.log(JSON.parse(localStorage.getItem('categoryArray')))
-
-
-function _reqByCategory() {
-  _reqByCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            _context4.next = 2;
-            return fetch('http://localhost:3333/add-data', {
-              method: "post",
-              mode: 'cors',
-              credentials: 'include',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                categoryName: JSON.parse(localStorage.getItem('categoryArray'))
-              })
-            });
-
-          case 2:
-            response = _context4.sent;
-
-          case 3:
-          case "end":
-            return _context4.stop();
-        }
-      }
-    }, _callee4);
-  }));
-  return _reqByCategory.apply(this, arguments);
-}
+// })
+// reqByCategory()
+// async function reqByCategory() {
+//     const response = await fetch('http://localhost:3333/add-data', {
+//         method: "post",
+//         mode: 'cors',
+//         credentials: 'include',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//             categoryName: JSON.parse(localStorage.getItem('categoryArray')),
+//         })
+//     })
+// }
 })();
 
 /******/ })()

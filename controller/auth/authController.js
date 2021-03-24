@@ -25,7 +25,6 @@ function isValidLoginUser(user) {
 const authController = () => {
     return {
         async registerLogin (req, res) {
-            // console.log('helo')
             const products = await getAllProducts();
             const categories = await getAllCategories();
             res.render('signup-login', {
@@ -34,13 +33,12 @@ const authController = () => {
             })
           },
         register (req, res, next) {
-            if(isValidRegisterUser(req.body)){ 
+            if(isValidRegisterUser(req.body)){
                 User
                 .getOneByEmail(req.body.email)
                 .then(user => {
-                    // console.log(user);
+
                     if(!user) {
-                        // console.log(user)
                         bcrypt.genSalt(10, function(err, salt) {
                             bcrypt.hash(req.body.password, salt, function(err, hash) {
                                 // Store hash in your password DB.
@@ -80,7 +78,7 @@ const authController = () => {
         },
 
         login(req, res, next) {
-            // console.log(req.body)
+            
         if(isValidLoginUser(req.body)) {
             // check to see if user is in the database
             User
@@ -125,10 +123,7 @@ const authController = () => {
         },
         logout (req, res) {
             res.clearCookie('user_id');
-            // console.log(req.session)
-            req.session.destroy((err) => {
-            })
-            // res.redirect('/') 
+            req.session.destroy()
             // will always fire after session is destroyed
             res.json({
                 message: 'logged out'

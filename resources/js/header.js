@@ -1,11 +1,10 @@
+// main menu getting products by category functionality
 const headerMenu  = document.querySelectorAll('.main-menu li');
 headerMenu.forEach(li => {
     li.addEventListener('click', (e) => {
         const categoryContainer = e.target.innerText;
-        // console.log(categoryContainer)
-        // adding category data to localstorage
+    // adding category data to localstorage
         let categoryArray = JSON.parse(localStorage.getItem('categoryArray')) || " ";
-        // categoryArray = categoryContainer.firstElementChild.innerText;
         localStorage.setItem('categoryArray', JSON.stringify(categoryContainer));
         reqByCategory(JSON.parse(localStorage.getItem('categoryArray')))
     })
@@ -28,7 +27,6 @@ async function reqByCategory(categoryName) {
 
 const logoutHeader  = document.querySelector('#logout');
 const loginHeader = document.querySelector('#login');
-// const registerHeader  = document.querySelector('#register');
 const userId = JSON.parse(localStorage.getItem('user_id'))
 const logoutButton = document.querySelector('.logout');
 logoutButton.addEventListener('click', (e)=>{
@@ -52,10 +50,8 @@ logoutButton.addEventListener('click', (e)=>{
 })
 if(userId) {
     loginHeader.style.display = "none";
-    // registerHeader.style.display = "none";
     logoutHeader.style.display = "block";
 } else {
     logoutHeader.style.display = "none";
-
 }
 
