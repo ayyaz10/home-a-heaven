@@ -13,23 +13,42 @@
 </head>
 <body>
     <%- include('header'); -%>
-    <h1>Shipping Address</h1>
-    <div id="shipping-form" class="form">
-        <form id="">
-            <label for="fname">Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-            <label for ="email">Email</label>
-            <input type="text" id="email" name="email" placeholder="john@example.com">
-            <label for="adr">Address</label>
-            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-            <label for="city">City</label>
-            <input type="text" id="city" name="city" placeholder="New York">
-            <label for="pnumber">City</label>
-            <input type="number" id="pnumber" name="pnumber" placeholder="Phone">
-            <input type="submit" value="Continue to Shipping" class="btn">
-            <!-- <a href="/orders">Continue to Shipping</a> -->
-        </form>
-    </div>
+    <a href="/collections " class="cont-shopping">Continue Shopping</a>
+    <section class="main-container">
+        <div id="shipping-form" class="form">
+            <h1>Shipping Address</h1>
+            <form id="form">
+                <label for="fname">Full Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="John M. Doe" required>
+                <label for ="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="john@example.com" required>
+                <label for="adr">Address</label>
+                <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" required>
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="New York" required>
+                <label for="pnumber">Phone</label>
+                <input type="number" id="pnumber" name="pnumber" placeholder="Phone" required>
+                <input type="submit" value="Continue to Shipping" class="continue-btn" >
+                <!-- <a href="/orders">Continue to Shipping</a> -->
+            </form>
+        </div>
+            <section class="summary-area">
+                <div class="image">
+                    <img src="assets/product.png" alt="">
+                </div>
+                <div class="summary-container">
+                  <div class="subtotal-wrapper">
+                    <span class="subtotal-text">Item Subtotal: </span>
+                    <span class="subtotal-amount">5000</span>
+                  </div>
+                  <hr>
+                  <div class="total-wrapper">
+                    <span class="total-text">Total: </span>
+                    <span class="total-amount">5000</span>
+                  </div>
+                </div>
+              </section>
+    </section>
     <%- include('footer'); -%>
 </body>
 </html>

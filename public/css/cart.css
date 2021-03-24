@@ -15,7 +15,8 @@ a.cont-shopping {
     display: block;
     font-size: 0.8rem;
     color: var(--primary-hover);
-    padding: 0.9375rem 0 0 3.4375rem; 
+    width: 140px;
+    margin: 0.9375rem 0 0 3.4375rem; 
 }
 
 /* cart-product-area style */
@@ -113,7 +114,7 @@ hr {
     justify-content: space-between;
 }
 
-.check-button {
+.checkout-button {
     position: relative;
     display: block;
     background-color: var(--primary);

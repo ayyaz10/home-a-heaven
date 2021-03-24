@@ -1,3 +1,89 @@
 @import './_variables.css';
 @import './_header.css';
 @import './_footer.css';
+
+
+.main-container {
+    margin: 2.0375rem auto;
+    max-width: 73.75em;
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
+}
+a.cont-shopping {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--primary-hover);
+    width: 140px;
+    margin: 0.9375rem 0 0 3.4375rem;
+}
+h1 {
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    /* text-align: center; */
+}
+
+.form {
+    /* margin: 2.9375rem auto; */
+    width: 60%;
+    padding: 0px 40px 0px 40px;
+
+}
+
+label {
+    font-size: .875rem;
+}
+
+.form input, .form input {
+    display: block;
+    margin-bottom: 1.3125rem;
+    padding: 0.6375rem 1rem;
+    width: 100%;
+    font-size: 0.8125rem;
+    border: 1px solid var(--gray);
+}
+/* summary area style */
+.summary-area {
+    /* flex: 1; */
+    width: 40%;
+    padding: 0rem 40px 0px 40px;
+}
+
+hr {
+    margin: 0.625rem 0 0 0;
+}
+.summary-area img {
+    width: 60px;
+    margin-top: 6px;
+}
+
+.subtotal-wrapper {
+    margin-top: 1.875rem;
+}
+.subtotal-text, .subtotal-amount, .total-text, .total-amount {
+    font-size: 0.8125rem;
+    font-weight: 400;
+}
+
+.subtotal-wrapper, .total-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+input.continue-btn {
+    position: relative;
+    display: block;
+    background-color: var(--primary);
+    color: #fff;
+    padding: 0.625rem 0.25rem;
+    width: 40%;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
+input.continue-btn:hover {
+    background-color: var(--primary-hover);
+}

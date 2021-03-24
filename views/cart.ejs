@@ -16,7 +16,7 @@
 
     <div id="container">
       <%if (session.cart && session.cart.totalQty) {%>
-        <a href="/products " class="cont-shopping">Continue Shopping</a>
+        <a href="/collections " class="cont-shopping">Continue Shopping</a>
         <section class="cart-container">
           <div class="cart-product-area">
             <h1 class="cart-heading">My Bag</h1>
@@ -50,7 +50,7 @@
                 <span class="total">Total: </span>
                 <span class="total-amount"><%= session.cart.totalPrice %></span>
               </div>
-              <a href="/checkout" class="check-button">Proceed to Checkout</a>
+              <a href="/checkout" class="checkout-button">Proceed to Checkout</a>
             </div>
           </div>
         </section>
