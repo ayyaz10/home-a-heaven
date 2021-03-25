@@ -68,9 +68,9 @@ sortBtn.addEventListener('click', async ()=>{
 const filterBtn = document.querySelector('.filter-btn')
 filterBtn.addEventListener('click', async ()=>{
     const toBeFiltered = {
-        filterCategory: 'Shelves'
+        filterCategory: 'Table'
     }
-    localStorage.setItem('categoryArray', JSON.stringify('Shelves'))
+    localStorage.setItem('categoryArray', JSON.stringify('Table'))
     
     const response = await fetch('http://localhost:3333/sort', {
         method: "post",
@@ -89,7 +89,6 @@ filterBtn.addEventListener('click', async ()=>{
      if(result.isSet) {
          window.location.reload();
      }
-
 })
 
 

@@ -967,9 +967,9 @@ filterBtn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*
       switch (_context3.prev = _context3.next) {
         case 0:
           toBeFiltered = {
-            filterCategory: 'Shelves'
+            filterCategory: 'Table'
           };
-          localStorage.setItem('categoryArray', JSON.stringify('Shelves'));
+          localStorage.setItem('categoryArray', JSON.stringify('Table'));
           _context3.next = 4;
           return fetch('http://localhost:3333/sort', {
             method: "post",
