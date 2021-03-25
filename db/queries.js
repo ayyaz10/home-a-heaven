@@ -75,6 +75,14 @@ module.exports = {
         return allItems;
         // return allCategories;
     },
+    async getAllBySort (whichProduct, whichSort, whichColumn) {
+        console.log(whichSort, whichColumn, whichProduct)
+        const allItems = await knex.select().table('product').orderBy(whichColumn, whichSort).where({
+            category_name: whichProduct
+        })
+        // console.log(allItems)
+        return allItems;
+    },
     async createOrder (order) {
         const shippingDetail = await knex('shipping_detail').insert(order, 'order_id').returning("*");
         return shippingDetail;

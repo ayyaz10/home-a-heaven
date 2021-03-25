@@ -44,7 +44,7 @@ const store = new KnexSessionStore({
 
 app.use(session({
   secret: process.env.COOKIE_SECRET,
-  resave: false,
+  resave: true,
   store,
   saveUninitialized: true,
   cookie: {

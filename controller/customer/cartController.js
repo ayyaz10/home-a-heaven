@@ -12,6 +12,7 @@ const cartController = () => {
       })
     },
     async addInCart (req, res) {
+      console.log(req.session)
       const products = await getAllProducts();
       const categories = await getAllCategories();
       res.render('add-to-cart', {

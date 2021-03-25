@@ -902,7 +902,72 @@ addToCart.forEach(function (cartBtn) {
       return _ref.apply(this, arguments);
     };
   }());
-}); // const logout = document.querySelector('.logout');
+}); // const select = document.querySelectorAll('option')
+// select.forEach(each => {
+//     // console.log(each.innerText)
+//     each.addEventListener('onchange', (e)=>{
+//         console.log(e.target)
+//     })
+// })
+
+var btn = document.querySelector('.sortBtn');
+console.log(btn);
+btn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+  var sortObj, toBeSorted, response, result;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          sortObj = {
+            order: 'desc'
+          }; // const sortObj = {
+          //     asc: true,
+          //     desc: false,
+          // }
+          // const toBeSorted = {
+          //     price: 'price',
+          //     product_name: true,
+          //     created_at: true
+          // }
+
+          toBeSorted = {
+            column: 'product_name'
+          }; // console.log('helo')
+
+          _context2.next = 4;
+          return fetch('http://localhost:3333/sort', {
+            method: "post",
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              sortObj: sortObj,
+              toBeSorted: toBeSorted
+            })
+          });
+
+        case 4:
+          response = _context2.sent;
+          _context2.next = 7;
+          return response.json();
+
+        case 7:
+          result = _context2.sent;
+          console.log(result.isSet);
+
+          if (result.isSet) {
+            window.location.reload();
+          }
+
+        case 10:
+        case "end":
+          return _context2.stop();
+      }
+    }
+  }, _callee2);
+}))); // const logout = document.querySelector('.logout');
 // logout.addEventListener('click', ()=> {
 //     location.reload();
 //     reqByCategory()

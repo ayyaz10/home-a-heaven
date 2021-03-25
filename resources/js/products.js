@@ -9,7 +9,6 @@
 const addToCart = document.querySelectorAll('.add-to-cart');
 const categoryName = document.querySelector('.category-name');
 categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
-
 addToCart.forEach(cartBtn => {
     cartBtn.addEventListener('click', async (e) => {
         let product = await JSON.parse(cartBtn.dataset.product);
@@ -27,6 +26,76 @@ addToCart.forEach(cartBtn => {
         }
     })
 })
+
+
+
+// const select = document.querySelectorAll('option')
+// select.forEach(each => {
+//     // console.log(each.innerText)
+//     each.addEventListener('onchange', (e)=>{
+//         console.log(e.target)
+//     })
+// })
+
+const btn = document.querySelector('.sortBtn')
+console.log(btn)
+btn.addEventListener('click', async ()=>{
+    const sortObj = {
+        order: 'desc'
+    }
+    // const sortObj = {
+    //     asc: true,
+    //     desc: false,
+    // }
+    // const toBeSorted = {
+    //     price: 'price',
+    //     product_name: true,
+    //     created_at: true
+    // }
+    const toBeSorted = {
+        column: 'product_name'
+    }
+    // console.log('helo')
+    const response = await fetch('http://localhost:3333/sort', {
+        method: "post",
+        mode: 'cors',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            sortObj,
+            toBeSorted
+        })
+     })
+     const result = await response.json();
+     console.log(result.isSet)
+     if(result.isSet) {
+         window.location.reload();
+     }
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // const logout = document.querySelector('.logout');

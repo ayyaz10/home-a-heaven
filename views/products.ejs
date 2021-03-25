@@ -19,6 +19,19 @@
         <h1 class="category-name">Categor Name</h1>
     </section>
     <section class="product-items-section">
+        <div class="sort">
+            <button class="sortBtn">sort</button>
+            <select name="your_name" id="your_id">
+                <option value="1" data-id="123">One</option>
+                <option value="2" data-id="234">Two</option>
+            </select>
+                <!-- <input id="supplierCapacity" type="text" class="operations-supplierCapacity" readonly /> -->
+        </div>
+        <!-- <div class="filter-sort-container">
+            <div class="filter">
+
+            </div>
+        </div> -->
          <% for(let i = 0; i < products.length; i++) { %>
         <div class="products">
             <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="product-image add-to-cart <%= products[i].price %>"><img src=<%- `/assets/${products[i].image}` %> alt="product"></a>

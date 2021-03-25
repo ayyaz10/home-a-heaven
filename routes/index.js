@@ -29,8 +29,10 @@ router.get('/collections', productsController().index)
 // router.get('/products', productsController().index);
 router.get('/collections/products', productsController().collectionOfProducts);
 router.post('/req-by-category', productsController().reqByCategory);
-router.get('/cart', cartController().index);
+router.post('/sort', productsController().reqBySort);
+// router.get('/sorted', productsController().getSorted);
 // router.post('/updateCart', cartController().update);
+router.get('/cart', cartController().index);
 router.get('/addInCart', cartController().addInCart);
 router.get('/getProductDetail', cartController().getProductDetail);
 router.post('/addToCart', cartController().addToCart);
