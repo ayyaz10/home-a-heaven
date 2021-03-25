@@ -15,7 +15,8 @@ const orderController = () => {
             })
         },
         async index (req, res, next) {
-            console.log(req.body)
+            console.log(req.session)
+            // console.log(req.body)
             const customerId = req.signedCookies.user_id;
             const products = await getAllProducts();
             const categories = await getAllCategories();
@@ -27,6 +28,7 @@ const orderController = () => {
             }
             const customerOrdersItems = await getCustOrdersItems(customerId);
             // console.log(customerOrdersItems)
+        
             res.render('orders', {
                 products,
                 categories,

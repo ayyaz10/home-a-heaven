@@ -9,6 +9,7 @@ mix.js('resources/js/cart.js', 'public/js/cart.js');
 mix.js('resources/js/checkout.js', 'public/js/checkout.js');
 mix.js('resources/js/orders.js', 'public/js/orders.js');
 mix.js('resources/js/admin-panel.js', 'public/js/admin-panel.js');
+mix.js('resources/js/admin.js', 'public/js/admin.js');
 mix.js('resources/js/signup-login.js', 'public/js/signup-login.js');
 // mix.css('resources/css/adminPanel.css', 'public/css/adminPanel.css');
 // mix.css('resources/css/styles.css', 'public/css/styles.css');

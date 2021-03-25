@@ -97,21 +97,6 @@ filterBtn.addEventListener('click', async ()=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // const logout = document.querySelector('.logout');
 // logout.addEventListener('click', ()=> {
 //     location.reload();

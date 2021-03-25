@@ -8,9 +8,9 @@ if(JSON.parse(localStorage.getItem('isOrdered'))) {
     successMessage.innerText = 'Order Placed';
     successAlertContainer.append(successMessage);
     localStorage.setItem('isOrdered', JSON.stringify(false));
-}
     setTimeout(()=>{
         const successAlert = document.querySelector('.success');
         successAlert.style.display = "none";
     },3000)
+}
 
