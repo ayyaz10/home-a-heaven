@@ -37,21 +37,12 @@ addToCart.forEach(cartBtn => {
 //     })
 // })
 
-const btn = document.querySelector('.sortBtn')
-console.log(btn)
-btn.addEventListener('click', async ()=>{
+const sortBtn = document.querySelector('.sort-btn')
+// console.log(btn)
+sortBtn.addEventListener('click', async ()=>{
     const sortObj = {
         order: 'desc'
     }
-    // const sortObj = {
-    //     asc: true,
-    //     desc: false,
-    // }
-    // const toBeSorted = {
-    //     price: 'price',
-    //     product_name: true,
-    //     created_at: true
-    // }
     const toBeSorted = {
         column: 'product_name'
     }
@@ -74,8 +65,32 @@ btn.addEventListener('click', async ()=>{
 
 })
 
+const filterBtn = document.querySelector('.filter-btn')
+filterBtn.addEventListener('click', async ()=>{
+    const toBeFiltered = {
+        filterCategory: 'Shelves'
+    }
+    localStorage.setItem('categoryArray', JSON.stringify('Shelves'))
+    
+    const response = await fetch('http://localhost:3333/sort', {
+        method: "post",
+        mode: 'cors',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            toBeFiltered,
+            filter: true
+        })
+    })
+    const categoryName = document.querySelector('.category-name');
+    categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'))
+     const result = await response.json();
+     console.log(result.isSet)
+     if(result.isSet) {
+         window.location.reload();
+     }
 
-
+})
 
 
 

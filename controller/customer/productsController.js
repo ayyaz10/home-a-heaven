@@ -15,17 +15,18 @@ const productsController = () => {
       try {
         const categoryQuery = req.session.categorySession.categoryName;
         // console.log(categorySession.isQueried = false)
-
-        console.log(req.session.sortProduct)
-        
         let products;
-        if(req.session.categorySession.isQueried) {
+        if(req.session.categorySession.isSortQueried) {
           const whichProduct = req.session.categorySession.categoryName;
           const whichSort = req.session.sortProduct.reqQuery.sortObj.order;
           const whichColumn = req.session.sortProduct.reqQuery.toBeSorted.column;
           products = await getAllBySort(whichProduct, whichSort, whichColumn)
-          req.session.sortProduct.isQueried = false
-        } else {
+
+          req.session.sortProduct.isSortQueried = false
+        } else if(req.session.categorySession.isFilterQueried){
+          products = await getAllByCategory(req.session.sortProduct.reqQuery.toBeFiltered.filterCategory)
+          req.session.categorySession.isFilterQueried = false
+        }else {
           products = await getAllByCategory(categoryQuery);
         }
         const categories = await getAllCategories();
@@ -48,45 +49,40 @@ const productsController = () => {
       if(!req.session.categoryname) {
         req.session.categorySession = {
           categoryName: {},
-          isQueried: ""
+          isSortQueried: "",
+          isFilterQueried: ""
         }
       }
       let categorySession = req.session.categorySession;
       categorySession.categoryName = requiredCategory;
-      categorySession.isQueried = false
+      categorySession.isSortQueried = false;
+      categorySession.isFilterQueried = false
       res.json({
         message: 'category added added'
       })
     },
     async reqBySort (req, res) {
-      // const sortReq = req.body.price;
-      // getAllBySort (sortReq)
-      
+      // console.log(req.body.toBeFiltered)
       if(!req.session.sortProduct) {
         req.session.sortProduct = {
           reqQuery: {},
         }
-
-      // res.render('products', {
-      //   categories,
-      //   products
-      // })
       }
       let sortProduct = req.session.sortProduct;
       sortProduct.reqQuery = req.body;
-      req.session.categorySession.isQueried = true
+      if(req.body.filter) {
+        req.session.categorySession.isFilterQueried = true
+      } else {
+        req.session.categorySession.isSortQueried = true
+      }
+      
       console.log(req.session)
       res.json({
         isSet: true,
       })
-      // console.log(req.session)
     },
-    // async getSorted (req, res) {
-    //   res.render('products', {
-    //     categories,
-    //     products
-    //   })
-    // }
+
+
   }
 }
 

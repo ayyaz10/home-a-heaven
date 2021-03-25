@@ -910,9 +910,9 @@ addToCart.forEach(function (cartBtn) {
 //     })
 // })
 
-var btn = document.querySelector('.sortBtn');
-console.log(btn);
-btn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+var sortBtn = document.querySelector('.sort-btn'); // console.log(btn)
+
+sortBtn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
   var sortObj, toBeSorted, response, result;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
     while (1) {
@@ -920,16 +920,7 @@ btn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babe
         case 0:
           sortObj = {
             order: 'desc'
-          }; // const sortObj = {
-          //     asc: true,
-          //     desc: false,
-          // }
-          // const toBeSorted = {
-          //     price: 'price',
-          //     product_name: true,
-          //     created_at: true
-          // }
-
+          };
           toBeSorted = {
             column: 'product_name'
           }; // console.log('helo')
@@ -967,6 +958,53 @@ btn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babe
       }
     }
   }, _callee2);
+})));
+var filterBtn = document.querySelector('.filter-btn');
+filterBtn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+  var toBeFiltered, response, categoryName, result;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          toBeFiltered = {
+            filterCategory: 'Shelves'
+          };
+          localStorage.setItem('categoryArray', JSON.stringify('Shelves'));
+          _context3.next = 4;
+          return fetch('http://localhost:3333/sort', {
+            method: "post",
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              toBeFiltered: toBeFiltered,
+              filter: true
+            })
+          });
+
+        case 4:
+          response = _context3.sent;
+          categoryName = document.querySelector('.category-name');
+          categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
+          _context3.next = 9;
+          return response.json();
+
+        case 9:
+          result = _context3.sent;
+          console.log(result.isSet);
+
+          if (result.isSet) {
+            window.location.reload();
+          }
+
+        case 12:
+        case "end":
+          return _context3.stop();
+      }
+    }
+  }, _callee3);
 }))); // const logout = document.querySelector('.logout');
 // logout.addEventListener('click', ()=> {
 //     location.reload();
