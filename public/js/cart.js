@@ -853,15 +853,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// product counter
-// const productPrice = document.querySelector('.price');
-// const prices = [];
-// const productPrice = document.querySelectorAll('.price')
-// for(let i = 0; i < productPrice.length; i++) {
-//     prices.push(parseInt(productPrice[i].innerText))
-// }
-// prices.push(productsPrice)
-// console.log(productPrice)
 var productName = document.querySelector('.product-name');
 var productImg = document.querySelector('.img');
 var productPrice = document.querySelector('.price');
@@ -873,18 +864,16 @@ var addButton = document.querySelectorAll('.add-btn');
 var subButton = document.querySelectorAll('.sub-btn');
 var productId = 0;
 var actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
-var checkoutBtn = document.querySelector('.checkout-button'); // console.log(subtotalAmount)
-
+var checkoutBtn = document.querySelector('.checkout-button');
 checkoutBtn.addEventListener('click', function () {
   var productName = document.querySelectorAll('.product-name');
   var productImg = document.querySelectorAll('.product-image-thumb img');
   var productPrice = document.querySelectorAll('.price');
-  var counterValue = document.querySelectorAll('.counter-value'); // const subtotalAmount = document.querySelectorAll('.subtotal-amount');
-
+  var counterValue = document.querySelectorAll('.counter-value');
   var totalAmount = document.querySelector('.total-amount');
   var cartQty = document.querySelector('.cart-count');
 
-  if (!JSON.parse(localStorage.getItem('categoryArray'))) {
+  if (!JSON.parse(localStorage.getItem('productArray'))) {
     productArray = [{
       productName: '',
       productImg: '',
@@ -904,14 +893,10 @@ checkoutBtn.addEventListener('click', function () {
       counter: counterValue[i].innerText,
       totalAmount: totalAmount.innerText
     });
-  } // console.log(productName.length)
+  }
 
-
-  console.log(productArray); // let productArray = JSON.parse(localStorage.getItem('categoryArray')) || [];
-  // productArray = categoryContainer.firstElementChild.innerText;
-
-  localStorage.setItem('checkoutProducts', JSON.stringify(productArray));
-}); // console.log(cartQty)
+  localStorage.setItem('productArray', JSON.stringify(productArray));
+});
 
 for (var i = 0; i < addButton.length; i++) {
   addButton[i].addEventListener('click', function (e) {
@@ -1121,9 +1106,8 @@ var updateSession = /*#__PURE__*/function () {
 
           case 12:
             result = _context3.sent;
-            console.log(result);
 
-          case 14:
+          case 13:
           case "end":
             return _context3.stop();
         }

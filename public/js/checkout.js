@@ -39,5 +39,65 @@ shippingForm.addEventListener('submit', function (e) {
     }
   });
 });
+
+var updateCheckoutPage = function updateCheckoutPage() {
+  var products = JSON.parse(localStorage.getItem('productArray'));
+  var subtotalText = document.querySelector('.subtotal-text');
+  var subtotalAmount = document.querySelector('.subtotal-amount');
+  var totalText = document.querySelector('.total-text');
+  var totalAmount = document.querySelector('.total-amount');
+
+  var createSummaryAreaHtml = function createSummaryAreaHtml(product) {
+    var orderInforWrapper = document.querySelector('.order-info-wrapper');
+
+    var createDiv = function createDiv() {
+      return document.createElement('div');
+    };
+
+    var createH2 = function createH2() {
+      return document.createElement('h2');
+    };
+
+    var createImage = function createImage() {
+      return document.createElement('img');
+    };
+
+    var createSpan = function createSpan() {
+      return document.createElement('span');
+    };
+
+    var order = createDiv();
+    var productName = createH2();
+    var price = createSpan();
+    order.classList.add('order');
+    productName.classList.add('product-name');
+    price.classList.add('price');
+    productName.innerText = product.productName;
+    price.innerText = product.price; // image container section
+
+    var imageContainer = createDiv();
+    var image = createImage();
+    imageContainer.classList.add('image');
+    image.src = product.productImg;
+    imageContainer.append(image);
+    order.append(imageContainer);
+    order.append(productName);
+    order.append(price);
+    orderInforWrapper.append(order);
+  };
+
+  products.forEach(function (product) {
+    createSummaryAreaHtml(product);
+  });
+
+  for (var i = 0; i < products.length; i++) {
+    subtotalText.innerText = 'Item Subtotal: ';
+    subtotalAmount.innerText = products[i].totalAmount;
+    totalText.innerText = 'Total: ';
+    totalAmount.innerText = products[i].totalAmount;
+  }
+};
+
+updateCheckoutPage();
 /******/ })()
 ;

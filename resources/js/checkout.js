@@ -25,7 +25,6 @@ shippingForm.addEventListener('submit', function(e) {
             return response.json()
         })
         .then(data => {
-            
             if(data.customer) {
                 document.querySelector('.cart').innerText = "";
                 window.location = "http://localhost:3333/orders";
@@ -35,3 +34,50 @@ shippingForm.addEventListener('submit', function(e) {
             }
         })
 })
+
+const updateCheckoutPage = () => {
+    const products = JSON.parse(localStorage.getItem('productArray'))
+    const subtotalText = document.querySelector('.subtotal-text');
+    const subtotalAmount = document.querySelector('.subtotal-amount');
+    const totalText = document.querySelector('.total-text');
+    const totalAmount = document.querySelector('.total-amount');
+
+    const createSummaryAreaHtml = (product) => {
+        const orderInforWrapper = document.querySelector('.order-info-wrapper');
+        const createDiv = ()=>{return document.createElement('div')}
+        const createH2 = ()=>{return document.createElement('h2')}
+        const createImage = ()=>{return document.createElement('img')}
+        const createSpan = ()=>{return document.createElement('span')}
+        const order = createDiv();
+        const productName = createH2();
+        const price = createSpan();
+        order.classList.add('order')
+        productName.classList.add('product-name')
+        price.classList.add('price')
+        productName.innerText = product.productName;
+        price.innerText = product.price;
+        // image container section
+        const imageContainer = createDiv();
+        const image = createImage();
+        imageContainer.classList.add('image')
+        image.src = product.productImg;
+        imageContainer.append(image)
+        order.append(imageContainer)
+        order.append(productName)
+        order.append(price)
+        orderInforWrapper.append(order)
+    }
+ 
+
+    products.forEach(product => {
+        createSummaryAreaHtml(product)
+    });
+    for(let i = 0; i < products.length; i++) {
+        subtotalText.innerText = 'Item Subtotal: '
+        subtotalAmount.innerText = products[i].totalAmount;
+        totalText.innerText = 'Total: '
+        totalAmount.innerText = products[i].totalAmount;
+    }
+}
+
+updateCheckoutPage();

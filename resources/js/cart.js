@@ -1,40 +1,26 @@
-// product counter
-// const productPrice = document.querySelector('.price');
-// const prices = [];
-// const productPrice = document.querySelectorAll('.price')
+const productName = document.querySelector('.product-name');
+const productImg = document.querySelector('.img');
+const productPrice = document.querySelector('.price');
+const counterValue = document.querySelector('.counter-value');
+const subtotalAmount = document.querySelector('.subtotal-amount');
+const totalAmount = document.querySelector('.total-amount');
+const cartQty = document.querySelector('.cart-count');
+const addButton = document.querySelectorAll('.add-btn');
+const subButton = document.querySelectorAll('.sub-btn');
+let productId = 0;
 
-// for(let i = 0; i < productPrice.length; i++) {
-    //     prices.push(parseInt(productPrice[i].innerText))
-    // }
-    
-    // prices.push(productsPrice)
-    // console.log(productPrice)
-    
-    const productName = document.querySelector('.product-name');
-    const productImg = document.querySelector('.img');
-    const productPrice = document.querySelector('.price');
-    const counterValue = document.querySelector('.counter-value');
-    const subtotalAmount = document.querySelector('.subtotal-amount');
-    const totalAmount = document.querySelector('.total-amount');
-    const cartQty = document.querySelector('.cart-count');
-    const addButton = document.querySelectorAll('.add-btn');
-    const subButton = document.querySelectorAll('.sub-btn');
-    let productId = 0;
-    
-    const actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
+const actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
 const checkoutBtn = document.querySelector('.checkout-button');
-// console.log(subtotalAmount)
 
 checkoutBtn.addEventListener('click', () => {
     const productName = document.querySelectorAll('.product-name');
     const productImg = document.querySelectorAll('.product-image-thumb img');
     const productPrice = document.querySelectorAll('.price');
     const counterValue = document.querySelectorAll('.counter-value');
-    // const subtotalAmount = document.querySelectorAll('.subtotal-amount');
     const totalAmount = document.querySelector('.total-amount');
     const cartQty = document.querySelector('.cart-count');
 
-    if(!JSON.parse(localStorage.getItem('categoryArray'))) {
+    if(!JSON.parse(localStorage.getItem('productArray'))) {
         productArray = [{
             productName: '',
             productImg: '',
@@ -51,18 +37,10 @@ checkoutBtn.addEventListener('click', () => {
             price: productPrice[i].innerText,
             counter: counterValue[i].innerText,
             totalAmount: totalAmount.innerText,
-        }) 
+        })
     }
-    // console.log(productName.length)
-
-        console.log(productArray)
-    // let productArray = JSON.parse(localStorage.getItem('categoryArray')) || [];
-
-    // productArray = categoryContainer.firstElementChild.innerText;
-    localStorage.setItem('checkoutProducts', JSON.stringify(productArray));
+    localStorage.setItem('productArray', JSON.stringify(productArray));
 })
-
-// console.log(cartQty)
 
 
 
@@ -171,5 +149,5 @@ const updateSession = async (e, counter) => {
         body: JSON.stringify(obj)
     })
     const result = await response.json();
-    console.log(result)
+    // console.log(result)
 }
