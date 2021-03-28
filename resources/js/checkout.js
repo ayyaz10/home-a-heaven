@@ -30,6 +30,9 @@ shippingForm.addEventListener('submit', function(e) {
                 window.location = "http://localhost:3333/orders";
                 localStorage.setItem('isOrdered', JSON.stringify(true));
             } else {
+                localStorage.removeItem('productArray')
+                console.log('helo')
+                document.querySelector('.cart').innerText = "";
                 document.querySelector('.cart').innerText = "";
             }
         })

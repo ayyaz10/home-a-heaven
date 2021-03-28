@@ -49,7 +49,7 @@ router.post('/removeCartItem', cartController().removeCartItem);
 // customer router
 router.get('/orders', ensureLoggedIn, orderController().index);
 router.get('/checkout', orderController().checkout);
-router.post('/order', ensureLoggedIn, orderController().order);
+router.post('/order', orderController().order);
 // 404 router
 // router.get('/404', notFoundController().index);
 

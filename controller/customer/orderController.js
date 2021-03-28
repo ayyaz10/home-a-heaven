@@ -6,7 +6,7 @@ const { raw } = require('../../db/db');
 const orderController = () => {
   return {
         async checkout (req, res) {
-            console.log(req.session)
+            console.log(req.session.cart)
             const products = await getAllProducts();
             const categories = await getAllCategories();
             res.render('checkout', {
@@ -45,6 +45,7 @@ const orderController = () => {
                 isError: true
             })
             }
+           
             const cart = req.session.cart;
             let parsedItems = Object.keys(cart.items);
             let productID;
@@ -58,6 +59,7 @@ const orderController = () => {
             const totalQty = cart.totalQty;
             const totalPrice = cart.totalPrice;
             let result;
+           
             if(req.signedCookies.user_id){
             const order = {
                 customer_id: customerId,
@@ -81,6 +83,7 @@ const orderController = () => {
                 result
             })
             } else {
+               
             const order = {
                 customer_id: null,
                 // product_id: productID,

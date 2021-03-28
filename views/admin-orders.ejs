@@ -23,30 +23,30 @@
                     <tr>
                         <th class="th">Orders</th>
                         <th class="th">Item</th>
-                        <th>Address</th>
+                        <th>Shipping Address</th>
+                        <th>Email Address</th>
                         <th class="th">Phone</th>
                         <th class="th">Price</th>
                         <th class="th">Placed At</th>
                     </tr>
                 </thead>
                 <tbody>
-                <%  if(orders.length) { %> 
-                    
-                        <%for(let i = 0; i < orders.length; i++) { %>
-                            
-                       
+                <%  if(orders.length) { %>
+                    <%for(let i = 0; i < orders.length; i++) { %>
                         <tr>
                             <td>
                                 <a href="#"><%= orders[i].order_id %></a>
                             </td>
 
                             <td>
-                                <%= orders[i].total_price %>
                                 <p><%= allItems[i].item_name %> - <span><%= allItems[i].qty %></span></p>
                             </td>
 
                             <td>
                                 <%= orders[i].address %>
+                            </td>
+                            <td>
+                                <%= orders[i].email %>
                             </td>
                             <td>
                                 <%= orders[i].phone %>
