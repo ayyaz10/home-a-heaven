@@ -917,6 +917,7 @@ logoutButton.addEventListener('click', function (e) {
 
   function logout() {
     localStorage.removeItem('user_id');
+    localStorage.removeItem('role');
     fetch('http://localhost:3333/logout').then(function (res) {
       return res.json();
     }).then(function (result) {

@@ -4,6 +4,7 @@ const orderStatus = require('../controller/admin/adminOrderController');
 const adminOrderController = require('../controller/admin/adminOrderController');
 const orderController = require('../controller/customer/orderController');
 const ensureLoggedIn = require('../controller/middlewares/ensureLoggedIn');
+const admin = require('../controller/middlewares/admin');
 const guest = require('../controller/middlewares/guest');
 const updateCartController = require('../controller/customer/addToCartController');
 const addToCartController = require('../controller/customer/addToCartController');
@@ -44,7 +45,7 @@ router.get('/getProductDetail', cartController().getProductDetail);
 router.post('/addToCart', cartController().addToCart);
 
 // admin controllers
-router.get('/adminPanel', adminPanelController().index);
+router.get('/adminPanel', admin, adminPanelController().index);
 router.post('/product', adminPanelController().product);
 
 
@@ -59,7 +60,7 @@ router.post('/order', orderController().order);
 // router.get('/404', notFoundController().index);
 
 // admin routes
-router.get('/adminOrders', adminOrderController().index)
+router.get('/adminOrders', admin, adminOrderController().index)
 router.post('/order-status', adminOrderController().orderStatus);
 
 

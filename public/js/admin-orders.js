@@ -973,6 +973,7 @@ logoutButton.addEventListener('click', function (e) {
     fetch('http://localhost:3333/logout').then(function (res) {
       return res.json();
     }).then(function (result) {
+      console.log(result);
       window.location = "http://localhost:3333/";
     });
   } // const result = await response.json();

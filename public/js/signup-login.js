@@ -49,6 +49,7 @@ loginForm.addEventListener('submit', function (e) {
   }).then(function (data) {
     if (data.result) {
       localStorage.user_id = data.id;
+      localStorage.role = data.role;
       loginFail.style.display = "none";
       window.location = 'http://localhost:3333/';
     } else {
@@ -88,6 +89,7 @@ signupForm.addEventListener('submit', function (e) {
   }).then(function (data) {
     if (!isNaN(data.id)) {
       localStorage.user_id = data.id;
+      localStorage.role = data.role;
       registrationSuccess.style.display = "block";
       registrationSuccess.classList.add('success_message');
       registrationFail.style.display = "none";

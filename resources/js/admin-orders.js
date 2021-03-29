@@ -57,6 +57,7 @@ logoutButton.addEventListener('click', (e)=>{
             return res.json();
         })
         .then(result => {
+            console.log(result)
             window.location = "http://localhost:3333/";
         })
         }

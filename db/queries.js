@@ -12,8 +12,8 @@ module.exports = {
         }).first();
     },
     create: function(user) {
-            return knex('customer').insert(user, 'user_id').then(ids => {
-            return ids[0];
+            return knex('customer').insert(user, 'user_id').returning('*').then(user => {
+            return user[0];
         });
     },
      async createProduct (productObj, productCategoryObj) {
@@ -51,6 +51,12 @@ module.exports = {
          } catch (error) {
                 // console.log(error)
          }
+    },
+    async getAllUsers () {
+        // const allCategories = await knex.select('product_category')
+        const allUsers = await knex.select().table('customer')
+        // console.log(allCategories)
+        return allUsers;
     },
     getAllProducts () {
         const allProducts = knex.select('*').from('product')
@@ -109,12 +115,10 @@ module.exports = {
     },
     async getPlacedOrders() {
         const allItems = await knex('shipping_detail').orderBy('created_at', 'desc')
-        // console.log(allItems)
         return allItems;
     },
     async getPlacedOrdersItems() {
         const allItems = await knex('item').orderBy('created_at', 'desc')
-        console.log(allItems)
         return allItems;
     },
     async updateStatus(orderId, status) {

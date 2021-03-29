@@ -32,6 +32,7 @@ logoutButton.addEventListener('click', (e)=>{
     e.preventDefault();
     function logout(){
         localStorage.removeItem('user_id')
+        localStorage.removeItem('role')
         fetch('http://localhost:3333/logout')
         .then(res => {
             return res.json();

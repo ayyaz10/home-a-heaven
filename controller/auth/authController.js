@@ -59,9 +59,10 @@ const authController = () => {
                                 }
                                 User
                                 .create(user)
-                                .then(id => {
-                                    if(id) {
-                                        res.cookie('user_id', id, {
+                                .then(user => {
+                                    if(user) {
+                                        console.log(user)
+                                        res.cookie('user_info', JSON.stringify({user_id: user.user_id, role: user.role}), {
                                             secret: 'process.env.COOKIE_SECRET,',
                                             httpOnly: true,
                                             signed: true,
@@ -69,7 +70,8 @@ const authController = () => {
                                             secure: false
                                         });
                                         res.json({
-                                            id,
+                                            id: user.user_id,
+                                            role: user.role,
                                             message: 'working'
                                         })
                                     }
@@ -96,11 +98,12 @@ const authController = () => {
                     // compare password with the hash
                     User.getOneByEmail(req.body.email)
                     .then(user => {
+                        console.log(user)
                         bcrypt.compare(req.body.password, user.password, function(err, result) {
                             if(result){
                                 // setting the set-cookie header
                                 const isSecure =  req.app.get('env') != 'development';
-                                res.cookie('user_id', user.user_id, {
+                                res.cookie('user_info', JSON.stringify({user_id: user.user_id, role: user.role}), {
                                     httpOnly: true,
                                     signed: true,
                                     maxAge: 1000 * 60 * 60 * 24,
@@ -108,6 +111,7 @@ const authController = () => {
                                 });
                                 res.json({
                                     id: user.user_id,
+                                    role: user.role,
                                     user_name: user.first_name,
                                     result,
                                     message: 'Logged in'
