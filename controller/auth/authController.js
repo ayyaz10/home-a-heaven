@@ -7,6 +7,7 @@ const User  = require('../../db/queries');
 
 
 function isValidRegisterUser(user) {
+    const validRole = typeof user.role == 'string' && user.role.trim() != '';
     const validEmail = typeof user.email == 'string' && user.email.trim() != '';
     const validPassword = typeof user.password == 'string' && user.password.trim() != '' && user.password.trim().length >= 6;
     const validFirstName = typeof user.firstname == 'string' && user.firstname.trim() != '';
@@ -28,7 +29,13 @@ const authController = () => {
             const products = await getAllProducts();
             const categories = await getAllCategories();
             res.render('signup-login', {
-              products,
+              categories
+            })
+          },
+          async adminLogin (req, res) {
+            const products = await getAllProducts();
+            const categories = await getAllCategories();
+            res.render('admin-login', {
               categories
             })
           },
@@ -43,11 +50,12 @@ const authController = () => {
                             bcrypt.hash(req.body.password, salt, function(err, hash) {
                                 // Store hash in your password DB.
                                 const user = {
+                                    role: req.body.role,
                                     email: req.body.email,
                                     password: hash,
                                     first_name: req.body.firstname,
                                     last_name: req.body.lastname,
-                                    created_on: new Date()
+                                    created_at: new Date()
                                 }
                                 User
                                 .create(user)

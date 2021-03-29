@@ -108,9 +108,7 @@ module.exports = {
         return allItems;
     },
     async getPlacedOrders() {
-        const allItems = await knex('shipping_detail').orderBy('created_at', 'desc').where({
-            order_status: 'order_placed'
-        })
+        const allItems = await knex('shipping_detail').orderBy('created_at', 'desc')
         // console.log(allItems)
         return allItems;
     },
@@ -118,6 +116,12 @@ module.exports = {
         const allItems = await knex('item').orderBy('created_at', 'desc')
         console.log(allItems)
         return allItems;
+    },
+    async updateStatus(orderId, status) {
+        const result = await knex('shipping_detail').where({order_id: orderId}).update('order_status', status)
+        
+        console.log(result)
+        return result;
     }
 }
 

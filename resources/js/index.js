@@ -12,7 +12,6 @@ categories.forEach(category => {
 })
 
 async function reqByCategory(categoryName) {
-    console.log(categoryName)
     const response = await fetch('http://localhost:3333/req-by-category', {
         method: "post",
         mode: 'cors',

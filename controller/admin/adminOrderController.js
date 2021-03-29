@@ -1,4 +1,14 @@
-const { getAllProducts, getPlacedOrders, getAllCategories, getPlacedOrdersItems, createItem, createOrder, orders, getItem, getCustOrdersItems } = require('../../db/queries');
+const { getAllProducts,
+        getPlacedOrders,
+        getAllCategories,
+        getPlacedOrdersItems,
+        updateStatus,
+        createItem, 
+        createOrder,
+        orders, 
+        getItem, 
+        getCustOrdersItems 
+    } = require('../../db/queries');
 const moment = require('moment');
 // const { getPlacedOrders } = require('../../db/queries')
 
@@ -17,7 +27,18 @@ const adminOrderController = () => {
                 orders,
                 moment
               });
-        }
+        },
+        async orderStatus (req, res){
+            // console.log(req.body)
+            const orderId = req.body.clientStatus.order_id;
+            const status = req.body.clientStatus.status;
+            // console.log(orderId)
+            const dbStatus = await updateStatus(orderId, status)
+            res.json({
+                dbStatus
+            })
+        },
+
     }
 }
 

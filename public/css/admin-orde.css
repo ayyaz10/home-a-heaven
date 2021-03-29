@@ -1,0 +1,67 @@
+@import './_variables.css';
+@import './_header.css';
+@import './_footer.css';
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.success {
+    font-size: .875rem;
+    font-weight: 500;
+    text-align: left;
+    background: var(--success);
+    color: var(--white);
+    padding: 8px 0px 8px 15px;
+}
+
+.orders-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 50px 40px 50px;
+}
+
+table {
+    min-width: 100%;
+    margin-top: 5px;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    color: var(--primary);
+    border: 1px solid var(--primary-border);
+    font-weight: 500;
+    text-align: left;
+    font-size: .875rem;
+    /* padding-left: 15px; */
+    padding: 5px 0px 5px 15px;
+}
+
+.table th {
+    /* padding-right: 120px; */
+}
+
+.table th {
+    font-weight: 600;
+}
+
+td a {
+    color: var(--secondary);
+}
+
+select {
+    text-align: left;
+    background: #fff;
+    padding: .425rem 2.875rem 0.325rem 1.475rem;
+    color: #000;
+    border: 1px solid var(--primary);
+    cursor: pointer;
+    margin-right: 10px;
+}

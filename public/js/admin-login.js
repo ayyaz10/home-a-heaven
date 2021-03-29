@@ -1,8 +1,8 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-/*!**************************************!*\
-  !*** ./resources/js/signup-login.js ***!
-  \**************************************/
+/*!*************************************!*\
+  !*** ./resources/js/admin-login.js ***!
+  \*************************************/
 //switch between login and signup #START
 var login = document.getElementById("login_header");
 var signup = document.querySelector("#signup_header");
@@ -50,7 +50,7 @@ loginForm.addEventListener('submit', function (e) {
     if (data.result) {
       localStorage.user_id = data.id;
       loginFail.style.display = "none";
-      window.location = 'http://localhost:3333/';
+      window.location = 'http://localhost:3333/adminOrders';
     } else {
       loginFail.style.display = "block";
       loginFail.classList.add('failed_message');
@@ -67,9 +67,9 @@ loginForm.addEventListener('submit', function (e) {
 signupForm.addEventListener('submit', function (e) {
   e.preventDefault();
   var userEmail = signupFormData[0].value;
-  var userPassword = signupFormData[1].value;
-  var firstName = signupFormData[2].value;
-  var lastName = signupFormData[3].value;
+  var userPassword = signupFormData[1].value; // const firstName = signupFormData[2].value;
+  // const lastName = signupFormData[3].value;
+
   var failMessageField = document.querySelector('.registration_fail_response p');
   fetch('http://localhost:3333/register', {
     method: "post",
@@ -77,11 +77,11 @@ signupForm.addEventListener('submit', function (e) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      role: 'customer',
+      role: 'admin',
       email: userEmail,
       password: userPassword,
-      firstname: firstName,
-      lastname: lastName
+      firstname: 'admin',
+      lastname: 'admin'
     })
   }).then(function (response) {
     return response.json();

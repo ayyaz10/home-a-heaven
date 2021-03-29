@@ -48,7 +48,7 @@ loginForm.addEventListener('submit', function(e) {
             if(data.result) {
                 localStorage.user_id = data.id;
                 loginFail.style.display = "none";
-                window.location = 'http://localhost:3333/'
+                window.location = 'http://localhost:3333/adminOrders'
             } else {
                 loginFail.style.display = "block";
                 loginFail.classList.add('failed_message');
@@ -71,19 +71,19 @@ signupForm.addEventListener('submit', function(e) {
 	e.preventDefault();
     const userEmail = signupFormData[0].value;
     const userPassword = signupFormData[1].value;
-    const firstName = signupFormData[2].value;
-    const lastName = signupFormData[3].value;
+    // const firstName = signupFormData[2].value;
+    // const lastName = signupFormData[3].value;
     const failMessageField = document.querySelector('.registration_fail_response p')
 
     fetch('http://localhost:3333/register', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
-                    role: 'customer',
+                    role: 'admin',
                     email: userEmail,
                     password: userPassword,
-                    firstname: firstName,
-                    lastname: lastName
+                    firstname: 'admin',
+                    lastname: 'admin'
                 })
         }).then(response => {
             return response.json()

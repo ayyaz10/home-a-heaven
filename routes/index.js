@@ -1,5 +1,6 @@
 // const notFoundController = require('../controller/notFoundController');
 // const reqByCategory = require('../controller/customer/reqByCategory');
+const orderStatus = require('../controller/admin/adminOrderController');
 const adminOrderController = require('../controller/admin/adminOrderController');
 const orderController = require('../controller/customer/orderController');
 const ensureLoggedIn = require('../controller/middlewares/ensureLoggedIn');
@@ -22,6 +23,10 @@ router.post('/register', authController().register);
 router.post('/login', authController().login);
 // router.post('/add-data', authController().postData);
 router.get('/logout', authController().logout);
+
+// admin auth
+router.get('/admin-login', authController().adminLogin);
+
 
 //product controllers
 router.get('/collections', productsController().index)
@@ -55,6 +60,7 @@ router.post('/order', orderController().order);
 
 // admin routes
 router.get('/adminOrders', adminOrderController().index)
+router.post('/order-status', adminOrderController().orderStatus);
 
 
 module.exports = router;

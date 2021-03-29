@@ -24,7 +24,6 @@ async function reqByCategory(categoryName) {
     const result = await response.json();
 }
 
-
 const logoutHeader  = document.querySelector('#logout');
 const loginHeader = document.querySelector('#login');
 const userId = JSON.parse(localStorage.getItem('user_id'))
@@ -54,4 +53,5 @@ if(userId) {
 } else {
     logoutHeader.style.display = "none";
 }
+
 
