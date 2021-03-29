@@ -15,18 +15,16 @@ const orderController = () => {
             })
         },
         async index (req, res, next) {
-            console.log(req.session)
-            // console.log(req.body)
-            const customerId = req.signedCookies.user_id;
+            const userId = JSON.parse(req.signedCookies.user_info).user_id;
             const products = await getAllProducts();
             const categories = await getAllCategories();
             let customerOrders;
-            if(customerId) {
-                customerOrders = await orders(customerId);
+            if(userId) {
+                customerOrders = await orders(userId);
             } else {
                 next();
             }
-            const customerOrdersItems = await getCustOrdersItems(customerId);
+            const customerOrdersItems = await getCustOrdersItems(userId);
             // console.log(customerOrdersItems)
         
             res.render('orders', {
@@ -55,14 +53,14 @@ const orderController = () => {
             let itemId;
             let productIdArr = [];
             let itemIdArr = [];
-            const customerId = req.signedCookies.user_id;
+            const userId = JSON.parse(req.signedCookies.user_info).user_id;
             const totalQty = cart.totalQty;
             const totalPrice = cart.totalPrice;
             let result;
            
-            if(req.signedCookies.user_id){
+            if(userId){
             const order = {
-                customer_id: customerId,
+                customer_id: userId,
                 // product_id: productIdArr,
                 // item_id: itemIdArr,
                 full_name: fullname,
@@ -106,7 +104,7 @@ const orderController = () => {
                 result
             })
             }
-    if(req.signedCookies.user_id){
+    if(userId){
         for(let i = 0; i < parsedItems.length; i++) {
             const orderId = result[0].order_id;
             productID = cart.items[parseInt(parsedItems[i])].item.product.item.product_id;
@@ -115,7 +113,7 @@ const orderController = () => {
             quantity = cart.items[parseInt(parsedItems[i])].qty;
             const itemObj = {
             order_id: orderId,
-            customer_id: customerId,
+            customer_id: userId,
             // product_id: productID,
             // order_id: result.order_id,
             item_name: itemName,
