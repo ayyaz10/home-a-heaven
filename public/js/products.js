@@ -910,102 +910,192 @@ addToCart.forEach(function (cartBtn) {
 //     })
 // })
 
-var sortBtn = document.querySelector('.sort-btn'); // console.log(btn)
+var sortSelect = document.querySelectorAll('.sort-select'); // console.log(btn)
+// sortSelect.forEach((each, i) => {
+// console.log(each[i])
+// sortSelect[0][0].innerText = JSON.parse(localStorage.getItem('sort'))
 
-sortBtn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-  var sortObj, toBeSorted, response, result;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-    while (1) {
-      switch (_context2.prev = _context2.next) {
-        case 0:
-          sortObj = {
-            order: 'desc'
-          };
-          toBeSorted = {
-            column: 'product_name'
-          }; // console.log('helo')
+var index = JSON.parse(localStorage.getItem('selectIndex'));
 
-          _context2.next = 4;
-          return fetch('http://localhost:3333/sort', {
-            method: "post",
-            mode: 'cors',
-            credentials: 'include',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              sortObj: sortObj,
-              toBeSorted: toBeSorted
-            })
-          });
+var _loop = function _loop(i) {
+  console.log(sortSelect[i][index].setAttribute('selected', true));
+  sortSelect[i].addEventListener('change', /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+      var getSelectedSort, selectedSort, response, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              getSelectedSort = /*#__PURE__*/function () {
+                var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+                    while (1) {
+                      switch (_context2.prev = _context2.next) {
+                        case 0:
+                          if (!(e.target.value === 'alpha-asc')) {
+                            _context2.next = 4;
+                            break;
+                          }
 
-        case 4:
-          response = _context2.sent;
-          _context2.next = 7;
-          return response.json();
+                          localStorage.setItem('selectIndex', JSON.stringify(1)); // sortSelect[i][1].setAttribute('selected')
 
-        case 7:
-          result = _context2.sent;
-          console.log(result.isSet);
+                          console.log(i); // console.log(e.target)
 
-          if (result.isSet) {
-            window.location.reload();
+                          return _context2.abrupt("return", {
+                            order: 'asc',
+                            column: 'product_name'
+                          });
+
+                        case 4:
+                          if (!(e.target.value === 'alpha-desc')) {
+                            _context2.next = 7;
+                            break;
+                          }
+
+                          localStorage.setItem('selectIndex', JSON.stringify(2)); // sortSelect[i][2].setAttribute('selected')
+
+                          return _context2.abrupt("return", {
+                            order: 'desc',
+                            column: 'product_name'
+                          });
+
+                        case 7:
+                          if (!(e.target.value === 'price-asc')) {
+                            _context2.next = 10;
+                            break;
+                          }
+
+                          localStorage.setItem('selectIndex', JSON.stringify(3));
+                          return _context2.abrupt("return", {
+                            order: 'asc',
+                            column: 'price'
+                          });
+
+                        case 10:
+                          if (!(e.target.value === 'price-desc')) {
+                            _context2.next = 13;
+                            break;
+                          }
+
+                          localStorage.setItem('selectIndex', JSON.stringify(4)); // sortSelect[i][4].setAttribute('selected')
+
+                          return _context2.abrupt("return", {
+                            order: 'desc',
+                            column: 'price'
+                          });
+
+                        case 13:
+                          if (!(e.target.value === 'date-desc')) {
+                            _context2.next = 16;
+                            break;
+                          }
+
+                          localStorage.setItem('selectIndex', JSON.stringify(5)); // sortSelect[i][5].setAttribute('selected')
+
+                          return _context2.abrupt("return", {
+                            order: 'desc',
+                            column: 'created_at'
+                          });
+
+                        case 16:
+                          if (!(e.target.value === 'date-asc')) {
+                            _context2.next = 20;
+                            break;
+                          }
+
+                          console.log(e.target);
+                          localStorage.setItem('selectIndex', JSON.stringify(6)); // sortSelect[i][6].setAttribute('selected')
+
+                          return _context2.abrupt("return", {
+                            order: 'asc',
+                            column: 'created_at'
+                          });
+
+                        case 20:
+                        case "end":
+                          return _context2.stop();
+                      }
+                    }
+                  }, _callee2);
+                }));
+
+                return function getSelectedSort(_x3) {
+                  return _ref3.apply(this, arguments);
+                };
+              }();
+
+              _context3.next = 3;
+              return getSelectedSort(e);
+
+            case 3:
+              selectedSort = _context3.sent;
+              _context3.next = 6;
+              return fetch('http://localhost:3333/sort', {
+                method: "post",
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  selectedSort: selectedSort
+                })
+              });
+
+            case 6:
+              response = _context3.sent;
+              _context3.next = 9;
+              return response.json();
+
+            case 9:
+              result = _context3.sent;
+
+              if (result.isSet) {
+                window.location.reload();
+              }
+
+            case 11:
+            case "end":
+              return _context3.stop();
           }
+        }
+      }, _callee3);
+    }));
 
-        case 10:
-        case "end":
-          return _context2.stop();
-      }
-    }
-  }, _callee2);
-})));
-var filterBtn = document.querySelector('.filter-btn');
-filterBtn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-  var toBeFiltered, response, categoryName, result;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-    while (1) {
-      switch (_context3.prev = _context3.next) {
-        case 0:
-          toBeFiltered = {
-            filterCategory: 'Table'
-          };
-          localStorage.setItem('categoryArray', JSON.stringify('Table'));
-          _context3.next = 4;
-          return fetch('http://localhost:3333/sort', {
-            method: "post",
-            mode: 'cors',
-            credentials: 'include',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              toBeFiltered: toBeFiltered,
-              filter: true
-            })
-          });
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }());
+};
 
-        case 4:
-          response = _context3.sent;
-          categoryName = document.querySelector('.category-name');
-          categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
-          _context3.next = 9;
-          return response.json();
-
-        case 9:
-          result = _context3.sent;
-          console.log(result.isSet);
-
-          if (result.isSet) {
-            window.location.reload();
-          }
-
-        case 12:
-        case "end":
-          return _context3.stop();
-      }
-    }
-  }, _callee3);
-}))); // const logout = document.querySelector('.logout');
+for (var i = 0; i < sortSelect.length; i++) {
+  _loop(i);
+} // })
+// const filterBtn = document.querySelector('.filter-btn')
+// filterBtn.addEventListener('click', async ()=>{
+//     const toBeFiltered = {
+//         filterCategory: 'Table'
+//     }
+//     localStorage.setItem('categoryArray', JSON.stringify('Table'))
+//     const response = await fetch('http://localhost:3333/sort', {
+//         method: "post",
+//         mode: 'cors',
+//         credentials: 'include',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//             toBeFiltered,
+//             filter: true
+//         })
+//     })
+//     const categoryName = document.querySelector('.category-name');
+//     categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'))
+//      const result = await response.json();
+//      console.log(result.isSet)
+//      if(result.isSet) {
+//          window.location.reload();
+//      }
+// })
+// const logout = document.querySelector('.logout');
 // logout.addEventListener('click', ()=> {
 //     location.reload();
 //     reqByCategory()

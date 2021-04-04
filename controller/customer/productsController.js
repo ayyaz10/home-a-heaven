@@ -17,10 +17,11 @@ const productsController = () => {
         // console.log(categorySession.isQueried = false)
         // console.log(req.session.to)
         let products;
+        
         if(req.session.categorySession.isSortQueried) {
           const whichProduct = req.session.categorySession.categoryName;
-          const whichSort = req.session.sortProduct.reqQuery.sortObj.order;
-          const whichColumn = req.session.sortProduct.reqQuery.toBeSorted.column;
+          const whichSort = req.session.sortProduct.reqQuery.order;
+          const whichColumn = req.session.sortProduct.reqQuery.column;
           products = await getAllBySort(whichProduct, whichSort, whichColumn)
 
           req.session.categorySession.isSortQueried = false
@@ -63,6 +64,7 @@ const productsController = () => {
       })
     },
     async reqBySort (req, res) {
+      // console.log(req.body)
       // console.log(req.body.toBeFiltered)
       if(!req.session.sortProduct) {
         req.session.sortProduct = {
@@ -70,7 +72,8 @@ const productsController = () => {
         }
       }
       let sortProduct = req.session.sortProduct;
-      sortProduct.reqQuery = req.body;
+      sortProduct.reqQuery = req.body.selectedSort;
+      console.log(sortProduct)
       if(req.body.filter) {
         req.session.categorySession.categoryName = req.body.toBeFiltered.filterCategory;
         req.session.categorySession.isFilterQueried = true
