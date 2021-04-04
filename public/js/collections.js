@@ -909,7 +909,7 @@ categoriesArray.forEach(function (category) {
               categoryArray = JSON.parse(localStorage.getItem('categoryArray')) || " ";
               categoryArray = categoryContainer.firstElementChild.innerText;
               localStorage.setItem('categoryArray', JSON.stringify(categoryArray));
-              reqByCategory(JSON.parse(localStorage.getItem('categoryArray')));
+              reqByCategory(categoryArray);
 
             case 5:
             case "end":
