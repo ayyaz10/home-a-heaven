@@ -876,6 +876,7 @@ addToCart.forEach(function (cartBtn) {
 
             case 2:
               product = _context.sent;
+              localStorage.removeItem('selectIndex');
               localStorage.setItem('productId', product.product_id);
               items = {
                 item: product
@@ -890,7 +891,7 @@ addToCart.forEach(function (cartBtn) {
                 }
               }
 
-            case 8:
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -918,7 +919,10 @@ var sortSelect = document.querySelectorAll('.sort-select'); // console.log(btn)
 var index = JSON.parse(localStorage.getItem('selectIndex'));
 
 var _loop = function _loop(i) {
-  console.log(sortSelect[i][index].setAttribute('selected', true));
+  if (index) {
+    sortSelect[i][index].setAttribute('selected', true);
+  }
+
   sortSelect[i].addEventListener('change', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
       var getSelectedSort, selectedSort, response, result;
@@ -937,10 +941,8 @@ var _loop = function _loop(i) {
                             break;
                           }
 
-                          localStorage.setItem('selectIndex', JSON.stringify(1)); // sortSelect[i][1].setAttribute('selected')
-
-                          console.log(i); // console.log(e.target)
-
+                          localStorage.setItem('selectIndex', JSON.stringify(1));
+                          console.log(i);
                           return _context2.abrupt("return", {
                             order: 'asc',
                             column: 'product_name'
@@ -952,8 +954,7 @@ var _loop = function _loop(i) {
                             break;
                           }
 
-                          localStorage.setItem('selectIndex', JSON.stringify(2)); // sortSelect[i][2].setAttribute('selected')
-
+                          localStorage.setItem('selectIndex', JSON.stringify(2));
                           return _context2.abrupt("return", {
                             order: 'desc',
                             column: 'product_name'
@@ -977,8 +978,7 @@ var _loop = function _loop(i) {
                             break;
                           }
 
-                          localStorage.setItem('selectIndex', JSON.stringify(4)); // sortSelect[i][4].setAttribute('selected')
-
+                          localStorage.setItem('selectIndex', JSON.stringify(4));
                           return _context2.abrupt("return", {
                             order: 'desc',
                             column: 'price'
@@ -990,8 +990,7 @@ var _loop = function _loop(i) {
                             break;
                           }
 
-                          localStorage.setItem('selectIndex', JSON.stringify(5)); // sortSelect[i][5].setAttribute('selected')
-
+                          localStorage.setItem('selectIndex', JSON.stringify(5));
                           return _context2.abrupt("return", {
                             order: 'desc',
                             column: 'created_at'
@@ -999,19 +998,21 @@ var _loop = function _loop(i) {
 
                         case 16:
                           if (!(e.target.value === 'date-asc')) {
-                            _context2.next = 20;
+                            _context2.next = 22;
                             break;
                           }
 
                           console.log(e.target);
-                          localStorage.setItem('selectIndex', JSON.stringify(6)); // sortSelect[i][6].setAttribute('selected')
-
+                          localStorage.setItem('selectIndex', JSON.stringify(6));
                           return _context2.abrupt("return", {
                             order: 'asc',
                             column: 'created_at'
                           });
 
-                        case 20:
+                        case 22:
+                          return _context2.abrupt("return", false);
+
+                        case 23:
                         case "end":
                           return _context2.stop();
                       }
@@ -1029,7 +1030,13 @@ var _loop = function _loop(i) {
 
             case 3:
               selectedSort = _context3.sent;
-              _context3.next = 6;
+
+              if (!selectedSort) {
+                _context3.next = 12;
+                break;
+              }
+
+              _context3.next = 7;
               return fetch('http://localhost:3333/sort', {
                 method: "post",
                 mode: 'cors',
@@ -1042,19 +1049,19 @@ var _loop = function _loop(i) {
                 })
               });
 
-            case 6:
+            case 7:
               response = _context3.sent;
-              _context3.next = 9;
+              _context3.next = 10;
               return response.json();
 
-            case 9:
+            case 10:
               result = _context3.sent;
 
               if (result.isSet) {
                 window.location.reload();
               }
 
-            case 11:
+            case 12:
             case "end":
               return _context3.stop();
           }

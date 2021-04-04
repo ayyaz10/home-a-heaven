@@ -12,6 +12,7 @@ categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
 addToCart.forEach(cartBtn => {
     cartBtn.addEventListener('click', async (e) => {
         let product = await JSON.parse(cartBtn.dataset.product);
+        localStorage.removeItem('selectIndex')
         localStorage.setItem('productId', product.product_id)
         let items = {
             item: product
@@ -43,17 +44,15 @@ const sortSelect = document.querySelectorAll('.sort-select');
     // console.log(each[i])
     // sortSelect[0][0].innerText = JSON.parse(localStorage.getItem('sort'))
     const index = JSON.parse(localStorage.getItem('selectIndex'))
-    
     for(let i = 0; i < sortSelect.length; i++) {
-        console.log(sortSelect[i][index].setAttribute('selected', true))
+        if(index) {
+            sortSelect[i][index].setAttribute('selected', true)
+        }
         sortSelect[i].addEventListener('change', async (e) => {
-       
         const getSelectedSort = async (e) => {
         if(e.target.value === 'alpha-asc') {
             localStorage.setItem('selectIndex', JSON.stringify(1));
-            // sortSelect[i][1].setAttribute('selected')
                  console.log(i)
-            // console.log(e.target)
             return {
                 order: 'asc',
                 column: 'product_name',
@@ -61,7 +60,6 @@ const sortSelect = document.querySelectorAll('.sort-select');
         }
         if(e.target.value === 'alpha-desc') {
             localStorage.setItem('selectIndex', JSON.stringify(2));
-            // sortSelect[i][2].setAttribute('selected')
             return {
                 order: 'desc',
                 column: 'product_name',
@@ -69,7 +67,6 @@ const sortSelect = document.querySelectorAll('.sort-select');
         }
         if(e.target.value === 'price-asc') {
             localStorage.setItem('selectIndex', JSON.stringify(3));
-
             return {
                 order: 'asc',
                 column: 'price',
@@ -77,7 +74,6 @@ const sortSelect = document.querySelectorAll('.sort-select');
         }
         if(e.target.value === 'price-desc') {
             localStorage.setItem('selectIndex', JSON.stringify(4));
-            // sortSelect[i][4].setAttribute('selected')
             return {
                 order: 'desc',
                 column: 'price',
@@ -85,7 +81,6 @@ const sortSelect = document.querySelectorAll('.sort-select');
         }
         if(e.target.value === 'date-desc') {
             localStorage.setItem('selectIndex', JSON.stringify(5));
-            // sortSelect[i][5].setAttribute('selected')
             return {
                 order: 'desc',
                 column: 'created_at',
@@ -94,16 +89,16 @@ const sortSelect = document.querySelectorAll('.sort-select');
         if(e.target.value === 'date-asc') {
             console.log(e.target)
             localStorage.setItem('selectIndex', JSON.stringify(6));
-            // sortSelect[i][6].setAttribute('selected')
             return {
                 order: 'asc',
                 column: 'created_at',
             }
+        } else {
+            return false
         }
     }
-
     const selectedSort = await getSelectedSort(e);
-    // console.log(selectedSort)
+    if(selectedSort) {
         const response = await fetch('http://localhost:3333/sort', {
             method: "post",
             mode: 'cors',
@@ -117,8 +112,8 @@ const sortSelect = document.querySelectorAll('.sort-select');
          if(result.isSet) {
              window.location.reload();
          }
-    
-    })
+    }
+})
 }
 // })
 
