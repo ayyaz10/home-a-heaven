@@ -17,13 +17,18 @@
              <% } %>
         </ul>
         <div class="second-menu">
-            <a href="#" class="search"></a>
+          <div class="search">
+            <input type="text" class="input" placeholder="Search...">
+            <button class="btn">
+              <i class="search-icon"></i>
+            </button>
+          </div>
+          <a href="/cart" class="cart"><span class="cart-count"><%= session.cart ? session.cart.totalQty : ' ' %></span></a>
             <a href="#" class="account" id="account">
                 <a href="#" class="logout" id="logout">Logout</a>
                 <a href="/signup-login" class="login" id="login">Login</a>
                 <!-- <a href="/signup-login" class="Register" id="register">Register</a> -->
             </a>
-            <a href="/cart" class="cart"><span class="cart-count"><%= session.cart ? session.cart.totalQty : ' ' %></span></a>
         </div>
     </div>
   </header>

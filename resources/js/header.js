@@ -1,17 +1,23 @@
 // main menu getting products by category functionality
+// const categoryName = JSON.parse(localStorage.getItem('categoryArray'))
 const headerMenu  = document.querySelectorAll('.main-menu li');
 headerMenu.forEach(li => {
     li.addEventListener('click', (e) => {
+        // e.preventDefault();
         const categoryContainer = e.target.innerText;
+        // console.log(categoryContainer)
+        console.log(e.target.innerText)
+        const categoryName = document.querySelector('.category-name')
+        // console.log(categoryName)
     // adding category data to localstorage
         let categoryArray = JSON.parse(localStorage.getItem('categoryArray')) || " ";
         localStorage.setItem('categoryArray', JSON.stringify(categoryContainer));
-        reqByCategory(JSON.parse(localStorage.getItem('categoryArray')))
+        // JSON.parse(localStorage.getItem('categoryArray'))
+        reqByCategory(e.target.innerText)
     })
 })
 
 async function reqByCategory(categoryName) {
-    console.log(categoryName)
     const response = await fetch('http://localhost:3333/req-by-category', {
         method: "post",
         mode: 'cors',
@@ -39,9 +45,9 @@ logoutButton.addEventListener('click', (e)=>{
         })
         .then(result => {
             window.location.reload()
-            window.location.reload()
-            console.log('signout')
-            console.log(result)
+            // window.location.reload()
+            // console.log('signout')
+            // console.log(result)
         })
         }
         // const result = await response.json();
@@ -56,3 +62,14 @@ if(userId) {
 }
 
 
+
+
+
+const search = document.querySelector('.search')
+const btn = document.querySelector('.btn')
+const input = document.querySelector('.input')
+
+btn.addEventListener('click', () => {
+    search.classList.toggle('active')
+    input.focus()
+})

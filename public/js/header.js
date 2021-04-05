@@ -854,14 +854,21 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 // main menu getting products by category functionality
+// const categoryName = JSON.parse(localStorage.getItem('categoryArray'))
 var headerMenu = document.querySelectorAll('.main-menu li');
 headerMenu.forEach(function (li) {
   li.addEventListener('click', function (e) {
-    var categoryContainer = e.target.innerText; // adding category data to localstorage
+    // e.preventDefault();
+    var categoryContainer = e.target.innerText; // console.log(categoryContainer)
+
+    console.log(e.target.innerText);
+    var categoryName = document.querySelector('.category-name'); // console.log(categoryName)
+    // adding category data to localstorage
 
     var categoryArray = JSON.parse(localStorage.getItem('categoryArray')) || " ";
-    localStorage.setItem('categoryArray', JSON.stringify(categoryContainer));
-    reqByCategory(JSON.parse(localStorage.getItem('categoryArray')));
+    localStorage.setItem('categoryArray', JSON.stringify(categoryContainer)); // JSON.parse(localStorage.getItem('categoryArray'))
+
+    reqByCategory(e.target.innerText);
   });
 });
 
@@ -876,8 +883,7 @@ function _reqByCategory() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(categoryName);
-            _context.next = 3;
+            _context.next = 2;
             return fetch('http://localhost:3333/req-by-category', {
               method: "post",
               mode: 'cors',
@@ -890,15 +896,15 @@ function _reqByCategory() {
               })
             });
 
-          case 3:
+          case 2:
             response = _context.sent;
-            _context.next = 6;
+            _context.next = 5;
             return response.json();
 
-          case 6:
+          case 5:
             result = _context.sent;
 
-          case 7:
+          case 6:
           case "end":
             return _context.stop();
         }
@@ -921,10 +927,9 @@ logoutButton.addEventListener('click', function (e) {
     fetch('http://localhost:3333/logout').then(function (res) {
       return res.json();
     }).then(function (result) {
-      window.location.reload();
-      window.location.reload();
-      console.log('signout');
-      console.log(result);
+      window.location.reload(); // window.location.reload()
+      // console.log('signout')
+      // console.log(result)
     });
   } // const result = await response.json();
 
@@ -938,6 +943,14 @@ if (userId) {
 } else {
   logoutHeader.style.display = "none";
 }
+
+var search = document.querySelector('.search');
+var btn = document.querySelector('.btn');
+var input = document.querySelector('.input');
+btn.addEventListener('click', function () {
+  search.classList.toggle('active');
+  input.focus();
+});
 })();
 
 /******/ })()
