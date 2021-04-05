@@ -61,10 +61,8 @@ if(userId) {
     logoutHeader.style.display = "none";
 }
 
-
-
-
-
+// search functionality
+let searchText;
 const search = document.querySelector('.search')
 const btn = document.querySelector('.btn')
 const input = document.querySelector('.input')
@@ -73,3 +71,37 @@ btn.addEventListener('click', () => {
     search.classList.toggle('active')
     input.focus()
 })
+
+// search backend
+
+// const searchInput = document.querySelector('#input-search')
+// searchInput.addEventListener('keyup', (e) => {
+//     // console.log(e.target.value)
+//     if(e.key === 'Enter') {
+//         searchText = e.target.value;
+//         // console.log(searchText)
+//         searchDB(searchText)
+//         localStorage.setItem('search', JSON.stringify(true));
+//         localStorage.setItem('searchProduct', JSON.stringify(searchText));
+//     }
+// })
+
+
+// async function searchDB(searchText) {
+//     const response = await fetch('http://localhost:3333/search-query', {
+//         method: "post",
+//         mode: 'cors',
+//         credentials: 'include',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//             searchText
+//         })
+//     })
+//     const result = await response.json();
+//     // if(result)
+//     if(result.validText) {
+//         window.location.reload();
+
+//     }
+
+// }

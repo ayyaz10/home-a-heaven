@@ -31,12 +31,13 @@ router.get('/admin-login', authController().adminLogin);
 
 //product controllers
 router.get('/collections', productsController().index)
-
-// customer controllers
-// router.get('/products', productsController().index);
 router.get('/collections/products', productsController().collectionOfProducts);
 router.post('/req-by-category', productsController().reqByCategory);
 router.post('/sort', productsController().reqBySort);
+router.get ('/search', productsController().searchQuery);
+
+// customer controllers
+// router.get('/products', productsController().index);
 // router.get('/sorted', productsController().getSorted);
 // router.post('/updateCart', cartController().update);
 router.get('/cart', cartController().index);

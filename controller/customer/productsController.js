@@ -1,4 +1,4 @@
-const { getAllProducts, getAllCategories, getAllByCategory, getAllBySort } = require('../../db/queries');
+const { getAllProducts, getAllCategories, getAllByCategory, getAllBySort, searchProduct } = require('../../db/queries');
 
 
 const productsController = () => {
@@ -86,6 +86,30 @@ const productsController = () => {
         isSet: true,
       })
     },
+    async searchQuery(req, res) {
+      console.log(req.query)
+      const { product } = req.query;
+      const isValidText = () => {
+        const validSearchText = typeof product == 'string' && product.trim() != '';
+        return validSearchText;
+      }
+
+      if(isValidText()) {
+        const products = await searchProduct(product);
+        const categories = await getAllCategories();
+        // console.log(product)
+        res.render('product-search', {
+          product,
+          products,
+          categories
+        })
+      } else {
+        return res.json({
+          message: "Grabage query",
+          success: false
+        })
+      }
+    }
 
 
   }

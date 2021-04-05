@@ -126,6 +126,18 @@ module.exports = {
         
         console.log(result)
         return result;
+    },
+    async searchProduct (searchText) {
+        // const result = await knex('product').where('product_name', 'ilike', `%${searchText}%`)
+        const result = knex('product')
+        if(searchText) {
+            result.where('product_name', 'ilike', `%${searchText}%`)
+        }
+        // if(searchText) {
+        //     result.where('category_name', 'ilike', `%${searchText}%`)
+        // }
+        // console.log(result)
+        return result;
     }
 }
 
