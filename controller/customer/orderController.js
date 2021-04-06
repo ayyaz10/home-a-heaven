@@ -43,21 +43,26 @@ const orderController = () => {
                 isError: true
             })
             }
-           
-            const cart = req.session.cart;
-            let parsedItems = Object.keys(cart.items);
-            let productID;
-            let itemName;
-            let price;
-            let quantity;
-            let itemId;
-            let productIdArr = [];
-            let itemIdArr = [];
-            const userId = JSON.parse(req.signedCookies.user_info).user_id;
-            const totalQty = cart.totalQty;
-            const totalPrice = cart.totalPrice;
-            let result;
-           
+        //    if(req.signedCookies)
+        let userId;
+        let parsedItems;
+        let productID;
+        let itemName;
+        let price;
+        let quantity;
+        let itemId;
+        let productIdArr = [];
+        let itemIdArr = [];
+        let result;
+        let cart;
+        let totalQty;
+        let totalPrice;
+        cart = req.session.cart;
+        parsedItems = Object.keys(cart.items);
+        totalQty = cart.totalQty;
+        totalPrice = cart.totalPrice;
+        if(req.signedCookies.user_info) {
+            userId = JSON.parse(req.signedCookies.user_info).user_id;
             if(userId){
             const order = {
                 customer_id: userId,
@@ -76,10 +81,11 @@ const orderController = () => {
             }
             result = await createOrder(order);
             res.json({
-                message: "Product Added",
+                message: "Order created",
                 customer: true,
                 result
             })
+        }
             } else {
                
             const order = {
@@ -99,7 +105,7 @@ const orderController = () => {
             }
             result = await createOrder(order);
             res.json({
-                message: "Guest product Added",
+                message: "Guest order created",
                 customer: false,
                 result
             })

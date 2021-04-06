@@ -1,6 +1,3 @@
-
-
-
 if(JSON.parse(localStorage.getItem('isOrdered'))) {
     const successAlertContainer = document.querySelector('.success-alert');
     const successMessage = document.createElement('p');

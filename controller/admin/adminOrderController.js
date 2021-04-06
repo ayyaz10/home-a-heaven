@@ -13,6 +13,10 @@ const adminOrderController = () => {
             const orders = await getPlacedOrders();
             const allItems = await getPlacedOrdersItems();
             // const products = await getAllProducts();
+            allItems.forEach(each => {
+                console.log(each.item_name)
+            })
+            
             const categories = await getAllCategories();
             // console.log(allItems)
             res.render('admin-orders', {

@@ -927,8 +927,8 @@ logoutButton.addEventListener('click', function (e) {
     fetch('http://localhost:3333/logout').then(function (res) {
       return res.json();
     }).then(function (result) {
-      window.location.reload(); // window.location.reload()
-      // console.log('signout')
+      window.location.reload();
+      window.location.reload(); // console.log('signout')
       // console.log(result)
     });
   } // const result = await response.json();

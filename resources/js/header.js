@@ -45,7 +45,7 @@ logoutButton.addEventListener('click', (e)=>{
         })
         .then(result => {
             window.location.reload()
-            // window.location.reload()
+            window.location.reload()
             // console.log('signout')
             // console.log(result)
         })

@@ -13,11 +13,9 @@ const productsController = () => {
     },
     async collectionOfProducts(req, res) {
       try {
+        console.log(req.session)
         const categoryQuery = req.session.categorySession.categoryName;
-        // console.log(categorySession.isQueried = false)
-        // console.log(req.session.to)
         let products;
-        
         if(req.session.categorySession.isSortQueried) {
           const whichProduct = req.session.categorySession.categoryName;
           const whichSort = req.session.sortProduct.reqQuery.order;
@@ -45,9 +43,6 @@ const productsController = () => {
     async reqByCategory (req, res) {
 
       const requiredCategory = req.body.categoryName;
-      // console.log(req.session.sortProduct)
-      // console.log(req.session.categoryname)
-      // console.log(requiredCategory + "helo")
       if(!req.session.categoryname) {
         req.session.categorySession = {
           categoryName: {},
@@ -73,7 +68,6 @@ const productsController = () => {
       }
       let sortProduct = req.session.sortProduct;
       sortProduct.reqQuery = req.body.selectedSort;
-      console.log(sortProduct)
       if(req.body.filter) {
         req.session.categorySession.categoryName = req.body.toBeFiltered.filterCategory;
         req.session.categorySession.isFilterQueried = true

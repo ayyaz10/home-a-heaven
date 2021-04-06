@@ -134,7 +134,7 @@ const authController = () => {
             }
         },
         logout (req, res) {
-            res.clearCookie('user_id');
+            res.clearCookie('user_info');
             req.session.destroy()
             // will always fire after session is destroyed
             res.json({
