@@ -80,11 +80,11 @@ const orderController = () => {
                 created_at: new Date()
             }
             result = await createOrder(order);
-            res.json({
-                message: "Order created",
-                customer: true,
-                result
-            })
+            // res.json({
+            //     message: "Order created",
+            //     customer: true,
+            //     result
+            // })
         }
             } else {
                
@@ -129,6 +129,18 @@ const orderController = () => {
             }
             itemId = await createItem(itemObj);
         }
+
+        req.session.destroy(function(err){
+            if(err){
+               console.log(err);
+            }else{
+            res.json({
+            message: "Order created",
+            customer: true,
+            result
+        })
+            }
+         });
     } else {
         for(let i = 0; i < parsedItems.length; i++) {
         const orderId = result[0].order_id;
@@ -148,9 +160,19 @@ const orderController = () => {
             }
             itemId = await createItem(itemObj);
             }
+            req.session.destroy(function(err){
+                if(err){
+                   console.log(err);
+                }else{
+                    // console.log(session.email);
+                    req.end();
+                }
+             });
         }
         // destroying cart session
-        req.session.destroy()
+        // req.session.destroy()
+        console.log(req.session)
+        // req.session.destroy()
         },
     }
 }

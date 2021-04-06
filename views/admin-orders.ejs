@@ -31,35 +31,35 @@
         </tr>
         </thead>
         <tbody>
-        <%  if(orders.length) { %>
-            <%for(let i = 0; i < orders.length; i++) { %>
+        <%  if(placedOrders.length) { %>
+            <%for(let i = 0; i < placedOrders.length; i++) { %>
         <tr>
             <td>
-                <a href="#"><%= orders[i].order_id %></a>
+                <a href="#"><%= placedOrders[i].order_id %></a>
             </td>
             <td>
-                <p><%= allItems[i].item_name %> - <span><%= allItems[i].qty %></span></p>
+                <p><%= placedOrders[i].item_name %> - <span><%= placedOrders[i].qty %></span></p>
             </td>
             <td>
-                <%= orders[i].address %>
+                <%= placedOrders[i].address %>
             </td>
             <td>
-                <%= orders[i].email %>
+                <%= placedOrders[i].email %>
             </td>
             <td>
-                <%= orders[i].phone %>
+                <%= placedOrders[i].phone %>
             </td>
             <td>
-                <%= allItems[i].price %>
+                <%= placedOrders[i].price %>
             </td>
             <td>
                 <select class="order-status-options">
-                    <option value="placed" <%= orders[i].order_status === 'placed' ? 'selected' : ''%>>Placed</option>
-                    <option value="confirmed" <%= orders[i].order_status === 'confirmed' ? 'selected' : ''%>>Confirmed</option>
-                    <option value="delivered" <%= orders[i].order_status === 'delivered' ? 'selected' : ''%>>Delivered</option>
+                    <option value="placed" <%= placedOrders[i].order_status === 'placed' ? 'selected' : ''%>>Placed</option>
+                    <option value="confirmed" <%= placedOrders[i].order_status === 'confirmed' ? 'selected' : ''%>>Confirmed</option>
+                    <option value="delivered" <%= placedOrders[i].order_status === 'delivered' ? 'selected' : ''%>>Delivered</option>
                 </select>
             </td>
-            <td> <%= moment(orders[i].created_at).format('h:mm:ss a, Do MMMM YYYY') %> </td>
+            <td> <%= moment(placedOrders[i].created_at).format('h:mm:ss a, Do MMMM YYYY') %> </td>
         </tr>
         <%}%>
         <% } else {%>
