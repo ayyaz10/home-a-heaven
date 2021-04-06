@@ -31,9 +31,31 @@ shippingForm.addEventListener('submit', function(e) {
                 localStorage.setItem('isOrdered', JSON.stringify(true));
             } else {
                 localStorage.removeItem('productArray')
-                console.log('helo')
+                // console.log('helo')
                 document.querySelector('.cart').innerText = "";
-                document.querySelector('.cart').innerText = "";
+                // console.log(data.result[0].full_name)
+                const userName = document.querySelector('.message span');
+                userName.textContent = data.result[0].full_name + "!";
+
+                // Get the modal
+                var modal = document.getElementById("myModal");
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+                // When the user clicks the button, open the modal 
+                modal.style.display = "block";
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                    modal.style.display = "none";
+                    window.location.reload()
+                  }
+
+                  // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                    window.location.reload()
+                    }
+                }
+                // document.querySelector('.cart').innerText = "";
             }
         })
 })

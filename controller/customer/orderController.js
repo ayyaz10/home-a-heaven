@@ -104,11 +104,11 @@ const orderController = () => {
                 created_at: new Date()
             }
             result = await createOrder(order);
-            res.json({
-                message: "Guest order created",
-                customer: false,
-                result
-            })
+            // res.json({
+            //     message: "Guest order created",
+            //     customer: false,
+            //     result
+            // })
             }
     if(userId){
         for(let i = 0; i < parsedItems.length; i++) {
@@ -134,11 +134,11 @@ const orderController = () => {
             if(err){
                console.log(err);
             }else{
-            res.json({
-            message: "Order created",
-            customer: true,
-            result
-        })
+                res.json({
+                message: "Order created",
+                customer: true,
+                result
+                })
             }
          });
     } else {
@@ -165,7 +165,11 @@ const orderController = () => {
                    console.log(err);
                 }else{
                     // console.log(session.email);
-                    req.end();
+                    res.json({
+                        message: "Guest order created",
+                        customer: false,
+                        result
+                    })
                 }
              });
         }

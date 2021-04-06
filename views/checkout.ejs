@@ -29,7 +29,7 @@
                 <input type="text" id="city" name="city" placeholder="New York" required>
                 <label for="pnumber">Phone</label>
                 <input type="number" id="pnumber" name="pnumber" placeholder="Phone" required>
-                <input type="submit" value="Continue to Shipping" class="continue-btn" >
+                <input type="submit" id="myBtn" value="Continue to Shipping" class="continue-btn" >
                 <!-- <a href="/orders">Continue to Shipping</a> -->
             </form>
         </div>
@@ -55,6 +55,18 @@
                <script> window.location = "http://localhost:3333/" </script>
                 <% }%>
     </section>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <!-- <p class="greeting">Thanks Ayyaz!</p> -->
+        <p class="message">Thanks <span></span> Your order has been updated</p>
+        <div class="button">
+          <a href="/collections" class="shop-button">Shop Now</a>
+        </div>
+      </div>
+   </div>
     <%- include('footer'); -%>
 </body>
 </html>
