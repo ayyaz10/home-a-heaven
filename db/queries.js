@@ -140,7 +140,7 @@ module.exports = {
         return result;
     },
     async getOrders() {
-        const orders = await knex.from('shipping_detail').innerJoin('item', 'shipping_detail.order_id', 'item.order_id');
+        const orders = await knex.from('shipping_detail').innerJoin('item', 'shipping_detail.order_id', 'item.order_id').orderBy('shipping_detail.created_at', 'desc');
         return orders
     }
 }
