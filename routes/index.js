@@ -1,5 +1,6 @@
 // const notFoundController = require('../controller/notFoundController');
 // const reqByCategory = require('../controller/customer/reqByCategory');
+
 const orderStatus = require('../controller/admin/adminOrderController');
 const adminOrderController = require('../controller/admin/adminOrderController');
 const orderController = require('../controller/customer/orderController');
@@ -7,6 +8,7 @@ const ensureLoggedIn = require('../controller/middlewares/ensureLoggedIn');
 const admin = require('../controller/middlewares/admin');
 const guest = require('../controller/middlewares/guest');
 const updateCartController = require('../controller/customer/addToCartController');
+const accountController = require('../controller/customer/accountController');
 const addToCartController = require('../controller/customer/addToCartController');
 const cartController = require('../controller/customer/cartController');
 const adminPanelController = require('../controller/admin/adminPanelController');
@@ -57,6 +59,8 @@ router.post('/removeCartItem', cartController().removeCartItem);
 router.get('/orders', ensureLoggedIn, orderController().index);
 router.get('/checkout', orderController().checkout);
 router.post('/order', orderController().order);
+router.get('/account', accountController().index);
+router.post('/edit-profile', accountController().editProfile);
 // 404 router
 // router.get('/404', notFoundController().index);
 

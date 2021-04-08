@@ -134,7 +134,7 @@ a {
     transition: width 0.3s ease;
   }
   
-  .btn {
+  button.btn {
     background-color: #ffffff;
     border: 0;
     cursor: pointer;
@@ -147,7 +147,7 @@ a {
     transition: transform 0.3s ease;
   }
   
-  .btn:focus,
+  button.btn:focus,
   .input:focus {
     outline: none;
   }
@@ -156,6 +156,6 @@ a {
     width: 200px;
   }
   
-  .search.active .btn {
+  .search.active button.btn {
     transform: translateX(170px);
   }

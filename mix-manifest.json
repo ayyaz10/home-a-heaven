@@ -1,6 +1,7 @@
 {
     "/public/js/header.js": "/public/js/header.js",
     "/public/js/index.js": "/public/js/index.js",
+    "/public/js/user-account.js": "/public/js/user-account.js",
     "/public/js/collections.js": "/public/js/collections.js",
     "/public/js/products.js": "/public/js/products.js",
     "/public/js/add-to-cart.js": "/public/js/add-to-cart.js",

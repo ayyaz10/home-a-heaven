@@ -11,6 +11,11 @@ module.exports = {
             password: password
         }).first();
     },
+    getOneById: function(userId) {
+        return knex('customer').where({
+            user_id: userId
+        }).first();
+    },
     create: function(user) {
             return knex('customer').insert(user, 'user_id').returning('*').then(user => {
             return user[0];
@@ -142,6 +147,15 @@ module.exports = {
     async getOrders() {
         const orders = await knex.from('shipping_detail').innerJoin('item', 'shipping_detail.order_id', 'item.order_id').orderBy('shipping_detail.created_at', 'desc');
         return orders
+    },
+    async updateName(userData) {
+        // console.log()
+        // console.log(userId)
+        const dbResponse = await knex('customer')
+                        .where({ user_id: userData.userId })
+                        .update({first_name: userData.firstName, last_name: userData.lastName})
+                        .returning('*')
+        return dbResponse[0];
     }
 }
 

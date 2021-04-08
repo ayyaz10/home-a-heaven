@@ -98,7 +98,7 @@ const authController = () => {
                     // compare password with the hash
                     User.getOneByEmail(req.body.email)
                     .then(user => {
-                        console.log(user)
+                        // console.log(user)
                         bcrypt.compare(req.body.password, user.password, function(err, result) {
                             if(result){
                                 // setting the set-cookie header
