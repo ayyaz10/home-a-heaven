@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' localhost:5500">
     <link rel=icon href="assets/favicon.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/user-account.css">
     <script src="js/user-account.js" defer></script>
     <script src="js/header.js" defer></script>
@@ -43,7 +43,7 @@
     <section class="container edit-profile-wrapper hide">
         <h2>Edit Profile</h2>
         <form class="personal-info">
-            <p><First Name></p>
+            <p>First Name></p>
             <p><input type="text" name="firstName" class="first-name" placeholder="First Name" required></p>
             <p>Last Name</p>
             <p><input type="text" name="lastName" class="last_name" placeholder="Last Name" required></p>
@@ -64,9 +64,9 @@
     </section>
     <section class="container edit-email-wrapper hide">
         <h2>Change Email</h2>
-        <form class="edit-email">
-            <p>Email</p> 
-            <p><input type="email" name="email" class="email" placeholder="Email" required></p>
+        <form class="personal-info">
+            <p>Email</p>
+            <p><input type="email" name="email" class="email-input" placeholder="Email" required></p>
             <div class="save-profile-btn">
                 <p><input type="submit" value="Save Changes"></p>
                 <!-- <a href="#" class="button">Save Changes</a> -->
@@ -75,13 +75,13 @@
     </section>
     <section class="container edit-passowrd-wrapper hide">
         <h2>Change Password</h2>
-        <form class="edit-passowrd">
+        <form class="personal-info">
             <p>Current password</p>
-            <p><input type="password" name="password" class="password" placeholder="Password" required></p>
+            <p><input type="password" name="currentPassword" class="current-password" placeholder="Current Password" required><span class="currentPassword-message-field"></span></p>
             <p>New password</p>
-            <p><input type="password" name="password" class="password" placeholder="Password" required></p>
+            <p><input type="password" name="password" class="new-password" placeholder="New Password" required><span class="message-field"></span></p>
             <p>Retype password</p>
-            <p><input type="password" name="password" class="password" placeholder="Password" required></p>
+            <p><input type="password" name="password" class="retype-password" placeholder="Retype Password" required><span class="retype-message-field"></span></p>
             <div class="save-profile-btn">
                 <p><input type="submit" value="Save Changes"></p>
             </div>

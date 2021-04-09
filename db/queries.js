@@ -3,14 +3,24 @@ const knex = require('./db'); //this require is for the connection to the databa
 module.exports = {
     getOneByEmail: function(email) {
         return knex('customer').where({
-            email: email
+            email
         }).first();
     },
-    getOneByPassword: function(password) {
+    getfirstName: function(firstName) {
         return knex('customer').where({
-            password: password
+            first_name: firstName
         }).first();
     },
+    getLastName: function(lastName) {
+        return knex('customer').where({
+            last_name: lastName
+        }).first();
+    },
+    // getOneByPassword: function(userId) {
+    //     return knex('customer').where({
+    //         user_id: userId
+    //     }).first();
+    // },
     getOneById: function(userId) {
         return knex('customer').where({
             user_id: userId
@@ -148,14 +158,29 @@ module.exports = {
         const orders = await knex.from('shipping_detail').innerJoin('item', 'shipping_detail.order_id', 'item.order_id').orderBy('shipping_detail.created_at', 'desc');
         return orders
     },
-    async updateName(userData) {
-        // console.log()
-        // console.log(userId)
-        const dbResponse = await knex('customer')
-                        .where({ user_id: userData.userId })
-                        .update({first_name: userData.firstName, last_name: userData.lastName})
-                        .returning('*')
-        return dbResponse[0];
+    async updateProfile(userData) {
+        // updating user first and last name
+        if(userData.firstName && userData.lastName) {
+            const dbResponse = await knex('customer')
+                            .where({ user_id: userData.userId })
+                            .update({first_name: userData.firstName, last_name: userData.lastName})
+                            .returning('*')
+            return dbResponse[0];
+        }
+        // updating userEmail
+        if(userData.email) {
+            try {
+                const dbRespone = await knex('customer')
+                .where({ user_id: userData.userId })
+                .update({ email: userData.email })
+                .returning('*');
+                return dbRespone[0];
+            } catch (error) {
+                if(error.constraint) {
+                    console.log('erroe')
+                }
+            }
+        }
     }
 }
 

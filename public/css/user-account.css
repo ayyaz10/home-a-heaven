@@ -107,6 +107,11 @@
     color: var(--secondary-hover);
 }
 
+.currentPassword-message-field, .retype-message-field {
+    font-size: 14px;
+    margin-left: 6px;
+}
+
 .hide {
     display: none;
 }
@@ -114,3 +119,4 @@
 .show {
     display: block;
 }
+

@@ -874,8 +874,7 @@ editProfileWrapper.addEventListener('submit', /*#__PURE__*/function () {
             e.preventDefault();
             firstName = editProfileInput[0].value;
             lastName = editProfileInput[1].value;
-            console.log(firstName + lastName);
-            _context.next = 6;
+            _context.next = 5;
             return fetch("".concat(url, "/edit-profile"), {
               method: "post",
               mode: 'cors',
@@ -889,19 +888,19 @@ editProfileWrapper.addEventListener('submit', /*#__PURE__*/function () {
               })
             });
 
-          case 6:
+          case 5:
             response = _context.sent;
-            _context.next = 9;
+            _context.next = 8;
             return response.json();
 
-          case 9:
+          case 8:
             result = _context.sent;
 
             if (result.isUpdated) {
               window.location = '/account';
             }
 
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
@@ -915,15 +914,15 @@ editProfileWrapper.addEventListener('submit', /*#__PURE__*/function () {
 }()); // show email
 
 var emailLabel = document.querySelector('.email-label');
-var emailEditWrapper = document.querySelector('.edit-email-wrapper');
-var emailInput = document.querySelector('.edit-email p input');
+var editEmailWrapper = document.querySelector('.edit-email-wrapper');
+var editEmailInput = document.querySelector('.email-input');
 emailLabel.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
           myProfileWrapper.classList.add('hide');
-          emailEditWrapper.classList.add('show');
+          editEmailWrapper.classList.add('show');
 
         case 2:
         case "end":
@@ -931,37 +930,66 @@ emailLabel.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__
       }
     }
   }, _callee2);
-}))); // show password
+})));
+console.log(editEmailInput);
+editEmailWrapper.addEventListener('submit', /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+    var email, response, result;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            e.preventDefault();
+            email = editEmailInput.value;
+            _context3.next = 4;
+            return fetch("".concat(url, "/edit-profile"), {
+              method: "post",
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                email: email
+              })
+            });
+
+          case 4:
+            response = _context3.sent;
+            _context3.next = 7;
+            return response.json();
+
+          case 7:
+            result = _context3.sent;
+            console.log(result);
+
+            if (result.isUpdated) {
+              window.location = '/account';
+            }
+
+          case 10:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function (_x2) {
+    return _ref3.apply(this, arguments);
+  };
+}()); // show password
 
 var passwordLabel = document.querySelector('.password-label');
 var passwordEditWrapper = document.querySelector('.edit-passowrd-wrapper');
 var passwordInput = document.querySelector('.edit-password p input');
-passwordLabel.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-    while (1) {
-      switch (_context3.prev = _context3.next) {
-        case 0:
-          myProfileWrapper.classList.add('hide');
-          passwordEditWrapper.classList.add('show');
-
-        case 2:
-        case "end":
-          return _context3.stop();
-      }
-    }
-  }, _callee3);
-}))); // show phone
-
-var phoneLabel = document.querySelector('.phone-label');
-var phoneEditWrapper = document.querySelector('.edit-phone-wrapper');
-var phoneInput = document.querySelector('.edit-phone p input');
-phoneLabel.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+passwordLabel.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
           myProfileWrapper.classList.add('hide');
-          phoneEditWrapper.classList.add('show');
+          passwordEditWrapper.classList.add('show');
 
         case 2:
         case "end":
@@ -969,6 +997,99 @@ phoneLabel.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__
       }
     }
   }, _callee4);
+}))); // password matching check
+
+var currentPassword = document.querySelector('.current-password');
+var newPassword = document.querySelector('.new-password');
+var retypePassword = document.querySelector('.retype-password');
+currentPassword.addEventListener('change', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+  var response, result, messageField, _messageField;
+
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          _context5.next = 2;
+          return fetch("".concat(url, "/edit-profile"), {
+            method: "post",
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              currentPassword: currentPassword.value
+            })
+          });
+
+        case 2:
+          response = _context5.sent;
+          _context5.prev = 3;
+          _context5.next = 6;
+          return response.json();
+
+        case 6:
+          result = _context5.sent;
+
+          if (!result.isMatched) {
+            messageField = document.querySelector('.currentPassword-message-field');
+            messageField.innerText = "Current password is not correct";
+            messageField.style.color = "red";
+            currentPassword.style.border = "1px solid red";
+          } else {
+            _messageField = document.querySelector('.currentPassword-message-field');
+            currentPassword.style.border = "1px solid green";
+            _messageField.innerText = "Current password is correct";
+            _messageField.style.color = "green";
+          }
+
+          _context5.next = 13;
+          break;
+
+        case 10:
+          _context5.prev = 10;
+          _context5.t0 = _context5["catch"](3);
+          console.log(_context5.t0);
+
+        case 13:
+        case "end":
+          return _context5.stop();
+      }
+    }
+  }, _callee5, null, [[3, 10]]);
+})));
+retypePassword.addEventListener('keyup', function (e) {
+  if (e.target.value === newPassword.value) {
+    var messageField = document.querySelector('.retype-message-field');
+    retypePassword.style.border = "1px solid green";
+    messageField.innerText = "Password matched!";
+    messageField.style.color = "green";
+  } else {
+    var _messageField2 = document.querySelector('.retype-message-field');
+
+    retypePassword.style.border = "1px solid red";
+    _messageField2.innerText = "Password not matched!";
+    _messageField2.style.color = "red";
+  }
+}); // show phone
+
+var phoneLabel = document.querySelector('.phone-label');
+var phoneEditWrapper = document.querySelector('.edit-phone-wrapper');
+var phoneInput = document.querySelector('.edit-phone p input');
+phoneLabel.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+    while (1) {
+      switch (_context6.prev = _context6.next) {
+        case 0:
+          myProfileWrapper.classList.add('hide');
+          phoneEditWrapper.classList.add('show');
+
+        case 2:
+        case "end":
+          return _context6.stop();
+      }
+    }
+  }, _callee6);
 }))); // ema.addEventListener('submit', async (e) => {
 //     e.preventDefault();
 //     const email = emailInput.value;

@@ -18,9 +18,9 @@ editProfileBtn.addEventListener('click', () => {
 
 editProfileWrapper.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const firstName = editProfileInput[0].value
-    const lastName = editProfileInput[1].value
-    console.log(firstName + lastName)
+    const firstName = editProfileInput[0].value;
+    const lastName = editProfileInput[1].value;
+
     const response = await fetch(`${url}/edit-profile`, {
         method: "post",
         mode: 'cors',
@@ -36,15 +36,38 @@ editProfileWrapper.addEventListener('submit', async (e) => {
         window.location = '/account'
     }
 })
-
+ 
 // show email
 const emailLabel = document.querySelector('.email-label');
-const emailEditWrapper = document.querySelector('.edit-email-wrapper');
-const emailInput = document.querySelector('.edit-email p input');
+const editEmailWrapper = document.querySelector('.edit-email-wrapper');
+const editEmailInput = document.querySelector('.email-input');
 emailLabel.addEventListener('click', async () => {
     myProfileWrapper.classList.add('hide');
-    emailEditWrapper.classList.add('show');
+    editEmailWrapper.classList.add('show');
 })
+console.log(editEmailInput)
+
+editEmailWrapper.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = editEmailInput.value;
+    const response = await fetch(`${url}/edit-profile`, {
+        method: "post",
+        mode: 'cors',
+        credentials: 'include',
+        headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                email,
+        })
+    })
+    const result = await response.json();
+    console.log(result)
+    if(result.isUpdated) {
+        window.location = '/account'
+    }
+})
+
+
+
 
 // show password
 const passwordLabel = document.querySelector('.password-label');
@@ -54,6 +77,59 @@ passwordLabel.addEventListener('click', async () => {
     myProfileWrapper.classList.add('hide');
     passwordEditWrapper.classList.add('show');
 })
+
+// password matching check
+const currentPassword = document.querySelector('.current-password');
+const newPassword = document.querySelector('.new-password');
+const retypePassword = document.querySelector('.retype-password');
+
+currentPassword.addEventListener('change', async () => {
+    // if(currentPassword.value === "") {
+    //     currentPassword.style.border = "green";
+
+    // }   
+    const response = await fetch(`${url}/edit-profile`, {
+        method: "post",
+        mode: 'cors',
+        credentials: 'include',
+        headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                currentPassword: currentPassword.value
+        })
+    })
+    try {
+        const result = await response.json();
+        if(!result.isMatched) {
+            const messageField = document.querySelector('.currentPassword-message-field');
+            messageField.innerText = "Current password is not correct";
+            messageField.style.color = "red";
+            currentPassword.style.border = "1px solid red";
+        } else {
+            const messageField = document.querySelector('.currentPassword-message-field');
+            currentPassword.style.border = "1px solid green";
+            messageField.innerText = "Current password is correct";
+            messageField.style.color = "green";
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
+})
+
+retypePassword.addEventListener('keyup', (e) => {
+   if(e.target.value === newPassword.value) {
+    const messageField = document.querySelector('.retype-message-field');
+    retypePassword.style.border = "1px solid green";
+    messageField.innerText = "Password matched!";
+    messageField.style.color = "green";
+   } else {
+    const messageField = document.querySelector('.retype-message-field');
+    retypePassword.style.border = "1px solid red";
+    messageField.innerText = "Password not matched!";
+    messageField.style.color = "red";
+   }
+})
+
 
 // show phone
 const phoneLabel = document.querySelector('.phone-label');

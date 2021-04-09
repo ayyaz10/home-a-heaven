@@ -88,7 +88,6 @@ const authController = () => {
         },
 
         login(req, res, next) {
-            
         if(isValidLoginUser(req.body)) {
             // check to see if user is in the database
             User
