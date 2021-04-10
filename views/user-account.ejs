@@ -43,20 +43,10 @@
     <section class="container edit-profile-wrapper hide">
         <h2>Edit Profile</h2>
         <form class="personal-info">
-            <p>First Name></p>
+            <p>First Name</p>
             <p><input type="text" name="firstName" class="first-name" placeholder="First Name" required></p>
             <p>Last Name</p>
             <p><input type="text" name="lastName" class="last_name" placeholder="Last Name" required></p>
-            <div class="save-profile-btn">
-                <p><input type="submit" value="Save Changes"></p>
-            </div>
-        </form>
-    </section>
-    <section class="container edit-phone-wrapper hide">
-        <h2>Change Phone</h2>
-        <form class="personal-info">
-            <p>Phone></p>
-            <p><input type="text" name="phone" class="phone" placeholder="Phone" required></p>
             <div class="save-profile-btn">
                 <p><input type="submit" value="Save Changes"></p>
             </div>
@@ -79,15 +69,36 @@
             <p>Current password</p>
             <p><input type="password" name="currentPassword" class="current-password" placeholder="Current Password" required><span class="currentPassword-message-field"></span></p>
             <p>New password</p>
-            <p><input type="password" name="password" class="new-password" placeholder="New Password" required><span class="message-field"></span></p>
+            <p><input type="password" name="password" class="new-password" placeholder="New Password" required><span class="newPassword-message-field"></span></p>
             <p>Retype password</p>
-            <p><input type="password" name="password" class="retype-password" placeholder="Retype Password" required><span class="retype-message-field"></span></p>
+            <p><input type="password" name="password" class="retype-password" placeholder="Retype Password" required><span class="retypePassword-message-field"></span></p>
             <div class="save-profile-btn">
                 <p><input type="submit" value="Save Changes"></p>
             </div>
         </form>
     </section>
+    <section class="container edit-phone-wrapper hide">
+        <h2>Change Phone</h2>
+        <form class="personal-info">
+            <p>Phone</p>
+            <p><input type="text" name="phone" class="phone-input" placeholder="Phone" required></p>
+            <div class="save-profile-btn">
+                <p><input type="submit" value="Save Changes"></p>
+            </div>
+        </form>
+    </section>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <!-- <p class="greeting">Thanks Ayyaz!</p> -->
+            <p class="message"></p>
+        </div>
+        </div>
 </section>
+
+
 <%- include('footer'); -%>
 </body>
 </html>

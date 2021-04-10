@@ -913,7 +913,7 @@ editProfileWrapper.addEventListener('submit', /*#__PURE__*/function () {
   };
 }()); // show email
 
-var emailLabel = document.querySelector('.email-label');
+var emailLabel = document.querySelector('.email-label  span');
 var editEmailWrapper = document.querySelector('.edit-email-wrapper');
 var editEmailInput = document.querySelector('.email-input');
 emailLabel.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
@@ -980,8 +980,7 @@ editEmailWrapper.addEventListener('submit', /*#__PURE__*/function () {
   };
 }()); // show password
 
-var passwordLabel = document.querySelector('.password-label');
-var passwordEditWrapper = document.querySelector('.edit-passowrd-wrapper');
+var passwordLabel = document.querySelector('.password-label span');
 var passwordInput = document.querySelector('.edit-password p input');
 passwordLabel.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
@@ -1057,40 +1056,209 @@ currentPassword.addEventListener('change', /*#__PURE__*/_asyncToGenerator( /*#__
       }
     }
   }, _callee5, null, [[3, 10]]);
-})));
+}))); // check for new password and retype password match
+
+newPassword.addEventListener('keyup', function (e) {
+  // console.log(e.target.value.length)
+  console.log(e.target.parentElement);
+
+  if (e.target.value === retypePassword.value) {
+    var newPassMessageField = document.querySelector('.newPassword-message-field');
+    newPassword.style.border = "1px solid green";
+    newPassMessageField.innerText = "Password matched!";
+    newPassMessageField.style.color = "green";
+  } else {
+    var _newPassMessageField = document.querySelector('.newPassword-message-field');
+
+    newPassword.style.border = "1px solid red";
+    _newPassMessageField.innerText = "Password not matched!";
+    _newPassMessageField.style.color = "red";
+  }
+
+  if (!(e.target.value.length >= 6)) {
+    var _newPassMessageField2 = document.querySelector('.newPassword-message-field');
+
+    newPassword.style.border = "1px solid red";
+    _newPassMessageField2.innerText = "Password length must be greater then 6!";
+    _newPassMessageField2.style.color = "red";
+  }
+}); // check for new password and retype password match
+
 retypePassword.addEventListener('keyup', function (e) {
+  // console.log(e.target.value.length)
+  console.log(e.target.parentElement);
+
   if (e.target.value === newPassword.value) {
-    var messageField = document.querySelector('.retype-message-field');
+    var messageField = document.querySelector('.retypePassword-message-field');
+    var newPassMessageField = document.querySelector('.newPassword-message-field');
+    newPassword.style.border = "1px solid green";
+    newPassMessageField.innerText = "Password matched!";
+    newPassMessageField.style.color = "green";
     retypePassword.style.border = "1px solid green";
     messageField.innerText = "Password matched!";
     messageField.style.color = "green";
   } else {
-    var _messageField2 = document.querySelector('.retype-message-field');
+    var _messageField2 = document.querySelector('.retypePassword-message-field');
 
     retypePassword.style.border = "1px solid red";
     _messageField2.innerText = "Password not matched!";
     _messageField2.style.color = "red";
   }
-}); // show phone
 
-var phoneLabel = document.querySelector('.phone-label');
+  if (!(e.target.value.length >= 6)) {
+    var _messageField3 = document.querySelector('.retype-message-field');
+
+    retypePassword.style.border = "1px solid red"; // messageField.innerText = "Password length must be greater then 6!";
+    // messageField.style.color = "red";
+  }
+}); // sending password to server
+
+var passwordEditWrapper = document.querySelector('.edit-passowrd-wrapper'); // passwordEditWrapper.addEventListener('submit', updatePassword)
+
+passwordEditWrapper.addEventListener('submit', /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(e) {
+    var response, result, modal, span, message;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            e.preventDefault();
+            _context6.next = 3;
+            return fetch("".concat(url, "/edit-profile"), {
+              method: "post",
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                newPassword: retypePassword.value
+              })
+            });
+
+          case 3:
+            response = _context6.sent;
+            _context6.prev = 4;
+            _context6.next = 7;
+            return response.json();
+
+          case 7:
+            result = _context6.sent;
+
+            // check if password is updated or not
+            if (result.isUpdated) {
+              // Get the modal
+              modal = document.getElementById("myModal"); // Get the <span> element that closes the modal
+
+              span = document.getElementsByClassName("close")[0]; // get the <p> where actual message will be shown
+
+              message = document.querySelector('.message');
+              message.innerText = "Password has been changed!"; // When the user clicks the button, open the modal
+
+              modal.style.display = "block"; // When the user clicks on <span> (x), close the modal
+
+              span.onclick = function () {
+                modal.style.display = "none";
+                window.location.reload();
+              }; // When the user clicks anywhere outside of the modal, close it
+
+
+              window.onclick = function (event) {
+                if (event.target == modal) {
+                  window.location.reload();
+                }
+              };
+            }
+
+            _context6.next = 14;
+            break;
+
+          case 11:
+            _context6.prev = 11;
+            _context6.t0 = _context6["catch"](4);
+            console.error(_context6.t0);
+
+          case 14:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6, null, [[4, 11]]);
+  }));
+
+  return function (_x3) {
+    return _ref6.apply(this, arguments);
+  };
+}()); // show phone
+
+var phoneLabel = document.querySelector('.phone-label  span');
 var phoneEditWrapper = document.querySelector('.edit-phone-wrapper');
-var phoneInput = document.querySelector('.edit-phone p input');
-phoneLabel.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+var phoneInput = document.querySelector('.phone-input');
+phoneLabel.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
     while (1) {
-      switch (_context6.prev = _context6.next) {
+      switch (_context7.prev = _context7.next) {
         case 0:
           myProfileWrapper.classList.add('hide');
           phoneEditWrapper.classList.add('show');
 
         case 2:
         case "end":
-          return _context6.stop();
+          return _context7.stop();
       }
     }
-  }, _callee6);
-}))); // ema.addEventListener('submit', async (e) => {
+  }, _callee7);
+})));
+phoneEditWrapper.addEventListener('submit', /*#__PURE__*/function () {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(e) {
+    var response, serverRespone;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
+            e.preventDefault();
+            _context8.next = 3;
+            return fetch("".concat(url, "/edit-profile"), {
+              method: "post",
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                newPhone: phoneInput.value
+              })
+            });
+
+          case 3:
+            response = _context8.sent;
+            _context8.prev = 4;
+            _context8.next = 7;
+            return response.json();
+
+          case 7:
+            serverRespone = _context8.sent;
+            console.log(serverRespone);
+            _context8.next = 14;
+            break;
+
+          case 11:
+            _context8.prev = 11;
+            _context8.t0 = _context8["catch"](4);
+            console.error(_context8.t0);
+
+          case 14:
+          case "end":
+            return _context8.stop();
+        }
+      }
+    }, _callee8, null, [[4, 11]]);
+  }));
+
+  return function (_x4) {
+    return _ref8.apply(this, arguments);
+  };
+}()); // ema.addEventListener('submit', async (e) => {
 //     e.preventDefault();
 //     const email = emailInput.value;
 //     console.log(email)

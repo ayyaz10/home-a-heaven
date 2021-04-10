@@ -22,10 +22,18 @@ function isValidUser(obj) {
 
     if(obj.email) {
         const validEmail = typeof obj.email == 'string' && obj.email.trim() != '';
-        return validEmail
+        return validEmail;
     }
 
-
+    if(obj.newPassword) {
+        const validPassword = typeof obj.newPassword == 'string' && obj.newPassword.trim() != '' && obj.newPassword.trim().length >= 6;
+        return validPassword;
+    }
+    
+    if(obj.newPhone) {
+        const validPhone = typeof obj.newPhone == 'string' && obj.newPhone.trim() != '';
+        return validPhone;
+    }
 }
 
 const accountController = () => {
@@ -40,17 +48,53 @@ const accountController = () => {
             })
         },
         async editProfile (req, res, next) {
-            const { firstName, lastName } = req.body;
-            const { email } = req.body;
-            const { currentPassword } = req.body;
-            console.log(currentPassword)
+            const { firstName, lastName, email, currentPassword, newPassword, newPhone } = req.body;
             const userId = JSON.parse(req.signedCookies.user_info).user_id;
             // creating object to check user data validity
             const nameObj = { firstName, lastName }
             const emailObj = { email }
+            const phoneObj = { newPhone }
+            // validating phone
+            if(isValidUser(phoneObj)) {
+                const userData = { newPhone, userId }
+                try {
+                    const user = await updateProfile(userData);
+                } catch(error) {
+                    console.error(error)
+                }
+            }
+            // validating password
+            const passwordObj = { newPassword }
+            if(isValidUser(passwordObj)) {
+                // hashing new password first
+                bcrypt.genSalt(10, async (err, salt) => {
+                    bcrypt.hash(newPassword, salt, async (err, hash) => {
+                        // storing new password hash into the database
+                        const userData = { hash, userId }
+                        try {
+                            const user = await updateProfile(userData);
+                            res.json({
+                                isUpdated: true,
+                                message: "Profile Updated",
+                                user: {
+                                    first_name: user.first_name
+                                }
+                            })
+                        } catch(error) {
+                            console.error(error);
+                            res.json({
+                                isUpdated: false,
+                                message: "Unable to update",
+                            })
+                        }
+
+                    } )
+                })
+            }
+
+            // checking whether current password is correct or not
             try {
                 if(currentPassword) {
-                    console.log('helo')
                     const user = await getOneById(userId)
                     // console.log(user.password)
                     bcrypt.compare(currentPassword, user.password, function(err, bcRes) {
@@ -60,7 +104,7 @@ const accountController = () => {
                     });
                 }
             } catch (error) {
-                console.log(error)
+                console.error(error);
             }
 
 
@@ -70,16 +114,20 @@ const accountController = () => {
                     firstName,
                     lastName,
                     userId
+                } 
+                try {
+                    const user = await updateProfile(userData)
+                    res.json({
+                        isUpdated: true,
+                        message: "Account Updated",
+                        user: {
+                            firstName: user.first_name,
+                            lastName: user.last_name
+                        }
+                    })
+                } catch (error) {
+                    console.error(error);
                 }
-                const user = await updateProfile(userData)
-                res.json({
-                    isUpdated: true,
-                    message: "Account Updated",
-                    user: {
-                        firstName: user.first_name,
-                        lastName: user.last_name
-                    }
-                })
             }
 
             // code for email update
@@ -98,16 +146,13 @@ const accountController = () => {
                             }
                         })
                     } catch (error) {
-                        console.log(error)
+                        console.error(error);
                     }
                     // console.log(user)
                 } else {
                     res.json({
                         isUpdate: false,
                         message: "Email already exists",
-                        user: {
-                            email
-                        }
                     })
                 }
             }

@@ -181,6 +181,28 @@ module.exports = {
                 }
             }
         }
+        if(userData.hash) {
+            try {
+                const dbResponse = await knex('customer')
+                .where({ user_id: userData.userId })
+                .update({ password: userData.hash })
+                .returning('*');
+                return dbResponse[0];
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        if(userData.newPhone) {
+            try {
+                const dbRespone = await knex('customer')
+                .where({user_id: userData.userId})
+                .update({ phone: userData.newPhone })
+                .returning('*');
+                return dbRespone
+            } catch(error) {
+                console.error(error)
+            }
+        }
     }
 }
 
