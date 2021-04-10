@@ -59,7 +59,7 @@ router.post('/removeCartItem', cartController().removeCartItem);
 router.get('/orders', ensureLoggedIn, orderController().index);
 router.get('/checkout', orderController().checkout);
 router.post('/order', orderController().order);
-router.get('/account', accountController().index);
+router.get('/account', ensureLoggedIn, accountController().index);
 router.post('/edit-profile', accountController().editProfile);
 // 404 router
 // router.get('/404', notFoundController().index);

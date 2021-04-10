@@ -59,6 +59,10 @@ const accountController = () => {
                 const userData = { newPhone, userId }
                 try {
                     const user = await updateProfile(userData);
+                    res.json({
+                        isUpdated: true,
+                        message: "Profile Updated",
+                    })
                 } catch(error) {
                     console.error(error)
                 }

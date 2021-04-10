@@ -1238,7 +1238,7 @@ phoneEditWrapper.addEventListener('submit', /*#__PURE__*/function () {
 
           case 7:
             serverRespone = _context8.sent;
-            console.log(serverRespone);
+            window.location.reload();
             _context8.next = 14;
             break;
 

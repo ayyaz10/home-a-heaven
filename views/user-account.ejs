@@ -34,7 +34,11 @@
             <p class="info-label password-label">Password | <span>Change</span></p>
             <p class="password content">*******</p>
             <p class="info-label phone-label">Phone | <span>Change</span></p>
-            <p class="phone content">03331234567</p>
+            <% if(user.phone) { %> 
+                <p class="phone content"><%= user.phone %></p>
+            <% } else { %>
+                <p class="phone content">Add your phone number.</p>
+            <% } %>
         </div>
         <div class="edit-profile-btn">
             <a href="#" class="btn">Edit Profile</a>
