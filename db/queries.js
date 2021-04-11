@@ -33,7 +33,6 @@ module.exports = {
     },
      async createProduct (productObj, productCategoryObj, subCategoryObj) {
          if(typeof subCategoryObj !== 'undefined') {
-             console.log('helo')
              try {
                  const existingCategory = await knex('product_category')
                  .where({ category_name: productCategoryObj.category_name }).first()
