@@ -72,6 +72,31 @@ textarea {
     padding: .625rem;
 }
 
+.category {
+    position: relative;
+}
+
+.category span {
+    position: absolute;
+    font-size: 14px;
+    right: -140px;
+    color: var(--secondary);
+    cursor: pointer;
+}
+
+.category span:hover {
+    text-decoration: underline;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
 .category_added_message {
     display: none;
 }

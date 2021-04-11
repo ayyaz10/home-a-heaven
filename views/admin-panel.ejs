@@ -33,10 +33,16 @@
                     <label for="count-in-stock">Count in Stock</label>
                     <input type="text" name="prodInStock" id="count-in-stock" class="product-in-stock">
                 </p>
-                <p>
+                <p class="category">
                     <label for="prod-category">Category</label>
-                    <input type="text" name="prodCategory" id="prod-category" class="product-category">
-                </p>
+                    <input type="text" name="prodCategory" id="prod-category" class="product-category"> 
+                    <span>Add Sub Category</span>
+                    <div class="categories-container hide">
+                        <% for(let i = 0; i < categories.length; i++) { %>
+                            <p><input type="radio" name = "category" id="<%= i %>" value="<%= categories[i].category_name %>"><label for="<%= i %>"><%= categories[i].category_name %></label></p>
+                        <% } %>
+                    </div>
+                        </p>
                 <p>
                     <label for="prod-description">Description</label>
                     <textarea name="prodDescription" id="prod-description" class="product-description" rows="2" cols="42"></textarea>

@@ -8,24 +8,55 @@ const productImage = adminPanelFormData[2];
 const stockCount = adminPanelFormData[3];
 const categoryName = adminPanelFormData[4];
 const description = document.querySelector('.product-description');
-console.log(description)
+const categories = document.querySelectorAll('.categories-container p input');
 
+let clickedCategory;
+categories.forEach(category => {
+    category.addEventListener('change', (e) => {
+        clickedCategory = e.target.value;
+    })
+})
 adminPanelAddCategoryInput.addEventListener('n', ()=>{
     categoryAddedMsg.classList.remove('success_response');
     adminPanelAddCategoryInput.value = "";
 })
+
 adminPanelForm.addEventListener('submit', (e)=>{
     e.preventDefault();
+    let productObj = {};
+    let subCategory = {};
+    if(clickedCategory) {
+        // console.log(clickedCategory)
+         productObj = {
+            productname: productName.value,
+            productprice: productPrice.value,
+            // productimage: productImage.value,
+            stockcount: stockCount.value,
+            categoryname: clickedCategory,
+            // subcategory: categoryName.value,
+            description: description.value
+        }
+         subCategory = {
+            subcategoryname: categoryName.value
+        }
+    } else {
+         productObj = {
+            productname: productName.value,
+            productprice: productPrice.value,
+            // productimage: productImage.value,
+            stockcount: stockCount.value,
+            categoryname: categoryName.value,
+            description: description.value
+        }
+    }
+    console.log(productObj)
+
     fetch('http://localhost:3333/product', {
         method: "post",
         headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                productname: productName.value,
-                productprice: productPrice.value,
-                // productimage: productImage.value,
-                stockcount: stockCount.value,
-                categoryname: categoryName.value,
-                description: description.value
+                productObj,
+                subCategory
             })
     }).then(response => {
         return response.json()
@@ -38,4 +69,10 @@ adminPanelForm.addEventListener('submit', (e)=>{
 
 
 
+// subcategory functionality
 
+const addSubCatButton = document.querySelector('.category span');
+const categoriesContainer = document.querySelector('.categories-container');
+addSubCatButton.addEventListener('click', () => {
+    categoriesContainer.classList.toggle('show');
+});

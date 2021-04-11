@@ -31,17 +31,30 @@ module.exports = {
             return user[0];
         });
     },
-     async createProduct (productObj, productCategoryObj) {
-         try {
+     async createProduct (productObj, productCategoryObj, subCategoryObj) {
+        //  console.log(subCategoryObj.sub_cat_name)
+        
+         if(subCategoryObj) {
+            // console.log(subCategoryObj)
+            try {
                 const categoryExist = await knex('product_category').where({
                     category_name: productCategoryObj.category_name
                 })
-                const productExist = await knex('product').where({
+                const productExist = [];
+                 productExist = await knex('product').where({
                     product_name: productObj.product_name
                 })
+                console.log(productExist)
+                const subCategoryExist = await knex('sub_category').where({
+                    sub_cat_name: subCategoryObj.subcategoryname
+                })
+                // console.log(subCategoryExist)
+                // console.log(subCategoryExist)
 
+                // console.log(productExist + " product")
+                // console.log('helo')
 
-                if(!categoryExist.length && !productExist.length) {
+                if(!categoryExist.length && !productExist.length && !subCategoryExist.length) {
                     let dbProductCategory =
                      await knex.insert(productCategoryObj, 'category_id')
                      .into('product_category')
@@ -50,21 +63,75 @@ module.exports = {
                  productObj.category_name = dbProductCategory[0].category_name;
                   await knex.insert(productObj, 'product_id')
                      .into('product')
-
+                    const dbSubCategory = await knex.insert({
+                        sub_cat_name: subCategoryObj.subcategoryname,
+                        cat_id: dbProductCategory[0].category_id
+                    })
+                    .into('sub_category')
+                    .returning('*')
+                    console.log(dbSubCategory)
                 } else if(!productExist.length){
                     await knex.insert(productObj, 'product_id')
                          .into('product')
+                } 
+                if(!subCategoryExist.length) {
+                    const dbSubCategory = await knex.insert({
+                        sub_cat_name: subCategoryObj.subcategoryname,
+                        cat_id: dbProductCategory[0].category_id
+                    })
+                    .into('sub_category')
+                    .returning('*')
                 }
                 if(categoryExist.length && productExist.length) {
                     return {message: 'Product and Category already exist'}
                 } else if(productExist.length) {
                     return {message: 'Product already exist'}
                 } else {
-                    return {message: 'Product added'}
+                    return {
+                        message: 'Product added'
+                    }
                 }
 
          } catch (error) {
-                // console.log(error)
+                console.error(error)
+         }
+         } else {
+            try {
+                    const categoryExist = await knex('product_category').where({
+                        category_name: productCategoryObj.category_name
+                    })
+                    const productExist = await knex('product').where({
+                        product_name: productObj.product_name
+                    })
+
+
+                    if(!categoryExist.length && !productExist.length) {
+                        let dbProductCategory =
+                        await knex.insert(productCategoryObj, 'category_id')
+                        .into('product_category')
+                        .returning('*');
+                    let cat;
+                    productObj.category_name = dbProductCategory[0].category_name;
+                    await knex.insert(productObj, 'product_id')
+                        .into('product')
+
+                    } else if(!productExist.length){
+                        await knex.insert(productObj, 'product_id')
+                            .into('product')
+                    }
+                    if(categoryExist.length && productExist.length) {
+                        return {message: 'Product and Category already exist'}
+                    } else if(productExist.length) {
+                        return {message: 'Product already exist'}
+                    } else {
+                        return {
+                            message: 'Product added'
+                        }
+                    }
+
+            } catch (error) {
+                    // console.log(error)
+            }
          }
     },
     async getAllUsers () {

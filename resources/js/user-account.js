@@ -236,7 +236,9 @@ phoneEditWrapper.addEventListener('submit', async (e) => {
     })
     try {
         const serverRespone = await response.json();
-        window.location.reload();
+        if(serverRespone.isUpdated) {
+            window.location.reload();
+        }
     } catch (error) {
         console.error(error)
     }
