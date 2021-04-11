@@ -27,12 +27,14 @@ adminPanelForm.addEventListener('submit', (e)=>{
     let subCategory = {};
     if(clickedCategory) {
         // console.log(clickedCategory)
+        console.log(categoryName.value)
          productObj = {
             productname: productName.value,
             productprice: productPrice.value,
             // productimage: productImage.value,
             stockcount: stockCount.value,
             categoryname: clickedCategory,
+            subcategoryname: categoryName.value,
             // subcategory: categoryName.value,
             description: description.value
         }
@@ -49,7 +51,7 @@ adminPanelForm.addEventListener('submit', (e)=>{
             description: description.value
         }
     }
-    console.log(productObj)
+    // console.log(productObj)
 
     fetch('http://localhost:3333/product', {
         method: "post",
