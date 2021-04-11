@@ -3,24 +3,23 @@ const { getAllUsers } = require('../../db/queries');
 const admin = async (req, res, next) => {
     try {
         const users = await getAllUsers();
+        // console.log(users.length)
         // users.forEach(user => {
+
             for(let i = 0; i < users.length; i++) {
                 const userId = JSON.parse(req.signedCookies.user_info).user_id;
                 const userRole = JSON.parse(req.signedCookies.user_info).role;
-                if(userId === users[i].user_id && userRole === 'admin') {
-                    return next();
+                if(userId != users[i].user_id && userRole != 'admin') {
+                    return res.redirect('/')
                 } else {
-                    res.redirect('/')
+                    return next();
                 }
 
             }
         // })
     } catch (error) {
-        console.log(res.error)
-        // return res.redirect('/')
+        console.error(error)
     }
-    // console.log(user)
-    // console.log(req.session)
 }
 
 module.exports = admin;

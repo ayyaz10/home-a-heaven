@@ -69,7 +69,7 @@ module.exports = {
     },
     async getAllUsers () {
         // const allCategories = await knex.select('product_category')
-        const allUsers = await knex.select().table('customer')
+        const allUsers = await knex.select("*").table('customer')
         // console.log(allCategories)
         return allUsers;
     },
