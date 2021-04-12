@@ -144,10 +144,22 @@ module.exports = {
         // console.log(allCategories)
         return allCategories;
     },
-    async getAllSubCategories () {
+    async getAllSubCategories (filter) {
+        console.log(filter)
+        if(filter) {
+            // const allSubCategories = await knex.select().table('sub_category').where({
+            //     sub_cat_name: filter.reqQuery
+            // })
+            const allSubCategories = await knex('product').where({
+                sub_cat_name: filter
+            })
+            // console.log(allCategories)
+            return allSubCategories;
+        }
         const allSubCategories = await knex.select().table('sub_category')
         // console.log(allCategories)
         return allSubCategories;
+
     },
     async getAllByCategory (categoryQuery) {
         // const allCategories = await knex.select('product_category')

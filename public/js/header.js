@@ -901,7 +901,7 @@ function _reqByCategory() {
             result = _context.sent;
 
             if (result.isAdded) {
-              window.location.reload();
+              window.location = '/collections/products';
             }
 
           case 7:

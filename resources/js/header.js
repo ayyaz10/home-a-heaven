@@ -25,7 +25,7 @@ async function reqByCategory(categoryName) {
     })
     const result = await response.json();
     if(result.isAdded) {
-        window.location.reload();
+        window.location = '/collections/products'
     }
 }
 

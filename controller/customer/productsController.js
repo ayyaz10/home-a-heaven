@@ -13,6 +13,7 @@ const productsController = () => {
     async collectionOfProducts(req, res) {
       try {
         const categoryQuery = req.session.categorySession.categoryName;
+        // console.log(categoryQuery)
         let products;
         if(req.session.categorySession.isSortQueried) {
           const whichProduct = req.session.categorySession.categoryName;
@@ -22,7 +23,7 @@ const productsController = () => {
 
           req.session.categorySession.isSortQueried = false
         } else if(req.session.categorySession.isFilterQueried){
-          products = await getAllByCategory(req.session.sortProduct.reqQuery.toBeFiltered.filterCategory)
+          products = await getAllSubCategories(req.session.filterProduct.reqQuery)
           req.session.categorySession.isFilterQueried = false
         }else {
           products = await getAllByCategory(categoryQuery);
@@ -36,10 +37,6 @@ const productsController = () => {
           }
         })
         const currentCategory = category[0];
-        // console.log(currentCategory)
-      
-        // console.log(req.session.categorySession.categoryName)
-        // console.log(req.session)
         res.render('products', {
           categories,
           subCategories,
@@ -54,7 +51,7 @@ const productsController = () => {
     },
     async reqByCategory (req, res) {
       const requiredCategory = req.body.categoryName;
-      console.log(requiredCategory)
+      // console.log(requiredCategory)
       if(!req.session.categoryname) {
         req.session.categorySession = {
           categoryName: {},
@@ -73,27 +70,31 @@ const productsController = () => {
     },
 
     async reqBySort (req, res) {
-      if(!req.session.sortProduct) {
-        req.session.sortProduct = {
-          reqQuery: {},
+      if(req.body.toBeFiltered) {
+        if(!req.session.filterProduct) {
+          req.session.filterProduct = {
+            reqQuery: {},
+          }
         }
-      }
-      let sortProduct = req.session.sortProduct;
-      sortProduct.reqQuery = req.body.selectedSort;
-      if(req.body.filter) {
-        req.session.categorySession.categoryName = req.body.toBeFiltered.filterCategory;
+        console.log('hleo')
+        let filterProduct = req.session.filterProduct;
+        filterProduct.reqQuery = req.body.toBeFiltered;
         req.session.categorySession.isFilterQueried = true
       } else {
+        if(!req.session.sortProduct) {
+          req.session.sortProduct = {
+            reqQuery: {},
+          }
+        }
+        let sortProduct = req.session.sortProduct;
+        sortProduct.reqQuery = req.body.selectedSort;
         req.session.categorySession.isSortQueried = true
       }
-      
-      // console.log(req.session)
       res.json({
         isSet: true,
       })
     },
     async searchQuery(req, res) {
-      // console.log(req.query)
       const { product } = req.query;
       const isValidText = () => {
         const validSearchText = typeof product == 'string' && product.trim() != '';

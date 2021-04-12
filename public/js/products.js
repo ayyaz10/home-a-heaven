@@ -860,6 +860,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 // setTimeout(()=>{
 //     clearInterval(myVar)
 // }, 2000)
+// add to cart functionality
 var addToCart = document.querySelectorAll('.add-to-cart');
 var categoryName = document.querySelector('.category-name'); // categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
 
@@ -911,11 +912,7 @@ addToCart.forEach(function (cartBtn) {
 //     })
 // })
 
-var sortSelect = document.querySelectorAll('.sort-select'); // console.log(btn)
-// sortSelect.forEach((each, i) => {
-// console.log(each[i])
-// sortSelect[0][0].innerText = JSON.parse(localStorage.getItem('sort'))
-
+var sortSelect = document.querySelectorAll('.sort-select');
 var index = JSON.parse(localStorage.getItem('selectIndex'));
 
 var _loop = function _loop(i) {
@@ -924,95 +921,182 @@ var _loop = function _loop(i) {
   }
 
   sortSelect[i].addEventListener('change', /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(e) {
       var getSelectedSort, selectedSort, response, result;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
               getSelectedSort = /*#__PURE__*/function () {
-                var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+                var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(e) {
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
                     while (1) {
-                      switch (_context2.prev = _context2.next) {
+                      switch (_context4.prev = _context4.next) {
                         case 0:
                           if (!(e.target.value === 'alpha-asc')) {
-                            _context2.next = 4;
+                            _context4.next = 4;
                             break;
                           }
 
                           localStorage.setItem('selectIndex', JSON.stringify(1));
                           console.log(i);
-                          return _context2.abrupt("return", {
+                          return _context4.abrupt("return", {
                             order: 'asc',
                             column: 'product_name'
                           });
 
                         case 4:
                           if (!(e.target.value === 'alpha-desc')) {
-                            _context2.next = 7;
+                            _context4.next = 7;
                             break;
                           }
 
                           localStorage.setItem('selectIndex', JSON.stringify(2));
-                          return _context2.abrupt("return", {
+                          return _context4.abrupt("return", {
                             order: 'desc',
                             column: 'product_name'
                           });
 
                         case 7:
                           if (!(e.target.value === 'price-asc')) {
-                            _context2.next = 10;
+                            _context4.next = 10;
                             break;
                           }
 
                           localStorage.setItem('selectIndex', JSON.stringify(3));
-                          return _context2.abrupt("return", {
+                          return _context4.abrupt("return", {
                             order: 'asc',
                             column: 'price'
                           });
 
                         case 10:
                           if (!(e.target.value === 'price-desc')) {
-                            _context2.next = 13;
+                            _context4.next = 13;
                             break;
                           }
 
                           localStorage.setItem('selectIndex', JSON.stringify(4));
-                          return _context2.abrupt("return", {
+                          return _context4.abrupt("return", {
                             order: 'desc',
                             column: 'price'
                           });
 
                         case 13:
                           if (!(e.target.value === 'date-desc')) {
-                            _context2.next = 16;
+                            _context4.next = 16;
                             break;
                           }
 
                           localStorage.setItem('selectIndex', JSON.stringify(5));
-                          return _context2.abrupt("return", {
+                          return _context4.abrupt("return", {
                             order: 'desc',
                             column: 'created_at'
                           });
 
                         case 16:
                           if (!(e.target.value === 'date-asc')) {
-                            _context2.next = 22;
+                            _context4.next = 21;
                             break;
                           }
 
-                          console.log(e.target);
                           localStorage.setItem('selectIndex', JSON.stringify(6));
-                          return _context2.abrupt("return", {
+                          return _context4.abrupt("return", {
                             order: 'asc',
                             column: 'created_at'
                           });
 
-                        case 22:
-                          return _context2.abrupt("return", false);
+                        case 21:
+                          return _context4.abrupt("return", false);
 
-                        case 23:
+                        case 22:
+                        case "end":
+                          return _context4.stop();
+                      }
+                    }
+                  }, _callee4);
+                }));
+
+                return function getSelectedSort(_x5) {
+                  return _ref5.apply(this, arguments);
+                };
+              }();
+
+              _context5.next = 3;
+              return getSelectedSort(e);
+
+            case 3:
+              selectedSort = _context5.sent;
+
+              if (!selectedSort) {
+                _context5.next = 12;
+                break;
+              }
+
+              _context5.next = 7;
+              return fetch('http://localhost:3333/sort', {
+                method: "post",
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  selectedSort: selectedSort
+                })
+              });
+
+            case 7:
+              response = _context5.sent;
+              _context5.next = 10;
+              return response.json();
+
+            case 10:
+              result = _context5.sent;
+
+              if (result.isSet) {
+                window.location.reload();
+              }
+
+            case 12:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }));
+
+    return function (_x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }());
+};
+
+for (var i = 0; i < sortSelect.length; i++) {
+  _loop(i);
+}
+
+var filterSelect = document.querySelectorAll('.filter-select');
+
+for (var _i = 0; _i < filterSelect.length; _i++) {
+  if (index) {// sortSelect[i][index].setAttribute('selected', true)
+  }
+
+  filterSelect[_i].addEventListener('change', /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+      var getSelectFilter, toBeFiltered, response, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              getSelectFilter = /*#__PURE__*/function () {
+                var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+                    while (1) {
+                      switch (_context2.prev = _context2.next) {
+                        case 0:
+                          return _context2.abrupt("return", e.target.value);
+
+                        case 1:
                         case "end":
                           return _context2.stop();
                       }
@@ -1020,18 +1104,18 @@ var _loop = function _loop(i) {
                   }, _callee2);
                 }));
 
-                return function getSelectedSort(_x3) {
+                return function getSelectFilter(_x3) {
                   return _ref3.apply(this, arguments);
                 };
               }();
 
               _context3.next = 3;
-              return getSelectedSort(e);
+              return getSelectFilter(e);
 
             case 3:
-              selectedSort = _context3.sent;
+              toBeFiltered = _context3.sent;
 
-              if (!selectedSort) {
+              if (!toBeFiltered) {
                 _context3.next = 12;
                 break;
               }
@@ -1045,7 +1129,7 @@ var _loop = function _loop(i) {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  selectedSort: selectedSort
+                  toBeFiltered: toBeFiltered
                 })
               });
 
@@ -1073,10 +1157,6 @@ var _loop = function _loop(i) {
       return _ref2.apply(this, arguments);
     };
   }());
-};
-
-for (var i = 0; i < sortSelect.length; i++) {
-  _loop(i);
 } // })
 // const filterBtn = document.querySelector('.filter-btn')
 // filterBtn.addEventListener('click', async ()=>{

@@ -6,6 +6,8 @@
 //     clearInterval(myVar)
 // }, 2000)
 
+
+// add to cart functionality
 const addToCart = document.querySelectorAll('.add-to-cart');
 const categoryName = document.querySelector('.category-name');
 // categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
@@ -39,10 +41,6 @@ addToCart.forEach(cartBtn => {
 // })
 
 const sortSelect = document.querySelectorAll('.sort-select');
-// console.log(btn)
-// sortSelect.forEach((each, i) => {
-    // console.log(each[i])
-    // sortSelect[0][0].innerText = JSON.parse(localStorage.getItem('sort'))
     const index = JSON.parse(localStorage.getItem('selectIndex'))
     for(let i = 0; i < sortSelect.length; i++) {
         if(index) {
@@ -87,7 +85,6 @@ const sortSelect = document.querySelectorAll('.sort-select');
             }
         }
         if(e.target.value === 'date-asc') {
-            console.log(e.target)
             localStorage.setItem('selectIndex', JSON.stringify(6));
             return {
                 order: 'asc',
@@ -98,6 +95,7 @@ const sortSelect = document.querySelectorAll('.sort-select');
         }
     }
     const selectedSort = await getSelectedSort(e);
+    // console.log(selectedSort)
     if(selectedSort) {
         const response = await fetch('http://localhost:3333/sort', {
             method: "post",
@@ -115,6 +113,42 @@ const sortSelect = document.querySelectorAll('.sort-select');
     }
 })
 }
+
+
+const filterSelect = document.querySelectorAll('.filter-select');
+
+for(let i = 0; i < filterSelect.length; i++) {
+    if(index) {
+        // sortSelect[i][index].setAttribute('selected', true)
+    }
+
+    filterSelect[i].addEventListener('change', async (e) => {
+        const getSelectFilter = async(e) => {
+            return e.target.value;
+        }
+        const toBeFiltered = await getSelectFilter(e)
+        if(toBeFiltered) {
+            const response = await fetch('http://localhost:3333/sort', {
+                method: "post",
+                mode: 'cors',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    toBeFiltered
+                })
+             })
+             const result = await response.json();
+             if(result.isSet) {
+                 window.location.reload();
+             }
+        }
+    })
+
+
+}
+
+
+
 // })
 
 
