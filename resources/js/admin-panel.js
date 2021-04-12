@@ -21,7 +21,7 @@ adminPanelAddCategoryInput.addEventListener('n', ()=>{
     adminPanelAddCategoryInput.value = "";
 })
 
-adminPanelForm.addEventListener('submit', (e)=>{
+adminPanelForm.addEventListener('submit', async (e)=>{
     e.preventDefault();
     let productObj = {};
     let subCategory = {};
@@ -52,21 +52,24 @@ adminPanelForm.addEventListener('submit', (e)=>{
         }
     }
     // console.log(productObj)
-
-    fetch('http://localhost:3333/product', {
+try {
+    const res = await fetch('http://localhost:3333/product', {
         method: "post",
         headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 productObj,
                 subCategory
             })
-    }).then(response => {
-        return response.json()
-    }).then(isValid => {
-        if(isValid) {
-            // categoryAddedMsg.classList.add('success_response');
-        }
-    }).catch(err => console.log(err))
+    })
+    const response = await res.json();
+    console.log(response)
+    if(response.isUpdated) {
+        alert(`${response.status.dbProduct[0].product_name} has been added!`)
+        window.location.reload();
+    }
+} catch (error) {
+    console.error(error)
+}
 })
 
 

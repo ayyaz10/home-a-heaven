@@ -1,6 +1,14 @@
 
 /* footer style */
 
+html,
+body {
+   margin:0; /* removes any margin (especially at the bottom) */
+   padding:0; /* removes any padding (especially at the bottom) */
+   height:100%; /* will make it expand to the end */
+   /* background: green; */
+}
+
 #footer {
     background-color: var(--primary);
     margin-top: auto;

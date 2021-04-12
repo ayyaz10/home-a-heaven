@@ -5,6 +5,7 @@
 
 .content-section {
     display: flex;
+    height: 100%;
     background-color: var(--primary-nav);
 }
 
@@ -119,9 +120,6 @@
 .show {
     display: block;
 }
-
-
-
 
 /* modal */
 

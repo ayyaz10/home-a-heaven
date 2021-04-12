@@ -13,6 +13,12 @@ li {
 a {
     text-decoration: none;
 }
+body {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    width: 100%;
+}
 
 /* header style */
 .header_container {
@@ -23,7 +29,7 @@ a {
     max-width: 80rem;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
 .main_header .logo {

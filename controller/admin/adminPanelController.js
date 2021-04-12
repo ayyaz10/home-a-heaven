@@ -8,6 +8,12 @@ const adminPanelController = () => {
         categories
       });
     },
+    async manageProduct (req, res) {
+      const categories = await getAllCategories();
+      res.render('admin-panel', {
+        categories
+      });
+    },
     async product (req, res) {
       // const { productname, productprice, stockcount, categoryname, description } = req.body;
       const { productObj, subCategory } = req.body;

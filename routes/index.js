@@ -2,6 +2,7 @@
 // const reqByCategory = require('../controller/customer/reqByCategory');
 
 const orderStatus = require('../controller/admin/adminOrderController');
+const adminManageProduct = require('../controller/admin/adminManageProduct');
 const adminOrderController = require('../controller/admin/adminOrderController');
 const orderController = require('../controller/customer/orderController');
 const ensureLoggedIn = require('../controller/middlewares/ensureLoggedIn');
@@ -49,6 +50,8 @@ router.post('/addToCart', cartController().addToCart);
 
 // admin controllers
 router.get('/adminPanel', admin, adminPanelController().index);
+router.get('/manage-product', admin, adminManageProduct().index);
+// router.get('/manage-product', adminManageProduct().index);
 router.post('/product', adminPanelController().product);
 
 
