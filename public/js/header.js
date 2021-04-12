@@ -901,6 +901,7 @@ function _reqByCategory() {
             result = _context.sent;
 
             if (result.isAdded) {
+              localStorage.removeItem('selectIndex');
               window.location = '/collections/products';
             }
 

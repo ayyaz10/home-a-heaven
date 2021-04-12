@@ -25,6 +25,7 @@ async function reqByCategory(categoryName) {
     })
     const result = await response.json();
     if(result.isAdded) {
+        localStorage.removeItem('selectIndex')
         window.location = '/collections/products'
     }
 }

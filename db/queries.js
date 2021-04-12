@@ -139,21 +139,14 @@ module.exports = {
         return allProducts;
     },
     async getAllCategories () {
-        // const allCategories = await knex.select('product_category')
         const allCategories = await knex.select().table('product_category')
-        // console.log(allCategories)
         return allCategories;
     },
     async getAllSubCategories (filter) {
-        console.log(filter)
         if(filter) {
-            // const allSubCategories = await knex.select().table('sub_category').where({
-            //     sub_cat_name: filter.reqQuery
-            // })
             const allSubCategories = await knex('product').where({
                 sub_cat_name: filter
             })
-            // console.log(allCategories)
             return allSubCategories;
         }
         const allSubCategories = await knex.select().table('sub_category')
@@ -162,21 +155,16 @@ module.exports = {
 
     },
     async getAllByCategory (categoryQuery) {
-        // const allCategories = await knex.select('product_category')
-        // const allCategories = await knex.select().table('product_category')
         const allItems = await knex('product').where({
             category_name: categoryQuery
         })
-        // console.log(allItems)
         return allItems;
         // return allCategories;
     },
     async getAllBySort (whichProduct, whichSort, whichColumn) {
-        // console.log(whichSort, whichColumn, whichProduct)
         const allItems = await knex.select().table('product').orderBy(whichColumn, whichSort).where({
             category_name: whichProduct
         })
-        // console.log(allItems)
         return allItems;
     },
     async createOrder (order) {

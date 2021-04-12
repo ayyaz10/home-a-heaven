@@ -1078,9 +1078,6 @@ for (var i = 0; i < sortSelect.length; i++) {
 var filterSelect = document.querySelectorAll('.filter-select');
 
 for (var _i = 0; _i < filterSelect.length; _i++) {
-  if (index) {// sortSelect[i][index].setAttribute('selected', true)
-  }
-
   filterSelect[_i].addEventListener('change', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
       var getSelectFilter, toBeFiltered, response, result;
@@ -1115,7 +1112,7 @@ for (var _i = 0; _i < filterSelect.length; _i++) {
             case 3:
               toBeFiltered = _context3.sent;
 
-              if (!toBeFiltered) {
+              if (!(toBeFiltered !== 'filter')) {
                 _context3.next = 12;
                 break;
               }

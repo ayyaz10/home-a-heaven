@@ -118,16 +118,12 @@ const sortSelect = document.querySelectorAll('.sort-select');
 const filterSelect = document.querySelectorAll('.filter-select');
 
 for(let i = 0; i < filterSelect.length; i++) {
-    if(index) {
-        // sortSelect[i][index].setAttribute('selected', true)
-    }
-
     filterSelect[i].addEventListener('change', async (e) => {
         const getSelectFilter = async(e) => {
             return e.target.value;
         }
         const toBeFiltered = await getSelectFilter(e)
-        if(toBeFiltered) {
+        if(toBeFiltered !== 'filter') {
             const response = await fetch('http://localhost:3333/sort', {
                 method: "post",
                 mode: 'cors',
@@ -143,8 +139,6 @@ for(let i = 0; i < filterSelect.length; i++) {
              }
         }
     })
-
-
 }
 
 
