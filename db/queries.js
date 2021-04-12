@@ -45,7 +45,7 @@ module.exports = {
                     let cat = await knex.insert(productObj, 'product_id')
                     .into('product')
                     .returning("*")
-                    console.log(cat)
+                    // console.log(cat)
 
                     let dbSubCategory =
                     await knex.insert({
@@ -144,6 +144,11 @@ module.exports = {
         // console.log(allCategories)
         return allCategories;
     },
+    async getAllSubCategories () {
+        const allSubCategories = await knex.select().table('sub_category')
+        // console.log(allCategories)
+        return allSubCategories;
+    },
     async getAllByCategory (categoryQuery) {
         // const allCategories = await knex.select('product_category')
         // const allCategories = await knex.select().table('product_category')
@@ -155,7 +160,7 @@ module.exports = {
         // return allCategories;
     },
     async getAllBySort (whichProduct, whichSort, whichColumn) {
-        console.log(whichSort, whichColumn, whichProduct)
+        // console.log(whichSort, whichColumn, whichProduct)
         const allItems = await knex.select().table('product').orderBy(whichColumn, whichSort).where({
             category_name: whichProduct
         })
@@ -197,7 +202,7 @@ module.exports = {
     async updateStatus(orderId, status) {
         const result = await knex('shipping_detail').where({order_id: orderId}).update('order_status', status)
         
-        console.log(result)
+        // console.log(result)
         return result;
     },
     async searchProduct (searchText) {
@@ -235,7 +240,7 @@ module.exports = {
                 return dbRespone[0];
             } catch (error) {
                 if(error.constraint) {
-                    console.log('erroe')
+                    console.error(error)
                 }
             }
         }

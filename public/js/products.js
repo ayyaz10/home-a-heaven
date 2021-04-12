@@ -861,8 +861,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //     clearInterval(myVar)
 // }, 2000)
 var addToCart = document.querySelectorAll('.add-to-cart');
-var categoryName = document.querySelector('.category-name');
-categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
+var categoryName = document.querySelector('.category-name'); // categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
+
 addToCart.forEach(function (cartBtn) {
   cartBtn.addEventListener('click', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {

@@ -856,6 +856,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var categories = document.querySelectorAll('.categories-section-row .category');
 categories.forEach(function (category) {
   category.addEventListener('click', function (e) {
+    e.preventDefault();
     var categoryContainer = e.target.parentElement.firstElementChild.innerText;
     console.log(categoryContainer); // adding category data to localstorage
 
@@ -871,7 +872,7 @@ function reqByCategory(_x) {
 
 function _reqByCategory() {
   _reqByCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(categoryName) {
-    var response, result;
+    var res, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -890,14 +891,18 @@ function _reqByCategory() {
             });
 
           case 2:
-            response = _context.sent;
+            res = _context.sent;
             _context.next = 5;
-            return response.json();
+            return res.json();
 
           case 5:
-            result = _context.sent;
+            response = _context.sent;
 
-          case 6:
+            if (response.isAdded) {
+              window.location = 'collections/products';
+            }
+
+          case 7:
           case "end":
             return _context.stop();
         }

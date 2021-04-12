@@ -2,6 +2,7 @@ const categories = document.querySelectorAll('.categories-section-row .category'
 
 categories.forEach(category => {
     category.addEventListener('click', (e) => {
+        e.preventDefault();
         const categoryContainer = e.target.parentElement.firstElementChild.innerText;
         console.log(categoryContainer)
         // adding category data to localstorage
@@ -12,7 +13,7 @@ categories.forEach(category => {
 })
 
 async function reqByCategory(categoryName) {
-    const response = await fetch('http://localhost:3333/req-by-category', {
+    const res = await fetch('http://localhost:3333/req-by-category', {
         method: "post",
         mode: 'cors',
         credentials: 'include',
@@ -21,5 +22,8 @@ async function reqByCategory(categoryName) {
             categoryName
         })
     })
-    const result = await response.json();
+    const response = await res.json();
+    if(response.isAdded) {
+        window.location = 'collections/products';
+    }
 }

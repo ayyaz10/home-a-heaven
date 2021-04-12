@@ -1,4 +1,4 @@
-const { getAllProducts, getAllCategories, getAllByCategory, getAllBySort, searchProduct } = require('../../db/queries');
+const { getAllProducts, getAllCategories, getAllSubCategories, getAllByCategory, getAllBySort, searchProduct } = require('../../db/queries');
 
 
 const productsController = () => {
@@ -6,14 +6,12 @@ const productsController = () => {
     async index(req, res) {
       const categories = await getAllCategories();
       // console.log(categories)
-      console.log(req.session)
       res.render('collections', {
         categories
       })
     },
     async collectionOfProducts(req, res) {
       try {
-        console.log(req.session)
         const categoryQuery = req.session.categorySession.categoryName;
         let products;
         if(req.session.categorySession.isSortQueried) {
@@ -30,8 +28,22 @@ const productsController = () => {
           products = await getAllByCategory(categoryQuery);
         }
         const categories = await getAllCategories();
+        const subCategories = await getAllSubCategories();
+        // console.log(categories)
+        const category = categories.filter(category => {
+          if(category.category_name === req.session.categorySession.categoryName) {
+            return category
+          }
+        })
+        const currentCategory = category[0];
+        // console.log(currentCategory)
+      
+        // console.log(req.session.categorySession.categoryName)
+        // console.log(req.session)
         res.render('products', {
           categories,
+          subCategories,
+          currentCategory,
           products
         })
       } catch (error) {
@@ -41,8 +53,8 @@ const productsController = () => {
 
     },
     async reqByCategory (req, res) {
-
       const requiredCategory = req.body.categoryName;
+      console.log(requiredCategory)
       if(!req.session.categoryname) {
         req.session.categorySession = {
           categoryName: {},
@@ -55,12 +67,12 @@ const productsController = () => {
       categorySession.isSortQueried = false;
       categorySession.isFilterQueried = false
       res.json({
-        message: 'category added added'
+        message: 'category added added',
+        isAdded: true
       })
     },
+
     async reqBySort (req, res) {
-      // console.log(req.body)
-      // console.log(req.body.toBeFiltered)
       if(!req.session.sortProduct) {
         req.session.sortProduct = {
           reqQuery: {},
@@ -81,7 +93,7 @@ const productsController = () => {
       })
     },
     async searchQuery(req, res) {
-      console.log(req.query)
+      // console.log(req.query)
       const { product } = req.query;
       const isValidText = () => {
         const validSearchText = typeof product == 'string' && product.trim() != '';

@@ -858,16 +858,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var headerMenu = document.querySelectorAll('.main-menu li');
 headerMenu.forEach(function (li) {
   li.addEventListener('click', function (e) {
-    // e.preventDefault();
-    var categoryContainer = e.target.innerText; // console.log(categoryContainer)
-
-    console.log(e.target.innerText);
-    var categoryName = document.querySelector('.category-name'); // console.log(categoryName)
-    // adding category data to localstorage
+    e.preventDefault();
+    var categoryContainer = e.target.innerText;
+    var categoryName = document.querySelector('.category-name'); // adding category data to localstorage
 
     var categoryArray = JSON.parse(localStorage.getItem('categoryArray')) || " ";
-    localStorage.setItem('categoryArray', JSON.stringify(categoryContainer)); // JSON.parse(localStorage.getItem('categoryArray'))
-
+    localStorage.setItem('categoryArray', JSON.stringify(categoryContainer));
     reqByCategory(e.target.innerText);
   });
 });
@@ -904,7 +900,11 @@ function _reqByCategory() {
           case 5:
             result = _context.sent;
 
-          case 6:
+            if (result.isAdded) {
+              window.location.reload();
+            }
+
+          case 7:
           case "end":
             return _context.stop();
         }

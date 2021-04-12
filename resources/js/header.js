@@ -3,16 +3,12 @@
 const headerMenu  = document.querySelectorAll('.main-menu li');
 headerMenu.forEach(li => {
     li.addEventListener('click', (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         const categoryContainer = e.target.innerText;
-        // console.log(categoryContainer)
-        console.log(e.target.innerText)
         const categoryName = document.querySelector('.category-name')
-        // console.log(categoryName)
     // adding category data to localstorage
         let categoryArray = JSON.parse(localStorage.getItem('categoryArray')) || " ";
         localStorage.setItem('categoryArray', JSON.stringify(categoryContainer));
-        // JSON.parse(localStorage.getItem('categoryArray'))
         reqByCategory(e.target.innerText)
     })
 })
@@ -28,6 +24,9 @@ async function reqByCategory(categoryName) {
         })
     })
     const result = await response.json();
+    if(result.isAdded) {
+        window.location.reload();
+    }
 }
 
 const logoutHeader  = document.querySelector('#logout');

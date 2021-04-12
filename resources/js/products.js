@@ -8,7 +8,7 @@
 
 const addToCart = document.querySelectorAll('.add-to-cart');
 const categoryName = document.querySelector('.category-name');
-categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
+// categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
 addToCart.forEach(cartBtn => {
     cartBtn.addEventListener('click', async (e) => {
         let product = await JSON.parse(cartBtn.dataset.product);
