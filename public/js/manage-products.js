@@ -920,6 +920,83 @@ deleteButton.forEach(function (eachButton) {
       return _ref.apply(this, arguments);
     };
   }());
+}); // edit product
+
+var editButton = document.querySelectorAll('.edit-product');
+editButton.forEach(function (eachButton) {
+  eachButton.addEventListener('click', /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+      var modal, span, productId, res, response, product, editProductForm, textArea;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              // Get the modal
+              modal = document.getElementById("myModal"); // Get the <span> element that closes the modal
+
+              span = document.getElementsByClassName("close")[0]; // When the user clicks the button, open the modal 
+
+              modal.style.display = "block"; // When the user clicks on <span> (x), close the modal
+
+              span.onclick = function () {
+                modal.style.display = "none";
+                window.location.reload();
+              }; // When the user clicks anywhere outside of the modal, close it
+
+
+              window.onclick = function (event) {
+                if (event.target == modal) {
+                  window.location.reload();
+                }
+              };
+
+              productId = e.target.getAttribute("data-productid-type");
+              _context2.next = 8;
+              return fetch('http://localhost:3333/edit-product', {
+                method: "post",
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  productId: productId
+                })
+              });
+
+            case 8:
+              res = _context2.sent;
+              _context2.next = 11;
+              return res.json();
+
+            case 11:
+              response = _context2.sent;
+
+              if (response.haveProduct) {
+                product = response.product;
+                console.log(product.sub_cat_name);
+                editProductForm = document.querySelectorAll('.edit-product-form input');
+                textArea = document.querySelector('.product-description');
+                editProductForm[0].value = product.product_name;
+                editProductForm[1].value = product.price;
+                editProductForm[3].value = product.inStock;
+                editProductForm[4].value = product.category_name;
+                editProductForm[5].value = product.sub_cat_name;
+                textArea.value = product.product_description;
+              }
+
+            case 13:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }());
 });
 })();
 

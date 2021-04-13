@@ -51,6 +51,7 @@ router.post('/addToCart', cartController().addToCart);
 // admin controllers
 router.get('/adminPanel', admin, adminPanelController().index);
 router.get('/manage-product', admin, adminManageProduct().index);
+router.post('/edit-product', admin, adminManageProduct().editProduct);
 router.post('/delete-product', admin, adminManageProduct().deleteProduct);
 // router.get('/manage-product', adminManageProduct().index);
 router.post('/product', adminPanelController().product);

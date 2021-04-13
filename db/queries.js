@@ -26,6 +26,11 @@ module.exports = {
             user_id: userId
         }).first();
     },
+    getOneProductById: function(productId) {
+        return knex('product').where({
+            product_id: productId
+        }).first();
+    },
     create: function(user) {
             return knex('customer').insert(user, 'user_id').returning('*').then(user => {
             return user[0];
@@ -138,11 +143,9 @@ module.exports = {
         // console.log(allCategories)
         return allUsers;
     },
-    getAllProducts () {
-        const allProducts = knex.select('*').from('product')
-        .then(result => {
-            return result;
-        })
+    async getAllProducts () {
+        const allProducts = await knex.select('*').from('product').orderBy('created_at', 'desc')
+
         return allProducts;
     },
     async getAllCategories () {

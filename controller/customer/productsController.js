@@ -85,7 +85,6 @@ const productsController = () => {
             reqFilterQuery: {},
           }
         }
-        console.log('hleo')
         let filterProduct = req.session.filterProduct;
         filterProduct.reqFilterQuery = req.body.toBeFiltered;
         req.session.categorySession.isFilterQueried = true

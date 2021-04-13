@@ -121,3 +121,134 @@ table.table {
   }
   
 
+
+
+  /* modal styleing */
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+  /* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 10px 20px 25px 20px;
+    border: 1px solid #888;
+    width: 55%;
+    /* height: 160px; */
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+/* add category Form #START */
+
+.section-container {
+  max-width: 26.25rem;
+  width: 100%;
+  /* margin: 0rem auto; */
+  /* position: relative; */
+  background-color: #fff;
+  padding: 40px 0 40px 10px;
+}
+
+.edit-product-heading {
+  color: var(--primary);
+   /* text-align: center; */
+   font-size: 1.5625rem; /* 25px */
+   font-weight: 500;
+   padding: 0 0 .9375rem 0;
+}
+
+#editProductForm {
+  margin: 0 auto;
+  width: 100%;
+}
+
+#editProductForm p {
+  display: flex;
+}
+
+#editProductForm label {
+  flex: 1;
+}
+
+#editProductForm input {
+  color: var(--primary);
+  flex: 2;
+  margin-bottom: 0.3125rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.8125rem;
+  border: 1px solid var(--primary-border);
+}
+
+#editProductForm p:last-child input{
+  flex: 0;
+  /* padding: 0px 40px; */
+  margin: 0.9375rem 0 0 0;
+  padding: 0.6rem 10.6rem;
+  background-color: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+#editProductForm p {
+  color: var(--primary);
+  position: relative;
+}
+
+textarea {
+  color: var(--primary);
+  padding: .625rem;
+}
+
+.category {
+  position: relative;
+}
+
+.category span {
+  position: absolute;
+  font-size: 14px;
+  right: -140px;
+  color: var(--secondary);
+  cursor: pointer;
+}
+
+.category span:hover {
+  text-decoration: underline;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
