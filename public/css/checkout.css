@@ -5,6 +5,7 @@
 
 .main-container {
     margin: 2.0375rem auto;
+    width: 100%;
     max-width: 73.75em;
     display: flex;
     justify-content: space-between;

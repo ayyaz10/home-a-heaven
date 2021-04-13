@@ -9,13 +9,71 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <link rel="stylesheet" href="css/manage-products.css">
-    <script src="js/orders.js" defer></script>
+    <script src="js/manage-products.js" defer></script>
     <script src="js/header.js" defer></script>
     <title>Products</title>
 </head>
 <body>
     <%- include('header'); -%>
-d
-    <%- include('footer'); -%>
+    <section class="content-section">
+        <section class="left-panel">
+            <h2>Dashboard</h2>
+            <li><a href="/manage-product">Manage Products</a></li>
+            <li><a href="/adminOrders">Customer Orders</a></li>
+            <!-- <li><a href="#">Address Book</a></li> -->
+        </section>
+        <section class="product-container">
+            <h1>Products</h1>
+            <div class="add-product">
+                <a href="/adminPanel">add product</a>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Sub Category</th>
+                        <th>Price (Pkr)</th>
+                        <th>Quantity</th>
+                        <th>Discount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i = 0; i < allProducts.length; i++) { %> 
+                        <tr>
+                            <td>
+                                <img src=<%- `/assets/${allProducts[i].image}` %>>
+                            </td>
+                            <td>
+                                <%- allProducts[i].product_name %>
+                            </td>
+                            <td>
+                                <%- allProducts[i].category_name %>
+                            </td>
+                            <td>
+                                <%- allProducts[i].sub_cat_name %>
+                            </td>
+                            <td>
+                                <%- allProducts[i].price %>
+                            </td>
+                            <td>
+                                <%- allProducts[i].inStock %>
+                            </td>
+                            <td>
+                                <%- allProducts[i].discount %>
+                            </td>
+                            <td>
+                                <span class="edit-product" data-productid-type="<%- allProducts[i].product_id %> "> Edit </span>     
+                                <span class="delete-product" data-productid-type="<%- allProducts[i].product_id %>" > Delete </span>    
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </tr>
+            </table>
+        </section>
+    </section>
 </body>
 </html>

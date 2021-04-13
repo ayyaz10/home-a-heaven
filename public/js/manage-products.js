@@ -841,9 +841,9 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!**************************************!*\
-  !*** ./resources/js/admin-orders.js ***!
-  \**************************************/
+/*!*****************************************!*\
+  !*** ./resources/js/manage-products.js ***!
+  \*****************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
@@ -853,114 +853,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var select = document.querySelectorAll('.order-status-options');
-select.forEach(function (each) {
-  each.addEventListener('change', /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-      var getOrderStatus, clientStatus, response, serverResponse;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              getOrderStatus = /*#__PURE__*/function () {
-                var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-                  var orderId;
-                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-                    while (1) {
-                      switch (_context.prev = _context.next) {
-                        case 0:
-                          // console.log(e.target.parentElement.parentElement.firstElementChild.firstElementChild.innerText)
-                          orderId = parseInt(e.target.parentElement.parentElement.firstElementChild.firstElementChild.innerText);
-
-                          if (!(e.target.value === 'placed')) {
-                            _context.next = 3;
-                            break;
-                          }
-
-                          return _context.abrupt("return", {
-                            status: 'placed',
-                            order_id: orderId
-                          });
-
-                        case 3:
-                          if (!(e.target.value === 'confirmed')) {
-                            _context.next = 5;
-                            break;
-                          }
-
-                          return _context.abrupt("return", {
-                            status: 'confirmed',
-                            order_id: orderId
-                          });
-
-                        case 5:
-                          if (!(e.target.value === 'delivered')) {
-                            _context.next = 7;
-                            break;
-                          }
-
-                          return _context.abrupt("return", {
-                            status: 'delivered',
-                            order_id: orderId
-                          });
-
-                        case 7:
-                        case "end":
-                          return _context.stop();
-                      }
-                    }
-                  }, _callee);
-                }));
-
-                return function getOrderStatus(_x2) {
-                  return _ref2.apply(this, arguments);
-                };
-              }();
-
-              _context2.next = 3;
-              return getOrderStatus(e);
-
-            case 3:
-              clientStatus = _context2.sent;
-              _context2.next = 6;
-              return fetch('http://localhost:3333/order-status', {
-                method: "post",
-                mode: 'cors',
-                credentials: 'include',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                  clientStatus: clientStatus
-                })
-              });
-
-            case 6:
-              response = _context2.sent;
-              _context2.next = 9;
-              return response.json();
-
-            case 9:
-              serverResponse = _context2.sent;
-
-              // console.log(serverResponse, clientStatus)
-              if (serverResponse.dbStatus === 1) {
-                console.log(e.target[1].innerText); // e.target[1].innerText = serverResponse.dbStatus
-              }
-
-            case 11:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }());
-});
 var leftPanel = document.querySelector('.left-panel'); // const header = document.querySelector('.main_header')
 // let headerHeight = header.offsetHeight;
 
@@ -970,37 +862,65 @@ window.onscroll = function (e) {
   } else {
     leftPanel.style.top = "initial";
   }
-};
-
-var logoutHeader = document.querySelector('#logout');
-var loginHeader = document.querySelector('#login');
-var userId = JSON.parse(localStorage.getItem('user_id'));
-var logoutButton = document.querySelector('.logout');
-logoutButton.addEventListener('click', function (e) {
-  e.preventDefault();
-
-  function logout() {
-    localStorage.removeItem('user_id');
-    fetch('http://localhost:3333/logout').then(function (res) {
-      return res.json();
-    }).then(function (result) {
-      console.log(result);
-      window.location = "http://localhost:3333/";
-    });
-  } // const result = await response.json();
+}; // delete product
 
 
-  logout();
+var deleteButton = document.querySelectorAll('.delete-product');
+deleteButton.forEach(function (eachButton) {
+  eachButton.addEventListener('click', /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+      var productName, isConfirm, productId, res, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              productName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText;
+              isConfirm = confirm("Are you sure to delete the product ".concat(productName));
+
+              if (!isConfirm) {
+                _context.next = 11;
+                break;
+              }
+
+              productId = e.target.getAttribute("data-productid-type");
+              _context.next = 6;
+              return fetch('http://localhost:3333/delete-product', {
+                method: "post",
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  productId: productId
+                })
+              });
+
+            case 6:
+              res = _context.sent;
+              _context.next = 9;
+              return res.json();
+
+            case 9:
+              response = _context.sent;
+
+              if (response.dbResponse.isDeleted) {
+                window.location.reload();
+              }
+
+            case 11:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
 });
-
-if (userId) {
-  loginHeader.style.display = "none";
-  logoutHeader.style.display = "block";
-} else {
-  logoutHeader.style.display = "none";
-}
-
-console.log(loginHeader);
 })();
 
 /******/ })()

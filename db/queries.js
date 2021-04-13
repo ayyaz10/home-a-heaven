@@ -273,6 +273,23 @@ module.exports = {
                 console.error(error)
             }
         }
-    }
+    },
+    async deleteProduct(productId) {
+        try {
+            await knex('product')
+            .where('product_id', productId)
+            .del()
+            return {
+                message: "Product deleted!",
+                isDeleted: true
+            }
+        } catch (error) {
+            console.error(error)
+            return {
+                message: "Something went wrong!",
+                isDeleted: false
+            }
+        }
+    },
 }
 

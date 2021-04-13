@@ -1,6 +1,19 @@
 @import './_variables.css';
 @import './_header.css';
 @import './_footer.css';
+
+.delete-product, .edit-product {
+  cursor: pointer;
+  color: var(--secondary);
+  margin-left: 10px;
+}
+
+
+.delete-product:hover, .edit-product:hover {
+  text-decoration: underline;
+}
+
+
 .main-container {
     margin: 2.0375rem auto;
     max-width: 73.75em;
@@ -8,3 +21,103 @@
     justify-content: space-between;
     /* flex-direction: column; */
 }
+
+.content-section {
+  display: flex;
+  height: 100%;
+  padding-bottom: 100px;
+}
+
+.content-section img {
+  width: 50px;
+  height: 70px;
+}
+
+/* left panel style */
+.left-panel {
+  position: fixed;
+  height: 100%;
+  padding: 20px 0px 0px 60px;
+  width: 20%;
+  color: #fff;
+  background-color: var(--primary);
+  /* border: 1px solid red; */
+}
+
+.left-panel h2{
+  color: #fff;
+  font-size: 16px;
+  text-align: left;
+  padding: 0px 0px 5px 0;
+  font-weight: 600;
+}
+
+.left-panel li a {
+  color: #ffffff;
+  cursor: pointer;
+  margin-left: 10px;    
+}
+
+
+.left-panel li a:hover {
+  color: var(--secondary);
+  /* font-weight: 500; */
+
+}
+/* left panel _________________ */
+
+
+.product-container {
+  /* max-width: 1200px; */
+  position: relative;
+  left: 10%;
+  width: 80%;
+  margin: 0 auto;
+  padding: 40px 50px 40px 50px;
+}
+
+.product-container h1 {
+  color: var(--primary); 
+  text-align: center; 
+  margin-bottom: 30px; 
+}
+
+
+
+/* table style */
+
+table.table {
+    border: 1px solid #424244;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+  table.table td, table.table th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+  }
+  table.table tbody td {
+    font-size: 13px;
+    color: #424244;
+  }
+  
+  table.table thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #424244;
+  }
+  table.table tfoot td {
+    font-size: 14px;
+  }
+  table.table tfoot .links {
+    text-align: right;
+  }
+  table.table tfoot .links a{
+    display: inline-block;
+    background: #1C6EA4;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+  
+

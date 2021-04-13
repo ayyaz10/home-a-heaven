@@ -8,6 +8,7 @@
     "/public/js/cart.js": "/public/js/cart.js",
     "/public/js/checkout.js": "/public/js/checkout.js",
     "/public/js/orders.js": "/public/js/orders.js",
+    "/public/js/manage-products.js": "/public/js/manage-products.js",
     "/public/js/admin-panel.js": "/public/js/admin-panel.js",
     "/public/js/admin-orders.js": "/public/js/admin-orders.js",
     "/public/js/signup-login.js": "/public/js/signup-login.js",
