@@ -71,11 +71,10 @@ editButton.forEach(eachButton => {
             })
          })
          const response = await res.json();
+         let editProductForm = document.querySelectorAll('.edit-product-form input');
+         let textArea = document.querySelector('.product-description');
          if(response.haveProduct) {
              const product = response.product;
-             console.log(product.sub_cat_name)
-             const editProductForm = document.querySelectorAll('.edit-product-form input');
-             const textArea = document.querySelector('.product-description');
              editProductForm[0].value = product.product_name;
              editProductForm[1].value = product.price;
              editProductForm[3].value = product.inStock;
@@ -83,6 +82,30 @@ editButton.forEach(eachButton => {
              editProductForm[5].value = product.sub_cat_name;
              textArea.value = product.product_description;
          }
+
+        //  update product
+        const editForm = document.querySelector('#editProductForm');
+        // console.log(editForm)
+        editForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // console.log
+             let productArray = [];
+            editProductForm.forEach(eachInput => {
+                productArray.push(eachInput.value) 
+                
+            })
+            productArray.push(textArea.value)
+            fetch('http://localhost:3333/edit-product', {
+                method: "post",
+                mode: 'cors',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    productId,
+                    productArray
+                })
+             })
+        })
 
     })
 })

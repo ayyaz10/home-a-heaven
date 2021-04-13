@@ -1,4 +1,4 @@
-const { getAllCategories, getAllProducts, getOneProductById, deleteProduct } = require('../../db/queries');
+const { getAllCategories, getAllProducts, getOneProductById, updateProduct, deleteProduct } = require('../../db/queries');
 
 const adminManageProduct = () => {
     return {
@@ -27,13 +27,28 @@ const adminManageProduct = () => {
         }
       },
       async editProduct(req, res) {
-        const productId = req.body.productId
+        const productId = req.body.productId;
+        const product = req.body.productArray;
         if(productId) {
           const product = await getOneProductById(productId);
           res.json({
             product,
             haveProduct: true
           })
+        }
+        if(product) {
+          const productObj = {
+            product_name: product[0],
+            price: product[1],
+            image: 'product.png',
+            inStock: product[3],
+            category_name: product[4],
+            sub_cat_name: product[5],
+            product_description: product[7]
+
+          }
+          const dbResponse = await updateProduct(productObj, productId);
+
         }
       }
   }

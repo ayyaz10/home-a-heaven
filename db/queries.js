@@ -45,21 +45,22 @@ module.exports = {
                  .where({ product_name: productObj.product_name }).first()
                  const existingSubCategory = await knex('sub_category')
                  .where({ sub_cat_name: subCategoryObj.sub_cat_name }).first()
-
+                //  let dbSubCategory;
                  if(!existingProduct && !existingSubCategory) {
+                     console.log('heo')
+                     let dbSubCategory =
+                     await knex.insert({
+                         sub_cat_name: subCategoryObj.sub_cat_name,
+                         cat_id: existingCategory.category_id,
+                         created_at: new Date()
+                     })
+                     .into('sub_category')
+                     .returning('*')
+                     console.log(dbSubCategory)
+                     productObj.subcat_id = dbSubCategory[0].subCat_id;
                     let dbProduct = await knex.insert(productObj, 'product_id')
                     .into('product')
                     .returning("*")
-
-                    let dbSubCategory =
-                    await knex.insert({
-                        sub_cat_name: subCategoryObj.sub_cat_name,
-                        cat_id: existingCategory.category_id,
-                        created_at: new Date()
-                    })
-                    .into('sub_category')
-                    .returning('*')
-
                     return {
                         message: "product added",
                         dbProduct,
@@ -70,11 +71,29 @@ module.exports = {
                     }
                  }
                  if(!existingProduct) {
+                    // get subCat_id from sub_category table
+                    const subCategoryId = await knex.select('subCat_id').from('sub_category')
+                    .where({sub_cat_name: productObj.sub_cat_name})
+                 
+                    productObj.category_name = productCategoryObj.category_name;
+                    productObj.subcat_id = subCategoryId[0].subCat_id;
+                    let dbProduct = await knex.insert(productObj, 'product_id')
+                    .into('product')
+                    .returning("*")
+                    console.log(dbProduct)
+                    return {
+                        message: "product added",
+                        dbProduct,
+                        isAdded: true,
+                        product: true
+                    }
+                 }
+                 if(!existingSubCategory) {
+                     console.log('helo')
                     productObj.category_name = productCategoryObj.category_name;
                     let dbProduct = await knex.insert(productObj, 'product_id')
                     .into('product')
                     .returning("*")
-                    
                     return {
                         message: "product added",
                         dbProduct,
@@ -221,10 +240,6 @@ module.exports = {
         if(searchText) {
             result.where('product_name', 'ilike', `%${searchText}%`)
         }
-        // if(searchText) {
-        //     result.where('category_name', 'ilike', `%${searchText}%`)
-        // }
-        // console.log(result)
         return result;
     },
     async getOrders() {
@@ -294,5 +309,19 @@ module.exports = {
             }
         }
     },
+    async updateProduct (productObj, productId) {
+        const dbProductResponse = await knex('product')
+        .where({product_id: productId})
+        .update(productObj)
+        .returning("*")
+
+        if(productObj.sub_cat_name) {
+            const dbSubCatResponse = await knex('product')
+            .where({product_id: productId})
+            .update(productObj)
+            .returning("*")
+        }
+        console.log(dbProductResponse)
+    }
 }
 

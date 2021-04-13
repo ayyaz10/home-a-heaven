@@ -926,7 +926,7 @@ var editButton = document.querySelectorAll('.edit-product');
 editButton.forEach(function (eachButton) {
   eachButton.addEventListener('click', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-      var modal, span, productId, res, response, product, editProductForm, textArea;
+      var modal, span, productId, res, response, editProductForm, textArea, product, editForm;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -971,21 +971,45 @@ editButton.forEach(function (eachButton) {
 
             case 11:
               response = _context2.sent;
+              editProductForm = document.querySelectorAll('.edit-product-form input');
+              textArea = document.querySelector('.product-description');
 
               if (response.haveProduct) {
                 product = response.product;
-                console.log(product.sub_cat_name);
-                editProductForm = document.querySelectorAll('.edit-product-form input');
-                textArea = document.querySelector('.product-description');
                 editProductForm[0].value = product.product_name;
                 editProductForm[1].value = product.price;
                 editProductForm[3].value = product.inStock;
                 editProductForm[4].value = product.category_name;
                 editProductForm[5].value = product.sub_cat_name;
                 textArea.value = product.product_description;
-              }
+              } //  update product
 
-            case 13:
+
+              editForm = document.querySelector('#editProductForm'); // console.log(editForm)
+
+              editForm.addEventListener('submit', function (e) {
+                e.preventDefault(); // console.log
+
+                var productArray = [];
+                editProductForm.forEach(function (eachInput) {
+                  productArray.push(eachInput.value);
+                });
+                productArray.push(textArea.value);
+                fetch('http://localhost:3333/edit-product', {
+                  method: "post",
+                  mode: 'cors',
+                  credentials: 'include',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    productId: productId,
+                    productArray: productArray
+                  })
+                });
+              });
+
+            case 17:
             case "end":
               return _context2.stop();
           }

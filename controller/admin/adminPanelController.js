@@ -27,6 +27,7 @@ const adminPanelController = () => {
           image: 'product.png',
           discount: '0',
           product_description: productObj.description,
+          subcat_id: 0,
           created_at: new Date()
         }
         const productCategoryObj = {
