@@ -297,7 +297,6 @@ module.exports = {
         }
     },
     async updateProduct (productObj, productId, subCatId) {
-        console.log('ehlo')
         const checkSubCatExist = async () => {
             const subCategoryExist = await knex.select("*").from('sub_category')
             .where({sub_cat_name: productObj.sub_cat_name})
@@ -322,36 +321,10 @@ module.exports = {
             const dbCategoryResponse = await knex('product_category').insert(categoryObj, "category_id");
             productObj.discount = 0;
             productObj.created_at = new Date();
-            const dbProductResponse = await knex('product').insert(productObj, "product_id");
+            const product = await knex('product').insert(productObj, "product_id");
             const subcategoryExist = await checkSubCatExist();
         // inserting new sub category to sub_category table if it doesn't exist in sub_category table
         if(!subcategoryExist.length) {
-            // getting category_id from category table in order to enter category_id into sub_categorytable
-            const categoryId = await knex.select("category_id").from('product_category')
-            .where({category_name: productObj.category_name}).first()
-            console.log(categoryId)
-            const subCatObj = {
-                sub_cat_name: productObj.sub_cat_name,
-                cat_id: categoryId.category_id,
-                created_at: new Date()
-            }
-            const dbSubCatResponse = await knex('sub_category').insert(subCatObj, "subCat_id")
-             return {
-                 isUpdated: true,
-                 message: "New category inserted",
-                 dbCategoryResponse
-             }
-         }
-        }
-        // updating product if category already exist
-        const product = await knex('product')
-        .where({product_id: productId})
-        .update(productObj)
-        .returning("*")
-        // checking if sub category exist in sub_category table
-        const subCatExist = await checkSubCatExist();
-        // inserting new sub category to sub_category table if it doesn't exist in sub_category table
-        if(!subCatExist.length) {
             // getting category_id from category table in order to enter category_id into sub_categorytable
             const categoryId = await knex.select("category_id").from('product_category')
             .where({category_name: productObj.category_name}).first()
@@ -366,6 +339,46 @@ module.exports = {
                 message: "New sub category inserted",
                 dbSubCatResponse
             }
+         }
+         return {
+            isUpdated: true,
+            message: "New category inserted",
+            product
+        }
+        }
+        // checking if sub category exist in sub_category table
+        const subCatExist = await checkSubCatExist();
+        // inserting new sub category to sub_category table if it doesn't exist in sub_category table
+        if(!subCatExist.length) {
+            // getting category_id from category table in order to enter category_id into sub_categorytable
+            const categoryId = await knex.select("category_id").from('product_category')
+            .where({category_name: productObj.category_name}).first()
+            const subCatObj = {
+                sub_cat_name: productObj.sub_cat_name,
+                cat_id: categoryId.category_id,
+                created_at: new Date()
+            }
+            const dbSubCatResponse = await knex('sub_category').insert(subCatObj, "subCat_id")
+            const product = await knex('product')
+            .where({product_id: productId})
+            .update(productObj)
+            .returning("*")
+            return {
+                isUpdated: true,
+                message: "New sub category inserted",
+                product
+            }
+        } 
+        // updating product if product_category and sub_cateogry already exist
+        const product = await knex('product')
+        .where({product_id: productId})
+        .update(productObj)
+        .returning("*")
+        // console.log(product)
+        return {
+            isUpdated: true,
+            message: "New product name added",
+            product
         }
         // ___________
 

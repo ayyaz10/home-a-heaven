@@ -869,15 +869,15 @@ var deleteButton = document.querySelectorAll('.delete-product');
 deleteButton.forEach(function (eachButton) {
   eachButton.addEventListener('click', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-      var productName, isConfirm, productId, res, response;
+      var productName, isDeleteConfirm, productId, res, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               productName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText;
-              isConfirm = confirm("Are you sure to delete the product ".concat(productName));
+              isDeleteConfirm = confirm("Are you sure to delete the product ".concat(productName));
 
-              if (!isConfirm) {
+              if (!isDeleteConfirm) {
                 _context.next = 11;
                 break;
               }
@@ -925,34 +925,15 @@ deleteButton.forEach(function (eachButton) {
 var editButton = document.querySelectorAll('.edit-product');
 editButton.forEach(function (eachButton) {
   eachButton.addEventListener('click', /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-      var modal, span, productId, subCatId, res, response, editProductForm, textArea, product, editForm;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+      var editModalProductId, subCatId, res, response, editProductForm, textArea, product, modal, span, editForm;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              // Get the modal
-              modal = document.getElementById("myModal"); // Get the <span> element that closes the modal
-
-              span = document.getElementsByClassName("close")[0]; // When the user clicks the button, open the modal 
-
-              modal.style.display = "block"; // When the user clicks on <span> (x), close the modal
-
-              span.onclick = function () {
-                modal.style.display = "none";
-                window.location.reload();
-              }; // When the user clicks anywhere outside of the modal, close it
-
-
-              window.onclick = function (event) {
-                if (event.target == modal) {
-                  window.location.reload();
-                }
-              };
-
-              productId = e.target.getAttribute("data-productid-type");
+              editModalProductId = e.target.getAttribute("data-productid-type");
               subCatId = e.target.getAttribute("data-subcatid-type");
-              _context2.next = 9;
+              _context3.next = 4;
               return fetch('http://localhost:3333/edit-product', {
                 method: "post",
                 mode: 'cors',
@@ -961,17 +942,17 @@ editButton.forEach(function (eachButton) {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  productId: productId
+                  editModalProductId: editModalProductId
                 })
               });
 
-            case 9:
-              res = _context2.sent;
-              _context2.next = 12;
+            case 4:
+              res = _context3.sent;
+              _context3.next = 7;
               return res.json();
 
-            case 12:
-              response = _context2.sent;
+            case 7:
+              response = _context3.sent;
               editProductForm = document.querySelectorAll('.edit-product-form input');
               textArea = document.querySelector('.product-description');
 
@@ -982,39 +963,90 @@ editButton.forEach(function (eachButton) {
                 editProductForm[3].value = product.inStock;
                 editProductForm[4].value = product.category_name;
                 editProductForm[5].value = product.sub_cat_name;
-                textArea.value = product.product_description;
+                textArea.value = product.product_description; // Get the modal
+
+                modal = document.getElementById("myModal"); // Get the <span> element that closes the modal
+
+                span = document.getElementsByClassName("close")[0]; // When the user clicks the button, open the modal 
+
+                modal.style.display = "block"; // When the user clicks on <span> (x), close the modal
+
+                span.onclick = function () {
+                  modal.style.display = "none";
+                  window.location.reload();
+                }; // When the user clicks anywhere outside of the modal, close it
+
+
+                window.onclick = function (event) {
+                  if (event.target == modal) {
+                    window.location.reload();
+                  }
+                };
               } //  update product
 
 
               editForm = document.querySelector('#editProductForm');
-              editForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                var productArray = [];
-                editProductForm.forEach(function (eachInput) {
-                  productArray.push(eachInput.value);
-                });
-                productArray.push(textArea.value);
-                fetch('http://localhost:3333/edit-product', {
-                  method: "post",
-                  mode: 'cors',
-                  credentials: 'include',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({
-                    productId: productId,
-                    subCatId: subCatId,
-                    productArray: productArray
-                  })
-                });
-              });
+              editForm.addEventListener('submit', /*#__PURE__*/function () {
+                var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+                  var productId, productArray, res, response;
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+                    while (1) {
+                      switch (_context2.prev = _context2.next) {
+                        case 0:
+                          e.preventDefault();
+                          productId = editModalProductId; //    console.log(productId)
 
-            case 18:
+                          productArray = [];
+                          editProductForm.forEach(function (eachInput) {
+                            productArray.push(eachInput.value);
+                          });
+                          productArray.push(textArea.value);
+                          _context2.next = 7;
+                          return fetch('http://localhost:3333/edit-product', {
+                            method: "post",
+                            mode: 'cors',
+                            credentials: 'include',
+                            headers: {
+                              'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                              productId: productId,
+                              subCatId: subCatId,
+                              productArray: productArray
+                            })
+                          });
+
+                        case 7:
+                          res = _context2.sent;
+                          _context2.next = 10;
+                          return res.json();
+
+                        case 10:
+                          response = _context2.sent;
+
+                          if (response.dbResponse.isUpdated) {
+                            window.location.reload();
+                          }
+
+                        case 12:
+                        case "end":
+                          return _context2.stop();
+                      }
+                    }
+                  }, _callee2);
+                }));
+
+                return function (_x3) {
+                  return _ref3.apply(this, arguments);
+                };
+              }());
+
+            case 13:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }));
 
     return function (_x2) {

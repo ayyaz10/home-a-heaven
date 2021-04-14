@@ -27,18 +27,20 @@ const adminManageProduct = () => {
         }
       },
       async editProduct(req, res) {
-        const productId = req.body.productId;
+        const editModalProductId = req.body.editModalProductId;
         const product = req.body.productArray;
         const subCatId = req.body.subCatId;
         // console.log(subCatId)
-        if(productId) {
-          const product = await getOneProductById(productId);
-          res.json({
+        if(editModalProductId) {
+          const product = await getOneProductById(editModalProductId);
+           res.json({
             product,
             haveProduct: true
           })
         }
         if(product) {
+          const productId = req.body.productId;
+          console.log(productId)
           const productObj = {
             product_name: product[0],
             price: product[1],
@@ -49,6 +51,9 @@ const adminManageProduct = () => {
             product_description: product[7]
           }
           const dbResponse = await updateProduct(productObj, productId, subCatId);
+          return res.json({
+            dbResponse
+          })
 
         }
       }
