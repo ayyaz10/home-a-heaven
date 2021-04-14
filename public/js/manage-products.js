@@ -926,7 +926,7 @@ var editButton = document.querySelectorAll('.edit-product');
 editButton.forEach(function (eachButton) {
   eachButton.addEventListener('click', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-      var modal, span, productId, res, response, editProductForm, textArea, product, editForm;
+      var modal, span, productId, subCatId, res, response, editProductForm, textArea, product, editForm;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -951,7 +951,8 @@ editButton.forEach(function (eachButton) {
               };
 
               productId = e.target.getAttribute("data-productid-type");
-              _context2.next = 8;
+              subCatId = e.target.getAttribute("data-subcatid-type");
+              _context2.next = 9;
               return fetch('http://localhost:3333/edit-product', {
                 method: "post",
                 mode: 'cors',
@@ -964,12 +965,12 @@ editButton.forEach(function (eachButton) {
                 })
               });
 
-            case 8:
+            case 9:
               res = _context2.sent;
-              _context2.next = 11;
+              _context2.next = 12;
               return res.json();
 
-            case 11:
+            case 12:
               response = _context2.sent;
               editProductForm = document.querySelectorAll('.edit-product-form input');
               textArea = document.querySelector('.product-description');
@@ -985,11 +986,9 @@ editButton.forEach(function (eachButton) {
               } //  update product
 
 
-              editForm = document.querySelector('#editProductForm'); // console.log(editForm)
-
+              editForm = document.querySelector('#editProductForm');
               editForm.addEventListener('submit', function (e) {
-                e.preventDefault(); // console.log
-
+                e.preventDefault();
                 var productArray = [];
                 editProductForm.forEach(function (eachInput) {
                   productArray.push(eachInput.value);
@@ -1004,12 +1003,13 @@ editButton.forEach(function (eachButton) {
                   },
                   body: JSON.stringify({
                     productId: productId,
+                    subCatId: subCatId,
                     productArray: productArray
                   })
                 });
               });
 
-            case 17:
+            case 18:
             case "end":
               return _context2.stop();
           }

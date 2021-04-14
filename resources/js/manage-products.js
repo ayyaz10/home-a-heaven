@@ -60,7 +60,9 @@ editButton.forEach(eachButton => {
             }
         }
 
-        const productId = e.target.getAttribute("data-productid-type")
+        const productId = e.target.getAttribute("data-productid-type");
+        const subCatId = e.target.getAttribute("data-subcatid-type");
+      
         const res = await fetch('http://localhost:3333/edit-product', {
             method: "post",
             mode: 'cors',
@@ -82,17 +84,14 @@ editButton.forEach(eachButton => {
              editProductForm[5].value = product.sub_cat_name;
              textArea.value = product.product_description;
          }
-
         //  update product
         const editForm = document.querySelector('#editProductForm');
-        // console.log(editForm)
         editForm.addEventListener('submit', (e) => {
+            
             e.preventDefault();
-            // console.log
              let productArray = [];
             editProductForm.forEach(eachInput => {
                 productArray.push(eachInput.value) 
-                
             })
             productArray.push(textArea.value)
             fetch('http://localhost:3333/edit-product', {
@@ -102,6 +101,7 @@ editButton.forEach(eachButton => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     productId,
+                    subCatId,
                     productArray
                 })
              })

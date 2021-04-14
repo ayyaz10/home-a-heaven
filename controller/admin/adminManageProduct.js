@@ -29,6 +29,8 @@ const adminManageProduct = () => {
       async editProduct(req, res) {
         const productId = req.body.productId;
         const product = req.body.productArray;
+        const subCatId = req.body.subCatId;
+        // console.log(subCatId)
         if(productId) {
           const product = await getOneProductById(productId);
           res.json({
@@ -45,9 +47,8 @@ const adminManageProduct = () => {
             category_name: product[4],
             sub_cat_name: product[5],
             product_description: product[7]
-
           }
-          const dbResponse = await updateProduct(productObj, productId);
+          const dbResponse = await updateProduct(productObj, productId, subCatId);
 
         }
       }

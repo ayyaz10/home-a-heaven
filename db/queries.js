@@ -88,19 +88,6 @@ module.exports = {
                         product: true
                     }
                  }
-                 if(!existingSubCategory) {
-                     console.log('helo')
-                    productObj.category_name = productCategoryObj.category_name;
-                    let dbProduct = await knex.insert(productObj, 'product_id')
-                    .into('product')
-                    .returning("*")
-                    return {
-                        message: "product added",
-                        dbProduct,
-                        isAdded: true,
-                        product: true
-                    }
-                 }
              } catch (error) {
                  console.error(error)
                  return {
@@ -309,19 +296,87 @@ module.exports = {
             }
         }
     },
-    async updateProduct (productObj, productId) {
-        const dbProductResponse = await knex('product')
+    async updateProduct (productObj, productId, subCatId) {
+        console.log('ehlo')
+        const checkSubCatExist = async () => {
+            const subCategoryExist = await knex.select("*").from('sub_category')
+            .where({sub_cat_name: productObj.sub_cat_name})
+            // console.log(subCategoryExist)
+            return subCategoryExist
+        }
+         // checking if category exist in product_category table
+         const productCategoryExist= await knex.select("*").from('product_category')
+         .where({category_name: productObj.category_name})
+         // inserting new category to category_table table if it doesn't exist in category table
+         if(!productCategoryExist.length) {
+        // checking if sub category exist in sub_category table
+            await knex('product')
+            .where('product_id', productId)
+            .del()
+            // creating categoryObj that has data that needs to be insert in category_table
+            const categoryObj = {
+                category_name: productObj.category_name,
+                image: "product.png",
+                created_at: new Date()
+            }
+            const dbCategoryResponse = await knex('product_category').insert(categoryObj, "category_id");
+            productObj.discount = 0;
+            productObj.created_at = new Date();
+            const dbProductResponse = await knex('product').insert(productObj, "product_id");
+            const subcategoryExist = await checkSubCatExist();
+        // inserting new sub category to sub_category table if it doesn't exist in sub_category table
+        if(!subcategoryExist.length) {
+            // getting category_id from category table in order to enter category_id into sub_categorytable
+            const categoryId = await knex.select("category_id").from('product_category')
+            .where({category_name: productObj.category_name}).first()
+            console.log(categoryId)
+            const subCatObj = {
+                sub_cat_name: productObj.sub_cat_name,
+                cat_id: categoryId.category_id,
+                created_at: new Date()
+            }
+            const dbSubCatResponse = await knex('sub_category').insert(subCatObj, "subCat_id")
+             return {
+                 isUpdated: true,
+                 message: "New category inserted",
+                 dbCategoryResponse
+             }
+         }
+        }
+        // updating product if category already exist
+        const product = await knex('product')
         .where({product_id: productId})
         .update(productObj)
         .returning("*")
-
-        if(productObj.sub_cat_name) {
-            const dbSubCatResponse = await knex('product')
-            .where({product_id: productId})
-            .update(productObj)
-            .returning("*")
+        // checking if sub category exist in sub_category table
+        const subCatExist = await checkSubCatExist();
+        // inserting new sub category to sub_category table if it doesn't exist in sub_category table
+        if(!subCatExist.length) {
+            // getting category_id from category table in order to enter category_id into sub_categorytable
+            const categoryId = await knex.select("category_id").from('product_category')
+            .where({category_name: productObj.category_name}).first()
+            const subCatObj = {
+                sub_cat_name: productObj.sub_cat_name,
+                cat_id: categoryId.category_id,
+                created_at: new Date()
+            }
+            const dbSubCatResponse = await knex('sub_category').insert(subCatObj, "subCat_id")
+            return {
+                isUpdated: true,
+                message: "New sub category inserted",
+                dbSubCatResponse
+            }
         }
-        console.log(dbProductResponse)
+        // ___________
+
+        // if(productObj.sub_cat_name) {
+        //     const dbSubCatResponse = await knex('product')
+        //     .where({product_id: productId})
+        //     .update(productObj)
+        //     .returning("*")
+        // }
+            // console.log(dbProductResponse)
+
     }
 }
 
