@@ -953,6 +953,20 @@ var input = document.querySelector('.input');
 btn.addEventListener('click', function () {
   search.classList.toggle('active');
   input.focus();
+}); // navigation hamburger menu
+
+var menuIcon = document.querySelector('.menu');
+var closeIcon = document.querySelector('.close-icon');
+var menuContainer = document.querySelector('.menu-container');
+menuIcon.addEventListener('click', function () {
+  closeIcon.style.display = "block";
+  menuContainer.style.display = "block";
+  menuIcon.style.display = "none";
+});
+closeIcon.addEventListener('click', function () {
+  closeIcon.style.display = "none";
+  menuContainer.style.display = "none";
+  menuIcon.style.display = "block";
 }); // search backend
 // const searchInput = document.querySelector('#input-search')
 // searchInput.addEventListener('keyup', (e) => {

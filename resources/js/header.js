@@ -72,6 +72,27 @@ btn.addEventListener('click', () => {
     input.focus()
 })
 
+
+// navigation hamburger menu
+
+const menuIcon = document.querySelector('.menu');
+const closeIcon = document.querySelector('.close-icon');
+const menuContainer = document.querySelector('.menu-container');
+menuIcon.addEventListener('click', () => {
+    closeIcon.style.display = "block";
+    menuContainer.style.display = "block";
+    menuIcon.style.display = "none";
+    
+})
+
+closeIcon.addEventListener('click', () => {
+    closeIcon.style.display = "none";
+    menuContainer.style.display = "none";
+    menuIcon.style.display = "block";
+    
+})
+
+
 // search backend
 
 // const searchInput = document.querySelector('#input-search')
