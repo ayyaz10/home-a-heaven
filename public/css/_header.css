@@ -27,31 +27,23 @@ body {
     box-shadow: var(--nav_shadow);
 }
 .main_header {
-    /* max-width: 80rem; */
-    /* width: 80%; */
-    /* margin: 0 auto; */
     display: flex;
     justify-content: space-between;
 }
 .menu-container{
-    /* width: 100%; */
     display: flex;
-    /* margin-left: auto; */
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
     text-align: center;
-    flex: 3;
 }
 .main_header .logo {
     align-self: center;
-    /* width: 20%; */
-    flex: 1;
+
 }
 
 .main-menu {
     display: flex;
-    /* align-items: center; */
-    /* flex: 1; */
-    /* justify-content: center; */
+    margin-left: auto; 
 }
 
 .main-menu li {
