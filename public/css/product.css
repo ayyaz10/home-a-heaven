@@ -57,3 +57,11 @@
     font-weight: 600;
     padding: 22px;
 }
+
+
+@media only screen and (max-width: 690px) {
+    .product-items-section {
+        grid-template-columns: minmax(auto, 80%);
+        justify-content: center;
+    }
+  }

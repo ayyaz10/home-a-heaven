@@ -10,24 +10,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <script src="js/collections.js" defer></script>
         <script src="js/header.js" defer></script>
-    <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="css/collections.css">
     <title>Products</title>
 </head>
 <body>
     <%- include('header'); -%>
-    <section class="hero-section">
-        <h1 class="category-name">Collections</h1>
-    </section>
-    <section class="product-items-section">
-        <% for(let i = 0; i < categories.length; i++) { %>
-            <div class="category">
-                <h1><%- `${categories[i].category_name}` %> </h1>
-                <a href="/collections/products"><img src=<%- `assets/${categories[i].image}` %> class="product-image" alt="product"></a>
-                <a href="/collections/products"><h2><%- categories[i].product_name %></h2></a>
-                <a href="/collections/products"><p><%- categories[i].price %></p></a>
-            </div>
-         <% } %>
-    </section>
+    <div class="hero-section">
+        <h1>Categories</h1>
+        <div class="categories-section-row">
+            <% for(let i = 0; i < categories.length; i++) { %>
+                <div class="category">
+                    <a href="collections/products">
+                        <h2 class="category-name"><%- `${categories[i].category_name}` %> </h2>
+                        <img src=<%- `assets/${categories[i].image}` %> class="product-image" alt="product">
+                        <!-- <div class="text-wrapper"> -->
+                        <!-- </div> -->
+                    </a>
+                </div>
+             <% } %>
+        </div>
+      </div>
     <%- include('footer'); -%>
 </body>
 </html>
