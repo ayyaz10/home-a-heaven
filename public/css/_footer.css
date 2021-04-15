@@ -167,3 +167,43 @@ body {
     font-size: 0.8125rem;
     color: hsl(233, 8%, 62%);
 }
+
+
+
+@media only screen and (max-width: 640px) {
+      
+    /* footer style */
+    .footer-container {
+        min-width: 375px;
+        flex-direction: column;
+        height: 510px;
+        align-items: center;
+    }
+
+    .footer-btn-copyright {
+        align-items: center;
+        flex: 1;
+    }
+    
+
+    
+    .footer-nav-1 {
+        padding-top: 30px;
+        flex: 1;
+    }
+
+    .footer-nav-2 {
+        padding-bottom: 30px;
+        flex: 1;
+    }
+
+
+    .footer-logo-social {
+        flex: 1;
+    }
+
+    .footer-copyright {
+        padding: 20px;
+    }
+    
+}
