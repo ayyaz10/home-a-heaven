@@ -12,6 +12,7 @@ body {
 #footer {
     background-color: var(--primary);
     margin-top: auto;
+    padding: 0 30px 0 30px;
 }
 
 .button .footer-button {
@@ -36,7 +37,6 @@ body {
     align-items: flex-end;
     flex: 2;
 }
-
 
 .footer-btn {
     justify-self: center;
