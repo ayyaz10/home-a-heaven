@@ -15,94 +15,95 @@
 <body>
    
   <%- include('header'); -%>
-<section class="content-section">
-    <section class="left-panel">
-        <h1>Manage My Account</h1>
-        <li><a href="/account">My Profile</a></li>
-        <li><a href="/orders">My Orders</a></li>
-        <!-- <li><a href="#">Address Book</a></li> -->
-    </section>
-    <section class="profile-wrapper container">
-        <h2>My Profile</h2>
-        <div class="personal-info">
-            <p class="info-label">Full name</p>
-            <p class="fullName content"><p><%= user.first_name + " " + user.last_name %></p></p>
-            <!-- <p class="lNameLabel">Last Name</p>
-            <p class="lName">Ahmed</p> -->
-            <p class="info-label email-label">Email | <span>Change</span></p>
-            <p class="email content"><%= user.email %></p>
-            <p class="info-label password-label">Password | <span>Change</span></p>
-            <p class="password content">*******</p>
-            <p class="info-label phone-label">Phone | <span>Change</span></p>
-            <% if(user.phone) { %> 
-                <p class="phone content"><%= user.phone %></p>
-            <% } else { %>
-                <p class="phone content">Add your phone number.</p>
-            <% } %>
-        </div>
-        <div class="edit-profile-btn">
-            <a href="#" class="btn">Edit Profile</a>
-        </div>
-    </section>
-    <section class="container edit-profile-wrapper hide">
-        <h2>Edit Profile</h2>
-        <form class="personal-info">
-            <p>First Name</p>
-            <p><input type="text" name="firstName" class="first-name" placeholder="First Name" required></p>
-            <p>Last Name</p>
-            <p><input type="text" name="lastName" class="last_name" placeholder="Last Name" required></p>
-            <div class="save-profile-btn">
-                <p><input type="submit" value="Save Changes"></p>
+<div class="content-container">
+    <section class="content-section">
+            <section class="left-panel">
+                <h1>Manage My Account</h1>
+                <li><a href="/account">My Profile</a></li>
+                <li><a href="/orders">My Orders</a></li>
+                <!-- <li><a href="#">Address Book</a></li> -->
+            </section>
+            <section class="profile-wrapper container">
+                <h2>My Profile</h2>
+                <div class="personal-info">
+                    <p class="info-label">Full name</p>
+                    <p class="fullName content"><p><%= user.first_name + " " + user.last_name %></p></p>
+                    <!-- <p class="lNameLabel">Last Name</p>
+                    <p class="lName">Ahmed</p> -->
+                    <p class="info-label email-label">Email | <span>Change</span></p>
+                    <p class="email content"><%= user.email %></p>
+                    <p class="info-label password-label">Password | <span>Change</span></p>
+                    <p class="password content">*******</p>
+                    <p class="info-label phone-label">Phone | <span>Change</span></p>
+                    <% if(user.phone) { %> 
+                        <p class="phone content"><%= user.phone %></p>
+                    <% } else { %>
+                        <p class="phone content">Add your phone number.</p>
+                    <% } %>
+                </div>
+                <div class="edit-profile-btn">
+                    <a href="#" class="btn">Edit Profile</a>
+                </div>
+            </section>
+            <section class="container edit-profile-wrapper hide">
+                <h2>Edit Profile</h2>
+                <form class="personal-info">
+                    <p>First Name</p>
+                    <p><input type="text" name="firstName" class="first-name" placeholder="First Name" required></p>
+                    <p>Last Name</p>
+                    <p><input type="text" name="lastName" class="last_name" placeholder="Last Name" required></p>
+                    <div class="save-profile-btn">
+                        <p><input type="submit" value="Save Changes"></p>
+                    </div>
+                </form>
+            </section>
+            <section class="container edit-email-wrapper hide">
+                <h2>Change Email</h2>
+                <form class="personal-info">
+                    <p>Email</p>
+                    <p><input type="email" name="email" class="email-input" placeholder="Email" required></p>
+                    <div class="save-profile-btn">
+                        <p><input type="submit" value="Save Changes"></p>
+                        <!-- <a href="#" class="button">Save Changes</a> -->
+                    </div>
+                </form>
+            </section>
+            <section class="container edit-passowrd-wrapper hide">
+                <h2>Change Password</h2>
+                <form class="personal-info">
+                    <p>Current password</p>
+                    <p><input type="password" name="currentPassword" class="current-password" placeholder="Current Password" required><span class="currentPassword-message-field"></span></p>
+                    <p>New password</p>
+                    <p><input type="password" name="password" class="new-password" placeholder="New Password" required><span class="newPassword-message-field"></span></p>
+                    <p>Retype password</p>
+                    <p><input type="password" name="password" class="retype-password" placeholder="Retype Password" required><span class="retypePassword-message-field"></span></p>
+                    <div class="save-profile-btn">
+                        <p><input type="submit" value="Save Changes"></p>
+                    </div>
+                </form>
+            </section>
+            <section class="container edit-phone-wrapper hide">
+                <h2>Change Phone</h2>
+                <form class="personal-info">
+                    <p>Phone</p>
+                    <p><input type="text" name="phone" class="phone-input" placeholder="Phone" required></p>
+                    <div class="save-profile-btn">
+                        <p><input type="submit" value="Save Changes"></p>
+                    </div>
+                </form>
+            </section>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <!-- <p class="greeting">Thanks Ayyaz!</p> -->
+                <p class="message"></p>
             </div>
-        </form>
-    </section>
-    <section class="container edit-email-wrapper hide">
-        <h2>Change Email</h2>
-        <form class="personal-info">
-            <p>Email</p>
-            <p><input type="email" name="email" class="email-input" placeholder="Email" required></p>
-            <div class="save-profile-btn">
-                <p><input type="submit" value="Save Changes"></p>
-                <!-- <a href="#" class="button">Save Changes</a> -->
             </div>
-        </form>
     </section>
-    <section class="container edit-passowrd-wrapper hide">
-        <h2>Change Password</h2>
-        <form class="personal-info">
-            <p>Current password</p>
-            <p><input type="password" name="currentPassword" class="current-password" placeholder="Current Password" required><span class="currentPassword-message-field"></span></p>
-            <p>New password</p>
-            <p><input type="password" name="password" class="new-password" placeholder="New Password" required><span class="newPassword-message-field"></span></p>
-            <p>Retype password</p>
-            <p><input type="password" name="password" class="retype-password" placeholder="Retype Password" required><span class="retypePassword-message-field"></span></p>
-            <div class="save-profile-btn">
-                <p><input type="submit" value="Save Changes"></p>
-            </div>
-        </form>
-    </section>
-    <section class="container edit-phone-wrapper hide">
-        <h2>Change Phone</h2>
-        <form class="personal-info">
-            <p>Phone</p>
-            <p><input type="text" name="phone" class="phone-input" placeholder="Phone" required></p>
-            <div class="save-profile-btn">
-                <p><input type="submit" value="Save Changes"></p>
-            </div>
-        </form>
-    </section>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <!-- <p class="greeting">Thanks Ayyaz!</p> -->
-            <p class="message"></p>
-        </div>
-        </div>
-</section>
 
-
+</div>
 <%- include('footer'); -%>
 </body>
 </html>

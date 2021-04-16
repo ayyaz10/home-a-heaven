@@ -4,14 +4,23 @@
 
 
 .content-section {
+    max-width: 1090px;
     display: flex;
+    margin: 0 auto;
+}
+
+.content-container {
+
     height: 100%;
     background-color: var(--primary-nav);
 }
 
 .left-panel {
-    padding: 30px 0px 0 60px;
-    width: 20%;
+    /* max-width: 300px; */
+    /* min-width: 300px; */
+    margin: 30px auto 30px auto;
+    padding: 30px 10px 0 30px;
+    width: 25%;
     /* border: 1px solid red; */
 }
 
@@ -24,7 +33,7 @@
 .left-panel li a {
     color: var(--primary);
     cursor: pointer;
-    margin-left: 10px;    
+    margin-left: 10px;
 }
 
 
@@ -36,10 +45,12 @@
 
 
 .container {
-    margin: 30px auto 30px auto;
+    /* border: 1px solid red; */
+    margin: 30px 30px 30px 0px;
     background-color: var(--white);
     padding: 20px 40px 20px 40px;
-    width: 70%;
+    width: 80%;
+    max-width: 700px;
 }
 
 
@@ -75,7 +86,7 @@
     background-color: var(--primary);
     cursor: pointer;
     color: #fff;
-    width: 40%;
+    /* width: 40%; */
 }
 
 
@@ -171,5 +182,31 @@
 
   .message span {
       font-weight: 600;
+  }
+
+  @media only screen and (max-width: 871px) {
+    .left-panel {
+        width: 30%;
+        padding: 30px 10px 0 30px;
+    }
+    .left-panel h1{
+        font-size: 16px;
+    }
+    .container {
+        width: 70%;
+        
+        
+    }
+    
+.edit-profile-btn, .save-profile-btn p input {
+    text-align: center;
+    margin: 01.9375rem 0 0 0;
+    padding: 0.6em 2.6em;
+    background-color: var(--primary);
+    cursor: pointer;
+    color: #fff;
+    /* width: 70%; */
+}
+    
   }
 
