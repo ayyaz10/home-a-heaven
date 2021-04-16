@@ -184,3 +184,23 @@ input.continue-btn:hover {
 .shop-button:hover {
     background-color: var(--primary-hover);
 }
+
+@media only screen and (max-width: 848px) {
+    .main-container {
+        flex-direction: column-reverse;
+    }
+    .form {
+        margin-top: 60px;
+        width: 100%;
+    }
+
+    .summary-area {
+        width: 100%;
+        padding-bottom: 50px;
+        border-bottom: 1px solid rgba(66, 66, 67, 0.2);
+    }
+    
+    input.continue-btn {
+        width: 100%;
+    }
+}
