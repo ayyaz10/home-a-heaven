@@ -98,7 +98,8 @@ body {
     opacity: 0.74;
     padding: 1.25rem;
     position: relative;
-    top: 17px;
+    top: 23px;
+    /* left: -41px; */
     /* margin-top:410px; */
     /* width: 1.25rem; */
     /* height: 1.25rem; */
@@ -109,6 +110,7 @@ body {
     width: 1.5625rem;
     height: 1.5625rem;
     top: 0px;
+    left: 0;
 }
 
 .second-menu .cart {
@@ -129,14 +131,18 @@ body {
 
 .search {
     position: relative;
+    top: -1px;
     /* height: 50px; */
   }
   
   .search .input {
+    position: absolute;
     background-color: #fff;
     /* border: 0; */
     font-size: 18px;
     padding: 15px;
+    top: -32px;
+    left: -46px;
     height: 50px;
     width: 50px;
     transition: width 0.3s ease;
@@ -148,8 +154,8 @@ body {
     cursor: pointer;
     font-size: 24px;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -32px;
+    left: -46px;
     height: 50px;
     width: 50px;
     transition: transform 0.3s ease;
@@ -160,10 +166,45 @@ body {
     outline: none;
   }
   
+  .search-button {
+      display: none;
+      border: 0;
+      height: 50px;
+      width: 100px;
+      background-color: var(--primary);
+      color: var(--white);
+      cursor: pointer;
+      /* position: absolute; */
+  }
+
+  .search-button:hover {
+    background-color: var(--primary-hover);
+  }
+
+  .search.active .search-button {
+      display: block;
+
+      position: absolute;
+      left: -150px;
+      top: -32px;
+      /* border: 1px solid red; */
+  }
+
   .search.active .input {
     width: 200px;
   }
   
+  .search.active button.btn{
+    background-color: initial;
+    top: -35px;
+    left: -60px;
+  }
+
+  .search.active {
+      position: relative; 
+      top: 73px;
+  }
+
   .search.active button.btn {
     transform: translateX(170px);
   }
@@ -245,3 +286,11 @@ body {
     } */
 
   }
+
+  
+@media only screen and (max-width: 1000px) {  
+    .search.active {
+        position: relative; 
+        top: 56px;
+    }
+}
