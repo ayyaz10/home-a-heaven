@@ -59,7 +59,7 @@ body {
 .social-img {
     margin-right: 0.625rem;
 }
-  
+
 .footer-social .fb {
     background-image: url("../assets/icon-facebook.svg");
     background-repeat: no-repeat;
@@ -171,7 +171,6 @@ body {
 
 
 @media only screen and (max-width: 640px) {
-      
     /* footer style */
     .footer-container {
         min-width: 375px;
@@ -184,9 +183,7 @@ body {
         align-items: center;
         flex: 1;
     }
-    
 
-    
     .footer-nav-1 {
         padding-top: 30px;
         flex: 1;
@@ -196,7 +193,6 @@ body {
         padding-bottom: 30px;
         flex: 1;
     }
-
 
     .footer-logo-social {
         flex: 1;

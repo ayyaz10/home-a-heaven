@@ -3,13 +3,18 @@
 @import './_footer.css';
 
 
-
+#container {
+    /* width: 80%; */
+    /* margin: 0 auto; */
+    /* border: 1px solid green; */
+}
 
 .cart-container {
     max-width: 75rem;
+    width: 90%;
     margin: 0 auto;
     display: flex;
-    padding-bottom: 6.25rem;
+    padding-bottom: 6.25rem 0 6.25rem 0;
 }
 
 /* continue shopping style */
@@ -36,10 +41,6 @@ h1.cart-heading, h2.summary-heading {
 .product-in-cart {
     display: flex;
     padding: 1.25rem 0 2.5rem 0;
-}
-
-.product-image-thumb > img {
-    /* height: 60%; */
 }
 
 .product-name {
@@ -131,7 +132,14 @@ hr {
 .check-button:hover {
     background-color: var(--primary-hover);
 }
-
+.product-quantity {
+    display: flex;
+    justify-content: space-between;
+}
+.counter-value {
+    padding: 0 10px 0 10px;
+    align-self: center;
+}
 .add-btn, .sub-btn {
     position: relative;
     /* display: block; */
@@ -143,6 +151,8 @@ hr {
     cursor: pointer;
     /* margin-top: 40px; */
 }
+
+
 
 
 /* Empty cart style */
@@ -183,3 +193,55 @@ body {
 .shop-button:hover {
     background-color: var(--primary-hover);
 }
+
+
+@media only screen and (max-width: 958px) {
+    .checkout-button {
+        font-size: 14px;
+        padding: 0.625em 1em;
+    }
+  }
+
+  @media only screen and (max-width: 848px) {
+    .cart-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .summary-area {
+        flex: 1;
+        height: 100%;
+        margin-left: initial;
+        box-shadow: 2px 4px 29px -16px rgba(0,0,0,0.75);
+    }
+
+  }
+
+  @media only screen and (max-width: 450px) {
+    .product-image-thumb {
+        width: 120px;
+    }
+    .product-image-thumb > img {
+        width: 100%;
+    }
+
+    .product-name {
+        font-size: 0.705rem;
+    }
+
+    .product-info {
+        padding-right: 0.75rem;
+    }
+    .product-info > .price {
+        font-size: 0.8rem;
+    }
+    
+
+  }
+
+  /* @media only screen and (max-width: 510px) {
+    .add-btn, .sub-btn {
+        color: #fff;
+        padding: 0.325rem 0.55rem;
+    }
+   } */

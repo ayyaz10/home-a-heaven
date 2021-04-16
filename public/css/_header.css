@@ -131,6 +131,7 @@ body {
 
 .search {
     position: relative;
+    z-index: 999;
     top: -1px;
     /* height: 50px; */
   }
