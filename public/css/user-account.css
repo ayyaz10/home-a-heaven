@@ -4,13 +4,12 @@
 
 
 .content-section {
-    max-width: 1090px;
+    max-width: 1290px;
     display: flex;
     margin: 0 auto;
 }
 
 .content-container {
-
     height: 100%;
     background-color: var(--primary-nav);
 }
@@ -18,16 +17,17 @@
 .left-panel {
     /* max-width: 300px; */
     /* min-width: 300px; */
-    margin: 30px auto 30px auto;
+    /* margin: 30px auto 30px auto; */
     padding: 30px 10px 0 30px;
     width: 25%;
     /* border: 1px solid red; */
 }
 
-.left-panel h1{
+.left-panel h2{
     font-size: 16px;
     padding: 0px 0px 5px 0;
     font-weight: 600;
+    color: var(--primary);
 }
 
 .left-panel li a {
@@ -54,7 +54,7 @@
 }
 
 
-.profile-wrapper h2, .edit-profile-wrapper h2 {
+.profile-wrapper h1, .edit-profile-wrapper h1 {
     color: var(--primary);
     /* text-align: center; */
     font-size: 1.25rem;
@@ -189,7 +189,7 @@
         width: 30%;
         padding: 30px 10px 0 30px;
     }
-    .left-panel h1{
+    .left-panel h2{
         font-size: 16px;
     }
     .container {

@@ -2,10 +2,54 @@
 @import './_header.css';
 @import './_footer.css';
 
+.content-container {
+    height: 100%;
+    background-color: var(--primary-nav);
+}
+.content-section {
+    max-width: 1290px;
+    display: flex;
+    margin: 0 auto;
+}
 
-h1 {
+/* left panel  */
+
+.left-panel {
+    /* max-width: 300px; */
+    /* min-width: 300px; */
+    /* margin: 30px auto 30px auto; */
+    padding: 30px 10px 0 30px;
+    width: 25%;
+    /* border: 1px solid red; */
+}
+
+.left-panel h2{
+    font-size: 16px;
+    padding: 0px 0px 5px 0;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.left-panel li a {
+    color: var(--primary);
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
+.left-panel li a:hover {
+    color: var(--primary-hover);
+    /* font-weight: 500; */
+
+}
+
+
+
+.orders-container h1 {
+    font-size: 18px;
     text-align: center;
     margin-bottom: 30px;
+    color: var(--primary);
 }
 
 .success {
@@ -19,7 +63,7 @@ h1 {
 
 .orders-container {
     width: 100%;
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
     padding: 40px 50px 40px 50px;
 }
@@ -46,4 +90,16 @@ table {
 
 td a {
     color: var(--secondary);
+}
+
+@media only screen and (max-width: 871px) {
+    .left-panel {
+        width: 30%;
+        min-width: 140px;
+        padding: 30px 10px 0 30px;
+        /* font-size: 12px; */
+    }
+    .left-panel h2{
+        font-size: 15px;
+    }
 }

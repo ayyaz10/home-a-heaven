@@ -14,7 +14,15 @@
     <title>Products</title>
 </head>
 <body>
-    <%- include('header'); -%>
+<%- include('header'); -%>
+<div class="content-container">
+<div class="content-section">
+    <section class="left-panel">
+        <h2>Manage My Account</h2>
+        <li><a href="/account">My Profile</a></li>
+        <li><a href="/orders">My Orders</a></li>
+        <!-- <li><a href="#">Address Book</a></li> -->
+    </section>
     <section class="orders-container">
         <h1>All Orders</h1>
         <div class="success-alert">
@@ -62,6 +70,8 @@
                 </tbody>
             </table>
     </section>
+</div>
+</div>
     <%- include('footer'); -%>
 </body>
 </html>

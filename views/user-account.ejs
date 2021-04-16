@@ -14,17 +14,17 @@
 </head>
 <body>
    
-  <%- include('header'); -%>
+<%- include('header'); -%>
 <div class="content-container">
     <section class="content-section">
             <section class="left-panel">
-                <h1>Manage My Account</h1>
+                <h2>Manage My Account</h2>
                 <li><a href="/account">My Profile</a></li>
                 <li><a href="/orders">My Orders</a></li>
                 <!-- <li><a href="#">Address Book</a></li> -->
             </section>
             <section class="profile-wrapper container">
-                <h2>My Profile</h2>
+                <h1>My Profile</h1>
                 <div class="personal-info">
                     <p class="info-label">Full name</p>
                     <p class="fullName content"><p><%= user.first_name + " " + user.last_name %></p></p>
