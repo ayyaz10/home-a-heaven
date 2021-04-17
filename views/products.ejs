@@ -18,34 +18,36 @@
     <section class="hero-section">
         <h1 class="category-name"><%= currentCategory.category_name %></h1>
     </section>
-    <div class="sort">
-        <!-- <button class="sort-btn">sort</button>
-        <button class="filter-btn">filter</button> -->
-        <select class="sort-select">
-            <option value="sort">Sort</option>
-            <option value="alpha-asc">Alphabetically, A-Z</option>
-            <option value="alpha-desc">Alphabetically Z-A</option>
-            <option value="price-asc">Price, low to high</option>
-            <option value="price-desc">Price, high to low</option>
-            <option value="date-desc">Date, new to old</option>
-            <option value="date-asc">Date, old to new</option>
-        </select>
-            <!-- <input id="supplierCapacity" type="text" class="operations-supplierCapacity" readonly /> -->
-    </div>
-    <div class="filter">
-        <!-- <button class="sort-btn">sort</button>
-        <button class="filter-btn">filter</button> -->
-        <select class="filter-select">
-            <option value="filter">Filter</option>
-            <% if (subCategories.length) { %>
-                <% for(let i = 0; i < subCategories.length; i++) { %>
-                    <% if (currentCategory.category_id === subCategories[i].cat_id) { %>
-                        <option value="<%= subCategories[i].sub_cat_name %>"  <%= subCategories[i].sub_cat_name === session.filterProduct.reqFilterQuery ? 'selected' : ''%>  ><%= subCategories[i].sub_cat_name %></option>
+    <div class="sort-filter-container">
+        <div class="sort">
+            <!-- <button class="sort-btn">sort</button>
+            <button class="filter-btn">filter</button> -->
+            <select class="sort-select">
+                <option value="sort">Sort</option>
+                <option value="alpha-asc">Alphabetically, A-Z</option>
+                <option value="alpha-desc">Alphabetically Z-A</option>
+                <option value="price-asc">Price, low to high</option>
+                <option value="price-desc">Price, high to low</option>
+                <option value="date-desc">Date, new to old</option>
+                <option value="date-asc">Date, old to new</option>
+            </select>
+                <!-- <input id="supplierCapacity" type="text" class="operations-supplierCapacity" readonly /> -->
+        </div>
+        <div class="filter">
+            <!-- <button class="sort-btn">sort</button>
+            <button class="filter-btn">filter</button> -->
+            <select class="filter-select">
+                <option value="filter">Filter</option>
+                <% if (subCategories.length) { %>
+                    <% for(let i = 0; i < subCategories.length; i++) { %>
+                        <% if (currentCategory.category_id === subCategories[i].cat_id) { %>
+                            <option value="<%= subCategories[i].sub_cat_name %>"  <%= subCategories[i].sub_cat_name === session.filterProduct.reqFilterQuery ? 'selected' : ''%>  ><%= subCategories[i].sub_cat_name %></option>
+                        <% } %>
                     <% } %>
                 <% } %>
-            <% } %>
-        </select>
-            <!-- <input id="supplierCapacity" type="text" class="operations-supplierCapacity" readonly /> -->
+            </select>
+                <!-- <input id="supplierCapacity" type="text" class="operations-supplierCapacity" readonly /> -->
+        </div>
     </div>
     <!-- <p class="search-fail" style="text-align: center;"></p> -->
     <section class="product-items-section">

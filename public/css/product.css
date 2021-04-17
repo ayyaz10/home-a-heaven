@@ -28,6 +28,7 @@
 
 .products img{
  width: 100%;
+ max-width: 320px;
 }
 
 .products a {
@@ -58,10 +59,24 @@
     padding: 22px;
 }
 
+.sort-filter-container {
+    padding: 0px 20px 30px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sort-select, .filter-select {
+    padding: 8px 0 8px 10px;
+}
+
 
 @media only screen and (max-width: 690px) {
     .product-items-section {
         grid-template-columns: minmax(auto, 80%);
         justify-content: center;
     }
-  }
+
+    .products img{
+        max-width: initial;
+       }
+}
