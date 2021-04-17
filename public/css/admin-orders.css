@@ -12,8 +12,8 @@
 .left-panel {
   position: fixed;
   height: 100%;
-  padding: 20px 0px 0px 60px;
-  width: 20%;
+  padding: 20px 20px 0px 60px;
+  width: 25%;
   color: #fff;
   background-color: var(--primary);
   /* border: 1px solid red; */
@@ -51,7 +51,7 @@
   /* max-width: 1200px; */
   position: relative;
   left: 10%;
-  width: 80%;
+  width: 75%;
   margin: 0 auto;
   padding: 40px 50px 40px 50px;
 }
@@ -88,4 +88,21 @@ table.table tfoot .links a{
   color: #FFFFFF;
   padding: 2px 8px;
   border-radius: 5px;
+}
+
+@media only screen and (max-width: 1030px) {
+  .left-panel {
+      width: 30%;
+      min-width: 140px;
+      padding: 30px 10px 0 30px;
+      /* font-size: 12px; */
+  }
+  .left-panel h2{
+      font-size: 15px;
+  }
+
+  .orders-container {
+    width: 70%;
+  }
+  
 }

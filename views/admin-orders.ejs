@@ -13,71 +13,73 @@
 </head>
 <body>
     <%- include('header'); -%>
-    <section class="content-section">
-        <section class="left-panel">
-            <h2>Admin Panel</h2>
-            <li><a href="/manage-product">Manage Products</a></li>
-            <li><a href="/adminOrders">Customer Orders</a></li>
-        </section>
-        <section class="orders-container">
-            <h1>Customer Orders</h1>
-            <div class="success-alert">
-            </div>
-            <table class="table">
-            <thead>
-            <tr>
-                <th>Orders</th>
-                <th>Item</th>
-                <th>Shipping Address</th>
-                <th>Email Address</th>
-                <th>Phone</th>
-                <th>Price</th>
-                <th>Order Status</th>
-                <th>Placed At</th>
-            </tr>
-            </thead>
-            <tbody>
-            <%  if(placedOrders.length) { %>
-                <%for(let i = 0; i < placedOrders.length; i++) { %>
-            <tr>
-                <td>
-                    <a href="#"><%= placedOrders[i].order_id %></a>
-                </td>
-                <td>
-                    <p><%= placedOrders[i].item_name %> - <span><%= placedOrders[i].qty %></span></p>
-                </td>
-                <td>
-                    <%= placedOrders[i].address %>
-                </td>
-                <td>
-                    <%= placedOrders[i].email %>
-                </td>
-                <td>
-                    <%= placedOrders[i].phone %>
-                </td>
-                <td>
-                    <%= placedOrders[i].price %>
-                </td>
-                <td>
-                    <select class="order-status-options">
-                        <option value="placed" <%= placedOrders[i].order_status === 'placed' ? 'selected' : ''%>>Placed</option>
-                        <option value="confirmed" <%= placedOrders[i].order_status === 'confirmed' ? 'selected' : ''%>>Confirmed</option>
-                        <option value="delivered" <%= placedOrders[i].order_status === 'delivered' ? 'selected' : ''%>>Delivered</option>
-                    </select>
-                </td>
-                <td> <%= moment(placedOrders[i].created_at).format('h:mm:ss a, Do MMMM YYYY') %> </td>
-            </tr>
-            <%}%>
-            <% } else {%>
+    <div class="content-container">
+        <section class="content-section">
+            <section class="left-panel">
+                <h2>Admin Panel</h2>
+                <li><a href="/manage-product">Manage Products</a></li>
+                <li><a href="/adminOrders">Customer Orders</a></li>
+            </section>
+            <section class="orders-container">
+                <h1>Customer Orders</h1>
+                <div class="success-alert">
+                </div>
+                <table class="table">
+                <thead>
                 <tr>
-                    <td>No Orders</td>
+                    <th>Orders</th>
+                    <th>Item</th>
+                    <th>Shipping Address</th>
+                    <th>Email Address</th>
+                    <th>Phone</th>
+                    <th>Price</th>
+                    <th>Order Status</th>
+                    <th>Placed At</th>
                 </tr>
-            <% } %>
-            </tbody>
-            </tr>
-            
-            </table>
+                </thead>
+                <tbody>
+                <%  if(placedOrders.length) { %>
+                    <%for(let i = 0; i < placedOrders.length; i++) { %>
+                <tr>
+                    <td>
+                        <a href="#"><%= placedOrders[i].order_id %></a>
+                    </td>
+                    <td>
+                        <p><%= placedOrders[i].item_name %> - <span><%= placedOrders[i].qty %></span></p>
+                    </td>
+                    <td>
+                        <%= placedOrders[i].address %>
+                    </td>
+                    <td>
+                        <%= placedOrders[i].email %>
+                    </td>
+                    <td>
+                        <%= placedOrders[i].phone %>
+                    </td>
+                    <td>
+                        <%= placedOrders[i].price %>
+                    </td>
+                    <td>
+                        <select class="order-status-options">
+                            <option value="placed" <%= placedOrders[i].order_status === 'placed' ? 'selected' : ''%>>Placed</option>
+                            <option value="confirmed" <%= placedOrders[i].order_status === 'confirmed' ? 'selected' : ''%>>Confirmed</option>
+                            <option value="delivered" <%= placedOrders[i].order_status === 'delivered' ? 'selected' : ''%>>Delivered</option>
+                        </select>
+                    </td>
+                    <td> <%= moment(placedOrders[i].created_at).format('h:mm:ss a, Do MMMM YYYY') %> </td>
+                </tr>
+                <%}%>
+                <% } else {%>
+                    <tr>
+                        <td>No Orders</td>
+                    </tr>
+                <% } %>
+                </tbody>
+                </tr>
+                
+                </table>
+            </section>
         </section>
-    </section>
+    </div>
 </body>
 </html>
