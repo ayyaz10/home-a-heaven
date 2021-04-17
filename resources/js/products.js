@@ -14,11 +14,13 @@ const categoryName = document.querySelector('.category-name');
 addToCart.forEach(cartBtn => {
     cartBtn.addEventListener('click', async (e) => {
         let product = await JSON.parse(cartBtn.dataset.product);
+        // console.log(product)
         localStorage.removeItem('selectIndex')
         localStorage.setItem('productId', product.product_id)
         let items = {
             item: product
         }
+        console.log(items)
         var oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
         localStorage.setItem('itemsArray', JSON.stringify(items));
         for(let i = 0; i < oldItems.length; i++) {

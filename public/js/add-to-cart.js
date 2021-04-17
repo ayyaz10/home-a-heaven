@@ -997,11 +997,12 @@ var loadContent = function loadContent() {
   var heading = document.querySelector('.product-name');
   var price = document.querySelector('.price');
   var about = document.querySelector('.about-paragraph');
-  var image = document.querySelector('.product-image');
+  var image = document.querySelector('.product-image img');
+  console.log(image);
   heading.innerText = item.item.product_name;
   price.innerText = item.item.price;
   about.innerText = item.item.product_description;
-  image.src = "assets/".concat(item.item.image);
+  image.src = "/assets/uploads/".concat(item.item.image);
 };
 
 loadContent(); // stops user to go back

@@ -75,11 +75,12 @@ const cartBtn = document.querySelector('.cart-btn')
         const heading = document.querySelector('.product-name');
         const price = document.querySelector('.price')
         const about = document.querySelector('.about-paragraph');
-        const image = document.querySelector('.product-image');
+        const image = document.querySelector('.product-image img');
+        console.log(image)
         heading.innerText = item.item.product_name
         price.innerText = item.item.price
         about.innerText = item.item.product_description
-        image.src = `assets/${item.item.image}`
+        image.src = `/assets/uploads/${item.item.image}`
 
     }
     loadContent();

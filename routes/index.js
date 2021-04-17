@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage });
 
-
+// router.user(multer.array())
 const express = require('express');
 const router = express.Router();
 
@@ -70,8 +70,8 @@ router.get('/manage-product', admin, adminManageProduct().index);
 router.post('/edit-product', admin, adminManageProduct().editProduct);
 router.post('/delete-product', admin, adminManageProduct().deleteProduct);
 // router.get('/manage-product', adminManageProduct().index);
-router.post('/product', adminPanelController().product);
-router.post('/upload', upload.single('prodImage'), adminPanelController().upload)
+router.post('/product', upload.any(), adminPanelController().product);
+// router.post('/upload', upload.single('prodImage'), adminPanelController().upload)
 
 
 router.post('/editCartValues', cartController().editCartValues);

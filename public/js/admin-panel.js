@@ -885,95 +885,72 @@ adminPanelAddCategoryInput.addEventListener('n', function () {
 //          })
 //         const result = await res.json();
 // })
+// adminPanelForm.addEventListener('submit', async (e)=>{
+//     e.preventDefault();
+//          // getting and uploading image file to server
+//          const fileField = document.querySelector('input[type="file"]');
+//          let formData = new FormData();
+//          formData.append('prodImage', fileField.files[0]);
+//          const res = await fetch('http://localhost:3333/upload', {
+//              method: 'post',
+//              body: formData
+//           })
+//           const result = await res.json();
+//           console.log(result)
+//  })
 
 adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-    var fileField, formData, res;
+    var fileField, formData, productObj, subCategory, res, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            e.preventDefault(); // getting and uploading image file to server
+            e.preventDefault(); // getting and sending form text data to server
 
             fileField = document.querySelector('input[type="file"]');
             formData = new FormData();
-            formData.append('prodImage', fileField.files[0]);
-            res = fetch('http://localhost:3333/upload', {
-              method: 'post',
-              body: formData
-            }); //   const result = res.json();
-            //   console.log(result)
-
-          case 5:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function (_x) {
-    return _ref.apply(this, arguments);
-  };
-}());
-adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-    var productObj, subCategory, res, response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            e.preventDefault(); // getting and sending form text data to server
-
             productObj = {};
             subCategory = {};
 
             if (clickedCategory) {
-              productObj = {
-                productname: productName.value,
-                productprice: productPrice.value,
-                // productimage: productImage.value,
-                stockcount: stockCount.value,
-                categoryname: clickedCategory,
-                subcategoryname: categoryName.value,
-                // subcategory: categoryName.value,
-                description: description.value
-              };
-              subCategory = {
-                subcategoryname: categoryName.value
-              }; // console.log(categoryName)
+              formData.append('prodImage', fileField.files[0]);
+              formData.append('productname', productName.value);
+              formData.append('productprice', productPrice.value);
+              formData.append('stockcount', stockCount.value);
+              formData.append('categoryname', clickedCategory);
+              formData.append('subcategoryname', categoryName.value);
+              formData.append('description', description.value); //  subCategory = {
+              //     subcategoryname: categoryName.value
+              // }
+              // console.log(categoryName)
             } else {
-              productObj = {
-                productname: productName.value,
-                productprice: productPrice.value,
-                // productimage: productImage.value,
-                stockcount: stockCount.value,
-                categoryname: categoryName.value,
-                description: description.value
-              };
+              formData.append('prodImage', fileField.files[0]);
+              formData.append('productname', productName.value);
+              formData.append('productprice', productPrice.value);
+              formData.append('stockcount', stockCount.value);
+              formData.append('categoryname', categoryName.value);
+              formData.append('description', description.value);
             } // console.log(productObj)
 
 
-            _context2.prev = 4;
-            _context2.next = 7;
+            _context.prev = 6;
+            _context.next = 9;
             return fetch('http://localhost:3333/product', {
               method: "post",
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                productObj: productObj,
-                subCategory: subCategory
-              })
+              // headers: {'Content-Type': 'multipart/form-data'},
+              // body: JSON.stringify({
+              body: formData // })
+
             });
 
-          case 7:
-            res = _context2.sent;
-            _context2.next = 10;
+          case 9:
+            res = _context.sent;
+            _context.next = 12;
             return res.json();
 
-          case 10:
-            response = _context2.sent;
+          case 12:
+            response = _context.sent;
             console.log(response);
 
             if (response.isUpdated) {
@@ -981,24 +958,24 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
               window.location.reload();
             }
 
-            _context2.next = 18;
+            _context.next = 20;
             break;
 
-          case 15:
-            _context2.prev = 15;
-            _context2.t0 = _context2["catch"](4);
-            console.error(_context2.t0);
+          case 17:
+            _context.prev = 17;
+            _context.t0 = _context["catch"](6);
+            console.error(_context.t0);
 
-          case 18:
+          case 20:
           case "end":
-            return _context2.stop();
+            return _context.stop();
         }
       }
-    }, _callee2, null, [[4, 15]]);
+    }, _callee, null, [[6, 17]]);
   }));
 
-  return function (_x2) {
-    return _ref2.apply(this, arguments);
+  return function (_x) {
+    return _ref.apply(this, arguments);
   };
 }()); // subcategory functionality
 

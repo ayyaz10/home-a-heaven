@@ -12,6 +12,7 @@ const expressLayout = require('express-ejs-layouts');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
+const upload = multer();
 
 
 const express = require('express');
@@ -59,6 +60,7 @@ app.use(session({
 
 // app.use(flash());
 
+// app.use(upload.any())
 app.use(express.static('public'));
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }))

@@ -877,11 +877,13 @@ addToCart.forEach(function (cartBtn) {
 
             case 2:
               product = _context.sent;
+              // console.log(product)
               localStorage.removeItem('selectIndex');
               localStorage.setItem('productId', product.product_id);
               items = {
                 item: product
               };
+              console.log(items);
               oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
               localStorage.setItem('itemsArray', JSON.stringify(items));
 
@@ -892,7 +894,7 @@ addToCart.forEach(function (cartBtn) {
                 }
               }
 
-            case 9:
+            case 10:
             case "end":
               return _context.stop();
           }
