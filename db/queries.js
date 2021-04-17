@@ -313,10 +313,9 @@ module.exports = {
             await knex('product')
             .where('product_id', productId)
             .del()
-            // creating categoryObj that has data that needs to be insert in category_table
+            // creating categoryObj that has data that needs to be insert in product_category table
             const categoryObj = {
                 category_name: productObj.category_name,
-                image: "product.png",
                 created_at: new Date()
             }
             const dbCategoryResponse = await knex('product_category').insert(categoryObj, "category_id");

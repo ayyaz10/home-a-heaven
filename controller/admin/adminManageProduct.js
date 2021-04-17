@@ -44,7 +44,7 @@ const adminManageProduct = () => {
           const productObj = {
             product_name: product[0],
             price: product[1],
-            image: 'product.png',
+            // image: 'product.png',
             inStock: product[3],
             category_name: product[4],
             sub_cat_name: product[5],
