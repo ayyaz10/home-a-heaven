@@ -28,42 +28,10 @@
                     <a href="collections/products">
                         <h2 class="category-name"><%- `${categories[i].category_name}` %> </h2>
                         <img src=<%- `assets/${categories[i].image}` %> class="product-image" alt="product">
-                        <!-- <div class="text-wrapper"> -->
-                        <!-- </div> -->
                     </a>
                 </div>
-             <% } %>
-          <!-- <div class="category cat1">
-              <img src="assets/homepage-categories.png"  alt="">
-          </div>
-          <div class="category cat2">
-              <img src="assets/homepage-categories.png"  alt="">
-          </div>
-          <div class="category cat3">
-              <img src="assets/homepage-categories.png"  alt="">
-          </div>
-          <div class="category cat4">
-              <img src="assets/homepage-categories.png"  alt="">
-          </div>
-          <div class="category cat5">
-              <img src="assets/homepage-categories.png"  alt="">
-          </div>
-          <div class="category cat6">
-              <img src="assets/homepage-categories.png"  alt="">
-          </div> -->
-      </div>
-      </div>
-  </section>
-  <section class="new-arrivals-section">
-      <h1>New Arrivals</h1>
-      <div class="new-arrivals-section-row">
-          <% for(let i = 0; i < products.length; i++) { %>
-            <div class="product">
-                <a href="collections/products"><img src=<%- `assets/${products[i].image}` %> class="product-image" alt="product"></a>
-                <a href="collections/products"><h2><%- products[i].product_name %></h2></a>
-                <a href="collections/products"><p><%- products[i].price %></p></a>
-            </div>
-         <% } %>
+            <% } %>
+        </div>
       </div>
   </section>
   <%- include('footer'); -%>

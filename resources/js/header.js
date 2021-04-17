@@ -46,8 +46,6 @@ logoutButton.addEventListener('click', (e)=>{
         .then(result => {
             window.location.reload()
             window.location.reload()
-            // console.log('signout')
-            // console.log(result)
         })
         }
         // const result = await response.json();
@@ -60,6 +58,7 @@ if(userId) {
 } else {
     logoutHeader.style.display = "none";
 }
+
 
 // search functionality
 let searchText;
@@ -89,9 +88,29 @@ closeIcon.addEventListener('click', () => {
     closeIcon.style.display = "none";
     menuContainer.style.display = "none";
     menuIcon.style.display = "block";
-    
 })
 
+
+const role = localStorage.getItem('role');
+if(role === 'admin') {
+//    const secondMenu = document.querySelector('.second-menu');
+   const mainMenu = document.querySelector('.main-menu');
+   const search = document.querySelector('.search');
+   const cart = document.querySelector('.cart');
+   const account = document.querySelector('.account');
+   mainMenu.style.display = "none";
+   search.style.display = "none";
+   cart.style.display = "none";
+   account.style.display = "none";
+
+} else {
+    const adminMenu = document.querySelector('.admin-panel')
+    adminMenu.style.display = "none";
+}
+
+{/* <li><a href="/adminOrders">Customer Orders</a></li>
+<li><a href="/manage-product">Manage Products</a></li>
+<li><a href="/user-account">Account</a></li> */}
 
 // search backend
 

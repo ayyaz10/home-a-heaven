@@ -929,8 +929,7 @@ logoutButton.addEventListener('click', function (e) {
       return res.json();
     }).then(function (result) {
       window.location.reload();
-      window.location.reload(); // console.log('signout')
-      // console.log(result)
+      window.location.reload();
     });
   } // const result = await response.json();
 
@@ -967,7 +966,31 @@ closeIcon.addEventListener('click', function () {
   closeIcon.style.display = "none";
   menuContainer.style.display = "none";
   menuIcon.style.display = "block";
-}); // search backend
+});
+var role = localStorage.getItem('role');
+
+if (role === 'admin') {
+  //    const secondMenu = document.querySelector('.second-menu');
+  var mainMenu = document.querySelector('.main-menu');
+
+  var _search = document.querySelector('.search');
+
+  var cart = document.querySelector('.cart');
+  var account = document.querySelector('.account');
+  mainMenu.style.display = "none";
+  _search.style.display = "none";
+  cart.style.display = "none";
+  account.style.display = "none";
+} else {
+  var adminMenu = document.querySelector('.admin-panel');
+  adminMenu.style.display = "none";
+}
+
+{
+  /* <li><a href="/adminOrders">Customer Orders</a></li>
+  <li><a href="/manage-product">Manage Products</a></li>
+  <li><a href="/user-account">Account</a></li> */
+} // search backend
 // const searchInput = document.querySelector('#input-search')
 // searchInput.addEventListener('keyup', (e) => {
 //     // console.log(e.target.value)

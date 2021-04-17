@@ -1,19 +1,12 @@
-// const notFoundController = require('../controller/notFoundController');
-// const reqByCategory = require('../controller/customer/reqByCategory');
 const uuid = require('uuid').v4;
 const multer = require('multer');
-
-
-const orderStatus = require('../controller/admin/adminOrderController');
 const adminManageProduct = require('../controller/admin/adminManageProduct');
 const adminOrderController = require('../controller/admin/adminOrderController');
 const orderController = require('../controller/customer/orderController');
 const ensureLoggedIn = require('../controller/middlewares/ensureLoggedIn');
 const admin = require('../controller/middlewares/admin');
 const guest = require('../controller/middlewares/guest');
-const updateCartController = require('../controller/customer/addToCartController');
 const accountController = require('../controller/customer/accountController');
-const addToCartController = require('../controller/customer/addToCartController');
 const cartController = require('../controller/customer/cartController');
 const adminPanelController = require('../controller/admin/adminPanelController');
 const productsController = require('../controller/customer/productsController');
@@ -30,8 +23,6 @@ const storage = multer.diskStorage({
     }
 })
 const upload = multer({ storage });
-
-// router.user(multer.array())
 const express = require('express');
 const router = express.Router();
 
@@ -41,7 +32,6 @@ router.get('/', homeController().index);
 router.get('/signup-login', guest, authController().registerLogin);
 router.post('/register', authController().register);
 router.post('/login', authController().login);
-// router.post('/add-data', authController().postData);
 router.get('/logout', authController().logout);
 
 // admin auth
@@ -56,24 +46,21 @@ router.post('/sort', productsController().reqBySort);
 router.get ('/search', productsController().searchQuery);
 
 // customer controllers
-// router.get('/products', productsController().index);
-// router.get('/sorted', productsController().getSorted);
-// router.post('/updateCart', cartController().update);
 router.get('/cart', cartController().index);
 router.get('/addInCart', cartController().addInCart);
 router.get('/getProductDetail', cartController().getProductDetail);
 router.post('/addToCart', cartController().addToCart);
 
-// admin controllers
+// admin routes
+router.get('/adminOrders', admin, adminOrderController().index)
+router.post('/order-status', adminOrderController().orderStatus);
 router.get('/adminPanel', admin, adminPanelController().index);
 router.get('/manage-product', admin, adminManageProduct().index);
 router.post('/edit-product', admin, adminManageProduct().editProduct);
 router.post('/delete-product', admin, adminManageProduct().deleteProduct);
-// router.get('/manage-product', adminManageProduct().index);
 router.post('/product', upload.any(), adminPanelController().product);
-// router.post('/upload', upload.single('prodImage'), adminPanelController().upload)
 
-
+// remove and update cart products routes
 router.post('/editCartValues', cartController().editCartValues);
 router.post('/removeCartItem', cartController().removeCartItem);
 
@@ -83,12 +70,6 @@ router.get('/checkout', orderController().checkout);
 router.post('/order', orderController().order);
 router.get('/account', ensureLoggedIn, accountController().index);
 router.post('/edit-profile', accountController().editProfile);
-// 404 router
-// router.get('/404', notFoundController().index);
-
-// admin routes
-router.get('/adminOrders', admin, adminOrderController().index)
-router.post('/order-status', adminOrderController().orderStatus);
 
 
 module.exports = router;

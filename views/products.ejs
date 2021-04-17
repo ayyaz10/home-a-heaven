@@ -31,11 +31,8 @@
                 <option value="date-desc">Date, new to old</option>
                 <option value="date-asc">Date, old to new</option>
             </select>
-                <!-- <input id="supplierCapacity" type="text" class="operations-supplierCapacity" readonly /> -->
         </div>
         <div class="filter">
-            <!-- <button class="sort-btn">sort</button>
-            <button class="filter-btn">filter</button> -->
             <select class="filter-select">
                 <option value="filter">Filter</option>
                 <% if (subCategories.length) { %>
@@ -46,16 +43,9 @@
                     <% } %>
                 <% } %>
             </select>
-                <!-- <input id="supplierCapacity" type="text" class="operations-supplierCapacity" readonly /> -->
         </div>
     </div>
-    <!-- <p class="search-fail" style="text-align: center;"></p> -->
     <section class="product-items-section">
-        <!-- <div class="filter-sort-container">
-            <div class="filter">
-
-            </div>
-        </div> -->
          <% for(let i = 0; i < products.length; i++) { %>
         <div class="products">
             <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="product-image add-to-cart <%= products[i].price %>"><img src=<%- `/assets/uploads/${products[i].image}` %> alt="product"></a>
@@ -63,7 +53,6 @@
             <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart <%= products[i].price %>"><p class="product-price"><%- products[i].price %></p></a>
         </div>
          <% } %>
-
     </section>
     <%- include('footer'); -%>
 </body>

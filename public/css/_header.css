@@ -30,6 +30,9 @@ body {
     display: flex;
     justify-content: space-between;
 }
+.admin-panel:hover {
+    text-decoration: underline;
+}
 .menu-container{
     display: flex;
     justify-content: space-between;
@@ -73,6 +76,11 @@ body {
     color: var(--primary);
     text-align: center;
 }
+
+.second-menu a{ 
+    margin-right: auto;
+}
+
 .main-menu a {
     transition: text-shadow .3s ease-in-out;
     letter-spacing: .08rem;

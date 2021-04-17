@@ -30,7 +30,6 @@ const adminManageProduct = () => {
         const editModalProductId = req.body.editModalProductId;
         const product = req.body.productArray;
         const subCatId = req.body.subCatId;
-        // console.log(subCatId)
         if(editModalProductId) {
           const product = await getOneProductById(editModalProductId);
            res.json({
