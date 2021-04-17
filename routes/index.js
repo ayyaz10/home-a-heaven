@@ -1,5 +1,8 @@
 // const notFoundController = require('../controller/notFoundController');
 // const reqByCategory = require('../controller/customer/reqByCategory');
+const uuid = require('uuid').v4;
+const multer = require('multer');
+
 
 const orderStatus = require('../controller/admin/adminOrderController');
 const adminManageProduct = require('../controller/admin/adminManageProduct');
@@ -16,6 +19,19 @@ const adminPanelController = require('../controller/admin/adminPanelController')
 const productsController = require('../controller/customer/productsController');
 const homeController = require('../controller/homeController');
 const authController = require('../controller/auth/authController');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/assets/uploads');
+    },
+    filename: (req, file, cb) => {
+        const { originalname } = file;
+        cb(null, `${uuid()}-${originalname}`);
+    }
+})
+const upload = multer({ storage });
+
+
 const express = require('express');
 const router = express.Router();
 
@@ -55,6 +71,7 @@ router.post('/edit-product', admin, adminManageProduct().editProduct);
 router.post('/delete-product', admin, adminManageProduct().deleteProduct);
 // router.get('/manage-product', adminManageProduct().index);
 router.post('/product', adminPanelController().product);
+router.post('/upload', upload.single('prodImage'), adminPanelController().upload)
 
 
 router.post('/editCartValues', cartController().editCartValues);

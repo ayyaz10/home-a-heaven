@@ -873,21 +873,62 @@ categories.forEach(function (category) {
 adminPanelAddCategoryInput.addEventListener('n', function () {
   categoryAddedMsg.classList.remove('success_response');
   adminPanelAddCategoryInput.value = "";
-});
+}); // adminPanelForm.addEventListener('submit', async (e) => {
+//     e.preventDefault();
+//         // getting and uploading image file to server
+//         const fileField = document.querySelector('input[type="file"]');
+//         let formData = new FormData();
+//         formData.append('prodImage', fileField.files[0]);
+//         const res = await fetch('http://localhost:3333/product', {
+//             method: 'post',
+//             body: formData
+//          })
+//         const result = await res.json();
+// })
+
 adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-    var productObj, subCategory, res, response;
+    var fileField, formData, res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            e.preventDefault();
+            e.preventDefault(); // getting and uploading image file to server
+
+            fileField = document.querySelector('input[type="file"]');
+            formData = new FormData();
+            formData.append('prodImage', fileField.files[0]);
+            res = fetch('http://localhost:3333/upload', {
+              method: 'post',
+              body: formData
+            }); //   const result = res.json();
+            //   console.log(result)
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function (_x) {
+    return _ref.apply(this, arguments);
+  };
+}());
+adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+    var productObj, subCategory, res, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            e.preventDefault(); // getting and sending form text data to server
+
             productObj = {};
             subCategory = {};
 
             if (clickedCategory) {
-              // console.log(clickedCategory)
-              console.log(categoryName.value);
               productObj = {
                 productname: productName.value,
                 productprice: productPrice.value,
@@ -900,7 +941,7 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
               };
               subCategory = {
                 subcategoryname: categoryName.value
-              };
+              }; // console.log(categoryName)
             } else {
               productObj = {
                 productname: productName.value,
@@ -913,8 +954,8 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
             } // console.log(productObj)
 
 
-            _context.prev = 4;
-            _context.next = 7;
+            _context2.prev = 4;
+            _context2.next = 7;
             return fetch('http://localhost:3333/product', {
               method: "post",
               headers: {
@@ -927,37 +968,37 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
             });
 
           case 7:
-            res = _context.sent;
-            _context.next = 10;
+            res = _context2.sent;
+            _context2.next = 10;
             return res.json();
 
           case 10:
-            response = _context.sent;
+            response = _context2.sent;
             console.log(response);
 
             if (response.isUpdated) {
-              alert("".concat(response.status.dbProduct[0].product_name, " has been added!"));
+              // alert(`${response.status.dbProduct[0].product_name} has been added!`)
               window.location.reload();
             }
 
-            _context.next = 18;
+            _context2.next = 18;
             break;
 
           case 15:
-            _context.prev = 15;
-            _context.t0 = _context["catch"](4);
-            console.error(_context.t0);
+            _context2.prev = 15;
+            _context2.t0 = _context2["catch"](4);
+            console.error(_context2.t0);
 
           case 18:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee, null, [[4, 15]]);
+    }, _callee2, null, [[4, 15]]);
   }));
 
-  return function (_x) {
-    return _ref.apply(this, arguments);
+  return function (_x2) {
+    return _ref2.apply(this, arguments);
   };
 }()); // subcategory functionality
 

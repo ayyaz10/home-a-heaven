@@ -37,6 +37,7 @@ module.exports = {
         });
     },
      async createProduct (productObj, productCategoryObj, subCategoryObj) {
+        //  console.log(productObj)
          if(typeof subCategoryObj !== 'undefined') {
              try {
                  const existingCategory = await knex('product_category')

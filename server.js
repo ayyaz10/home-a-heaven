@@ -1,5 +1,7 @@
 require('dotenv').config();
 // const db = require('./db/knexfile');
+const uuid = require('uuid').v4;
+const multer = require('multer');
 const flash = require('express-flash');
 const router = require('./routes');
 const path = require('path')
@@ -9,6 +11,8 @@ const ejs = require('ejs');
 const expressLayout = require('express-ejs-layouts');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+
+
 
 const express = require('express');
 const app = express();

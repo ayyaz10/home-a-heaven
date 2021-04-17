@@ -21,13 +21,39 @@ adminPanelAddCategoryInput.addEventListener('n', ()=>{
     adminPanelAddCategoryInput.value = "";
 })
 
+// adminPanelForm.addEventListener('submit', async (e) => {
+//     e.preventDefault();
+
+//         // getting and uploading image file to server
+//         const fileField = document.querySelector('input[type="file"]');
+//         let formData = new FormData();
+//         formData.append('prodImage', fileField.files[0]);
+//         const res = await fetch('http://localhost:3333/product', {
+//             method: 'post',
+//             body: formData
+//          })
+//         const result = await res.json();
+// })
 adminPanelForm.addEventListener('submit', async (e)=>{
     e.preventDefault();
+         // getting and uploading image file to server
+         const fileField = document.querySelector('input[type="file"]');
+         let formData = new FormData();
+         formData.append('prodImage', fileField.files[0]);
+         const res = fetch('http://localhost:3333/upload', {
+             method: 'post',
+             body: formData
+          })
+        //   const result = res.json();
+        //   console.log(result)
+ })
+adminPanelForm.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    // getting and sending form text data to server
+
     let productObj = {};
     let subCategory = {};
     if(clickedCategory) {
-        // console.log(clickedCategory)
-        console.log(categoryName.value)
          productObj = {
             productname: productName.value,
             productprice: productPrice.value,
@@ -41,6 +67,7 @@ adminPanelForm.addEventListener('submit', async (e)=>{
          subCategory = {
             subcategoryname: categoryName.value
         }
+        // console.log(categoryName)
     } else {
          productObj = {
             productname: productName.value,
@@ -52,6 +79,7 @@ adminPanelForm.addEventListener('submit', async (e)=>{
         }
     }
     // console.log(productObj)
+    
 try {
     const res = await fetch('http://localhost:3333/product', {
         method: "post",
@@ -64,7 +92,7 @@ try {
     const response = await res.json();
     console.log(response)
     if(response.isUpdated) {
-        alert(`${response.status.dbProduct[0].product_name} has been added!`)
+        // alert(`${response.status.dbProduct[0].product_name} has been added!`)
         window.location.reload();
     }
 } catch (error) {
