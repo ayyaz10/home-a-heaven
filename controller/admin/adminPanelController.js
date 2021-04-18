@@ -39,8 +39,9 @@ const adminPanelController = () => {
           sub_cat_name: productObj.subcategoryname,
         }
         const status = await createProduct(productObjs, productCategoryObj, subCategoryObj)
+        console.log(status)
         return res.json({
-          isUpdated: true,
+          isDbResponse: true,
           status
         })
       } else {
@@ -60,8 +61,9 @@ const adminPanelController = () => {
           created_at: new Date()
         }
         const status = await createProduct(productObjs, productCategoryObj);
+        // console.log(status)
         return res.json({
-          isUpdated: true,
+          isDbResponse: true,
           status
         })
       }

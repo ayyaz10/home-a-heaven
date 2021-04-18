@@ -944,13 +944,18 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
 
           case 12:
             response = _context.sent;
-            console.log(response);
 
-            if (response.isUpdated) {
-              // alert(`${response.status.dbProduct[0].product_name} has been added!`)
-              window.location.reload();
+            if (response.isDbResponse && response.status.product) {
+              alert("".concat(productName.value, " product has been added!"));
+            } else if (response.isDbResponse && response.status.productAndCategory) {
+              alert("".concat(productName.value, " product and ").concat(categoryName.value, " category has been added!"));
+            } else if (response.isDbResponse && response.status.productAndSubCategory) {
+              alert("".concat(productName.value, " product and ").concat(categoryName.value, " sub category has been added!"));
+            } else {
+              alert("".concat(productName.value, " is already exists in database!"));
             }
 
+            window.location.reload();
             _context.next = 20;
             break;
 

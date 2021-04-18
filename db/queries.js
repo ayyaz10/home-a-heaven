@@ -46,9 +46,7 @@ module.exports = {
                  .where({ product_name: productObj.product_name }).first()
                  const existingSubCategory = await knex('sub_category')
                  .where({ sub_cat_name: subCategoryObj.sub_cat_name }).first()
-                //  let dbSubCategory;
                  if(!existingProduct && !existingSubCategory) {
-                     console.log('heo')
                      let dbSubCategory =
                      await knex.insert({
                          sub_cat_name: subCategoryObj.sub_cat_name,
@@ -63,12 +61,10 @@ module.exports = {
                     .into('product')
                     .returning("*")
                     return {
-                        message: "product added",
+                        message: "product and sub category added",
                         dbProduct,
                         dbSubCategory,
-                        isAdded: true,
-                        subCategory: true,
-                        product: true
+                        productAndSubCategory: true
                     }
                  }
                  if(!existingProduct) {
@@ -80,11 +76,10 @@ module.exports = {
                     let dbProduct = await knex.insert(productObj, 'product_id')
                     .into('product')
                     .returning("*")
-                    console.log(dbProduct)
+                    // console.log(dbProduct)
                     return {
                         message: "product added",
                         dbProduct,
-                        isAdded: true,
                         product: true
                     }
                  }
@@ -95,6 +90,10 @@ module.exports = {
                     isAdded: false
                 }
              }
+             return {
+                message: "product already exists",
+                isAdded: false
+            }
             }
           else {
             try {
@@ -115,12 +114,10 @@ module.exports = {
                     .into('product')
                     .returning("*")
                 return {
-                    message: 'Product added',
+                    message: 'Product and Category added',
                     dbProductCategory,
                     dbProduct,
-                    isAdded: true,
-                    category: true,
-                    product: true
+                    productAndCategory: true
                 }
                 } else if(!productExist.length){
                     const dbProduct = await knex.insert(productObj, 'product_id')
@@ -129,7 +126,6 @@ module.exports = {
                     return {
                         message: 'Product added',
                         dbProduct,
-                        isAdded: true,
                         product: true
                     }
                 }
@@ -139,6 +135,10 @@ module.exports = {
                      message: "soemthing went wrong",
                      isAdded: false
                  }
+            }
+            return {
+                message: "product already exists",
+                isAdded: false
             }
          }
     },

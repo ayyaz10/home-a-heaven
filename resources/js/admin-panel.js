@@ -77,11 +77,16 @@ try {
         body: formData
     })
     const response = await res.json();
-    console.log(response)
-    if(response.isUpdated) {
-        // alert(`${response.status.dbProduct[0].product_name} has been added!`)
-        window.location.reload();
+    if(response.isDbResponse && response.status.product) {
+        alert(`${productName.value} product has been added!`)
+    } else if(response.isDbResponse && response.status.productAndCategory) {
+        alert(`${productName.value} product and ${ categoryName.value } category has been added!`)
+    } else if(response.isDbResponse && response.status.productAndSubCategory) {
+        alert(`${productName.value} product and ${ categoryName.value } sub category has been added!`)
+    } else {
+        alert(`${productName.value} is already exists in database!`)
     }
+    window.location.reload();
 } catch (error) {
     console.error(error)
 }
