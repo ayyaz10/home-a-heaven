@@ -111,7 +111,7 @@ editButton.forEach(eachButton => {
              })
              const response = await res.json();
              if(response.dbResponse.isUpdated) {
-                 const submitButton = document.querySelector('.submit-button')
+                 const submitButton = document.querySelector('.submit-button');
                  submitButton.disabled = true;
                 submitButton.style.background = "#949393";
                  window.location.reload();
