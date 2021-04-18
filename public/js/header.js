@@ -982,8 +982,10 @@ if (role === 'admin') {
   cart.style.display = "none";
   account.style.display = "none";
 } else {
-  var adminMenu = document.querySelector('.admin-panel');
-  adminMenu.style.display = "none";
+  var manageProduct = document.querySelector('.manage-product');
+  var manageCustOrders = document.querySelector('.manage-cust-orders');
+  manageProduct.style.display = "none";
+  manageCustOrders.style.display = "none";
 }
 
 {

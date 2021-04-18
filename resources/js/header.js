@@ -104,8 +104,10 @@ if(role === 'admin') {
    account.style.display = "none";
 
 } else {
-    const adminMenu = document.querySelector('.admin-panel')
-    adminMenu.style.display = "none";
+    const manageProduct = document.querySelector('.manage-product');
+    const manageCustOrders = document.querySelector('.manage-cust-orders');
+    manageProduct.style.display = "none";
+    manageCustOrders.style.display = "none";
 }
 
 {/* <li><a href="/adminOrders">Customer Orders</a></li>

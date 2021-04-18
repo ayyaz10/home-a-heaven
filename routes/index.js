@@ -53,12 +53,12 @@ router.post('/addToCart', cartController().addToCart);
 
 // admin routes
 router.get('/adminOrders', admin, adminOrderController().index)
-router.post('/order-status', adminOrderController().orderStatus);
+router.post('/order-status', admin, adminOrderController().orderStatus);
 router.get('/adminPanel', admin, adminPanelController().index);
 router.get('/manage-product', admin, adminManageProduct().index);
-router.post('/edit-product', upload.any(), adminManageProduct().editProduct);
-router.post('/delete-product', adminManageProduct().deleteProduct);
-router.post('/product', upload.any(), adminPanelController().product);
+router.post('/edit-product', upload.any(),  admin, adminManageProduct().editProduct);
+router.post('/delete-product',  admin, adminManageProduct().deleteProduct);
+router.post('/product', upload.any(), admin, adminPanelController().product);
 
 // remove and update cart products routes
 router.post('/editCartValues', cartController().editCartValues);

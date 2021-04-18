@@ -115,7 +115,7 @@ editButton.forEach(eachButton => {
                  const submitButton = document.querySelector('.submit-button')
                  submitButton.disabled = true;
                 submitButton.style.background = "#5e5e5e";
-                //  window.location.reload();
+                 window.location.reload();
              }
         })
 

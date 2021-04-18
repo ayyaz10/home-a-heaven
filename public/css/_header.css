@@ -30,9 +30,10 @@ body {
     display: flex;
     justify-content: space-between;
 }
-.admin-panel:hover {
+.manage-cust-orders:hover, .manage-product:hover  {
     text-decoration: underline;
-}
+  }
+  
 .menu-container{
     display: flex;
     justify-content: space-between;

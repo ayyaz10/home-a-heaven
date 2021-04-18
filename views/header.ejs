@@ -29,12 +29,14 @@
             </button>
           </div>
           <a href="/cart" class="cart"><span class="cart-count"><%= session.cart ? session.cart.totalQty : ' ' %></span></a>
-            <a href="/account" class="account" id="account">
-                <a href="/adminOrders" class="admin-panel">Admin Panel</a>
+                <a href="/manage-product" class="manage-product">Manage Products</a>
+                <a href="/adminOrders" class="manage-cust-orders">Customer Orders</a>
+                <a href="/account" class="account" id="account"></a>
+                <!-- <a href="/adminOrders" class="admin-panel">Admin Panel</a> -->
                 <a href="#" class="logout" id="logout">Logout</a>
                 <a href="/signup-login" class="login" id="login">Login</a>
                 <!-- <a href="/signup-login" class="Register" id="register">Register</a> -->
-            </a>
+
         </div>
       </div>
     </div>

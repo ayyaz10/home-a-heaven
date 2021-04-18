@@ -86,6 +86,9 @@ try {
     } else {
         alert(`${productName.value} is already exists in database!`)
     }
+    const submitButton = document.querySelector('.submit-button')
+    submitButton.disabled = true;
+    submitButton.style.background = "#5e5e5e";
     window.location.reload();
 } catch (error) {
     console.error(error)

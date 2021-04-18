@@ -901,7 +901,7 @@ adminPanelAddCategoryInput.addEventListener('n', function () {
 
 adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-    var fileField, formData, productObj, subCategory, res, response;
+    var fileField, formData, productObj, subCategory, res, response, submitButton;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -955,21 +955,24 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
               alert("".concat(productName.value, " is already exists in database!"));
             }
 
+            submitButton = document.querySelector('.submit-button');
+            submitButton.disabled = true;
+            submitButton.style.background = "#5e5e5e";
             window.location.reload();
-            _context.next = 20;
+            _context.next = 23;
             break;
 
-          case 17:
-            _context.prev = 17;
+          case 20:
+            _context.prev = 20;
             _context.t0 = _context["catch"](6);
             console.error(_context.t0);
 
-          case 20:
+          case 23:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[6, 17]]);
+    }, _callee, null, [[6, 20]]);
   }));
 
   return function (_x) {

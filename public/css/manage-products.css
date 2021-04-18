@@ -15,30 +15,30 @@
 
 
 .main-container {
-    margin: 2.0375rem auto;
-    max-width: 73.75em;
-    display: flex;
+    /* margin: 2.0375rem auto; */
+    /* max-width: 73.75em; */
+    /* display: flex; */
     justify-content: space-between;
     /* flex-direction: column; */
 }
 
 .content-section {
-  display: flex;
+  /* display: flex; */
   height: 100%;
   padding-bottom: 100px;
 }
 
 .content-section img {
   width: 50px;
-  height: 70px;
+  /* height: 70px; */
 }
 
 /* left panel style */
 .left-panel {
-  position: fixed;
+  /* position: fixed; */
   height: 100%;
-  padding: 20px 0px 0px 60px;
-  width: 25%;
+  /* padding: 20px 0px 0px 60px; */
+  width: 20%;
   color: #fff;
   background-color: var(--primary);
   /* border: 1px solid red; */
@@ -69,19 +69,24 @@
 .product-container {
   /* max-width: 1200px; */
   position: relative;
-  left: 10%;
-  width: 70%;
+  /* left: 10%; */
+  width: 100%;
   margin: 0 auto;
-  padding: 40px 0px 40px 50px;
+  padding: 40px 0px 40px 20px;
 }
 
 .product-container h1 {
+  font-size: 28px;
   color: var(--primary); 
   text-align: center; 
   margin-bottom: 50px; 
 }
-
 /* table style */
+table.table tbody td {
+  font-size: 13px;
+  color: #424244;
+}
+/* 
 
 table.table {
     border: 1px solid #424244;
@@ -116,7 +121,7 @@ table.table {
     padding: 2px 8px;
     border-radius: 5px;
   }
-  
+   */
 
 
 
@@ -237,7 +242,7 @@ textarea {
   cursor: pointer;
 }
 
-.category span:hover {
+.category span:hover, .manage-cust-orders:hover, .manage-product:hover  {
   text-decoration: underline;
 }
 
@@ -255,24 +260,29 @@ textarea {
 }
 .button {
   position: absolute;
-  right: 0;
+  right: 100px;
   top: 80px;
   /* bottom: -10px; */
     /* margin-bottom: 10px; */
 }
-.shop-button {
+
+.svg {
+  margin-left: 6px;
+}
+.add-product-button {
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--white);
   background-color: var(--primary);
   border: none;
-  padding: 0.625em 2rem;
+  padding: 0.625em 1rem;
   cursor: pointer;
   text-align: center;
 }
 
-.shop-button:hover {
+.add-product-button:hover {
   background-color: var(--primary-hover);
+  color: #fff;
 }
 
 @media only screen and (max-width: 1030px) {

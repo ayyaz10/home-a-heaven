@@ -1047,7 +1047,8 @@ editButton.forEach(function (eachButton) {
                             alert("".concat(response.dbResponse.product[0].product_name, " product has been updated!"));
                             submitButton = document.querySelector('.submit-button');
                             submitButton.disabled = true;
-                            submitButton.style.background = "#5e5e5e"; //  window.location.reload();
+                            submitButton.style.background = "#5e5e5e";
+                            window.location.reload();
                           }
 
                         case 20:
