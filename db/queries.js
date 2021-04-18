@@ -75,7 +75,6 @@ module.exports = {
                     // get subCat_id from sub_category table
                     const subCategoryId = await knex.select('subCat_id').from('sub_category')
                     .where({sub_cat_name: productObj.sub_cat_name})
-                 
                     productObj.category_name = productCategoryObj.category_name;
                     productObj.subcat_id = subCategoryId[0].subCat_id;
                     let dbProduct = await knex.insert(productObj, 'product_id')
@@ -111,7 +110,6 @@ module.exports = {
                     await knex.insert(productCategoryObj, 'category_id')
                     .into('product_category')
                     .returning('*');
-                    
                 productObj.category_name = dbProductCategory[0].category_name;
                 let dbProduct = await knex.insert(productObj, 'product_id')
                     .into('product')
@@ -151,8 +149,7 @@ module.exports = {
         return allUsers;
     },
     async getAllProducts () {
-        const allProducts = await knex.select('*').from('product').orderBy('created_at', 'desc')
-
+        const allProducts = await knex.select('*').from('product').orderBy('created_at', 'desc');
         return allProducts;
     },
     async getAllCategories () {

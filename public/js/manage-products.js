@@ -847,6 +847,12 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -988,47 +994,62 @@ editButton.forEach(function (eachButton) {
               editForm = document.querySelector('#editProductForm');
               editForm.addEventListener('submit', /*#__PURE__*/function () {
                 var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-                  var productId, productArray, res, response;
+                  var productId, form, formData, _iterator, _step, pair, productArray, res, response, submitButton;
+
                   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
                     while (1) {
                       switch (_context2.prev = _context2.next) {
                         case 0:
                           e.preventDefault();
-                          productId = editModalProductId; //    console.log(productId)
+                          productId = editModalProductId;
+                          form = document.querySelector('.edit-product-form');
+                          formData = new FormData(form);
+                          formData.append('productId', productId);
+                          formData.append('subCatId', subCatId); // Display the key/value pairs
+
+                          _iterator = _createForOfIteratorHelper(formData.entries());
+
+                          try {
+                            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                              pair = _step.value;
+                              console.log(pair[0] + ', ' + pair[1]);
+                            }
+                          } catch (err) {
+                            _iterator.e(err);
+                          } finally {
+                            _iterator.f();
+                          }
 
                           productArray = [];
                           editProductForm.forEach(function (eachInput) {
                             productArray.push(eachInput.value);
                           });
                           productArray.push(textArea.value);
-                          _context2.next = 7;
+                          console.log(productArray);
+                          _context2.next = 14;
                           return fetch('http://localhost:3333/edit-product', {
                             method: "post",
                             mode: 'cors',
                             credentials: 'include',
-                            headers: {
-                              'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                              productId: productId,
-                              subCatId: subCatId,
-                              productArray: productArray
-                            })
+                            body: formData
                           });
 
-                        case 7:
+                        case 14:
                           res = _context2.sent;
-                          _context2.next = 10;
+                          _context2.next = 17;
                           return res.json();
 
-                        case 10:
+                        case 17:
                           response = _context2.sent;
 
                           if (response.dbResponse.isUpdated) {
+                            submitButton = document.querySelector('.submit-button');
+                            submitButton.disabled = true;
+                            submitButton.style.background = "#949393";
                             window.location.reload();
                           }
 
-                        case 12:
+                        case 19:
                         case "end":
                           return _context2.stop();
                       }

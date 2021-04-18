@@ -18,7 +18,7 @@ deleteButton.forEach(eachButton => {
         const productName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText;
         const isDeleteConfirm = confirm(`Are you sure to delete the product ${productName}`);
         if(isDeleteConfirm) {
-            const productId = e.target.getAttribute("data-productid-type")
+            const productId = e.target.getAttribute("data-productid-type");
             const res = await fetch('http://localhost:3333/delete-product', {
                 method: "post",
                 mode: 'cors',
@@ -41,11 +41,8 @@ deleteButton.forEach(eachButton => {
 const editButton = document.querySelectorAll('.edit-product');
 editButton.forEach(eachButton => {
     eachButton.addEventListener('click', async (e) => {
-   
-
         const editModalProductId = e.target.getAttribute("data-productid-type");
         const subCatId = e.target.getAttribute("data-subcatid-type");
-      
         const res = await fetch('http://localhost:3333/edit-product', {
             method: "post",
             mode: 'cors',
@@ -89,26 +86,34 @@ editButton.forEach(eachButton => {
         const editForm = document.querySelector('#editProductForm');
         editForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-           const productId = editModalProductId;
-        //    console.log(productId)
+            const productId = editModalProductId;
+            const form = document.querySelector('.edit-product-form');
+            let formData = new FormData(form)
+            formData.append('productId', productId)
+            formData.append('subCatId', subCatId,)
+            // Display the key/value pairs
+            for (var pair of formData.entries()) {
+                console.log(pair[0]+ ', ' + pair[1]); 
+            }
              let productArray = [];
             editProductForm.forEach(eachInput => {
                 productArray.push(eachInput.value) 
             })
             productArray.push(textArea.value)
+            console.log(productArray)
             const res = await fetch('http://localhost:3333/edit-product', {
                 method: "post",
                 mode: 'cors',
                 credentials: 'include',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    productId,
-                    subCatId,
-                    productArray
-                })
+                body:
+                    formData
+            
              })
              const response = await res.json();
              if(response.dbResponse.isUpdated) {
+                 const submitButton = document.querySelector('.submit-button')
+                 submitButton.disabled = true;
+                submitButton.style.background = "#949393";
                  window.location.reload();
              }
         })

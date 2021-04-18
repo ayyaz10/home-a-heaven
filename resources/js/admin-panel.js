@@ -52,8 +52,7 @@ adminPanelForm.addEventListener('submit', async (e)=>{
     e.preventDefault();
     // getting and sending form text data to server
     const fileField = document.querySelector('input[type="file"]');
-    let formData = new FormData();
-
+    let formData = new FormData()
     let productObj = {};
     let subCategory = {};
     if(clickedCategory) {
@@ -64,10 +63,6 @@ adminPanelForm.addEventListener('submit', async (e)=>{
         formData.append('categoryname', clickedCategory)
         formData.append('subcategoryname', categoryName.value)
         formData.append('description', description.value)
-        //  subCategory = {
-        //     subcategoryname: categoryName.value
-        // }
-        // console.log(categoryName)
     } else {
         formData.append('prodImage', fileField.files[0]);
         formData.append('productname', productName.value)
@@ -76,15 +71,10 @@ adminPanelForm.addEventListener('submit', async (e)=>{
         formData.append('categoryname', categoryName.value)
         formData.append('description', description.value)
     }
-    // console.log(productObj)
-    
 try {
     const res = await fetch('http://localhost:3333/product', {
         method: "post",
-        // headers: {'Content-Type': 'multipart/form-data'},
-            // body: JSON.stringify({
-                body: formData
-            // })
+        body: formData
     })
     const response = await res.json();
     console.log(response)

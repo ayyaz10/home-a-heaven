@@ -56,8 +56,8 @@ router.get('/adminOrders', admin, adminOrderController().index)
 router.post('/order-status', adminOrderController().orderStatus);
 router.get('/adminPanel', admin, adminPanelController().index);
 router.get('/manage-product', admin, adminManageProduct().index);
-router.post('/edit-product', admin, adminManageProduct().editProduct);
-router.post('/delete-product', admin, adminManageProduct().deleteProduct);
+router.post('/edit-product', upload.any(), adminManageProduct().editProduct);
+router.post('/delete-product', adminManageProduct().deleteProduct);
 router.post('/product', upload.any(), adminPanelController().product);
 
 // remove and update cart products routes

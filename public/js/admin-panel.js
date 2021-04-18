@@ -920,10 +920,7 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
               formData.append('stockcount', stockCount.value);
               formData.append('categoryname', clickedCategory);
               formData.append('subcategoryname', categoryName.value);
-              formData.append('description', description.value); //  subCategory = {
-              //     subcategoryname: categoryName.value
-              // }
-              // console.log(categoryName)
+              formData.append('description', description.value);
             } else {
               formData.append('prodImage', fileField.files[0]);
               formData.append('productname', productName.value);
@@ -931,17 +928,13 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
               formData.append('stockcount', stockCount.value);
               formData.append('categoryname', categoryName.value);
               formData.append('description', description.value);
-            } // console.log(productObj)
-
+            }
 
             _context.prev = 6;
             _context.next = 9;
             return fetch('http://localhost:3333/product', {
               method: "post",
-              // headers: {'Content-Type': 'multipart/form-data'},
-              // body: JSON.stringify({
-              body: formData // })
-
+              body: formData
             });
 
           case 9:
