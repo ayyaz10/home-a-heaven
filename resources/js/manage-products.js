@@ -107,15 +107,15 @@ editButton.forEach(eachButton => {
                 credentials: 'include',
                 body:
                     formData
-            
              })
              const response = await res.json();
              console.log(response)
              if(response.dbResponse.isUpdated) {
+                alert(`${response.dbResponse.product[0].product_name} product has been updated!`)
                  const submitButton = document.querySelector('.submit-button')
                  submitButton.disabled = true;
                 submitButton.style.background = "#5e5e5e";
-                 window.location.reload();
+                //  window.location.reload();
              }
         })
 

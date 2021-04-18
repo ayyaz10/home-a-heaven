@@ -313,6 +313,7 @@ module.exports = {
             // creating categoryObj that has data that needs to be insert in product_category table
             const categoryObj = {
                 category_name: productObj.category_name,
+                image: productObj.image,
                 created_at: new Date()
             }
             const dbCategoryResponse = await knex('product_category').insert(categoryObj, "category_id");

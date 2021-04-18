@@ -55,6 +55,7 @@ const adminManageProduct = () => {
           const productId = formData.productId;
           const subCatId = formData.subCatId;
           const oldProduct = await getOneProductById(productId)
+          console.log(oldProduct)
           console.log('helo')
           if(req.files.length) {
             fs.stat(`public/assets/uploads/${oldProduct.image}`, function (err, stats) {
