@@ -1041,15 +1041,16 @@ editButton.forEach(function (eachButton) {
 
                         case 17:
                           response = _context2.sent;
+                          console.log(response);
 
                           if (response.dbResponse.isUpdated) {
                             submitButton = document.querySelector('.submit-button');
                             submitButton.disabled = true;
-                            submitButton.style.background = "#949393";
+                            submitButton.style.background = "#5e5e5e";
                             window.location.reload();
                           }
 
-                        case 19:
+                        case 20:
                         case "end":
                           return _context2.stop();
                       }

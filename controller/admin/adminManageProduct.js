@@ -36,7 +36,6 @@ const adminManageProduct = () => {
       },
       async editProduct(req, res) {
                 // console.log(req.files)
-        // console.log(req.body)
         const formData = JSON.parse(JSON.stringify(req.body));
         // console.log(formData)
 
@@ -45,31 +44,25 @@ const adminManageProduct = () => {
         // const subCatId = formData.subCatId;
         if(editModalProductId) {
           const product = await getOneProductById(editModalProductId);
-           res.json({
+          return res.json({
             product,
             haveProduct: true
           })
         }
         // console.log(formData)
         if(!formData.editModalProductId) {
+          console.log("hitt")
           const productId = formData.productId;
           const subCatId = formData.subCatId;
           const oldProduct = await getOneProductById(productId)
-          // if()
-          // console.log(oldProduct)
-console.log('helo')     
-          
-
-
-          // let imageFile = req.files[0].filename;
-          // console.log(req.files)
+          console.log('helo')
           if(req.files.length) {
             fs.stat(`public/assets/uploads/${oldProduct.image}`, function (err, stats) {
               console.log(stats);//here we got all information of file in stats variable
-              // if (err) {
-              //     return console.error(err);
-              // }
-              if(typeof stats === 'undefind') {
+              if (err) {
+                  return console.error(err);
+              }
+              if(typeof stats !== 'undefind') {
                 fs.unlink(`public/assets/uploads/${oldProduct.image}`, (err) => {
                     if(err) {
                       console.error(err)
