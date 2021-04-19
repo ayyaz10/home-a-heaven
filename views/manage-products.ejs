@@ -29,28 +29,28 @@
         <section class="product-container">
             <h1>Manage Product</h1>
             <div class="button">
-                <a href="/adminPanel" class="add-product-button"> Add product 
-                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                <a href="/adminPanel" class="add-product-button"> Add New Product 
+                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                       </svg>
                 </a>
             </div>
             <div class="container">
-            <div class="table-responsive">
-                <table class="table table-sm table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th scope="col">Image</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Sub Category</th>
-                            <th scope="col">Price (Pkr)</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Discount</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Sub Category</th>
+                                    <th scope="col">Price (Pkr)</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Discount</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                         <% for(let i = 0; i < allProducts.length; i++) { %> 
                             <tr>
                                 <td>
@@ -88,14 +88,14 @@
         </section>
     </section>
     <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <div id="myModal" class="modal modal-body">
     <!-- Modal content -->
-        <div class="modal-content">
+    <div class="modal-content container-fluid center">
             <span class="close">&times;</span>
-            <section class="section-container">
+            <section class="section-container ">
                 <div id="editProductForm">
                     <h1 class="edit-product-heading">Edit Product</h1>
-                    <form class="edit-product-form">
+                    <form class="edit-product-form  ">
                         <p>
                             <label for="prod-name">Name</label>
                             <input type="text" name="prodName" id="prod-name" class="product-name">

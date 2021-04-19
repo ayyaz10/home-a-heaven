@@ -42,6 +42,7 @@
 /* left panel _________________ */
 
 .orders-container h1 {
+  font-size: 28px;
   color: var(--primary); 
   text-align: center; 
   margin-bottom: 30px; 
@@ -49,13 +50,19 @@
 
 .orders-container {
   /* max-width: 1200px; */
-  position: relative;
-  left: 10%;
-  width: 75%;
-  margin: 0 auto;
+  /* position: relative; */
+  /* left: 10%; */
+  width: 100%;
+  /* margin: 0 auto; */
   padding: 40px 50px 40px 50px;
 }
 
+/* table style */
+table.table tbody td, th, tr {
+  font-size: 13px;
+  color: #424244;
+}
+/* 
 table.table {
   border: 1px solid #424244;
   width: 100%;
@@ -88,15 +95,15 @@ table.table tfoot .links a{
   color: #FFFFFF;
   padding: 2px 8px;
   border-radius: 5px;
-}
+} */
 
 @media only screen and (max-width: 1030px) {
-  .left-panel {
+  /* .left-panel {
       width: 30%;
       min-width: 140px;
       padding: 30px 10px 0 30px;
-      /* font-size: 12px; */
-  }
+      /* font-size: 12px; 
+  } */
   .left-panel h2{
       font-size: 15px;
   }
