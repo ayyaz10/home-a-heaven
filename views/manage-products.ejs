@@ -16,27 +16,17 @@
 <body>
     <%- include('header'); -%>
     <section class="content-section">
-        <!-- <div class="sidebar "> -->
-            <!-- <section class="left-panel position-sticky">
-                <h2>Dashboard</h2>
-                <nav class="nav flex-column">
-                    <li><a href="/manage-product">Manage Products</a></li>
-                    <li><a href="/adminOrders">Customer Orders</a></li>
-                </nav>
-            
-            </section> -->
-        <!-- </div> -->
         <section class="product-container">
             <h1>Manage Product</h1>
-            <div class="button">
-                <a href="/adminPanel" class="add-product-button"> Add New Product 
-                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                      </svg>
-                </a>
-            </div>
             <div class="container">
-                    <div class="table-responsive">
+                <div class="button">
+                    <a href="/adminPanel" class="add-product-button"> Add New Product 
+                        <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                          </svg>
+                    </a>
+                </div>
+                    <div class="table-container table-responsive">
                         <table class="table table-sm table-bordered table-condensed">
                             <thead>
                                 <tr>

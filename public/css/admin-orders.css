@@ -3,9 +3,10 @@
 @import './_footer.css';
 
 .content-section {
-  display: flex;
-  height: 100%;
+  /* display: flex;
+  height: 100%; */
 }
+
 
 
 /* left panel style */
@@ -97,19 +98,11 @@ table.table tfoot .links a{
   border-radius: 5px;
 } */
 
-@media only screen and (max-width: 1030px) {
-  /* .left-panel {
-      width: 30%;
-      min-width: 140px;
-      padding: 30px 10px 0 30px;
-      /* font-size: 12px; 
-  } */
-  .left-panel h2{
-      font-size: 15px;
-  }
-
-  .orders-container {
-    width: 70%;
+@media only screen and (max-width: 991px) {
+  .container {
+    box-shadow: var(--nav_shadow);
+    padding-left: 0;
+    padding-right: 0;
   }
   
 }

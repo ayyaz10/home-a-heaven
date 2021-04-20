@@ -13,66 +13,19 @@
   text-decoration: underline;
 }
 
-
-.main-container {
-    /* margin: 2.0375rem auto; */
-    /* max-width: 73.75em; */
-    /* display: flex; */
-    justify-content: space-between;
-    /* flex-direction: column; */
-}
-
 .content-section {
-  /* display: flex; */
-  height: 100%;
   padding-bottom: 100px;
 }
 
 .content-section img {
   width: 50px;
-  /* height: 70px; */
+  height: 50px;
 }
-
-/* left panel style */
-.left-panel {
-  /* position: fixed; */
-  height: 100%;
-  /* padding: 20px 0px 0px 60px; */
-  width: 20%;
-  color: #fff;
-  background-color: var(--primary);
-  /* border: 1px solid red; */
-}
-
-.left-panel h2{
-  color: #fff;
-  font-size: 16px;
-  text-align: left;
-  padding: 0px 0px 5px 0;
-  font-weight: 600;
-}
-
-.left-panel li a {
-  color: #ffffff;
-  cursor: pointer;
-  margin-left: 10px;    
-}
-
-
-.left-panel li a:hover {
-  color: var(--secondary);
-  /* font-weight: 500; */
-
-}
-/* left panel _________________ */
 
 .product-container {
-  /* max-width: 1200px; */
-  position: relative;
-  /* left: 10%; */
   width: 100%;
   margin: 0 auto;
-  padding: 40px 0px 40px 20px;
+  padding: 40px 50px 40px 50px;
 }
 
 .product-container h1 {
@@ -250,9 +203,7 @@ textarea {
   position: relative;
 }
 .button {
-  position: absolute;
-  right: 100px;
-  top: 80px;
+  margin-bottom: 10px;
 }
 
 .add-product-button {
@@ -285,10 +236,19 @@ textarea {
 .product-container {
     /* max-width: 1200px; */
     position: relative;
-    left: 10%;
-    width: 70%;
-    margin: 0 auto;
+    /* left: 10%; */
+    /* width: 70%; */
+    /* margin: 0 auto; */
     padding: 40px 50px 40px 50px;
+  }
+  
+}
+
+@media only screen and (max-width: 991px) {
+  .table-container  {
+    box-shadow: var(--nav_shadow);
+    padding-left: 0;
+    padding-right: 0;
   }
   
 }
