@@ -56,7 +56,9 @@ router.get('/adminOrders', admin, adminOrderController().index)
 router.post('/order-status', admin, adminOrderController().orderStatus);
 router.get('/adminPanel', admin, adminPanelController().index);
 router.get('/manage-product', admin, adminManageProduct().index);
+router.get('/manage-categories', admin, adminManageProduct().productCategoryIndex);
 router.post('/edit-product', upload.any(),  admin, adminManageProduct().editProduct);
+router.post('/delete-category',  admin, adminManageProduct().deleteCategory);
 router.post('/delete-product',  admin, adminManageProduct().deleteProduct);
 router.post('/product', upload.any(), admin, adminPanelController().product);
 

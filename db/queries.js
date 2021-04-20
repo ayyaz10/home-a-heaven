@@ -31,6 +31,11 @@ module.exports = {
             product_id: productId
         }).first();
     },
+    getOneCategoryById: function(categoryId) {
+        return knex('product_category').where({
+            category_id: categoryId
+        }).first();
+    },
     create: function(user) {
             return knex('customer').insert(user, 'user_id').returning('*').then(user => {
             return user[0];
@@ -274,6 +279,23 @@ module.exports = {
                 return dbRespone
             } catch(error) {
                 console.error(error)
+            }
+        }
+    },
+    async deleteCategory(categoryId) {
+        try {
+            await knex('product_category')
+            .where('category_id', categoryId)
+            .del()
+            return {
+                message: "Category deleted!",
+                isDeleted: true
+            }
+        } catch (error) {
+            console.error(error)
+            return {
+                message: "Something went wrong!",
+                isDeleted: false
             }
         }
     },

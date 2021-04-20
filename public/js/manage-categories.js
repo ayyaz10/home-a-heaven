@@ -841,55 +841,41 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!*****************************************!*\
-  !*** ./resources/js/manage-products.js ***!
-  \*****************************************/
+/*!*******************************************!*\
+  !*** ./resources/js/manage-categories.js ***!
+  \*******************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// const leftPanel = document.querySelector('.left-panel');
-// // const header = document.querySelector('.main_header')
-// // let headerHeight = header.offsetHeight;
-// window.onscroll = function (e) {
-//     if(window.scrollY > 0) {
-//         leftPanel.style.top = 0;
-//     } else {
-//         leftPanel.style.top = "initial";
-//     }
-// };
-// delete product
-var deleteButton = document.querySelectorAll('.delete-product');
+// delete category
+var deleteButton = document.querySelectorAll('.delete-category');
 deleteButton.forEach(function (eachButton) {
   eachButton.addEventListener('click', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-      var productName, isDeleteConfirm, productId, res, response;
+      var categoryName, isDeleteConfirm, categoryId, res, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              productName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText;
-              isDeleteConfirm = confirm("Are you sure to delete the product ".concat(productName));
+              categoryName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText;
+              console.log(categoryName);
+              isDeleteConfirm = confirm("Are you sure to delete the product ".concat(categoryName));
 
               if (!isDeleteConfirm) {
-                _context.next = 11;
+                _context.next = 13;
                 break;
               }
 
-              productId = e.target.getAttribute("data-productid-type");
-              _context.next = 6;
-              return fetch('http://localhost:3333/delete-product', {
+              categoryId = e.target.getAttribute("data-productid-type");
+              console.log(categoryId);
+              _context.next = 8;
+              return fetch('http://localhost:3333/delete-category', {
                 method: "post",
                 mode: 'cors',
                 credentials: 'include',
@@ -897,23 +883,23 @@ deleteButton.forEach(function (eachButton) {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  productId: productId
+                  categoryId: categoryId
                 })
               });
 
-            case 6:
+            case 8:
               res = _context.sent;
-              _context.next = 9;
+              _context.next = 11;
               return res.json();
 
-            case 9:
+            case 11:
               response = _context.sent;
 
               if (response.dbResponse.isDeleted) {
                 window.location.reload();
               }
 
-            case 11:
+            case 13:
             case "end":
               return _context.stop();
           }
@@ -923,156 +909,6 @@ deleteButton.forEach(function (eachButton) {
 
     return function (_x) {
       return _ref.apply(this, arguments);
-    };
-  }());
-}); // edit product
-
-var editButton = document.querySelectorAll('.edit-product');
-editButton.forEach(function (eachButton) {
-  eachButton.addEventListener('click', /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
-      var editModalProductId, subCatId, res, response, editProductForm, textArea, product, modal, span, editForm;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              editModalProductId = e.target.getAttribute("data-productid-type");
-              subCatId = e.target.getAttribute("data-subcatid-type");
-              _context3.next = 4;
-              return fetch('http://localhost:3333/edit-product', {
-                method: "post",
-                mode: 'cors',
-                credentials: 'include',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                  editModalProductId: editModalProductId
-                })
-              });
-
-            case 4:
-              res = _context3.sent;
-              _context3.next = 7;
-              return res.json();
-
-            case 7:
-              response = _context3.sent;
-              editProductForm = document.querySelectorAll('.edit-product-form input');
-              textArea = document.querySelector('.product-description');
-
-              if (response.haveProduct) {
-                product = response.product;
-                editProductForm[0].value = product.product_name;
-                editProductForm[1].value = product.price;
-                editProductForm[3].value = product.inStock;
-                editProductForm[4].value = product.category_name;
-                editProductForm[5].value = product.sub_cat_name;
-                textArea.value = product.product_description; // Get the modal
-
-                modal = document.getElementById("myModal"); // Get the <span> element that closes the modal
-
-                span = document.getElementsByClassName("close")[0]; // When the user clicks the button, open the modal 
-
-                modal.style.display = "block"; // When the user clicks on <span> (x), close the modal
-
-                span.onclick = function () {
-                  modal.style.display = "none";
-                  window.location.reload();
-                }; // When the user clicks anywhere outside of the modal, close it
-
-
-                window.onclick = function (event) {
-                  if (event.target == modal) {
-                    window.location.reload();
-                  }
-                };
-              } //  update product
-
-
-              editForm = document.querySelector('#editProductForm');
-              editForm.addEventListener('submit', /*#__PURE__*/function () {
-                var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-                  var productId, form, formData, _iterator, _step, pair, productArray, res, response, submitButton;
-
-                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-                    while (1) {
-                      switch (_context2.prev = _context2.next) {
-                        case 0:
-                          e.preventDefault();
-                          productId = editModalProductId;
-                          form = document.querySelector('.edit-product-form');
-                          formData = new FormData(form);
-                          formData.append('productId', productId);
-                          formData.append('subCatId', subCatId); // Display the key/value pairs
-
-                          _iterator = _createForOfIteratorHelper(formData.entries());
-
-                          try {
-                            for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                              pair = _step.value;
-                              console.log(pair[0] + ', ' + pair[1]);
-                            }
-                          } catch (err) {
-                            _iterator.e(err);
-                          } finally {
-                            _iterator.f();
-                          }
-
-                          productArray = [];
-                          editProductForm.forEach(function (eachInput) {
-                            productArray.push(eachInput.value);
-                          });
-                          productArray.push(textArea.value);
-                          console.log(productArray);
-                          _context2.next = 14;
-                          return fetch('http://localhost:3333/edit-product', {
-                            method: "post",
-                            mode: 'cors',
-                            credentials: 'include',
-                            body: formData
-                          });
-
-                        case 14:
-                          res = _context2.sent;
-                          _context2.next = 17;
-                          return res.json();
-
-                        case 17:
-                          response = _context2.sent;
-                          console.log(response);
-
-                          if (response.dbResponse.isUpdated) {
-                            alert("".concat(response.dbResponse.product[0].product_name, " product has been updated!"));
-                            submitButton = document.querySelector('.submit-button');
-                            submitButton.disabled = true;
-                            submitButton.style.background = "#5e5e5e";
-                            window.location.reload();
-                          }
-
-                        case 20:
-                        case "end":
-                          return _context2.stop();
-                      }
-                    }
-                  }, _callee2);
-                }));
-
-                return function (_x3) {
-                  return _ref3.apply(this, arguments);
-                };
-              }());
-
-            case 13:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-
-    return function (_x2) {
-      return _ref2.apply(this, arguments);
     };
   }());
 });

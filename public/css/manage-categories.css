@@ -2,7 +2,7 @@
 @import './_header.css';
 @import './_footer.css';
 
-.delete-product, .edit-product {
+.delete-category, .edit-category {
   cursor: pointer;
   color: var(--secondary);
   margin-left: 10px;

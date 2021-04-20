@@ -1,14 +1,14 @@
-const leftPanel = document.querySelector('.left-panel');
-// const header = document.querySelector('.main_header')
-// let headerHeight = header.offsetHeight;
+// const leftPanel = document.querySelector('.left-panel');
+// // const header = document.querySelector('.main_header')
+// // let headerHeight = header.offsetHeight;
 
-window.onscroll = function (e) {
-    if(window.scrollY > 0) {
-        leftPanel.style.top = 0;
-    } else {
-        leftPanel.style.top = "initial";
-    }
-};
+// window.onscroll = function (e) {
+//     if(window.scrollY > 0) {
+//         leftPanel.style.top = 0;
+//     } else {
+//         leftPanel.style.top = "initial";
+//     }
+// };
 
 // delete product
 

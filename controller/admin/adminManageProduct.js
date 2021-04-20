@@ -1,4 +1,4 @@
-const { getAllCategories, getAllProducts, getOneProductById, updateProduct, deleteProduct } = require('../../db/queries');
+const { getAllCategories, getAllProducts, getOneProductById, getOneCategoryById, updateProduct, deleteProduct, deleteCategory } = require('../../db/queries');
 const fs = require('fs');
 const adminManageProduct = () => {
     return {
@@ -11,6 +11,36 @@ const adminManageProduct = () => {
             allProducts
           });
         },
+      async productCategoryIndex (req, res) {
+        const categories = await getAllCategories();
+        res.render('manage-categories', {
+          categories
+        })
+      },
+      async deleteCategory (req, res) {
+        const categoryId = req.body.categoryId
+        const category = await getOneCategoryById(categoryId)
+        console.log(category)
+        fs.unlink(`public/assets/uploads/${category.image}`, (err) => {
+            if(err) {
+              console.error(err)
+            } else {
+              console.log('file deleted')
+            }
+        })
+        try {
+          const dbResponse = await deleteCategory(categoryId);
+          res.json({
+            dbResponse
+          })
+        } catch (error) {
+          console.error(error)
+          res.json({
+            dbResponse,
+            status: res.status(400)
+          })
+        }
+      },
       async deleteProduct (req, res) {
         const productId = req.body.productId
         const product = await getOneProductById(productId)
@@ -105,8 +135,6 @@ const adminManageProduct = () => {
             })
             //  image =
           }
-
-
         }
       }
   }
