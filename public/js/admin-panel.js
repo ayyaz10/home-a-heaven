@@ -859,9 +859,10 @@ var adminPanelAddCategoryInput = document.querySelector('#adminPanelForm p input
 var categoryAddedMsg = document.querySelector('.category_added_message');
 var productName = adminPanelFormData[0];
 var productPrice = adminPanelFormData[1];
-var productImage = adminPanelFormData[2];
-var stockCount = adminPanelFormData[3];
-var categoryName = adminPanelFormData[4];
+var productDiscountPrice = adminPanelFormData[2];
+var productImage = adminPanelFormData[3];
+var stockCount = adminPanelFormData[4];
+var categoryName = adminPanelFormData[5];
 var description = document.querySelector('.product-description');
 var categories = document.querySelectorAll('.categories-container p input');
 var clickedCategory;
@@ -916,6 +917,7 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
             if (clickedCategory) {
               formData.append('prodImage', fileField.files[0]);
               formData.append('productname', productName.value);
+              formData.append('productdiscountprice', productDiscountPrice.value);
               formData.append('productprice', productPrice.value);
               formData.append('stockcount', stockCount.value);
               formData.append('categoryname', clickedCategory);
@@ -925,6 +927,7 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
               formData.append('prodImage', fileField.files[0]);
               formData.append('productname', productName.value);
               formData.append('productprice', productPrice.value);
+              formData.append('productdiscountprice', productDiscountPrice.value);
               formData.append('stockcount', stockCount.value);
               formData.append('categoryname', categoryName.value);
               formData.append('description', description.value);

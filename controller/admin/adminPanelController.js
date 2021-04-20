@@ -25,7 +25,7 @@ const adminPanelController = () => {
           category_name: productObj.categoryname,
           sub_cat_name: productObj.subcategoryname,
           image: productImage,
-          discount: '0',
+          discount: productObj.productdiscountprice,
           product_description: productObj.description,
           subcat_id: 0,
           created_at: new Date()
@@ -51,7 +51,7 @@ const adminPanelController = () => {
           inStock: productObj.stockcount,
           category_name: productObj.categoryname,
           image: productImage,
-          discount: '0',
+          discount: productObj.productdiscountprice,
           product_description: productObj.description,
           created_at: new Date()
         }

@@ -51,9 +51,9 @@
             <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="product-image add-to-cart <%= products[i].price %>"><img src=<%- `/assets/uploads/${products[i].image}` %> alt="product"></a>
             <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart <%= products[i].price %>"><h2><%- products[i].product_name %></h2></a>
             <% if(products[i].discount > 0) {%>
-                    <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart <%= products[i].price %>"><p class="product-price"><s><i><%- products[i].price %></s></i> <%- products[i].discount %></p></a>
+                    <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart <%= products[i].price %>"><p class="product-price"><s><i>Rs <%- products[i].price %></s></i>Rs <%- products[i].discount %></p></a>
             <% } else {%> 
-                    <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart <%= products[i].price %>"><p class="product-price"><%- products[i].price %></p></a>
+                    <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart <%= products[i].price %>"><p class="product-price">Rs <%- products[i].price %></p></a>
             <% } %>
         </div>
          <% } %>

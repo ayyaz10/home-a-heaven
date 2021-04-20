@@ -4,9 +4,10 @@ const adminPanelAddCategoryInput = document.querySelector('#adminPanelForm p inp
 const categoryAddedMsg = document.querySelector('.category_added_message');
 const productName = adminPanelFormData[0];
 const productPrice = adminPanelFormData[1];
-const productImage = adminPanelFormData[2];
-const stockCount = adminPanelFormData[3];
-const categoryName = adminPanelFormData[4];
+const productDiscountPrice = adminPanelFormData[2];
+const productImage = adminPanelFormData[3];
+const stockCount = adminPanelFormData[4];
+const categoryName = adminPanelFormData[5];
 const description = document.querySelector('.product-description');
 const categories = document.querySelectorAll('.categories-container p input');
 
@@ -58,6 +59,7 @@ adminPanelForm.addEventListener('submit', async (e)=>{
     if(clickedCategory) {
         formData.append('prodImage', fileField.files[0]);
         formData.append('productname', productName.value)
+        formData.append('productdiscountprice', productDiscountPrice.value)
         formData.append('productprice', productPrice.value)
         formData.append('stockcount', stockCount.value)
         formData.append('categoryname', clickedCategory)
@@ -67,6 +69,7 @@ adminPanelForm.addEventListener('submit', async (e)=>{
         formData.append('prodImage', fileField.files[0]);
         formData.append('productname', productName.value)
         formData.append('productprice', productPrice.value)
+        formData.append('productdiscountprice', productDiscountPrice.value)
         formData.append('stockcount', stockCount.value)
         formData.append('categoryname', categoryName.value)
         formData.append('description', description.value)
