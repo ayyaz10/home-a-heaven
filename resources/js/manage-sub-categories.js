@@ -45,6 +45,7 @@ delSubCategoryBtn.forEach(eachButton => {
                 })
              })
              const response = await res.json();
+             console.log(response)
              if(response.dbDelSubCatResponse.isDeleted) {
                  window.location.reload();
              }

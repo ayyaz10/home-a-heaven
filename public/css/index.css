@@ -54,6 +54,7 @@
 
 
 .categories-section-row {
+    max-width: 960px;
     display: grid;
     /* 420.16px */
     grid-template-columns: repeat(auto-fit, minmax(320.16px, 1fr));
@@ -62,10 +63,17 @@
     padding: 0px 1.25rem 0px 1.25rem;
     /* grid-auto-flow: dense; */
 }
-
+.category {
+    width: 470px;
+    
+}
 .category img {
+    /* overflow: hidden; */
      width: 100%;
-     height: 100%;
+    padding: 5px;
+     /* max-width: 470px; */
+     /* height: 100%; */
+     height: 420px;
 }
 
 .category {

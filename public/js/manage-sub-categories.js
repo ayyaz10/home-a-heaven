@@ -928,7 +928,7 @@ delSubCategoryBtn.forEach(function (eachButton) {
               isDeleteConfirm = confirm("Are you sure to delete the sub category ".concat(subCategoryName));
 
               if (!isDeleteConfirm) {
-                _context2.next = 12;
+                _context2.next = 13;
                 break;
               }
 
@@ -953,12 +953,13 @@ delSubCategoryBtn.forEach(function (eachButton) {
 
             case 10:
               response = _context2.sent;
+              console.log(response);
 
               if (response.dbDelSubCatResponse.isDeleted) {
                 window.location.reload();
               }
 
-            case 12:
+            case 13:
             case "end":
               return _context2.stop();
           }

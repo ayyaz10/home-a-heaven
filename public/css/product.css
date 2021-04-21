@@ -17,10 +17,7 @@
 
 
 .product-items-section {
-    border: 1px solid red;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1200px;
+    max-width: 960px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
     /* grid-template-columns: repeat(auto-fit, minmax(320.16px, 1fr)); */
@@ -32,15 +29,15 @@
 }
 
 .products img{
- width: 100%;
- /* min-width: 500px; */
- height: 380px;
- /* max-width: 420px; */
+    width: 100%;
+    max-width: 470px;
+    height: 400px;
 }
 
 .products a {
     color: var(--primary);
 }
+
 
 .products h2 {
     font-size: 0.75rem;

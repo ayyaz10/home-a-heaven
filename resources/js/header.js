@@ -81,7 +81,6 @@ menuIcon.addEventListener('click', () => {
     closeIcon.style.display = "block";
     menuContainer.style.display = "block";
     menuIcon.style.display = "none";
-    
 })
 
 closeIcon.addEventListener('click', () => {
