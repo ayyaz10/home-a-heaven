@@ -11,7 +11,6 @@
 // };
 
 // delete product
-
 const deleteButton = document.querySelectorAll('.delete-product');
 deleteButton.forEach(eachButton => {
     eachButton.addEventListener('click', async (e) => {

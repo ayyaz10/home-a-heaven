@@ -9,7 +9,7 @@
 }
 
 
-.delete-product:hover, .edit-product:hover {
+.delete-category:hover, .edit-category:hover {
   text-decoration: underline;
 }
 

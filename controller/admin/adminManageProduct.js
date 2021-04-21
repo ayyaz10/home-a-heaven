@@ -1,4 +1,4 @@
-const { getAllCategories, getAllProducts, getOneProductById, getOneCategoryById, getProductsByCatName, updateProduct, deleteProduct, deleteCategory, deleteProductByCatName, getProductsByName } = require('../../db/queries');
+const { getAllCategories, getAllProducts, getOneProductById, getOneCategoryById, getProductsByCatName, updateProduct, updateCategory, deleteProduct, deleteCategory, deleteProductByCatName, getProductsByName } = require('../../db/queries');
 const fs = require('fs');
 const adminManageProduct = () => {
     return {
@@ -171,6 +171,69 @@ const adminManageProduct = () => {
               product_description: formData.prodDescription
             }
             const dbResponse = await updateProduct(productObj, productId, subCatId);
+            return res.json({
+              dbResponse
+            })
+            //  image =
+          }
+        }
+      },
+      async editCategory (req, res) {
+        const formData = JSON.parse(JSON.stringify(req.body));
+        // console.log(formData)
+
+        const editModalCategoryId = req.body.editModalCategoryId;
+        // const product = req.body.productArray;
+        // const subCatId = formData.subCatId;
+        if(editModalCategoryId) {
+          const category = await getOneCategoryById(editModalCategoryId);
+          console.log(category)
+          return res.json({
+            category,
+            haveProduct: true
+          })
+        }
+        if(!formData.editModalProductId) {
+          console.log("hitt")
+          const categoryId = formData.categoryId;
+
+          const oldCategory = await getOneCategoryById(categoryId)
+          console.log(oldCategory)
+          // deleting old image from storage
+          if(req.files.length) {
+            fs.stat(`public/assets/uploads/${oldCategory.image}`, function (err, stats) {
+              //here we got all information of file in stats variable
+              console.log(stats);
+              if (err) {
+                  return console.error(err);
+              }
+              if(typeof stats !== 'undefind') {
+                fs.unlink(`public/assets/uploads/${oldCategory.image}`, (err) => {
+                    if(err) {
+                      console.error(err)
+                    } else {
+                      console.log('file deleted')
+                    }
+                })
+              } else {
+                console.log('no file to delete')
+              }
+          });
+            //  image = null
+            const categoryObj = {
+              category_name: formData.prodCategory,
+              image:  req.files[0].filename,
+            }
+            const dbResponse = await updateCategory(categoryObj, categoryId);
+            return res.json({
+              dbResponse
+            })
+          } else {
+            const categoryObj = {
+              // image:  req.files[0].filename,
+              category_name: formData.prodCategory,
+            }
+            const dbResponse = await updateCategory(categoryObj, categoryId);
             return res.json({
               dbResponse
             })

@@ -432,6 +432,32 @@ module.exports = {
         // }
             // console.log(dbProductResponse)
 
+    },
+    async updateCategory (categoryObj, categoryId) {
+        // deleting category_name in product table first due to foreign key contraint
+        try {
+            await knex('product')
+            .where('category_name', categoryObj.category_name)
+            .del()
+        } catch (error) {
+            console.error(error)
+        }  
+        const product = await knex('product')
+        .where({category_name: categoryObj.category_name})
+        .update({category_name: categoryObj.category_name})
+        .returning("*")
+        console.log(product)
+         // inserting new category to category_table table if it doesn't exist in category table
+            const category = await knex('product_category')
+            .where({category_id: categoryId})
+            .update(categoryObj)
+            .returning("*")
+            console.log(category)
+            return {
+                isUpdated: true,
+                message: "Category updated",
+                category
+            }
     }
 }
 

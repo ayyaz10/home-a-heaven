@@ -911,6 +911,139 @@ deleteButton.forEach(function (eachButton) {
       return _ref.apply(this, arguments);
     };
   }());
+}); // edit category
+// edit product
+
+var editButton = document.querySelectorAll('.edit-category');
+editButton.forEach(function (eachButton) {
+  eachButton.addEventListener('click', /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+      var editModalCategoryId, res, response, editCategoryForm, category, modal, span, editForm;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              editModalCategoryId = e.target.getAttribute("data-categoryid-type"); // const subCatId = e.target.getAttribute("data-subcatid-type");
+
+              _context3.next = 3;
+              return fetch('http://localhost:3333/edit-category', {
+                method: "post",
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  editModalCategoryId: editModalCategoryId
+                })
+              });
+
+            case 3:
+              res = _context3.sent;
+              _context3.next = 6;
+              return res.json();
+
+            case 6:
+              response = _context3.sent;
+              editCategoryForm = document.querySelectorAll('.edit-category-form input');
+
+              if (response.haveProduct) {
+                category = response.category;
+                editCategoryForm[0].value = category.category_name; // Get the modal
+
+                modal = document.getElementById("myModal"); // Get the <span> element that closes the modal
+
+                span = document.getElementsByClassName("close")[0]; // When the user clicks the button, open the modal 
+
+                modal.style.display = "block"; // When the user clicks on <span> (x), close the modal
+
+                span.onclick = function () {
+                  modal.style.display = "none";
+                  window.location.reload();
+                }; // When the user clicks anywhere outside of the modal, close it
+
+
+                window.onclick = function (event) {
+                  if (event.target == modal) {
+                    window.location.reload();
+                  }
+                };
+              } //     //  update product
+
+
+              editForm = document.querySelector('#editCategoryForm');
+              editForm.addEventListener('submit', /*#__PURE__*/function () {
+                var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+                  var categoryId, form, formData, res, response, submitButton;
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+                    while (1) {
+                      switch (_context2.prev = _context2.next) {
+                        case 0:
+                          e.preventDefault();
+                          categoryId = editModalCategoryId;
+                          form = document.querySelector('.edit-category-form');
+                          formData = new FormData(form);
+                          formData.append('categoryId', categoryId); // Display the key/value pairs
+                          // for (var pair of formData.entries()) {
+                          //     console.log(pair[0]+ ', ' + pair[1]); 
+                          // }
+                          //  let productArray = [];
+                          // editProductForm.forEach(eachInput => {
+                          //     productArray.push(eachInput.value) 
+                          // })
+                          // productArray.push(textArea.value)
+                          // console.log(productArray)
+
+                          _context2.next = 7;
+                          return fetch('http://localhost:3333/edit-category', {
+                            method: "post",
+                            mode: 'cors',
+                            credentials: 'include',
+                            body: formData
+                          });
+
+                        case 7:
+                          res = _context2.sent;
+                          _context2.next = 10;
+                          return res.json();
+
+                        case 10:
+                          response = _context2.sent;
+                          console.log(response);
+
+                          if (response.dbResponse.isUpdated) {
+                            alert("".concat(response.dbResponse.product[0].product_name, " product has been updated!"));
+                            submitButton = document.querySelector('.submit-button');
+                            submitButton.disabled = true;
+                            submitButton.style.background = "#5e5e5e";
+                            window.location.reload();
+                          }
+
+                        case 13:
+                        case "end":
+                          return _context2.stop();
+                      }
+                    }
+                  }, _callee2);
+                }));
+
+                return function (_x3) {
+                  return _ref3.apply(this, arguments);
+                };
+              }());
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }());
 });
 })();
 
