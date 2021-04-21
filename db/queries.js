@@ -450,14 +450,14 @@ module.exports = {
         const category = await knex('product_category')
         .where({category_id: categoryId})
         .update(categoryObj)
-        .returning("*")
+        .returning("*");
         // console.log(category)
 
          // inserting new category to category_table table if it doesn't exist in category table
             return {
                 isUpdated: true,
                 message: "Category updated",
-                category
+                category: category[0]
             }
     }
 }

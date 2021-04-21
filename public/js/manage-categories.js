@@ -946,9 +946,9 @@ editButton.forEach(function (eachButton) {
             case 6:
               response = _context3.sent;
               editCategoryForm = document.querySelectorAll('.edit-category-form input');
+              category = response.category;
 
               if (response.haveProduct) {
-                category = response.category;
                 editCategoryForm[0].value = category.category_name; // Get the modal
 
                 modal = document.getElementById("myModal"); // Get the <span> element that closes the modal
@@ -1009,17 +1009,16 @@ editButton.forEach(function (eachButton) {
 
                         case 10:
                           response = _context2.sent;
-                          console.log(response);
 
                           if (response.dbResponse.isUpdated) {
-                            alert("".concat(response.dbResponse.product[0].product_name, " product has been updated!"));
+                            alert("".concat(response.dbResponse.category.category_name, " category has been updated!"));
                             submitButton = document.querySelector('.submit-button');
                             submitButton.disabled = true;
                             submitButton.style.background = "#5e5e5e";
                             window.location.reload();
                           }
 
-                        case 13:
+                        case 12:
                         case "end":
                           return _context2.stop();
                       }
@@ -1032,7 +1031,7 @@ editButton.forEach(function (eachButton) {
                 };
               }());
 
-            case 11:
+            case 12:
             case "end":
               return _context3.stop();
           }

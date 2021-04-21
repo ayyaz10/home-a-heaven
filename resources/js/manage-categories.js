@@ -43,8 +43,8 @@ editButton.forEach(eachButton => {
          })
          const response = await res.json();
          let editCategoryForm = document.querySelectorAll('.edit-category-form input');
+         const category = response.category;
          if(response.haveProduct) {
-             const category = response.category;
              editCategoryForm[0].value = category.category_name;
                   // Get the modal
             var modal = document.getElementById("myModal");
@@ -91,9 +91,8 @@ editButton.forEach(eachButton => {
                     formData
              })
              const response = await res.json();
-             console.log(response)
              if(response.dbResponse.isUpdated) {
-                alert(`${response.dbResponse.product[0].product_name} product has been updated!`)
+                alert(`${response.dbResponse.category.category_name} category has been updated!`)
                  const submitButton = document.querySelector('.submit-button')
                  submitButton.disabled = true;
                 submitButton.style.background = "#5e5e5e";
