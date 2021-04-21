@@ -1,4 +1,4 @@
-const { getAllProducts, getAllCategories, getAllSubCategories, getAllByCategory, getAllBySort, searchProduct } = require('../../db/queries');
+const { getAllProducts, getAllCategories, filterSubCategories, getAllByCategory, getAllBySort, searchProduct } = require('../../db/queries');
 
 
 const productsController = () => {
@@ -34,13 +34,13 @@ const productsController = () => {
           req.session.categorySession.isSortQueried = false
         } else if(req.session.categorySession.isFilterQueried){
           console.log(req.session)
-          products = await getAllSubCategories(req.session.filterProduct.reqFilterQuery)
+          products = await filterSubCategories(req.session.filterProduct.reqFilterQuery)
           req.session.categorySession.isFilterQueried = false
         }else {
           products = await getAllByCategory(categoryQuery);
         }
         const categories = await getAllCategories();
-        const subCategories = await getAllSubCategories();
+        const subCategories = await filterSubCategories();
         const category = categories.filter(category => {
           if(category.category_name === req.session.categorySession.categoryName) {
             return category

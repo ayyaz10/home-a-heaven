@@ -163,10 +163,14 @@ module.exports = {
         return allProducts;
     },
     async getAllCategories () {
-        const allCategories = await knex.select().table('product_category')
+        const allCategories = await knex.select('*').from('product_category').orderBy('created_at', 'desc');
         return allCategories;
+    }, 
+    async getAllSubCategories () {
+        const allSubCategories = await knex.select('*').from('sub_category').orderBy('created_at', 'desc')
+        return allSubCategories;
     },
-    async getAllSubCategories (filter) {
+    async filterSubCategories (filter) {
         if(filter) {
             const allSubCategories = await knex('product').where({
                 sub_cat_name: filter
