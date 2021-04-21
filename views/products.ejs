@@ -15,7 +15,9 @@
 <body>
     <%- include('header') -%>
     <section class="hero-section">
-        <h1 class="category-name"><%= currentCategory.category_name %></h1>
+        <% if (products.length) { %>
+            <h1 class="category-name"><%= currentCategory.category_name %></h1>
+        <% } %>
     </section>
     <div class="sort-filter-container">
         <div class="sort">
@@ -34,6 +36,7 @@
         <div class="filter">
             <select class="filter-select">
                 <option value="filter">Filter</option>
+            <% if (products.length) { %>
                 <% if (subCategories.length) { %>
                     <% for(let i = 0; i < subCategories.length; i++) { %>
                         <% if (currentCategory.category_id === subCategories[i].cat_id) { %>
@@ -41,10 +44,12 @@
                         <% } %>
                     <% } %>
                 <% } %>
+            <% } %>
             </select>
         </div>
     </div>
     <section class="product-items-section">
+        <% if(products.length) {%>
          <% for(let i = 0; i < products.length; i++) { %>
         <div class="products">
             <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="product-image add-to-cart <%= products[i].price %>"><img src=<%- `/assets/uploads/${products[i].image}` %> alt="product"></a>
@@ -56,6 +61,9 @@
             <% } %>
         </div>
          <% } %>
+         <% } else {%>
+            <p>No product available</p>
+        <% } %>
     </section>
     <%- include('footer'); -%>
 </body>

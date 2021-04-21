@@ -26,6 +26,11 @@ module.exports = {
             user_id: userId
         }).first();
     },
+    getProductsByCatName: function(categoryName) {
+        return knex('product').where({
+            category_name: categoryName
+        })
+    },
     getOneProductById: function(productId) {
         return knex('product').where({
             product_id: productId
@@ -299,10 +304,10 @@ module.exports = {
             }
         }
     },
-    async deleteProduct(productId) {
+    async deleteProductByCatName(categoryName) {
         try {
             await knex('product')
-            .where('product_id', productId)
+            .where('category_name', categoryName)
             .del()
             return {
                 message: "Product deleted!",
@@ -315,6 +320,23 @@ module.exports = {
                 isDeleted: false
             }
         }
+    },
+    async deleteProduct(productId, categoryName) {
+            try {
+                await knex('product')
+                .where('product_id', productId)
+                .del()
+                return {
+                    message: "Product deleted!",
+                    isDeleted: true
+                }
+            } catch (error) {
+                console.error(error)
+                return {
+                    message: "Something went wrong!",
+                    isDeleted: false
+                }
+            }       
     },
     async updateProduct (productObj, productId, subCatId) {
         const checkSubCatExist = async () => {
@@ -412,4 +434,5 @@ module.exports = {
 
     }
 }
+
 

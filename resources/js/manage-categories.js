@@ -19,7 +19,7 @@ deleteButton.forEach(eachButton => {
                 })
              })
              const response = await res.json();
-             if(response.dbResponse.isDeleted) {
+             if(response.dbDelCatResponse.isDeleted) {
                  window.location.reload();
              }
         }

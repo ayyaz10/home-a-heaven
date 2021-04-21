@@ -895,7 +895,7 @@ deleteButton.forEach(function (eachButton) {
             case 11:
               response = _context.sent;
 
-              if (response.dbResponse.isDeleted) {
+              if (response.dbDelCatResponse.isDeleted) {
                 window.location.reload();
               }
 

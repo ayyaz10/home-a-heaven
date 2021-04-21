@@ -1,4 +1,4 @@
-const { getAllCategories, getAllProducts, getOneProductById, getOneCategoryById, updateProduct, deleteProduct, deleteCategory } = require('../../db/queries');
+const { getAllCategories, getAllProducts, getOneProductById, getOneCategoryById, getProductsByCatName, updateProduct, deleteProduct, deleteCategory, deleteProductByCatName, getProductsByName } = require('../../db/queries');
 const fs = require('fs');
 const adminManageProduct = () => {
     return {
@@ -20,26 +20,67 @@ const adminManageProduct = () => {
       async deleteCategory (req, res) {
         const categoryId = req.body.categoryId
         const category = await getOneCategoryById(categoryId)
-        console.log(category)
-        fs.unlink(`public/assets/uploads/${category.image}`, (err) => {
-            if(err) {
-              console.error(err)
-            } else {
-              console.log('file deleted')
-            }
+        const products = await getProductsByCatName(category.category_name);
+        let productsImageArray = [];
+        products.forEach(product => {
+          productsImageArray.push(product.image)
         })
+        // console.log(productsImageArray)
+        // deleting products images array
+        function deleteFiles(files, callback){
+          var i = files.length;
+          console.log(files  + "files")
+          files.forEach(function(filepath){
+            fs.unlink(`public/assets/uploads/${filepath}`, function(err) {
+              i--;
+              if (err) {
+                callback(err);
+                return;
+              } else if (i <= 0) {
+                callback(null);
+              }
+            });
+          });
+        }
+        deleteFiles(productsImageArray, (err) => {
+          if(err) {
+            console.error(err)
+          } else {
+            console.log('all files are removed')
+          }
+        });
+        const dbDelProductResponse = await deleteProductByCatName(category.category_name);
+        // if(dbDelProductResponse.isDeleted) {
+        //   console.log(dbDelProductResponse)
+        //   fs.unlink(`public/assets/uploads/${category.image}`, (err) => {
+        //     if(err) {
+        //       console.error(err)
+        //     } else {
+        //       console.log('file deleted')
+        //     }
+        // })
+
         try {
-          const dbResponse = await deleteCategory(categoryId);
+          // const dbDelProductResponse = await deleteProduct(category.category_name);
+          const dbDelCatResponse = await deleteCategory(categoryId);
           res.json({
-            dbResponse
+            dbDelCatResponse 
           })
         } catch (error) {
           console.error(error)
           res.json({
-            dbResponse,
+            // dbDelCatResponse,
             status: res.status(400)
           })
         }
+        //   fs.unlink(`public/assets/uploads/${dbDelProductResponse.image}`, (err) => {
+        //     if(err) {
+        //       console.error(err)
+        //     } else {
+        //       console.log('file deleted')
+        //     }
+        // })
+        // }
       },
       async deleteProduct (req, res) {
         const productId = req.body.productId
