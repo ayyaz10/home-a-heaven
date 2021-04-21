@@ -240,14 +240,25 @@ const adminManageProduct = () => {
           //   })
           //   //  image =
           // }
-          const categoryObj = {
-            category_name: formData.prodCategory,
-            image:  req.files[0].filename,
+        if(req.files.length) {
+            const categoryObj = {
+              category_name: formData.prodCategory,
+              image:  req.files[0].filename,
+            }
+            const dbResponse = await updateCategory(categoryObj, categoryId);
+              return res.json({
+                dbResponse
+              })
+          } else {
+            const categoryObj = {
+              category_name: formData.prodCategory,
+              // image:  req.files[0].filename,
+            }
+            const dbResponse = await updateCategory(categoryObj, categoryId);
+              return res.json({
+                dbResponse
+              })
           }
-          const dbResponse = await updateCategory(categoryObj, categoryId);
-            return res.json({
-              dbResponse
-            })
         }
       }
   }
