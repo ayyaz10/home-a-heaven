@@ -875,7 +875,7 @@ deleteButton.forEach(function (eachButton) {
               categoryId = e.target.getAttribute("data-categoryid-type");
               console.log(categoryId);
               _context.next = 7;
-              return fetch('http://localhost:3333/delete-sub-category', {
+              return fetch('http://localhost:3333/delete-category', {
                 method: "post",
                 mode: 'cors',
                 credentials: 'include',
@@ -911,20 +911,79 @@ deleteButton.forEach(function (eachButton) {
       return _ref.apply(this, arguments);
     };
   }());
+}); // delete sub category row
+
+var delSubCategoryBtn = document.querySelectorAll('.delete-sub-category');
+delSubCategoryBtn.forEach(function (eachButton) {
+  eachButton.addEventListener('click', /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+      var subCategoryName, isDeleteConfirm, subCategoryId, res, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              subCategoryName = e.target.parentElement.parentElement.parentElement.firstElementChild.innerText;
+              console.log(subCategoryName); // console.log(categoryName)
+
+              isDeleteConfirm = confirm("Are you sure to delete the sub category ".concat(subCategoryName));
+
+              if (!isDeleteConfirm) {
+                _context2.next = 12;
+                break;
+              }
+
+              subCategoryId = e.target.getAttribute("data-subcategoryid-type");
+              _context2.next = 7;
+              return fetch('http://localhost:3333/delete-sub-category', {
+                method: "post",
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  subCategoryId: subCategoryId
+                })
+              });
+
+            case 7:
+              res = _context2.sent;
+              _context2.next = 10;
+              return res.json();
+
+            case 10:
+              response = _context2.sent;
+
+              if (response.dbDelSubCatResponse.isDeleted) {
+                window.location.reload();
+              }
+
+            case 12:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }());
 }); // edit sub category
 
 var editButton = document.querySelectorAll('.edit-sub-category');
 editButton.forEach(function (eachButton) {
   eachButton.addEventListener('click', /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(e) {
       var editModalSubCategoryId, res, response, editSubCategoryForm, subCategory, modal, span, editForm;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
               editModalSubCategoryId = e.target.getAttribute("data-subcategoryid-type"); // const categoryId = e.target.getAttribute("data-categoryid-type");
 
-              _context3.next = 3;
+              _context4.next = 3;
               return fetch('http://localhost:3333/edit-sub-category', {
                 method: "post",
                 mode: 'cors',
@@ -938,12 +997,12 @@ editButton.forEach(function (eachButton) {
               });
 
             case 3:
-              res = _context3.sent;
-              _context3.next = 6;
+              res = _context4.sent;
+              _context4.next = 6;
               return res.json();
 
             case 6:
-              response = _context3.sent;
+              response = _context4.sent;
               editSubCategoryForm = document.querySelectorAll('.edit-subcategory-form input');
               subCategory = response.subCategory;
               console.log(editSubCategoryForm);
@@ -968,33 +1027,23 @@ editButton.forEach(function (eachButton) {
                     window.location.reload();
                   }
                 };
-              } //     //  update product
+              } //  update product
 
 
               editForm = document.querySelector('#editSubCategoryForm');
               editForm.addEventListener('submit', /*#__PURE__*/function () {
-                var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+                var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
                   var subCategjoryId, form, formData, res, response, submitButton;
-                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
                     while (1) {
-                      switch (_context2.prev = _context2.next) {
+                      switch (_context3.prev = _context3.next) {
                         case 0:
                           e.preventDefault();
                           subCategjoryId = editModalSubCategoryId;
                           form = document.querySelector('.edit-subcategory-form');
                           formData = new FormData(form);
-                          formData.append('subCategoryId', subCategjoryId); // Display the key/value pairs
-                          // for (var pair of formData.entries()) {
-                          //     console.log(pair[0]+ ', ' + pair[1]); 
-                          // }
-                          //  let productArray = [];
-                          // editProductForm.forEach(eachInput => {
-                          //     productArray.push(eachInput.value) 
-                          // })
-                          // productArray.push(textArea.value)
-                          // console.log(productArray)
-
-                          _context2.next = 7;
+                          formData.append('subCategoryId', subCategjoryId);
+                          _context3.next = 7;
                           return fetch('http://localhost:3333/edit-sub-category', {
                             method: "post",
                             mode: 'cors',
@@ -1003,12 +1052,12 @@ editButton.forEach(function (eachButton) {
                           });
 
                         case 7:
-                          res = _context2.sent;
-                          _context2.next = 10;
+                          res = _context3.sent;
+                          _context3.next = 10;
                           return res.json();
 
                         case 10:
-                          response = _context2.sent;
+                          response = _context3.sent;
 
                           if (response.dbResponse.isUpdated) {
                             alert("".concat(response.dbResponse.category.category_name, " category has been updated!"));
@@ -1020,27 +1069,27 @@ editButton.forEach(function (eachButton) {
 
                         case 12:
                         case "end":
-                          return _context2.stop();
+                          return _context3.stop();
                       }
                     }
-                  }, _callee2);
+                  }, _callee3);
                 }));
 
-                return function (_x3) {
-                  return _ref3.apply(this, arguments);
+                return function (_x4) {
+                  return _ref4.apply(this, arguments);
                 };
               }());
 
             case 13:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3);
+      }, _callee4);
     }));
 
-    return function (_x2) {
-      return _ref2.apply(this, arguments);
+    return function (_x3) {
+      return _ref3.apply(this, arguments);
     };
   }());
 });

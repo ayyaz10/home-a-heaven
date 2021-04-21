@@ -8,7 +8,7 @@ deleteButton.forEach(eachButton => {
         if(isDeleteConfirm) {
             const categoryId = e.target.getAttribute("data-categoryid-type");
             console.log(categoryId)
-            const res = await fetch('http://localhost:3333/delete-sub-category', {
+            const res = await fetch('http://localhost:3333/delete-category', {
                 method: "post",
                 mode: 'cors',
                 credentials: 'include',
@@ -19,6 +19,33 @@ deleteButton.forEach(eachButton => {
              })
              const response = await res.json();
              if(response.dbDelCatResponse.isDeleted) {
+                 window.location.reload();
+             }
+        }
+    })
+})
+
+// delete sub category row
+const delSubCategoryBtn = document.querySelectorAll('.delete-sub-category');
+delSubCategoryBtn.forEach(eachButton => {
+    eachButton.addEventListener('click', async (e) => {
+        const subCategoryName = e.target.parentElement.parentElement.parentElement.firstElementChild.innerText;
+        console.log(subCategoryName)
+        // console.log(categoryName)
+        const isDeleteConfirm = confirm(`Are you sure to delete the sub category ${subCategoryName}`);
+        if(isDeleteConfirm) {
+            const subCategoryId = e.target.getAttribute("data-subcategoryid-type");
+            const res = await fetch('http://localhost:3333/delete-sub-category', {
+                method: "post",
+                mode: 'cors',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    subCategoryId
+                })
+             })
+             const response = await res.json();
+             if(response.dbDelSubCatResponse.isDeleted) {
                  window.location.reload();
              }
         }
@@ -66,7 +93,7 @@ editButton.forEach(eachButton => {
                 }
             }
         }
-    //     //  update product
+        //  update product
         const editForm = document.querySelector('#editSubCategoryForm');
         editForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -74,16 +101,6 @@ editButton.forEach(eachButton => {
             const form = document.querySelector('.edit-subcategory-form');
             let formData = new FormData(form)
             formData.append('subCategoryId', subCategjoryId)
-            // Display the key/value pairs
-            // for (var pair of formData.entries()) {
-            //     console.log(pair[0]+ ', ' + pair[1]); 
-            // }
-            //  let productArray = [];
-            // editProductForm.forEach(eachInput => {
-            //     productArray.push(eachInput.value) 
-            // })
-            // productArray.push(textArea.value)
-            // console.log(productArray)
             const res = await fetch('http://localhost:3333/edit-sub-category', {
                 method: "post",
                 mode: 'cors',

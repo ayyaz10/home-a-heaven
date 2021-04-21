@@ -41,9 +41,13 @@
                                 <td>
                                     <%- subCategories[i].sub_cat_name %>
                                 </td>
+                                <% if(typeof categoryArray[i] !== 'undefined') {%>
                                 <td>
                                     <%- categoryArray[i].category_name %>
                                 </td>
+                                <% } else { %>
+                                    <td></td>
+                                <% } %>
                                 <td>
                                     <a><span class="edit-sub-category" data-subcategoryid-type="<%- subCategories[i].subCat_id %>"> Edit </span></a>
                                     <a><span class="delete-sub-category" data-subcategoryid-type="<%- subCategories[i].subCat_id %>" > Delete </span></a>

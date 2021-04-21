@@ -61,6 +61,7 @@ router.get('/manage-sub-categories', admin, adminManageProduct().productSubCateg
 router.post('/edit-sub-category', upload.any(),  admin, adminManageProduct().editSubCategory);
 router.post('/edit-category', upload.any(),  admin, adminManageProduct().editCategory);
 router.post('/edit-product', upload.any(),  admin, adminManageProduct().editProduct);
+router.post('/delete-sub-category',  admin, adminManageProduct().deleteSubCategory);
 router.post('/delete-category',  admin, adminManageProduct().deleteCategory);
 router.post('/delete-product',  admin, adminManageProduct().deleteProduct);
 router.post('/product', upload.any(), admin, adminPanelController().product);

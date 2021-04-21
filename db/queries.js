@@ -320,6 +320,34 @@ module.exports = {
             }
         }
     },
+    async deleteSubCategory (subCategoryId) {
+        const oldSubCategory = await knex('sub_category')
+        .where('subCat_id', subCategoryId)
+        .returning('*').first()
+        console.log(oldSubCategory)
+
+        const product = await knex('product')
+        .where('sub_cat_name', '=', oldSubCategory.sub_cat_name)
+        .update({ sub_cat_name: null})
+        .returning("*")
+        if(product.length) {
+            try {
+                await knex('sub_category')
+                .where('subCat_id', subCategoryId)
+                .del()
+                return {
+                    message: "Category deleted!",
+                    isDeleted: true
+                }
+            } catch (error) {
+                console.error(error)
+                return {
+                    message: "Something went wrong!",
+                    isDeleted: false
+                }
+            }
+        }
+    },
     async deleteProductByCatName(categoryName) {
         try {
             await knex('product')
@@ -371,10 +399,18 @@ module.exports = {
             .where('product_id', productId)
             .del()
             // creating categoryObj that has data that needs to be insert in product_category table
-            const categoryObj = {
-                category_name: productObj.category_name,
-                image: productObj.image,
-                created_at: new Date()
+            let categoryObj;
+            if(typeof productObj.image !== 'undefined') {
+                categoryObj = {
+                    category_name: productObj.category_name,
+                    image: productObj.image,
+                    created_at: new Date()
+                }
+            } else {
+                categoryObj = {
+                    category_name: productObj.category_name,
+                    created_at: new Date()
+                }
             }
             const dbCategoryResponse = await knex('product_category').insert(categoryObj, "category_id");
             productObj.discount = 0;
@@ -450,7 +486,6 @@ module.exports = {
 
     },
     async updateCategory (categoryObj, categoryId) {
-
         const oldCategoryName = await knex('product_category')
         .where('category_id', categoryId)
         .returning('*').first()

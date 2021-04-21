@@ -1,4 +1,4 @@
-const { getAllCategories, getAllCategoriesById, getAllSubCategories, getAllProducts, getOneProductById, getOneCategoryById, getOneSubCategoryById, getProductsByCatName, updateProduct, updateCategory, updateSubCategory, deleteProduct, deleteCategory, deleteProductByCatName, getProductsByName } = require('../../db/queries');
+const { getAllCategories, getAllCategoriesById, getAllSubCategories, getAllProducts, getOneProductById, getOneCategoryById, getOneSubCategoryById, getProductsByCatName, updateProduct, updateCategory, updateSubCategory, deleteProduct, deleteCategory, deleteSubCategory, deleteProductByCatName, getProductsByName } = require('../../db/queries');
 const fs = require('fs');
 const adminManageProduct = () => {
     return {
@@ -32,15 +32,14 @@ const adminManageProduct = () => {
       },
       async deleteCategory (req, res) {
         const categoryId = req.body.categoryId
+
+        // getting arrays of products images that need to be deleted from directory
         const category = await getOneCategoryById(categoryId)
-        console.log(categoryId)
         const products = await getProductsByCatName(category.category_name);
         let productsImageArray = [];
         products.forEach(product => {
           productsImageArray.push(product.image)
         })
-        // console.log(productsImageArray)
-        // deleting products images array
         function deleteFiles(files, callback){
           var i = files.length;
           console.log(files  + "files")
@@ -87,6 +86,7 @@ const adminManageProduct = () => {
             status: res.status(400)
           })
         }
+        // implement following code later
         //   fs.unlink(`public/assets/uploads/${dbDelProductResponse.image}`, (err) => {
         //     if(err) {
         //       console.error(err)
@@ -97,8 +97,22 @@ const adminManageProduct = () => {
         // }
       },
       async deleteSubCategory(req, res) {
-        
-      }
+        // console.log(req.body.subCategoryId)
+        const subCategoryId = req.body.subCategoryId;
+        try {
+          const dbDelSubCatResponse = await deleteSubCategory(subCategoryId);
+          res.json({
+            dbDelSubCatResponse 
+          })
+        } catch (error) {
+          console.error(error)
+          res.json({
+            // dbDelCatResponse,
+            status: res.status(400)
+          })
+        }
+
+      },
       async deleteProduct (req, res) {
         const productId = req.body.productId
         const product = await getOneProductById(productId)
@@ -123,13 +137,9 @@ const adminManageProduct = () => {
         }
       },
       async editProduct(req, res) {
-                // console.log(req.files)
         const formData = JSON.parse(JSON.stringify(req.body));
-        // console.log(formData)
 
         const editModalProductId = req.body.editModalProductId;
-        // const product = req.body.productArray;
-        // const subCatId = formData.subCatId;
         if(editModalProductId) {
           const product = await getOneProductById(editModalProductId);
           return res.json({
@@ -137,14 +147,11 @@ const adminManageProduct = () => {
             haveProduct: true
           })
         }
-        // console.log(formData)
         if(!formData.editModalProductId) {
-          console.log("hitt")
           const productId = formData.productId;
           const subCatId = formData.subCatId;
           const oldProduct = await getOneProductById(productId)
           console.log(oldProduct)
-          console.log('helo')
           if(req.files.length) {
             fs.stat(`public/assets/uploads/${oldProduct.image}`, function (err, stats) {
               console.log(stats);//here we got all information of file in stats variable
@@ -178,6 +185,7 @@ const adminManageProduct = () => {
               dbResponse
             })
           } else {
+            // console.log('helo')
             const productObj = {
               product_name: formData.prodName,
               price: formData.prodPrice,
