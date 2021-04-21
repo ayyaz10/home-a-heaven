@@ -911,8 +911,7 @@ deleteButton.forEach(function (eachButton) {
       return _ref.apply(this, arguments);
     };
   }());
-}); // edit category
-// edit product
+}); // edit sub category
 
 var editButton = document.querySelectorAll('.edit-sub-category');
 editButton.forEach(function (eachButton) {
@@ -923,7 +922,7 @@ editButton.forEach(function (eachButton) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              editModalSubCategoryId = e.target.getAttribute("data-subcategoryid-type"); // const subCatId = e.target.getAttribute("data-subcatid-type");
+              editModalSubCategoryId = e.target.getAttribute("data-subcategoryid-type"); // const categoryId = e.target.getAttribute("data-categoryid-type");
 
               _context3.next = 3;
               return fetch('http://localhost:3333/edit-sub-category', {
@@ -945,8 +944,9 @@ editButton.forEach(function (eachButton) {
 
             case 6:
               response = _context3.sent;
-              editSubCategoryForm = document.querySelectorAll('.edit-category-form input');
-              subCategory = response.sub_category;
+              editSubCategoryForm = document.querySelectorAll('.edit-subcategory-form input');
+              subCategory = response.subCategory;
+              console.log(editSubCategoryForm);
 
               if (response.haveProduct) {
                 editSubCategoryForm[0].value = subCategory.sub_cat_name; // Get the modal
@@ -971,19 +971,19 @@ editButton.forEach(function (eachButton) {
               } //     //  update product
 
 
-              editForm = document.querySelector('#editCategoryForm');
+              editForm = document.querySelector('#editSubCategoryForm');
               editForm.addEventListener('submit', /*#__PURE__*/function () {
                 var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-                  var categoryId, form, formData, res, response, submitButton;
+                  var subCategjoryId, form, formData, res, response, submitButton;
                   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
                     while (1) {
                       switch (_context2.prev = _context2.next) {
                         case 0:
                           e.preventDefault();
-                          categoryId = editModalCategoryId;
-                          form = document.querySelector('.edit-category-form');
+                          subCategjoryId = editModalSubCategoryId;
+                          form = document.querySelector('.edit-subcategory-form');
                           formData = new FormData(form);
-                          formData.append('categoryId', categoryId); // Display the key/value pairs
+                          formData.append('subCategoryId', subCategjoryId); // Display the key/value pairs
                           // for (var pair of formData.entries()) {
                           //     console.log(pair[0]+ ', ' + pair[1]); 
                           // }
@@ -995,7 +995,7 @@ editButton.forEach(function (eachButton) {
                           // console.log(productArray)
 
                           _context2.next = 7;
-                          return fetch('http://localhost:3333/edit-category', {
+                          return fetch('http://localhost:3333/edit-sub-category', {
                             method: "post",
                             mode: 'cors',
                             credentials: 'include',
@@ -1031,7 +1031,7 @@ editButton.forEach(function (eachButton) {
                 };
               }());
 
-            case 12:
+            case 13:
             case "end":
               return _context3.stop();
           }

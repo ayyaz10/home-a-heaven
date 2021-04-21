@@ -30,8 +30,8 @@
                         <table class="table table-sm table-bordered">
                             <thead>
                                 <tr>
-
-                                    <th scope="col">Name</th>
+                                    <th scope="col">Sub Category Name</th>
+                                    <th scope="col">Category Name</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -40,6 +40,9 @@
                             <tr>
                                 <td>
                                     <%- subCategories[i].sub_cat_name %>
+                                </td>
+                                <td>
+                                    <%- categoryArray[i].category_name %>
                                 </td>
                                 <td>
                                     <a><span class="edit-sub-category" data-subcategoryid-type="<%- subCategories[i].subCat_id %>"> Edit </span></a>
@@ -60,12 +63,12 @@
     <div class="modal-content container-fluid center">
             <span class="close">&times;</span>
             <section class="section-container ">
-                <div id="editCategoryForm">
-                    <h1 class="edit-product-heading">Edit Category</h1>
-                    <form class="edit-category-form">
+                <div id="editSubCategoryForm">
+                    <h1 class="edit-product-heading">Edit Sub Category</h1>
+                    <form class="edit-subcategory-form">
                         <p class="category">
-                            <label for="prod-category">Category</label>
-                            <input type="text" name="prodCategory" id="prod-category" class="product-category"> 
+                            <label for="prod-sub-category">Sub Category</label>
+                            <input type="text" name="prodSubCategory" id="prod-sub-category" class="product-sub-category"> 
                         </p>
                         <p>
                             <label for="prod-image">Image</label>

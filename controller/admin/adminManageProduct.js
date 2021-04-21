@@ -1,4 +1,4 @@
-const { getAllCategories, getAllSubCategories, getAllProducts, getOneProductById, getOneCategoryById, getOneSubCategoryById, getProductsByCatName, updateProduct, updateCategory, deleteProduct, deleteCategory, deleteProductByCatName, getProductsByName } = require('../../db/queries');
+const { getAllCategories, getAllCategoriesById, getAllSubCategories, getAllProducts, getOneProductById, getOneCategoryById, getOneSubCategoryById, getProductsByCatName, updateProduct, updateCategory, updateSubCategory, deleteProduct, deleteCategory, deleteProductByCatName, getProductsByName } = require('../../db/queries');
 const fs = require('fs');
 const adminManageProduct = () => {
     return {
@@ -19,10 +19,15 @@ const adminManageProduct = () => {
       },
       async productSubCategoryIndex (req, res) {
         const subCategories = await getAllSubCategories();
+        const categoryArray = [];
+        for(let i = 0; i < subCategories.length; i++) {
+          categoryArray.push(await getAllCategoriesById(subCategories[i].cat_id))
+        }
         const categories = await getAllCategories();
         res.render('manage-sub-categories', {
           categories,
-          subCategories
+          subCategories,
+          categoryArray
         })
       },
       async deleteCategory (req, res) {
@@ -91,6 +96,9 @@ const adminManageProduct = () => {
         // })
         // }
       },
+      async deleteSubCategory(req, res) {
+        
+      }
       async deleteProduct (req, res) {
         const productId = req.body.productId
         const product = await getOneProductById(productId)
@@ -226,33 +234,21 @@ const adminManageProduct = () => {
         const editModalSubCategoryId = req.body.editModalSubCategoryId;
         if(editModalSubCategoryId) {
           const subCategory = await getOneSubCategoryById(editModalSubCategoryId);
-          console.log(subCategory)
           return res.json({
-            category,
+            subCategory,
             haveProduct: true
           })
         }
-        if(!formData.editModalProductId) {
-          const categoryId = formData.categoryId;
-          if(req.files.length) {
-              const categoryObj = {
-                category_name: formData.prodCategory,
-                image:  req.files[0].filename,
+        if(!formData.editModalSubCategoryId) {
+          const subCategoryId = formData.subCategoryId;
+              const subCategoryObj = {
+                sub_cat_name: formData.prodSubCategory,
               }
-              const dbResponse = await updateCategory(categoryObj, categoryId);
-                return res.json({
-                  dbResponse
-                })
-            } else {
-              const categoryObj = {
-                category_name: formData.prodCategory,
-                // image:  req.files[0].filename,
-              }
-              const dbResponse = await updateCategory(categoryObj, categoryId);
-                return res.json({
-                  dbResponse
-                })
-            }
+              const dbResponse = await updateSubCategory(subCategoryObj, subCategoryId);
+              return res.json({
+                dbResponse
+              })
+
         }
       }
   }

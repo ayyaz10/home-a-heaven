@@ -170,6 +170,13 @@ module.exports = {
     async getAllCategories () {
         const allCategories = await knex.select('*').from('product_category').orderBy('created_at', 'desc');
         return allCategories;
+    },
+    async getAllCategoriesById (categoryId) {
+        // console.log(categoryId)
+        const allCategories = await knex('product_category')
+        .where('category_id', categoryId)
+        // console.log(allCategories)
+        return allCategories[0];
     }, 
     async getAllSubCategories () {
         const allSubCategories = await knex.select('*').from('sub_category').orderBy('created_at', 'desc')
@@ -467,6 +474,33 @@ module.exports = {
                 isUpdated: true,
                 message: "Category updated",
                 category: category[0]
+            }
+    },
+    async updateSubCategory (subCategoryObj, subCategoryId) {
+        console.log(subCategoryId)
+        const oldSubCategoryName = await knex('sub_category')
+        .where('subCat_id', subCategoryId)
+        .returning('*').first()
+        console.log(oldSubCategoryName)
+
+        // console.log(categoryObj.category_name)
+        const product = await knex('product')
+        .where('sub_cat_name', '=', oldSubCategoryName.sub_cat_name)
+        .update({ sub_cat_name: subCategoryObj.sub_cat_name })
+        .returning("*")
+        console.log(product)
+
+        const subCategory = await knex('sub_category')
+        .where({subCat_id: subCategoryId})
+        .update({ sub_cat_name: subCategoryObj.sub_cat_name })
+        .returning("*");
+        // console.log(category)
+        console.log(subCategory)
+         // inserting new category to category_table table if it doesn't exist in category table
+            return {
+                isUpdated: true,
+                message: "Sub Category updated",
+                subCategory: subCategory[0]
             }
     }
 }

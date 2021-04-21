@@ -25,13 +25,13 @@ deleteButton.forEach(eachButton => {
     })
 })
 
-// edit category
-// edit product
+// edit sub category
+
 const editButton = document.querySelectorAll('.edit-sub-category');
 editButton.forEach(eachButton => {
     eachButton.addEventListener('click', async (e) => {
         const editModalSubCategoryId = e.target.getAttribute("data-subcategoryid-type");
-        // const subCatId = e.target.getAttribute("data-subcatid-type");
+        // const categoryId = e.target.getAttribute("data-categoryid-type");
         const res = await fetch('http://localhost:3333/edit-sub-category', {
             method: "post",
             mode: 'cors',
@@ -42,8 +42,9 @@ editButton.forEach(eachButton => {
             })
          })
          const response = await res.json();
-         let editSubCategoryForm = document.querySelectorAll('.edit-category-form input');
-         const subCategory = response.sub_category;
+         let editSubCategoryForm = document.querySelectorAll('.edit-subcategory-form input');
+         const subCategory = response.subCategory;
+         console.log(editSubCategoryForm)
          if(response.haveProduct) {
             editSubCategoryForm[0].value = subCategory.sub_cat_name;
                   // Get the modal
@@ -66,13 +67,13 @@ editButton.forEach(eachButton => {
             }
         }
     //     //  update product
-        const editForm = document.querySelector('#editCategoryForm');
+        const editForm = document.querySelector('#editSubCategoryForm');
         editForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const categoryId = editModalCategoryId;
-            const form = document.querySelector('.edit-category-form');
+            const subCategjoryId = editModalSubCategoryId;
+            const form = document.querySelector('.edit-subcategory-form');
             let formData = new FormData(form)
-            formData.append('categoryId', categoryId)
+            formData.append('subCategoryId', subCategjoryId)
             // Display the key/value pairs
             // for (var pair of formData.entries()) {
             //     console.log(pair[0]+ ', ' + pair[1]); 
@@ -83,7 +84,7 @@ editButton.forEach(eachButton => {
             // })
             // productArray.push(textArea.value)
             // console.log(productArray)
-            const res = await fetch('http://localhost:3333/edit-category', {
+            const res = await fetch('http://localhost:3333/edit-sub-category', {
                 method: "post",
                 mode: 'cors',
                 credentials: 'include',
