@@ -984,6 +984,10 @@ if (role === 'admin') {
 } else {
   var manageProduct = document.querySelector('.manage-product');
   var manageCustOrders = document.querySelector('.manage-cust-orders');
+  var manageCategories = document.querySelector('.manage-category');
+  var manageSubCategories = document.querySelector('.manage-sub-category');
+  manageCategories.style.display = "none";
+  manageSubCategories.style.display = "none";
   manageProduct.style.display = "none";
   manageCustOrders.style.display = "none";
 }

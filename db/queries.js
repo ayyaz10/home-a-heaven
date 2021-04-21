@@ -16,11 +16,6 @@ module.exports = {
             last_name: lastName
         }).first();
     },
-    // getOneByPassword: function(userId) {
-    //     return knex('customer').where({
-    //         user_id: userId
-    //     }).first();
-    // },
     getOneById: function(userId) {
         return knex('customer').where({
             user_id: userId
@@ -52,7 +47,6 @@ module.exports = {
         });
     },
      async createProduct (productObj, productCategoryObj, subCategoryObj) {
-        //  console.log(productObj)
          if(typeof subCategoryObj !== 'undefined') {
              try {
                  const existingCategory = await knex('product_category')
@@ -158,9 +152,7 @@ module.exports = {
          }
     },
     async getAllUsers () {
-        // const allCategories = await knex.select('product_category')
         const allUsers = await knex.select("*").table('customer')
-        // console.log(allCategories)
         return allUsers;
     },
     async getAllProducts () {
@@ -172,12 +164,10 @@ module.exports = {
         return allCategories;
     },
     async getAllCategoriesById (categoryId) {
-        // console.log(categoryId)
         const allCategories = await knex('product_category')
         .where('category_id', categoryId)
-        // console.log(allCategories)
         return allCategories[0];
-    }, 
+    },
     async getAllSubCategories () {
         const allSubCategories = await knex.select('*').from('sub_category').orderBy('created_at', 'desc')
         return allSubCategories;
@@ -190,7 +180,6 @@ module.exports = {
             return allSubCategories;
         }
         const allSubCategories = await knex.select().table('sub_category')
-        // console.log(allCategories)
         return allSubCategories;
 
     },
@@ -228,7 +217,6 @@ module.exports = {
         const allItems = await knex('item').orderBy('created_at', 'desc').where({
             customer_id: customerId
         })
-        // console.log(allItems)
         return allItems;
     },
     async getPlacedOrders() {
@@ -241,8 +229,6 @@ module.exports = {
     },
     async updateStatus(orderId, status) {
         const result = await knex('shipping_detail').where({order_id: orderId}).update('order_status', status)
-        
-        // console.log(result)
         return result;
     },
     async searchProduct (searchText) {

@@ -106,6 +106,10 @@ if(role === 'admin') {
 } else {
     const manageProduct = document.querySelector('.manage-product');
     const manageCustOrders = document.querySelector('.manage-cust-orders');
+    const manageCategories = document.querySelector('.manage-category');
+    const manageSubCategories = document.querySelector('.manage-sub-category');
+    manageCategories.style.display = "none";
+    manageSubCategories.style.display = "none";
     manageProduct.style.display = "none";
     manageCustOrders.style.display = "none";
 }
