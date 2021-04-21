@@ -305,6 +305,13 @@ module.exports = {
     },
     async deleteCategory(categoryId) {
         try {
+            await knex('sub_category')
+            .where('cat_id', categoryId)
+            .del()
+        } catch (error) {
+            console.error(error)
+        }
+        try {
             await knex('product_category')
             .where('category_id', categoryId)
             .del()
