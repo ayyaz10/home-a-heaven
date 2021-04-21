@@ -863,18 +863,18 @@ deleteButton.forEach(function (eachButton) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              categoryName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText;
-              console.log(categoryName);
+              categoryName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText; // console.log(categoryName)
+
               isDeleteConfirm = confirm("Are you sure to delete the product ".concat(categoryName));
 
               if (!isDeleteConfirm) {
-                _context.next = 13;
+                _context.next = 12;
                 break;
               }
 
-              categoryId = e.target.getAttribute("data-productid-type");
+              categoryId = e.target.getAttribute("data-categoryid-type");
               console.log(categoryId);
-              _context.next = 8;
+              _context.next = 7;
               return fetch('http://localhost:3333/delete-category', {
                 method: "post",
                 mode: 'cors',
@@ -887,19 +887,19 @@ deleteButton.forEach(function (eachButton) {
                 })
               });
 
-            case 8:
+            case 7:
               res = _context.sent;
-              _context.next = 11;
+              _context.next = 10;
               return res.json();
 
-            case 11:
+            case 10:
               response = _context.sent;
 
               if (response.dbDelCatResponse.isDeleted) {
                 window.location.reload();
               }
 
-            case 13:
+            case 12:
             case "end":
               return _context.stop();
           }

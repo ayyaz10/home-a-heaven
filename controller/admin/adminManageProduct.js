@@ -20,6 +20,7 @@ const adminManageProduct = () => {
       async deleteCategory (req, res) {
         const categoryId = req.body.categoryId
         const category = await getOneCategoryById(categoryId)
+        console.log(categoryId)
         const products = await getProductsByCatName(category.category_name);
         let productsImageArray = [];
         products.forEach(product => {
@@ -194,51 +195,59 @@ const adminManageProduct = () => {
           })
         }
         if(!formData.editModalProductId) {
-          console.log("hitt")
+          // console.log("hitt")
           const categoryId = formData.categoryId;
 
-          const oldCategory = await getOneCategoryById(categoryId)
-          console.log(oldCategory)
-          // deleting old image from storage
-          if(req.files.length) {
-            fs.stat(`public/assets/uploads/${oldCategory.image}`, function (err, stats) {
-              //here we got all information of file in stats variable
-              console.log(stats);
-              if (err) {
-                  return console.error(err);
-              }
-              if(typeof stats !== 'undefind') {
-                fs.unlink(`public/assets/uploads/${oldCategory.image}`, (err) => {
-                    if(err) {
-                      console.error(err)
-                    } else {
-                      console.log('file deleted')
-                    }
-                })
-              } else {
-                console.log('no file to delete')
-              }
-          });
-            //  image = null
-            const categoryObj = {
-              category_name: formData.prodCategory,
-              image:  req.files[0].filename,
-            }
-            const dbResponse = await updateCategory(categoryObj, categoryId);
-            return res.json({
-              dbResponse
-            })
-          } else {
-            const categoryObj = {
-              // image:  req.files[0].filename,
-              category_name: formData.prodCategory,
-            }
-            const dbResponse = await updateCategory(categoryObj, categoryId);
-            return res.json({
-              dbResponse
-            })
-            //  image =
+          // const oldCategory = await getOneCategoryById(categoryId)
+          // // console.log(oldCategory)
+          // // deleting old image from storage
+          // if(req.files.length) {
+          //   fs.stat(`public/assets/uploads/${oldCategory.image}`, function (err, stats) {
+          //     //here we got all information of file in stats variable
+          //     console.log(stats);
+          //     if (err) {
+          //         return console.error(err);
+          //     }
+          //     if(typeof stats !== 'undefind') {
+          //       fs.unlink(`public/assets/uploads/${oldCategory.image}`, (err) => {
+          //           if(err) {
+          //             console.error(err)
+          //           } else {
+          //             console.log('file deleted')
+          //           }
+          //       })
+          //     } else {
+          //       console.log('no file to delete')
+          //     }
+          // });
+          //   //  image = null
+          //   const categoryObj = {
+          //     category_name: formData.prodCategory,
+          //     image:  req.files[0].filename,
+          //   }
+          //   const dbResponse = await updateCategory(categoryObj, categoryId);
+          //   return res.json({
+          //     dbResponse
+          //   })
+          // } else {
+          //   const categoryObj = {
+          //     // image:  req.files[0].filename,
+          //     category_name: formData.prodCategory,
+          //   }
+          //   const dbResponse = await updateCategory(categoryObj, categoryId);
+          //   return res.json({
+          //     dbResponse
+          //   })
+          //   //  image =
+          // }
+          const categoryObj = {
+            category_name: formData.prodCategory,
+            image:  req.files[0].filename,
           }
+          const dbResponse = await updateCategory(categoryObj, categoryId);
+            return res.json({
+              dbResponse
+            })
         }
       }
   }

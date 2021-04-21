@@ -12,6 +12,7 @@ exports.up = function(knex) {
         table.string('sub_cat_name', 255);
         table.integer('inStock').unsigned().notNullable();
         table.string('discount').unsigned();
+        // table.string('cat_id', 255).notNullable();
         table.string('subcat_id', 255);
         table.string('image', 255).notNullable();
         table.string('product_description', 255);

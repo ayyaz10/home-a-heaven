@@ -336,7 +336,7 @@ module.exports = {
                     message: "Something went wrong!",
                     isDeleted: false
                 }
-            }       
+            }
     },
     async updateProduct (productObj, productId, subCatId) {
         const checkSubCatExist = async () => {
@@ -434,25 +434,26 @@ module.exports = {
 
     },
     async updateCategory (categoryObj, categoryId) {
-        // deleting category_name in product table first due to foreign key contraint
-        try {
-            await knex('product')
-            .where('category_name', categoryObj.category_name)
-            .del()
-        } catch (error) {
-            console.error(error)
-        }  
+
+        const oldCategoryName = await knex('product_category')
+        .where('category_id', categoryId)
+        .returning('*').first()
+        console.log(oldCategoryName)
+
+        // console.log(categoryObj.category_name)
         const product = await knex('product')
-        .where({category_name: categoryObj.category_name})
-        .update({category_name: categoryObj.category_name})
+        .where('category_name', '=', oldCategoryName.category_name)
+        .update({ category_name: categoryObj.category_name })
         .returning("*")
         console.log(product)
+
+        const category = await knex('product_category')
+        .where({category_id: categoryId})
+        .update(categoryObj)
+        .returning("*")
+        // console.log(category)
+
          // inserting new category to category_table table if it doesn't exist in category table
-            const category = await knex('product_category')
-            .where({category_id: categoryId})
-            .update(categoryObj)
-            .returning("*")
-            console.log(category)
             return {
                 isUpdated: true,
                 message: "Category updated",
