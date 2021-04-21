@@ -1,4 +1,4 @@
-const { getAllCategories, getAllSubCategories, getAllProducts, getOneProductById, getOneCategoryById, getProductsByCatName, updateProduct, updateCategory, deleteProduct, deleteCategory, deleteProductByCatName, getProductsByName } = require('../../db/queries');
+const { getAllCategories, getAllSubCategories, getAllProducts, getOneProductById, getOneCategoryById, getOneSubCategoryById, getProductsByCatName, updateProduct, updateCategory, deleteProduct, deleteCategory, deleteProductByCatName, getProductsByName } = require('../../db/queries');
 const fs = require('fs');
 const adminManageProduct = () => {
     return {
@@ -223,10 +223,10 @@ const adminManageProduct = () => {
       },
       async editSubCategory (req, res) {
         const formData = JSON.parse(JSON.stringify(req.body));
-        const editModalCategoryId = req.body.editModalCategoryId;
-        if(editModalCategoryId) {
-          const category = await getOneCategoryById(editModalCategoryId);
-          console.log(category)
+        const editModalSubCategoryId = req.body.editModalSubCategoryId;
+        if(editModalSubCategoryId) {
+          const subCategory = await getOneSubCategoryById(editModalSubCategoryId);
+          console.log(subCategory)
           return res.json({
             category,
             haveProduct: true

@@ -8,7 +8,7 @@ deleteButton.forEach(eachButton => {
         if(isDeleteConfirm) {
             const categoryId = e.target.getAttribute("data-categoryid-type");
             console.log(categoryId)
-            const res = await fetch('http://localhost:3333/delete-category', {
+            const res = await fetch('http://localhost:3333/delete-sub-category', {
                 method: "post",
                 mode: 'cors',
                 credentials: 'include',
@@ -27,25 +27,25 @@ deleteButton.forEach(eachButton => {
 
 // edit category
 // edit product
-const editButton = document.querySelectorAll('.edit-category');
+const editButton = document.querySelectorAll('.edit-sub-category');
 editButton.forEach(eachButton => {
     eachButton.addEventListener('click', async (e) => {
-        const editModalCategoryId = e.target.getAttribute("data-categoryid-type");
+        const editModalSubCategoryId = e.target.getAttribute("data-subcategoryid-type");
         // const subCatId = e.target.getAttribute("data-subcatid-type");
-        const res = await fetch('http://localhost:3333/edit-category', {
+        const res = await fetch('http://localhost:3333/edit-sub-category', {
             method: "post",
             mode: 'cors',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                editModalCategoryId
+                editModalSubCategoryId
             })
          })
          const response = await res.json();
-         let editCategoryForm = document.querySelectorAll('.edit-category-form input');
-         const category = response.category;
+         let editSubCategoryForm = document.querySelectorAll('.edit-category-form input');
+         const subCategory = response.sub_category;
          if(response.haveProduct) {
-             editCategoryForm[0].value = category.category_name;
+            editSubCategoryForm[0].value = subCategory.sub_cat_name;
                   // Get the modal
             var modal = document.getElementById("myModal");
             // Get the <span> element that closes the modal

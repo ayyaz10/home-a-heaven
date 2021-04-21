@@ -41,6 +41,11 @@ module.exports = {
             category_id: categoryId
         }).first();
     },
+    getOneSubCategoryById: function(subCatId) {
+        return knex('sub_category').where({
+            subCat_id: subCatId
+        }).first();
+    },
     create: function(user) {
             return knex('customer').insert(user, 'user_id').returning('*').then(user => {
             return user[0];

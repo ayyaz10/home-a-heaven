@@ -875,7 +875,7 @@ deleteButton.forEach(function (eachButton) {
               categoryId = e.target.getAttribute("data-categoryid-type");
               console.log(categoryId);
               _context.next = 7;
-              return fetch('http://localhost:3333/delete-category', {
+              return fetch('http://localhost:3333/delete-sub-category', {
                 method: "post",
                 mode: 'cors',
                 credentials: 'include',
@@ -914,19 +914,19 @@ deleteButton.forEach(function (eachButton) {
 }); // edit category
 // edit product
 
-var editButton = document.querySelectorAll('.edit-category');
+var editButton = document.querySelectorAll('.edit-sub-category');
 editButton.forEach(function (eachButton) {
   eachButton.addEventListener('click', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
-      var editModalCategoryId, res, response, editCategoryForm, category, modal, span, editForm;
+      var editModalSubCategoryId, res, response, editSubCategoryForm, subCategory, modal, span, editForm;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              editModalCategoryId = e.target.getAttribute("data-categoryid-type"); // const subCatId = e.target.getAttribute("data-subcatid-type");
+              editModalSubCategoryId = e.target.getAttribute("data-subcategoryid-type"); // const subCatId = e.target.getAttribute("data-subcatid-type");
 
               _context3.next = 3;
-              return fetch('http://localhost:3333/edit-category', {
+              return fetch('http://localhost:3333/edit-sub-category', {
                 method: "post",
                 mode: 'cors',
                 credentials: 'include',
@@ -934,7 +934,7 @@ editButton.forEach(function (eachButton) {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  editModalCategoryId: editModalCategoryId
+                  editModalSubCategoryId: editModalSubCategoryId
                 })
               });
 
@@ -945,11 +945,11 @@ editButton.forEach(function (eachButton) {
 
             case 6:
               response = _context3.sent;
-              editCategoryForm = document.querySelectorAll('.edit-category-form input');
-              category = response.category;
+              editSubCategoryForm = document.querySelectorAll('.edit-category-form input');
+              subCategory = response.sub_category;
 
               if (response.haveProduct) {
-                editCategoryForm[0].value = category.category_name; // Get the modal
+                editSubCategoryForm[0].value = subCategory.sub_cat_name; // Get the modal
 
                 modal = document.getElementById("myModal"); // Get the <span> element that closes the modal
 
