@@ -54,30 +54,25 @@
 
 
 .categories-section-row {
-    max-width: 960px;
+    /* max-width: 1260px; */
+    margin: 0 auto;
     display: grid;
-    /* 420.16px */
     grid-template-columns: repeat(auto-fit, minmax(320.16px, 1fr));
     grid-gap: 0.625rem;
     margin-top: 0.625rem;
-    padding: 0px 1.25rem 0px 1.25rem;
+    padding: 0px 1.25rem 40px 1.25rem;
     /* grid-auto-flow: dense; */
 }
-.category {
-    width: 470px;
-    
-}
+
 .category img {
-    /* overflow: hidden; */
      width: 100%;
     padding: 5px;
-     /* max-width: 470px; */
-     /* height: 100%; */
      height: 420px;
 }
 
 .category {
     position: relative;
+    box-shadow: var(--nav_shadow);
 }
 
 .category-name {

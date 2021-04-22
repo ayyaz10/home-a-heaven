@@ -328,7 +328,7 @@ module.exports = {
         const subCategoryExist = await subCategoryExistInProduct(oldSubCategory);
         if(typeof subCategoryExist !== 'undefined') {
             let product;
-            try {            
+            try {
                  product = await knex('product')
                 .where('sub_cat_name', '=', oldSubCategory.sub_cat_name)
                 .update({ sub_cat_name: null})

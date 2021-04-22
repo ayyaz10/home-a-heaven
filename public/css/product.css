@@ -17,11 +17,17 @@
 
 
 .product-items-section {
-    max-width: 960px;
+    max-width: 1260px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
     /* grid-template-columns: repeat(auto-fit, minmax(320.16px, 1fr)); */
     grid-gap: 10px;
+}
+
+.products {
+    box-shadow: var(--nav_shadow);
+    padding: 20px 20px 20px 20px;
 }
 
 .product-items-section {
