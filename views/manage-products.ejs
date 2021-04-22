@@ -1,125 +1,126 @@
-<!DOCTYPE html required>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel=icon href="assets/favicon.png">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/manage-products.css">
-    <script src="js/manage-products.js" defer></script>
-    <script src="js/header.js" defer></script>
-    <title>Manage Product</title>
-</head>
-<body>
-    <%- include('header'); -%>
-    <section class="content-section">
-        <section class="product-container">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=icon href="assets/favicon.png">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+      <link rel="stylesheet" href="css/manage-products.css">
+      <script src="js/manage-products.js" defer></script>
+      <script src="js/header.js" defer></script>
+      <title>Manage Product</title>
+   </head>
+   <body>
+      <%- include('header'); -%>
+      <section class="content-section">
+         <section class="product-container">
             <h1>Manage Product</h1>
             <div class="container">
-                <div class="button">
-                    <a href="/adminPanel" class="add-product-button"> Add New Product 
-                        <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                          </svg>
-                    </a>
-                </div>
-                    <div class="table-container table-responsive">
-                        <table class="table table-sm table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Sub Category</th>
-                                    <th scope="col">Price (Pkr)</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Discount</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+               <div class="button">
+                  <a href="/adminPanel" class="add-product-button">
+                     Add New Product 
+                     <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                     </svg>
+                  </a>
+               </div>
+               <div class="table-container table-responsive">
+                  <table class="table table-sm table-bordered">
+                     <thead>
+                        <tr>
+                           <th scope="col">Image</th>
+                           <th scope="col">Name</th>
+                           <th scope="col">Category</th>
+                           <th scope="col">Sub Category</th>
+                           <th scope="col">Price (Pkr)</th>
+                           <th scope="col">Quantity</th>
+                           <th scope="col">Discount</th>
+                           <th scope="col">Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
                         <% for(let i = 0; i < allProducts.length; i++) { %> 
-                            <tr>
-                                <td>
-                                    <img src=<%- `/assets/uploads/${allProducts[i].image}` %>>
-                                </td>
-                                <td>
-                                    <%- allProducts[i].product_name %>
-                                </td>
-                                <td>
-                                    <%- allProducts[i].category_name %>
-                                </td>
-                                <td>
-                                    <%- allProducts[i].sub_cat_name %>
-                                </td>
-                                <td>
-                                    <%- allProducts[i].price %>
-                                </td>
-                                <td>
-                                    <%- allProducts[i].inStock %>
-                                </td>
-                                <td>
-                                    <%- allProducts[i].discount %>
-                                </td>
-                                <td>
-                                    <a><span class="edit-product" data-productid-type="<%- allProducts[i].product_id %>" data-subcatid-type="<%- allProducts[i].subcat_id %>"> Edit </span></a required>
-                                    <span class="delete-product" data-productid-type="<%- allProducts[i].product_id %>" > Delete </span required>
-                                </td>
-                            </tr>
+                        <tr>
+                           <td>
+                              <img src=<%- `/assets/uploads/${allProducts[i].image}` %>>
+                           </td>
+                           <td>
+                              <%- allProducts[i].product_name %>
+                           </td>
+                           <td>
+                              <%- allProducts[i].category_name %>
+                           </td>
+                           <td>
+                              <%- allProducts[i].sub_cat_name %>
+                           </td>
+                           <td>
+                              <%- allProducts[i].price %>
+                           </td>
+                           <td>
+                              <%- allProducts[i].inStock %>
+                           </td>
+                           <td>
+                              <%- allProducts[i].discount %>
+                           </td>
+                           <td>
+                              <a><span class="edit-product" data-productid-type="<%- allProducts[i].product_id %>" data-subcatid-type="<%- allProducts[i].subcat_id %>"> Edit </span></a>
+                              <span class="delete-product" data-productid-type="<%- allProducts[i].product_id %>" > Delete </span>
+                           </td>
+                        </tr>
                         <% } %>
-                    </tbody>
-                </tr>
-            </table>
-        </div>
-        </div>
-    </section>
-</section>
-    <!-- The Modal -->
-    <div id="myModal" class="modal modal-body">
-    <!-- Modal content -->
-    <div class="modal-content container-fluid center">
+                     </tbody>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+         </section>
+      </section>
+      <!-- The Modal -->
+      <div id="myModal" class="modal modal-body">
+         <!-- Modal content -->
+         <div class="modal-content container-fluid center">
             <span class="close">&times;</span>
             <section class="section-container ">
-                <div id="editProductForm">
-                    <h1 class="edit-product-heading">Edit Product</h1>
-                    <form class="edit-product-form  ">
-                        <p>
-                            <label for="prod-name">Name</label>
-                            <input type="text" name="prodName" id="prod-name" class="product-name" required>
-                        </p>
-                        <p>
-                            <label for="prod-price">Price</label>
-                            <input type="text" name="prodPrice" id="prod-price" class="product-price" required>
-                        </p>
-                        <p>
-                            <label for="prod-image">Image</label>
-                            <input type="file" name="prodImage" id="prod-image" class="product-image" required>
-                        </p>
-                        <p>
-                            <label for="count-in-stock">Count in Stock</label>
-                            <input type="text" name="prodInStock" id="count-in-stock" class="product-in-stock" required>
-                        </p>
-                        <p class="category">
-                            <label for="prod-category">Category</label>
-                            <input type="text" name="prodCategory" id="prod-category" class="product-category" required>  
-                        </p>
-                        <p class="sub-category">
-                            <label for="prod-sub-category">Sub Category</label>
-                            <input type="text" name="prodSubCategory" id="prod-sub-category" class="product-sub-category" required>  
-                        </p>
-                        <p>
-                            <label for="prod-description">Description</label>
-                            <textarea name="prodDescription" id="prod-description" class="product-description" required rows="2" cols="42"></textarea>
-                        </p>
-                        <p><input type="submit" class="submit-button" value="Add Product" id="update"></p>
-                    </form>
-                </div>
+               <div id="editProductForm">
+                  <h1 class="edit-product-heading">Edit Product</h1>
+                  <form class="edit-product-form  ">
+                     <p>
+                        <label for="prod-name">Name</label>
+                        <input type="text" name="prodName" id="prod-name" class="product-name" required>
+                     </p>
+                     <p>
+                        <label for="prod-price">Price</label>
+                        <input type="text" name="prodPrice" id="prod-price" class="product-price" required>
+                     </p>
+                     <p>
+                        <label for="prod-image">Image</label>
+                        <input type="file" name="prodImage" id="prod-image" class="product-image" required>
+                     </p>
+                     <p>
+                        <label for="count-in-stock">Count in Stock</label>
+                        <input type="text" name="prodInStock" id="count-in-stock" class="product-in-stock" required>
+                     </p>
+                     <p class="category">
+                        <label for="prod-category">Category</label>
+                        <input type="text" name="prodCategory" id="prod-category" class="product-category" required>  
+                     </p>
+                     <p class="sub-category">
+                        <label for="prod-sub-category">Sub Category</label>
+                        <input type="text" name="prodSubCategory" id="prod-sub-category" class="product-sub-category" required>  
+                     </p>
+                     <p>
+                        <label for="prod-description">Description</label>
+                        <textarea name="prodDescription" id="prod-description" class="product-description" required rows="2" cols="42"></textarea>
+                     </p>
+                     <p><input type="submit" class="submit-button" value="Add Product" id="update"></p>
+                  </form>
+               </div>
             </section>
-        </div>
-    </div>
-    <!-- model end -->
-</body>
+         </div>
+      </div>
+      <!-- model end -->
+   </body>
 </html>

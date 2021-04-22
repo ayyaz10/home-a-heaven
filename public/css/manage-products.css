@@ -92,7 +92,6 @@ table.table tbody td, th, tr {
 
 .edit-product-heading {
   color: var(--primary);
-   /* text-align: center; */
    font-size: 1.5625rem; /* 25px */
    font-weight: 500;
    padding: 0 0 .9375rem 0;
@@ -122,11 +121,8 @@ table.table tbody td, th, tr {
 
 #editProductForm p:last-child input{
   flex: 0;
-  /* padding: 0px 40px; */
   margin: 0.9375rem 0 0 auto;
   padding: 0.6rem 4.6rem;
-  /* width: 100px; */
-  /* width: 100%; */
   background-color: var(--primary);
   color: #fff;
   cursor: pointer;
@@ -190,25 +186,10 @@ textarea {
 }
 
 @media only screen and (max-width: 1030px) {
-  .left-panel {
-      width: 30%;
-      min-width: 140px;
-      padding: 30px 10px 0 30px;
-      /* font-size: 12px; */
-  }
-  .left-panel h2{
-      font-size: 15px;
-  }
-
 .product-container {
-    /* max-width: 1200px; */
     position: relative;
-    /* left: 10%; */
-    /* width: 70%; */
-    /* margin: 0 auto; */
     padding: 40px 50px 40px 50px;
   }
-  
 }
 
 @media only screen and (max-width: 991px) {
@@ -217,5 +198,4 @@ textarea {
     padding-left: 0;
     padding-right: 0;
   }
-  
 }
