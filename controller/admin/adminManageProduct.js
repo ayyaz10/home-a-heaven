@@ -175,13 +175,14 @@ const adminManageProduct = () => {
             const productObj = {
               product_name: formData.prodName,
               price: formData.prodPrice,
+              discount: formData.prodDiscount,
               image:  req.files[0].filename,
               inStock: formData.prodInStock,
               category_name: formData.prodCategory,
               sub_cat_name: formData.prodSubCategory,
               product_description: formData.prodDescription
             }
-            const dbResponse = await updateProduct(productObj, productId, subCatId);
+            const dbResponse = await updateProduct(productObj, productId);
             return res.json({
               dbResponse
             })
@@ -190,13 +191,14 @@ const adminManageProduct = () => {
             const productObj = {
               product_name: formData.prodName,
               price: formData.prodPrice,
+              discount: formData.prodDiscount,
               // image:  req.files[0].filename,
               inStock: formData.prodInStock,
               category_name: formData.prodCategory,
               sub_cat_name: formData.prodSubCategory,
               product_description: formData.prodDescription
             }
-            const dbResponse = await updateProduct(productObj, productId, subCatId);
+            const dbResponse = await updateProduct(productObj, productId);
             return res.json({
               dbResponse
             })

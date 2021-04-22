@@ -58,9 +58,10 @@ editButton.forEach(eachButton => {
              const product = response.product;
              editProductForm[0].value = product.product_name;
              editProductForm[1].value = product.price;
-             editProductForm[3].value = product.inStock;
-             editProductForm[4].value = product.category_name;
-             editProductForm[5].value = product.sub_cat_name;
+             editProductForm[2].value = product.discount;
+             editProductForm[4].value = product.inStock;
+             editProductForm[5].value = product.category_name;
+             editProductForm[6].value = product.sub_cat_name;
              textArea.value = product.product_description;
                   // Get the modal
         var modal = document.getElementById("myModal");
@@ -108,7 +109,6 @@ editButton.forEach(eachButton => {
                     formData
              })
              const response = await res.json();
-             console.log(response)
              if(response.dbResponse.isUpdated) {
                 alert(`${response.dbResponse.product[0].product_name} product has been updated!`)
                  const submitButton = document.querySelector('.submit-button')

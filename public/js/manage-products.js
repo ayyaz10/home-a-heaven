@@ -965,9 +965,10 @@ editButton.forEach(function (eachButton) {
                 product = response.product;
                 editProductForm[0].value = product.product_name;
                 editProductForm[1].value = product.price;
-                editProductForm[3].value = product.inStock;
-                editProductForm[4].value = product.category_name;
-                editProductForm[5].value = product.sub_cat_name;
+                editProductForm[2].value = product.discount;
+                editProductForm[4].value = product.inStock;
+                editProductForm[5].value = product.category_name;
+                editProductForm[6].value = product.sub_cat_name;
                 textArea.value = product.product_description; // Get the modal
 
                 modal = document.getElementById("myModal"); // Get the <span> element that closes the modal
@@ -1040,7 +1041,6 @@ editButton.forEach(function (eachButton) {
 
                         case 17:
                           response = _context2.sent;
-                          console.log(response);
 
                           if (response.dbResponse.isUpdated) {
                             alert("".concat(response.dbResponse.product[0].product_name, " product has been updated!"));
@@ -1050,7 +1050,7 @@ editButton.forEach(function (eachButton) {
                             window.location.reload();
                           }
 
-                        case 20:
+                        case 19:
                         case "end":
                           return _context2.stop();
                       }

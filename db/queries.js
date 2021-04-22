@@ -405,7 +405,7 @@ module.exports = {
                 }
             }
     },
-    async updateProduct (productObj, productId, subCatId) {
+    async updateProduct (productObj, productId) {
         const checkSubCatExist = async () => {
             const subCategoryExist = await knex.select("*").from('sub_category')
             .where({sub_cat_name: productObj.sub_cat_name})
