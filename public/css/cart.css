@@ -137,7 +137,7 @@ hr {
     justify-content: space-between;
 }
 .counter-value {
-    padding: 0 10px 0 10px;
+    padding: 10px 10px 0 10px;
     align-self: center;
 }
 .add-btn, .sub-btn {

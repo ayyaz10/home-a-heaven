@@ -1061,7 +1061,8 @@ editButton.forEach(function (eachButton) {
                           response = _context3.sent;
 
                           if (response.dbResponse.isUpdated) {
-                            alert("".concat(response.dbResponse.category.category_name, " category has been updated!"));
+                            console.log(response);
+                            alert("".concat(response.dbResponse.subCategory.sub_cat_name, " sub category has been updated!"));
                             submitButton = document.querySelector('.submit-button');
                             submitButton.disabled = true;
                             submitButton.style.background = "#5e5e5e";

@@ -111,7 +111,8 @@ editButton.forEach(eachButton => {
              })
              const response = await res.json();
              if(response.dbResponse.isUpdated) {
-                alert(`${response.dbResponse.category.category_name} category has been updated!`)
+                 console.log(response)
+                alert(`${response.dbResponse.subCategory.sub_cat_name} sub category has been updated!`)
                  const submitButton = document.querySelector('.submit-button')
                  submitButton.disabled = true;
                 submitButton.style.background = "#5e5e5e";

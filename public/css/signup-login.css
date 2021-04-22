@@ -2,6 +2,42 @@
 @import './_header.css';
 @import './_footer.css';
 
+/* header css */
+.signup-header {
+    display: flex;
+    padding: 10px 20px 10px 20px;
+    width: 60%;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(94, 94, 94, 0.2);
+}
+
+.secure-login-wrapper {
+    display: flex;
+    align-self: center;
+    margin-left: auto;
+}
+
+.secure-login-text {
+    font-size: 13px;
+    line-height: 1.3;
+    font-weight: 200;
+}
+
+.secure-login-icon img{
+    width: 20px;
+}
+
+
+.secure-login-icon {
+    width: 20px;
+    margin-left: 4px;
+}
+
+.logo img {
+    width: 140px;
+}
+
+
 
 #container {
     display: flex;
