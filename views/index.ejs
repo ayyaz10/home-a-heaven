@@ -25,8 +25,9 @@
         <div class="categories-section-row">
             <% for(let i = 0; i < categories.length; i++) { %>
                 <div class="category">
+                    <div class="overlay"></div>
                     <a href="collections/products">
-                        <h2 class="category-name"><%- `${categories[i].category_name}` %> </h2>
+                            <h2 class="category-name"><%- `${categories[i].category_name}` %> </h2>
                         <img src=<%- `assets/uploads/${categories[i].image}` %> class="product-image" alt="product">
                     </a>
                 </div>

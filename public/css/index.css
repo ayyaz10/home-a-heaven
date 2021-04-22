@@ -64,11 +64,14 @@
     /* grid-auto-flow: dense; */
 }
 
+
+
 .category img {
-     width: 100%;
+    width: 100%;
     padding: 5px;
-     height: 420px;
+    height: 420px;
 }
+
 
 .category {
     position: relative;
