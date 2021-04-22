@@ -30,7 +30,7 @@ body {
     display: flex;
     justify-content: space-between;
 }
-.manage-cust-orders:hover, .manage-product:hover  {
+.manage-cust-orders:hover, .manage-product:hover, .manage-category:hover, .manage-sub-category:hover  {
     text-decoration: underline;
   }
   

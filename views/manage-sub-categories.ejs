@@ -36,6 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                        <% if(subCategories.length) {%>
                         <% for(let i = 0; i < subCategories.length; i++) { %> 
                             <tr>
                                 <td>
@@ -53,6 +54,9 @@
                                     <a><span class="delete-sub-category" data-subcategoryid-type="<%- subCategories[i].subCat_id %>" > Delete </span></a>
                                 </td>
                             </tr>
+                        <% } %>
+                        <% } else {%>
+                            <td colspan="3" class="text-center">No sub category added.</td>
                         <% } %>
                     </tbody>
                 </tr>

@@ -42,35 +42,39 @@
                         </tr>
                      </thead>
                      <tbody>
-                        <% for(let i = 0; i < allProducts.length; i++) { %> 
-                        <tr>
-                           <td>
-                              <img src=<%- `/assets/uploads/${allProducts[i].image}` %>>
-                           </td>
-                           <td>
-                              <%- allProducts[i].product_name %>
-                           </td>
-                           <td>
-                              <%- allProducts[i].category_name %>
-                           </td>
-                           <td>
-                              <%- allProducts[i].sub_cat_name %>
-                           </td>
-                           <td>
-                              <%- allProducts[i].price %>
-                           </td>
-                           <td>
-                              <%- allProducts[i].inStock %>
-                           </td>
-                           <td>
-                              <%- allProducts[i].discount %>
-                           </td>
-                           <td>
-                              <a><span class="edit-product" data-productid-type="<%- allProducts[i].product_id %>" data-subcatid-type="<%- allProducts[i].subcat_id %>"> Edit </span></a>
-                              <span class="delete-product" data-productid-type="<%- allProducts[i].product_id %>" > Delete </span>
-                           </td>
-                        </tr>
-                        <% } %>
+                     <% if(allProducts.length) {%>
+                           <% for(let i = 0; i < allProducts.length; i++) { %> 
+                           <tr>
+                              <td>
+                                 <img src=<%- `/assets/uploads/${allProducts[i].image}` %>>
+                              </td>
+                              <td>
+                                 <%- allProducts[i].product_name %>
+                              </td>
+                              <td>
+                                 <%- allProducts[i].category_name %>
+                              </td>
+                              <td>
+                                 <%- allProducts[i].sub_cat_name %>
+                              </td>
+                              <td>
+                                 <%- allProducts[i].price %>
+                              </td>
+                              <td>
+                                 <%- allProducts[i].inStock %>
+                              </td>
+                              <td>
+                                 <%- allProducts[i].discount %>
+                              </td>
+                              <td>
+                                 <a><span class="edit-product" data-productid-type="<%- allProducts[i].product_id %>" data-subcatid-type="<%- allProducts[i].subcat_id %>"> Edit </span></a>
+                                 <span class="delete-product" data-productid-type="<%- allProducts[i].product_id %>" > Delete </span>
+                              </td>
+                           </tr>
+                           <% } %>
+                           <% } else {%>
+                               <td colspan="8" class="text-center">No product added.</td>
+                           <% } %>
                      </tbody>
                      </tr>
                   </table>
@@ -89,31 +93,31 @@
                   <form class="edit-product-form  ">
                      <p>
                         <label for="prod-name">Name</label>
-                        <input type="text" name="prodName" id="prod-name" class="product-name" required>
+                        <input type="text" name="prodName" id="prod-name" class="product-name">
                      </p>
                      <p>
                         <label for="prod-price">Price</label>
-                        <input type="text" name="prodPrice" id="prod-price" class="product-price" required>
+                        <input type="text" name="prodPrice" id="prod-price" class="product-price">
                      </p>
                      <p>
                         <label for="prod-image">Image</label>
-                        <input type="file" name="prodImage" id="prod-image" class="product-image" required>
+                        <input type="file" name="prodImage" id="prod-image" class="product-image">
                      </p>
                      <p>
                         <label for="count-in-stock">Count in Stock</label>
-                        <input type="text" name="prodInStock" id="count-in-stock" class="product-in-stock" required>
+                        <input type="text" name="prodInStock" id="count-in-stock" class="product-in-stock">
                      </p>
                      <p class="category">
                         <label for="prod-category">Category</label>
-                        <input type="text" name="prodCategory" id="prod-category" class="product-category" required>  
+                        <input type="text" name="prodCategory" id="prod-category" class="product-category">  
                      </p>
                      <p class="sub-category">
                         <label for="prod-sub-category">Sub Category</label>
-                        <input type="text" name="prodSubCategory" id="prod-sub-category" class="product-sub-category" required>  
+                        <input type="text" name="prodSubCategory" id="prod-sub-category" class="product-sub-category">  
                      </p>
                      <p>
                         <label for="prod-description">Description</label>
-                        <textarea name="prodDescription" id="prod-description" class="product-description" required rows="2" cols="42"></textarea>
+                        <textarea name="prodDescription" id="prod-description" class="product-description" rows="2" cols="42"></textarea>
                      </p>
                      <p><input type="submit" class="submit-button" value="Add Product" id="update"></p>
                   </form>

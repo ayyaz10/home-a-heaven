@@ -15,7 +15,7 @@ exports.up = function(knex) {
         // table.string('cat_id', 255).notNullable();
         table.string('subcat_id', 255);
         table.string('image', 255).notNullable();
-        table.string('product_description', 255);
+        table.text('product_description', 255);
         table.datetime('created_at').notNullable();
         // table.foreign('category_name').references('product_category.category_name').onDelete();
     })

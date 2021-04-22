@@ -314,31 +314,61 @@ module.exports = {
         }
     },
     async deleteSubCategory (subCategoryId) {
+        // console.log(subCategoryId)
         const oldSubCategory = await knex('sub_category')
         .where('subCat_id', subCategoryId)
         .returning('*').first()
         console.log(oldSubCategory)
-
-        const product = await knex('product')
-        .where('sub_cat_name', '=', oldSubCategory.sub_cat_name)
-        .update({ sub_cat_name: null})
-        .returning("*")
-        if(product.length) {
-            try {
-                await knex('sub_category')
-                .where('subCat_id', subCategoryId)
-                .del()
-                return {
-                    message: "Category deleted!",
-                    isDeleted: true
-                }
+        
+        const subCategoryExistInProduct = async (oldSubCategory) => {
+             return await knex('product')
+            .where('sub_cat_name', oldSubCategory.sub_cat_name)
+            .returning('*').first()
+        }
+        const subCategoryExist = await subCategoryExistInProduct(oldSubCategory);
+        if(typeof subCategoryExist !== 'undefined') {
+            let product;
+            try {            
+                 product = await knex('product')
+                .where('sub_cat_name', '=', oldSubCategory.sub_cat_name)
+                .update({ sub_cat_name: null})
+                .returning("*")
             } catch (error) {
                 console.error(error)
-                return {
-                    message: "Something went wrong!",
-                    isDeleted: false
-                }
             }
+            if(product.length) {
+                try {
+                    await knex('sub_category')
+                    .where('subCat_id', subCategoryId)
+                    .del()
+                    return {
+                        message: "Category deleted!",
+                        isDeleted: true
+                    }
+                } catch (error) {
+                    console.error(error)
+                    return {
+                        message: "Something went wrong!",
+                        isDeleted: false
+                    }
+                }
+        }
+        } else {
+                try {
+                    await knex('sub_category')
+                    .where('subCat_id', subCategoryId)
+                    .del()
+                    return {
+                        message: "Category deleted!",
+                        isDeleted: true
+                    }
+                } catch (error) {
+                    console.error(error)
+                    return {
+                        message: "Something went wrong!",
+                        isDeleted: false
+                    }
+                }
         }
     },
     async deleteProductByCatName(categoryName) {

@@ -20,7 +20,7 @@
             <h1>Manage Catetgory</h1>
             <div class="container">
                 <div class="button">
-                    <a href="/adminPanel" class="add-product-button"> Add New Product 
+                    <a href="/adminPanel" class="add-product-button"> Add New Product
                         <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                           </svg>
@@ -36,20 +36,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                        <% for(let i = 0; i < categories.length; i++) { %> 
-                            <tr>
-                                <td>
-                                    <img src=<%- `/assets/uploads/${categories[i].image}` %>>
-                                </td>
-                                <td>
-                                    <%- categories[i].category_name %>
-                                </td>
-                                <td>
-                                    <a><span class="edit-category" data-categoryid-type="<%- categories[i].category_id %>"> Edit </span></a>
-                                    <a><span class="delete-category" data-categoryid-type="<%- categories[i].category_id %>" > Delete </span></a>
-                                </td>
-                            </tr>
-                        <% } %>
+                        <% if(categories.length) {%>
+                            <% for(let i = 0; i < categories.length; i++) { %>
+                                <tr>
+                                    <td>
+                                        <img src=<%- `/assets/uploads/${categories[i].image}` %>>
+                                    </td>
+                                    <td>
+                                        <%- categories[i].category_name %>
+                                    </td>
+                                    <td>
+                                        <a><span class="edit-category" data-categoryid-type="<%- categories[i].category_id %>"> Edit </span></a>
+                                        <a><span class="delete-category" data-categoryid-type="<%- categories[i].category_id %>" > Delete </span></a>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        <% } else {%>
+                                <td colspan="3" class="text-center">No category added.</td>
+                            <% } %>
                     </tbody>
                 </tr>
             </table>

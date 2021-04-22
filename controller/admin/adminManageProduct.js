@@ -13,6 +13,7 @@ const adminManageProduct = () => {
         },
       async productCategoryIndex (req, res) {
         const categories = await getAllCategories();
+        console.log(categories)
         res.render('manage-categories', {
           categories
         })
@@ -97,12 +98,12 @@ const adminManageProduct = () => {
         // }
       },
       async deleteSubCategory(req, res) {
-        // console.log(req.body.subCategoryId)
+        console.log(req.body.subCategoryId)
         const subCategoryId = req.body.subCategoryId;
         try {
           const dbDelSubCatResponse = await deleteSubCategory(subCategoryId);
           res.json({
-            dbDelSubCatResponse 
+            dbDelSubCatResponse
           })
         } catch (error) {
           console.error(error)
