@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html required>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -65,8 +65,8 @@
                                     <%- allProducts[i].discount %>
                                 </td>
                                 <td>
-                                    <a><span class="edit-product" data-productid-type="<%- allProducts[i].product_id %>" data-subcatid-type="<%- allProducts[i].subcat_id %>"> Edit </span></a>
-                                    <span class="delete-product" data-productid-type="<%- allProducts[i].product_id %>" > Delete </span>
+                                    <a><span class="edit-product" data-productid-type="<%- allProducts[i].product_id %>" data-subcatid-type="<%- allProducts[i].subcat_id %>"> Edit </span></a required>
+                                    <span class="delete-product" data-productid-type="<%- allProducts[i].product_id %>" > Delete </span required>
                                 </td>
                             </tr>
                         <% } %>
@@ -88,31 +88,31 @@
                     <form class="edit-product-form  ">
                         <p>
                             <label for="prod-name">Name</label>
-                            <input type="text" name="prodName" id="prod-name" class="product-name">
+                            <input type="text" name="prodName" id="prod-name" class="product-name" required>
                         </p>
                         <p>
                             <label for="prod-price">Price</label>
-                            <input type="text" name="prodPrice" id="prod-price" class="product-price">
+                            <input type="text" name="prodPrice" id="prod-price" class="product-price" required>
                         </p>
                         <p>
                             <label for="prod-image">Image</label>
-                            <input type="file" name="prodImage" id="prod-image" class="product-image">
+                            <input type="file" name="prodImage" id="prod-image" class="product-image" required>
                         </p>
                         <p>
                             <label for="count-in-stock">Count in Stock</label>
-                            <input type="text" name="prodInStock" id="count-in-stock" class="product-in-stock">
+                            <input type="text" name="prodInStock" id="count-in-stock" class="product-in-stock" required>
                         </p>
                         <p class="category">
                             <label for="prod-category">Category</label>
-                            <input type="text" name="prodCategory" id="prod-category" class="product-category"> 
+                            <input type="text" name="prodCategory" id="prod-category" class="product-category" required>  
                         </p>
                         <p class="sub-category">
                             <label for="prod-sub-category">Sub Category</label>
-                            <input type="text" name="prodSubCategory" id="prod-sub-category" class="product-sub-category"> 
+                            <input type="text" name="prodSubCategory" id="prod-sub-category" class="product-sub-category" required>  
                         </p>
                         <p>
                             <label for="prod-description">Description</label>
-                            <textarea name="prodDescription" id="prod-description" class="product-description" rows="2" cols="42"></textarea>
+                            <textarea name="prodDescription" id="prod-description" class="product-description" required rows="2" cols="42"></textarea>
                         </p>
                         <p><input type="submit" class="submit-button" value="Add Product" id="update"></p>
                     </form>
