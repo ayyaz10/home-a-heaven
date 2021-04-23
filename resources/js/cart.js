@@ -9,7 +9,7 @@ const addButton = document.querySelectorAll('.add-btn');
 const subButton = document.querySelectorAll('.sub-btn');
 let productId = 0;
 
-const actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
+// const actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
 const checkoutBtn = document.querySelector('.checkout-button');
 
 checkoutBtn.addEventListener('click', () => {
@@ -48,12 +48,12 @@ checkoutBtn.addEventListener('click', () => {
 for(let i = 0; i < addButton.length; i++) {
     addButton[i].addEventListener('click', (e) => {
         let productPrice = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value); 
-        console.log(productPrice)
+        // console.log(e.target.parentElement.parentElement.parentElement)
         let counter = e.target.nextElementSibling;
         let price = e.target.parentElement.parentElement.firstElementChild;
         const total = parseInt(counter.innerText * price.innerText);
         //  const product = JSON.parse(localStorage.getItem('itemsArray'));
-        //  console.log(product)
+
 
         price.innerText = parseInt(price.innerText) + productPrice;
         subtotalAmount.innerText = parseInt(subtotalAmount.innerText) + productPrice;

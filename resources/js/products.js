@@ -1,16 +1,6 @@
-// var myVar = setInterval(reloadPage, 1000);
-// const reloadPage = () => {
-//     window.location.reload()
-// }
-// setTimeout(()=>{
-//     clearInterval(myVar)
-// }, 2000)
-
-
 // add to cart functionality
 const addToCart = document.querySelectorAll('.add-to-cart');
 const categoryName = document.querySelector('.category-name');
-// categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
 addToCart.forEach(cartBtn => {
     cartBtn.addEventListener('click', async (e) => {
         let product = await JSON.parse(cartBtn.dataset.product);
@@ -32,15 +22,6 @@ addToCart.forEach(cartBtn => {
     })
 })
 
-
-
-// const select = document.querySelectorAll('option')
-// select.forEach(each => {
-//     // console.log(each.innerText)
-//     each.addEventListener('onchange', (e)=>{
-//         console.log(e.target)
-//     })
-// })
 
 const sortSelect = document.querySelectorAll('.sort-select');
     const index = JSON.parse(localStorage.getItem('selectIndex'))
@@ -97,7 +78,6 @@ const sortSelect = document.querySelectorAll('.sort-select');
         }
     }
     const selectedSort = await getSelectedSort(e);
-    // console.log(selectedSort)
     if(selectedSort) {
         const response = await fetch('http://localhost:3333/sort', {
             method: "post",

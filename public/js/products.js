@@ -853,17 +853,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// var myVar = setInterval(reloadPage, 1000);
-// const reloadPage = () => {
-//     window.location.reload()
-// }
-// setTimeout(()=>{
-//     clearInterval(myVar)
-// }, 2000)
 // add to cart functionality
 var addToCart = document.querySelectorAll('.add-to-cart');
-var categoryName = document.querySelector('.category-name'); // categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'));
-
+var categoryName = document.querySelector('.category-name');
 addToCart.forEach(function (cartBtn) {
   cartBtn.addEventListener('click', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
@@ -906,14 +898,7 @@ addToCart.forEach(function (cartBtn) {
       return _ref.apply(this, arguments);
     };
   }());
-}); // const select = document.querySelectorAll('option')
-// select.forEach(each => {
-//     // console.log(each.innerText)
-//     each.addEventListener('onchange', (e)=>{
-//         console.log(e.target)
-//     })
-// })
-
+});
 var sortSelect = document.querySelectorAll('.sort-select');
 var index = JSON.parse(localStorage.getItem('selectIndex'));
 

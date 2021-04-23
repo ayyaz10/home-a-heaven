@@ -71,16 +71,24 @@ const cartBtn = document.querySelector('.cart-btn')
     }
 
     const loadContent = () => {
-        const item = JSON.parse(localStorage.getItem('itemsArray'));
+        const product = JSON.parse(localStorage.getItem('itemsArray'));
         const heading = document.querySelector('.product-name');
-        const price = document.querySelector('.price')
+        const price = document.querySelector('.price');
+        const oldPrice = document.querySelector('.old-price')
         const about = document.querySelector('.about-paragraph');
         const image = document.querySelector('.product-image img');
-        console.log(image)
-        heading.innerText = item.item.product_name
-        price.innerText = item.item.price
-        about.innerText = item.item.product_description
-        image.src = `/assets/uploads/${item.item.image}`
+        heading.innerText = product.item.product_name
+        console.log(product)
+        if(product.item.discount.length > 0) {
+            price.innerText = product.item.discount;
+            oldPrice.innerText = product.item.price;
+            oldPrice.style.display = "block";
+        } else {
+            price.innerText = product.item.price;
+        }
+        // if(product.item.discount.length)
+        about.innerText = product.item.product_description
+        image.src = `/assets/uploads/${product.item.image}`
 
     }
     loadContent();

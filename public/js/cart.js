@@ -862,8 +862,8 @@ var totalAmount = document.querySelector('.total-amount');
 var cartQty = document.querySelector('.cart-count');
 var addButton = document.querySelectorAll('.add-btn');
 var subButton = document.querySelectorAll('.sub-btn');
-var productId = 0;
-var actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
+var productId = 0; // const actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
+
 var checkoutBtn = document.querySelector('.checkout-button');
 checkoutBtn.addEventListener('click', function () {
   var productName = document.querySelectorAll('.product-name');
@@ -900,12 +900,11 @@ checkoutBtn.addEventListener('click', function () {
 
 for (var i = 0; i < addButton.length; i++) {
   addButton[i].addEventListener('click', function (e) {
-    var productPrice = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value);
-    console.log(productPrice);
+    var productPrice = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value); // console.log(e.target.parentElement.parentElement.parentElement)
+
     var counter = e.target.nextElementSibling;
     var price = e.target.parentElement.parentElement.firstElementChild;
     var total = parseInt(counter.innerText * price.innerText); //  const product = JSON.parse(localStorage.getItem('itemsArray'));
-    //  console.log(product)
 
     price.innerText = parseInt(price.innerText) + productPrice;
     subtotalAmount.innerText = parseInt(subtotalAmount.innerText) + productPrice;

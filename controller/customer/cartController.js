@@ -6,13 +6,13 @@ const cartController = () => {
     async index (req, res) {
       const products = await getAllProducts();
       const categories = await getAllCategories();
+      console.log(req.session)
       res.render('cart', {
         products,
         categories
       })
     },
     async addInCart (req, res) {
-      console.log(req.session)
       const products = await getAllProducts();
       const categories = await getAllCategories();
       res.render('add-to-cart', {
@@ -30,7 +30,15 @@ const cartController = () => {
         // }
       // for the first time creating cart and adding basic object structure
       // console.log('helo')
-
+      // console.log(req.body)
+      const discountPrice = req.body.product.item.discount;
+      const price = req.body.product.item.price;
+      let itemPrice;
+      if(discountPrice.length > 0) {
+        itemPrice = parseInt(discountPrice)
+      } else {
+        itemPrice = parseInt(price);
+      }
       if(!req.session.cart) {
         req.session.cart = {
           items: {},
@@ -44,18 +52,18 @@ const cartController = () => {
       if(!cart.items[req.body.product.item.product_id]) {
         cart.items[req.body.product.item.product_id] = {
           item: req.body,
-          price: req.body.product.item.price,
+          price: itemPrice,
           qty: 1,
         }
           // cart.productId =  req.body.productid;
           cart.totalQty = cart.totalQty + 1;
-          cart.totalPrice = cart.totalPrice + req.body.product.item.price;
+          cart.totalPrice = cart.totalPrice + itemPrice;
       } else {
         cart.items[req.body.product.item.product_id].qty = cart.items[req.body.product.item.product_id].qty + 1;
-        cart.items[req.body.product.item.product_id].price = cart.items[req.body.product.item.product_id].price + req.body.product.item.price;
+        cart.items[req.body.product.item.product_id].price = cart.items[req.body.product.item.product_id].price + itemPrice;
         // cart.productId =  req.body.productid;
         cart.totalQty  = cart.totalQty + 1;
-        cart.totalPrice = cart.totalPrice + req.body.product.item.price;
+        cart.totalPrice = cart.totalPrice + itemPrice;
       }
       return res.json(  {totalQty: req.session.cart.totalQty})
 
@@ -82,7 +90,7 @@ const cartController = () => {
     async editCartValues(req, res) {
       const { productid, counterval, price, cartqty, subtotal, total } = await req.body;
       let cart = req.session.cart;
-      console.log(counterval)
+      console.log(total)
       console.log(productid)
       cart.items[productid].price = price;
       cart.items[productid].qty = counterval;

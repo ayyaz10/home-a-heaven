@@ -187,7 +187,6 @@ const adminManageProduct = () => {
               dbResponse
             })
           } else {
-            // console.log('helo')
             const productObj = {
               product_name: formData.prodName,
               price: formData.prodPrice,

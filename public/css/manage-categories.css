@@ -2,6 +2,11 @@
 @import './_header.css';
 @import './_footer.css';
 
+
+.header_container {
+  padding: 10px 40px 10px 40px;
+}
+
 .delete-category, .edit-category {
   cursor: pointer;
   color: var(--secondary);
@@ -200,25 +205,10 @@ textarea {
 }
 
 @media only screen and (max-width: 1030px) {
-  .left-panel {
-      width: 30%;
-      min-width: 140px;
-      padding: 30px 10px 0 30px;
-      /* font-size: 12px; */
-  }
-  .left-panel h2{
-      font-size: 15px;
-  }
-
 .product-container {
-    /* max-width: 1200px; */
     position: relative;
-    /* left: 10%; */
-    /* width: 70%; */
-    /* margin: 0 auto; */
     padding: 40px 50px 40px 50px;
   }
-  
 }
 
 @media only screen and (max-width: 991px) {

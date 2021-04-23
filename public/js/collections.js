@@ -853,13 +853,43 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function reqByCategory(_x) {
+var categoriesArray = document.querySelectorAll('.category');
+categoriesArray.forEach(function (category) {
+  category.addEventListener('click', /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+      var categoryContainer, categoryArray;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault(e);
+              categoryContainer = e.target.parentElement.parentElement.firstElementChild.firstElementChild.innerText; // adding category data to localstorage
+
+              categoryArray = JSON.parse(localStorage.getItem('categoryArray')) || " ";
+              localStorage.setItem('categoryArray', JSON.stringify(categoryContainer));
+              reqByCategory(JSON.parse(localStorage.getItem('categoryArray')));
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+});
+
+function reqByCategory(_x2) {
   return _reqByCategory.apply(this, arguments);
 }
 
 function _reqByCategory() {
   _reqByCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(categoryName) {
-    var response, result;
+    var res, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -878,14 +908,19 @@ function _reqByCategory() {
             });
 
           case 2:
-            response = _context2.sent;
+            res = _context2.sent;
             _context2.next = 5;
-            return response.json();
+            return res.json();
 
           case 5:
-            result = _context2.sent;
+            response = _context2.sent;
+            console.log(response);
 
-          case 6:
+            if (response.isAdded) {
+              window.location = 'collections/products';
+            }
+
+          case 8:
           case "end":
             return _context2.stop();
         }
@@ -894,36 +929,6 @@ function _reqByCategory() {
   }));
   return _reqByCategory.apply(this, arguments);
 }
-
-var categoriesArray = document.querySelectorAll('.category');
-categoriesArray.forEach(function (category) {
-  category.addEventListener('click', /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-      var categoryContainer, categoryArray;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              categoryContainer = e.target.parentElement.parentElement; // adding category data to localstorage
-
-              categoryArray = JSON.parse(localStorage.getItem('categoryArray')) || " ";
-              categoryArray = categoryContainer.firstElementChild.innerText;
-              localStorage.setItem('categoryArray', JSON.stringify(categoryArray));
-              reqByCategory(categoryArray);
-
-            case 5:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-
-    return function (_x2) {
-      return _ref.apply(this, arguments);
-    };
-  }());
-});
 })();
 
 /******/ })()

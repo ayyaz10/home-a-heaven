@@ -445,10 +445,13 @@ module.exports = {
             // getting category_id from category table in order to enter category_id into sub_categorytable
             const categoryId = await knex.select("category_id").from('product_category')
             .where({category_name: productObj.category_name}).first()
-            const subCatObj = {
-                sub_cat_name: productObj.sub_cat_name,
-                cat_id: categoryId.category_id,
-                created_at: new Date()
+            let subCatObj
+            if(productObj.sub_cat_name.length > 0) {
+                 subCatObj = {
+                    sub_cat_name: productObj.sub_cat_name,
+                    cat_id: categoryId.category_id,
+                    created_at: new Date()
+                }
             }
             const dbSubCatResponse = await knex('sub_category').insert(subCatObj, "subCat_id")
             return {
@@ -470,12 +473,14 @@ module.exports = {
             // getting category_id from category table in order to enter category_id into sub_categorytable
             const categoryId = await knex.select("category_id").from('product_category')
             .where({category_name: productObj.category_name}).first()
-            const subCatObj = {
-                sub_cat_name: productObj.sub_cat_name,
-                cat_id: categoryId.category_id,
-                created_at: new Date()
+            if(productObj.sub_cat_name.length > 0) {
+                const subCatObj = {
+                    sub_cat_name: productObj.sub_cat_name,
+                    cat_id: categoryId.category_id,
+                    created_at: new Date()
+                }
+                const dbSubCatResponse = await knex('sub_category').insert(subCatObj, "subCat_id")
             }
-            const dbSubCatResponse = await knex('sub_category').insert(subCatObj, "subCat_id")
             const product = await knex('product')
             .where({product_id: productId})
             .update(productObj)

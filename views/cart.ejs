@@ -21,7 +21,11 @@
           <div class="cart-product-area">
             <h1 class="cart-heading">My Bag</h1>
             <% for(let product of Object.values(session.cart.items)) {%>
-            <div class="product-in-cart" id="<%= product.item.product.item.price%>">
+              <% if(product.item.product.item.discount.length > 0) { %>
+                <div class="product-in-cart" id="<%= product.item.product.item.discount%>">
+                  <% } else {%> 
+                    <div class="product-in-cart" id="<%= product.item.product.item.price%>">
+                <% } %>
               <!-- <div class="conatiner"> -->
                 <!-- <div class="img-pName"> -->
                   <div class="product-image-thumb">
@@ -30,7 +34,11 @@
                   <p class="product-name"><%= product.item.product.item.product_name %></p>
                 <!-- </div> -->
                 <div class="product-info">
-                  <span class="price"><%= product.price %></span>
+                  <% if(typeof product.discount !== 'undefined') { %>
+                      <span class="discount"><%= product.discount %></span>
+                  <% } else {%>
+                      <span class="price"><%= product.price %></span>
+                  <% } %>
                   <div class="product-quantity">
                     <button class="add-btn" id="<%= product.item.product.item.product_id%>">+</button>
                     <span class="counter-value"><%= product.qty %></span>

@@ -1,5 +1,19 @@
+
+
+const categoriesArray = document.querySelectorAll('.category');
+categoriesArray.forEach(category => {
+    category.addEventListener('click', async (e) => {
+        e.preventDefault(e);
+        const categoryContainer = e.target.parentElement.parentElement.firstElementChild.firstElementChild.innerText;
+        // adding category data to localstorage
+        let categoryArray = JSON.parse(localStorage.getItem('categoryArray')) || " ";
+        localStorage.setItem('categoryArray', JSON.stringify(categoryContainer));
+        reqByCategory(JSON.parse(localStorage.getItem('categoryArray')))
+    })
+})
+
 async function reqByCategory(categoryName) {
-    const response = await fetch('http://localhost:3333/req-by-category', {
+    const res = await fetch('http://localhost:3333/req-by-category', {
         method: "post",
         mode: 'cors',
         credentials: 'include',
@@ -8,17 +22,10 @@ async function reqByCategory(categoryName) {
             categoryName
         })
     })
-    const result = await response.json();
-}
+    const response = await res.json();
+    console.log(response)
+    if(response.isAdded) {
+        window.location = 'collections/products';
+    }
 
-const categoriesArray = document.querySelectorAll('.category');
-categoriesArray.forEach(category => {
-    category.addEventListener('click', async (e) => {
-        const categoryContainer = e.target.parentElement.parentElement;
-        // adding category data to localstorage
-        let categoryArray = JSON.parse(localStorage.getItem('categoryArray')) || " ";
-        categoryArray = categoryContainer.firstElementChild.innerText;
-        localStorage.setItem('categoryArray', JSON.stringify(categoryArray));
-        reqByCategory(categoryArray)
-    })
-})
+}

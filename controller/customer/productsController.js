@@ -11,6 +11,7 @@ const productsController = () => {
     },
     async collectionOfProducts(req, res) {
       try {
+        
         // A little fix for session.sortProduct.reqSortQuery = undefined value
         if(!req.session.categorySession.isFilterQueried) {
           if(!req.session.filterProduct) {
@@ -47,6 +48,7 @@ const productsController = () => {
           }
         })
         const currentCategory = category[0];
+        console.log(currentCategory)
         res.render('products', {
           categories,
           subCategories,

@@ -993,16 +993,26 @@ var addPriceToLocalStorage = function addPriceToLocalStorage() {
 };
 
 var loadContent = function loadContent() {
-  var item = JSON.parse(localStorage.getItem('itemsArray'));
+  var product = JSON.parse(localStorage.getItem('itemsArray'));
   var heading = document.querySelector('.product-name');
   var price = document.querySelector('.price');
+  var oldPrice = document.querySelector('.old-price');
   var about = document.querySelector('.about-paragraph');
   var image = document.querySelector('.product-image img');
-  console.log(image);
-  heading.innerText = item.item.product_name;
-  price.innerText = item.item.price;
-  about.innerText = item.item.product_description;
-  image.src = "/assets/uploads/".concat(item.item.image);
+  heading.innerText = product.item.product_name;
+  console.log(product);
+
+  if (product.item.discount.length > 0) {
+    price.innerText = product.item.discount;
+    oldPrice.innerText = product.item.price;
+    oldPrice.style.display = "block";
+  } else {
+    price.innerText = product.item.price;
+  } // if(product.item.discount.length)
+
+
+  about.innerText = product.item.product_description;
+  image.src = "/assets/uploads/".concat(product.item.image);
 };
 
 loadContent(); // stops user to go back
