@@ -1,6 +1,13 @@
 # home-a-heaven
 
-Setup
+### Setup
+
+```
 npm install
-Run
+```
+
+### Run
+
+```
 npm run dev
+```
