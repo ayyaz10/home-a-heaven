@@ -9,7 +9,5 @@ npm install
 ### Run
 
 ```
-npm run serve
+npm run dev
 ```
-
-### Build
