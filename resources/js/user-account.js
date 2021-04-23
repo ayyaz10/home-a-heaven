@@ -106,7 +106,7 @@ currentPassword.addEventListener('change', async () => {
             messageField.style.color = "green";
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 
 })
@@ -114,8 +114,6 @@ currentPassword.addEventListener('change', async () => {
 
 // check for new password and retype password match
 newPassword.addEventListener('keyup', (e) => {
-    // console.log(e.target.value.length)
-    console.log(e.target.parentElement)
    if(e.target.value === retypePassword.value) {
     const newPassMessageField = document.querySelector('.newPassword-message-field');
     newPassword.style.border = "1px solid green";
@@ -140,8 +138,6 @@ newPassword.addEventListener('keyup', (e) => {
 
 // check for new password and retype password match
 retypePassword.addEventListener('keyup', (e) => {
-    // console.log(e.target.value.length)
-    console.log(e.target.parentElement)
    if(e.target.value === newPassword.value) {
     const messageField = document.querySelector('.retypePassword-message-field');
     const newPassMessageField = document.querySelector('.newPassword-message-field');
@@ -161,8 +157,6 @@ retypePassword.addEventListener('keyup', (e) => {
    if(!(e.target.value.length >= 6)) {
     const messageField = document.querySelector('.retype-message-field');
     retypePassword.style.border = "1px solid red";
-    // messageField.innerText = "Password length must be greater then 6!";
-    // messageField.style.color = "red";
    }
 })
 
@@ -187,14 +181,10 @@ passwordEditWrapper.addEventListener('submit', async (e) => {
         if(result.isUpdated) {
             // Get the modal
             var modal = document.getElementById("myModal");
-            // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
-            // get the <p> where actual message will be shown
             let message = document.querySelector('.message');
             message.innerText = "Password has been changed!";
-            // When the user clicks the button, open the modal
             modal.style.display = "block";
-            // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
                 modal.style.display = "none";
                 window.location.reload()
@@ -243,28 +233,3 @@ phoneEditWrapper.addEventListener('submit', async (e) => {
         console.error(error)
     }
 })
-
-// ema.addEventListener('submit', async (e) => {
-//     e.preventDefault();
-//     const email = emailInput.value;
-//     console.log(email)
-//     const response = await fetch(`${url}/edit-profile`, {
-//         method: "post",
-//         mode: 'cors',
-//         credentials: 'include',
-//         headers: {'Content-Type': 'application/json'},
-//             body: JSON.stringify({
-//                 email
-//         })
-//     })
-//     const result = await response.json();
-//     if(result.isUpdated) {
-//         window.location = '/account'
-//     }
-// })
-
-// saveChangesBtn.addEventListener('click', () => {
-//     editProfile.classList.add('hide');
-//     myProfile.classList.remove('show');
-// })
-

@@ -34,11 +34,9 @@ select.forEach((each) => {
         })
     })
     const serverResponse = await response.json();
-    // console.log(serverResponse, clientStatus)
-    if(serverResponse.dbStatus === 1) {
-        console.log(e.target[1].innerText)
-        // e.target[1].innerText = serverResponse.dbStatus
-    }
+    // if(serverResponse.dbStatus === 1) {
+    //     console.log(e.target[1].innerText)
+    // }
     })
 })
 
@@ -59,7 +57,6 @@ logoutButton.addEventListener('click', (e)=>{
             window.location = "http://localhost:3333/";
         })
         }
-        // const result = await response.json();
 
     logout();
 })

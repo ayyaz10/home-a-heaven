@@ -43,7 +43,6 @@ shippingForm.addEventListener('submit', function(e) {
                     modal.style.display = "none";
                     window.location.reload()
                   }
-
                   // When the user clicks anywhere outside of the modal, close it
                 window.onclick = function(event) {
                     if (event.target == modal) {
@@ -86,7 +85,6 @@ const updateCheckoutPage = () => {
         order.append(price)
         orderInforWrapper.append(order)
     }
- 
 
     products.forEach(product => {
         createSummaryAreaHtml(product)

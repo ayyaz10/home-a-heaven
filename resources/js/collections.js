@@ -1,5 +1,3 @@
-
-
 const categoriesArray = document.querySelectorAll('.category');
 categoriesArray.forEach(category => {
     category.addEventListener('click', async (e) => {

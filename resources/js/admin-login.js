@@ -48,7 +48,7 @@ loginForm.addEventListener('submit', function(e) {
                 localStorage.user_id = data.id;
                 localStorage.role = data.role;
                 loginFail.style.display = "none";
-                // window.location = 'http://localhost:3333/adminOrders'
+                window.location = 'http://localhost:3333/adminOrders'
             } else {
                 loginFail.style.display = "block";
                 loginFail.classList.add('failed_message');
@@ -90,7 +90,7 @@ signupForm.addEventListener('submit', function(e) {
                 registrationSuccess.classList.add('success_message');
                 registrationFail.style.display = "none";
                 setInterval(function(){
-                    // window.location = 'http://localhost:3333/adminOrders'
+                    window.location = 'http://localhost:3333/adminOrders'
             }, 2000);
             }else {
                 registrationSuccess.style.display = "none";
@@ -104,7 +104,7 @@ signupForm.addEventListener('submit', function(e) {
 
             }
         }).catch(err => {
-            // console.log(err)
+            console.error(err)
 
         })
 })

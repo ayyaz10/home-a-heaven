@@ -5,7 +5,6 @@ exports.up = function(knex) {
         table.integer('customer_id', 255);
         table.string('product_id', 255);
         table.string('item_id');
-        // .references('item_id').inTable('item').onDelete('CASCADE');
         table.string('full_name', 255).unsigned().notNullable();
         table.integer('qty', 50).unsigned().notNullable();
         table.integer('total_price', 255).unsigned().notNullable();

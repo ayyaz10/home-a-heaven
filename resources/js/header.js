@@ -1,5 +1,4 @@
 // main menu getting products by category functionality
-// const categoryName = JSON.parse(localStorage.getItem('categoryArray'))
 const headerMenu  = document.querySelectorAll('.main-menu li');
 headerMenu.forEach(li => {
     li.addEventListener('click', (e) => {
@@ -48,7 +47,6 @@ logoutButton.addEventListener('click', (e)=>{
             window.location.reload()
         })
         }
-        // const result = await response.json();
 
     logout();
 })
@@ -73,7 +71,6 @@ btn.addEventListener('click', () => {
 
 
 // navigation hamburger menu
-
 const menuIcon = document.querySelector('.menu');
 const closeIcon = document.querySelector('.close-icon');
 const menuContainer = document.querySelector('.menu-container');
@@ -92,7 +89,6 @@ closeIcon.addEventListener('click', () => {
 
 const role = localStorage.getItem('role');
 if(role === 'admin') {
-//    const secondMenu = document.querySelector('.second-menu');
    const mainMenu = document.querySelector('.main-menu');
    const search = document.querySelector('.search');
    const cart = document.querySelector('.cart');
@@ -112,41 +108,3 @@ if(role === 'admin') {
     manageProduct.style.display = "none";
     manageCustOrders.style.display = "none";
 }
-
-{/* <li><a href="/adminOrders">Customer Orders</a></li>
-<li><a href="/manage-product">Manage Products</a></li>
-<li><a href="/user-account">Account</a></li> */}
-
-// search backend
-
-// const searchInput = document.querySelector('#input-search')
-// searchInput.addEventListener('keyup', (e) => {
-//     // console.log(e.target.value)
-//     if(e.key === 'Enter') {
-//         searchText = e.target.value;
-//         // console.log(searchText)
-//         searchDB(searchText)
-//         localStorage.setItem('search', JSON.stringify(true));
-//         localStorage.setItem('searchProduct', JSON.stringify(searchText));
-//     }
-// })
-
-
-// async function searchDB(searchText) {
-//     const response = await fetch('http://localhost:3333/search-query', {
-//         method: "post",
-//         mode: 'cors',
-//         credentials: 'include',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//             searchText
-//         })
-//     })
-//     const result = await response.json();
-//     // if(result)
-//     if(result.validText) {
-//         window.location.reload();
-
-//     }
-
-// }

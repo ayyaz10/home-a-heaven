@@ -16,8 +16,3 @@ mix.js('resources/js/admin-panel.js', 'public/js/admin-panel.js');
 mix.js('resources/js/admin-orders.js', 'public/js/admin-orders.js');
 mix.js('resources/js/signup-login.js', 'public/js/signup-login.js');
 mix.js('resources/js/admin-login.js', 'public/js/admin-login.js');
-// mix.css('resources/css/adminPanel.css', 'public/css/adminPanel.css');
-// mix.css('resources/css/styles.css', 'public/css/styles.css');
-// mix.css('resources/css/styles.css', 'public/css/style.css');
-// mix.css('resources/css/index.css', 'public/css/index.css');
-// mix.css('resources/css/signup-login.css', 'public/css/signup-login.css');

@@ -22,40 +22,11 @@ adminPanelAddCategoryInput.addEventListener('n', ()=>{
     adminPanelAddCategoryInput.value = "";
 })
 
-// adminPanelForm.addEventListener('submit', async (e) => {
-//     e.preventDefault();
-
-//         // getting and uploading image file to server
-//         const fileField = document.querySelector('input[type="file"]');
-//         let formData = new FormData();
-//         formData.append('prodImage', fileField.files[0]);
-//         const res = await fetch('http://localhost:3333/product', {
-//             method: 'post',
-//             body: formData
-//          })
-//         const result = await res.json();
-// })
-// adminPanelForm.addEventListener('submit', async (e)=>{
-//     e.preventDefault();
-//          // getting and uploading image file to server
-//          const fileField = document.querySelector('input[type="file"]');
-//          let formData = new FormData();
-//          formData.append('prodImage', fileField.files[0]);
-//          const res = await fetch('http://localhost:3333/upload', {
-//              method: 'post',
-//              body: formData
-//           })
-//           const result = await res.json();
-//           console.log(result)
-//  })
-
 adminPanelForm.addEventListener('submit', async (e)=>{
     e.preventDefault();
     // getting and sending form text data to server
     const fileField = document.querySelector('input[type="file"]');
     let formData = new FormData()
-    let productObj = {};
-    let subCategory = {};
     if(clickedCategory) {
         formData.append('prodImage', fileField.files[0]);
         formData.append('productname', productName.value)
@@ -101,7 +72,6 @@ try {
 
 
 // subcategory functionality
-
 const addSubCatButton = document.querySelector('.category span');
 const categoriesContainer = document.querySelector('.categories-container');
 addSubCatButton.addEventListener('click', () => {

@@ -3,7 +3,6 @@ const deleteButton = document.querySelectorAll('.delete-category');
 deleteButton.forEach(eachButton => {
     eachButton.addEventListener('click', async (e) => {
         const categoryName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText;
-        // console.log(categoryName)
         const isDeleteConfirm = confirm(`Are you sure to delete the product ${categoryName}`);
         if(isDeleteConfirm) {
             const categoryId = e.target.getAttribute("data-categoryid-type");
@@ -54,7 +53,6 @@ delSubCategoryBtn.forEach(eachButton => {
 })
 
 // edit sub category
-
 const editButton = document.querySelectorAll('.edit-sub-category');
 editButton.forEach(eachButton => {
     eachButton.addEventListener('click', async (e) => {

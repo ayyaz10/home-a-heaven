@@ -3,11 +3,9 @@ const deleteButton = document.querySelectorAll('.delete-category');
 deleteButton.forEach(eachButton => {
     eachButton.addEventListener('click', async (e) => {
         const categoryName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText;
-        // console.log(categoryName)
         const isDeleteConfirm = confirm(`Are you sure to delete the product ${categoryName}`);
         if(isDeleteConfirm) {
             const categoryId = e.target.getAttribute("data-categoryid-type");
-            console.log(categoryId)
             const res = await fetch('http://localhost:3333/delete-category', {
                 method: "post",
                 mode: 'cors',
@@ -26,7 +24,6 @@ deleteButton.forEach(eachButton => {
 })
 
 // edit category
-// edit product
 const editButton = document.querySelectorAll('.edit-category');
 editButton.forEach(eachButton => {
     eachButton.addEventListener('click', async (e) => {
@@ -46,13 +43,10 @@ editButton.forEach(eachButton => {
          const category = response.category;
          if(response.haveProduct) {
              editCategoryForm[0].value = category.category_name;
-                  // Get the modal
+            // Get the modal
             var modal = document.getElementById("myModal");
-            // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
-            // When the user clicks the button, open the modal 
             modal.style.display = "block";
-            // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
                 modal.style.display = "none";
                 window.location.reload()
@@ -65,7 +59,7 @@ editButton.forEach(eachButton => {
                 }
             }
         }
-    //     //  update product
+         //  update product
         const editForm = document.querySelector('#editCategoryForm');
         editForm.addEventListener('submit', async (e) => {
             e.preventDefault();
