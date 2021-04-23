@@ -32,7 +32,6 @@ loginForm.addEventListener('submit', function(e) {
     let userEmail = loginFormData[0].value;
     let userPassword = loginFormData[1].value;
     const loginFailMsgField = document.querySelector('.login_fail_response p')
-
     fetch('http://localhost:3333/login', {
             method: "post",
             mode: 'cors',
@@ -49,20 +48,16 @@ loginForm.addEventListener('submit', function(e) {
                 localStorage.user_id = data.id;
                 localStorage.role = data.role;
                 loginFail.style.display = "none";
-                window.location = 'http://localhost:3333/adminOrders'
+                // window.location = 'http://localhost:3333/adminOrders'
             } else {
                 loginFail.style.display = "block";
                 loginFail.classList.add('failed_message');
                 loginFailMsgField.innerText = data.message;
                 loginFormData[1].value = "";
-                // setTimeout(()=>{
-                //     loginFail.style.display = "none";
-                //     loginFormData[1].value = "";
-                // }, 2200)
             }
         })
         .catch(err=> {
-            // console.log(err)
+            console.log(err)
         })
 })
 
@@ -72,8 +67,6 @@ signupForm.addEventListener('submit', function(e) {
 	e.preventDefault();
     const userEmail = signupFormData[0].value;
     const userPassword = signupFormData[1].value;
-    // const firstName = signupFormData[2].value;
-    // const lastName = signupFormData[3].value;
     const failMessageField = document.querySelector('.registration_fail_response p')
 
     fetch('http://localhost:3333/register', {
@@ -97,7 +90,7 @@ signupForm.addEventListener('submit', function(e) {
                 registrationSuccess.classList.add('success_message');
                 registrationFail.style.display = "none";
                 setInterval(function(){
-                    window.location = "http://localhost:3333/";
+                    // window.location = 'http://localhost:3333/adminOrders'
             }, 2000);
             }else {
                 registrationSuccess.style.display = "none";

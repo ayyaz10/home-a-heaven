@@ -2,45 +2,9 @@
 @import './_header.css';
 @import './_footer.css';
 
-.content-section {
-  /* display: flex;
-  height: 100%; */
+.header_container {
+  padding: 10px 40px 10px 40px;
 }
-
-
-
-/* left panel style */
-.left-panel {
-  position: fixed;
-  height: 100%;
-  padding: 20px 20px 0px 60px;
-  width: 25%;
-  color: #fff;
-  background-color: var(--primary);
-  /* border: 1px solid red; */
-}
-
-.left-panel h2{
-  color: #fff;
-  font-size: 16px;
-  text-align: left;
-  padding: 0px 0px 5px 0;
-  font-weight: 600;
-}
-
-.left-panel li a {
-  color: #ffffff;
-  cursor: pointer;
-  margin-left: 10px;    
-}
-
-
-.left-panel li a:hover {
-  color: var(--secondary);
-  /* font-weight: 500; */
-
-}
-/* left panel _________________ */
 
 .orders-container h1 {
   font-size: 28px;
@@ -50,11 +14,7 @@
 }
 
 .orders-container {
-  /* max-width: 1200px; */
-  /* position: relative; */
-  /* left: 10%; */
   width: 100%;
-  /* margin: 0 auto; */
   padding: 40px 50px 40px 50px;
 }
 
@@ -63,40 +23,6 @@ table.table tbody td, th, tr {
   font-size: 13px;
   color: #424244;
 }
-/* 
-table.table {
-  border: 1px solid #424244;
-  width: 100%;
-  text-align: left;
-  border-collapse: collapse;
-}
-table.table td, table.table th {
-  border: 1px solid #AAAAAA;
-  padding: 3px 2px;
-}
-table.table tbody td {
-  font-size: 13px;
-  color: #424244;
-}
-
-table.table thead th {
-  font-size: 15px;
-  font-weight: bold;
-  color: #424244;
-}
-table.table tfoot td {
-  font-size: 14px;
-}
-table.table tfoot .links {
-  text-align: right;
-}
-table.table tfoot .links a{
-  display: inline-block;
-  background: #1C6EA4;
-  color: #FFFFFF;
-  padding: 2px 8px;
-  border-radius: 5px;
-} */
 
 @media only screen and (max-width: 991px) {
   .container {
@@ -104,5 +30,4 @@ table.table tfoot .links a{
     padding-left: 0;
     padding-right: 0;
   }
-  
 }

@@ -25,7 +25,7 @@ const {
   PORT = 3333,
   // COOKIE_SECRET = 'HELLO'
  } = process.env;
-
+// const 
 const store = new KnexSessionStore({
   knex: db,
   clearInterval : 1000 * 60 * 60 * 24, // removes session id from database

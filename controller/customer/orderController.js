@@ -74,7 +74,7 @@ const orderController = () => {
                 total_price: totalPrice,
                 address,
                 city,
-                phone: "2392193",
+                phone: phone,
                 paymentType: 'COD',
                 order_status: 'order_placed',
                 created_at: new Date()

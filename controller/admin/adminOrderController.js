@@ -10,6 +10,7 @@ const adminOrderController = () => {
         async index(req, res) {
             const categories = await getAllCategories();
             const placedOrders = await getOrders();
+            console.log(placedOrders)
             res.render('admin-orders', {
                 categories,
                 placedOrders,

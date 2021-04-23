@@ -2,6 +2,10 @@
 @import './_header.css';
 @import './_footer.css';
 
+.header_container {
+  padding: 10px 40px 10px 40px;
+}
+
 .delete-sub-category, .edit-sub-category {
   cursor: pointer;
   color: var(--secondary);

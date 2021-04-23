@@ -10,7 +10,6 @@ addToCart.forEach(cartBtn => {
         let items = {
             item: product
         }
-        console.log(items)
         var oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
         localStorage.setItem('itemsArray', JSON.stringify(items));
         for(let i = 0; i < oldItems.length; i++) {
@@ -33,7 +32,6 @@ const sortSelect = document.querySelectorAll('.sort-select');
         const getSelectedSort = async (e) => {
         if(e.target.value === 'alpha-asc') {
             localStorage.setItem('selectIndex', JSON.stringify(1));
-                 console.log(i)
             return {
                 order: 'asc',
                 column: 'product_name',

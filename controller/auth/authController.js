@@ -2,7 +2,6 @@ const { getAllProducts, getAllCategories } = require('../../db/queries');
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
-const router = express.Router();
 const User  = require('../../db/queries');
 
 
@@ -97,15 +96,15 @@ const authController = () => {
                     // compare password with the hash
                     User.getOneByEmail(req.body.email)
                     .then(user => {
-                        // console.log(user)
                         bcrypt.compare(req.body.password, user.password, function(err, result) {
                             if(result){
                                 // setting the set-cookie header
+                                const twentyFourHours = 1000 * 60 * 60 * 24;
                                 const isSecure =  req.app.get('env') != 'development';
                                 res.cookie('user_info', JSON.stringify({user_id: user.user_id, role: user.role}), {
                                     httpOnly: true,
                                     signed: true,
-                                    maxAge: 1000 * 60 * 60 * 24,
+                                    maxAge: twentyFourHours,
                                     secure: false
                                 });
                                 res.json({

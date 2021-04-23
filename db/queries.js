@@ -197,6 +197,7 @@ module.exports = {
         return allItems;
     },
     async createOrder (order) {
+        console.log(order)
         const shippingDetail = await knex('shipping_detail').insert(order, 'order_id').returning("*");
         return shippingDetail;
     },

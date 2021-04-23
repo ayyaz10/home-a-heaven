@@ -5,6 +5,7 @@ const {
 const admin = async (req, res, next) => {
     try {
         const users = await getAllUsers();
+        console.log(req.signedCookies.user_info)
         for (let i = 0; i < users.length; i++) {
             if ((typeof req.signedCookies.user_info !== "undefined")) {
                 const userId = JSON.parse(req.signedCookies.user_info).user_id;

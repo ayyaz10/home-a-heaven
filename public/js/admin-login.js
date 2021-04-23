@@ -50,27 +50,22 @@ loginForm.addEventListener('submit', function (e) {
     if (data.result) {
       localStorage.user_id = data.id;
       localStorage.role = data.role;
-      loginFail.style.display = "none";
-      window.location = 'http://localhost:3333/adminOrders';
+      loginFail.style.display = "none"; // window.location = 'http://localhost:3333/adminOrders'
     } else {
       loginFail.style.display = "block";
       loginFail.classList.add('failed_message');
       loginFailMsgField.innerText = data.message;
-      loginFormData[1].value = ""; // setTimeout(()=>{
-      //     loginFail.style.display = "none";
-      //     loginFormData[1].value = "";
-      // }, 2200)
+      loginFormData[1].value = "";
     }
-  })["catch"](function (err) {// console.log(err)
+  })["catch"](function (err) {
+    console.log(err);
   });
 }); //collecting user data from signup form
 
 signupForm.addEventListener('submit', function (e) {
   e.preventDefault();
   var userEmail = signupFormData[0].value;
-  var userPassword = signupFormData[1].value; // const firstName = signupFormData[2].value;
-  // const lastName = signupFormData[3].value;
-
+  var userPassword = signupFormData[1].value;
   var failMessageField = document.querySelector('.registration_fail_response p');
   fetch('http://localhost:3333/register', {
     method: "post",
@@ -95,8 +90,7 @@ signupForm.addEventListener('submit', function (e) {
       registrationSuccess.style.display = "block";
       registrationSuccess.classList.add('success_message');
       registrationFail.style.display = "none";
-      setInterval(function () {
-        window.location = "http://localhost:3333/";
+      setInterval(function () {// window.location = 'http://localhost:3333/adminOrders'
       }, 2000);
     } else {
       registrationSuccess.style.display = "none";

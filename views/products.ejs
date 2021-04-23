@@ -15,9 +15,7 @@
 <body>
     <%- include('header') -%>
     <section class="hero-section">
-        <% if (products.length) { %>
-            <h1 class="category-name"><%= currentCategory.category_name %></h1>
-        <% } %>
+        <h1><%= typeof subCategory !== 'undefined' ? subCategory.sub_cat_name : currentCategory.category_name %></h1>
     </section>
     <div class="sort-filter-container">
         <div class="sort">

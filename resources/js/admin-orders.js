@@ -43,21 +43,6 @@ select.forEach((each) => {
     })
 })
 
-const leftPanel = document.querySelector('.left-panel');
-// const header = document.querySelector('.main_header')
-// let headerHeight = header.offsetHeight;
-
-
-window.onscroll = function (e) {
-    if(window.scrollY > 0) {
-        leftPanel.style.top = 0;
-    } else {
-        leftPanel.style.top = "initial";
-    }
-};
-
-
-
 const logoutHeader  = document.querySelector('#logout');
 const loginHeader = document.querySelector('#login');
 const userId = JSON.parse(localStorage.getItem('user_id'))
@@ -85,5 +70,3 @@ if(userId) {
 } else {
     logoutHeader.style.display = "none";
 }
-
-console.log(loginHeader)
