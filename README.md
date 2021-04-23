@@ -1,6 +1,6 @@
 # home-a-heaven
 
 Setup
-npm install
+<code> npm install </code>
 Run
 npm run dev
