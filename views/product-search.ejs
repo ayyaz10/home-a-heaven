@@ -19,21 +19,24 @@
         <h1 class="category-name" style="display: none;">Categor Name</h1>
         <h2 class="search-message">SEARCH RESULTS FOR "<%= product %>"</h2>
     </section>
-    <!-- <p class="search-fail" style="text-align: center;"></p> -->
     <section class="product-items-section">
-        <!-- <div class="filter-sort-container">
-            <div class="filter">
-
-            </div>
-        </div> -->
+        <% if(products.length) {%>
          <% for(let i = 0; i < products.length; i++) { %>
         <div class="products">
-            <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="product-image add-to-cart <%= products[i].price %>"><img src=<%- `/assets/uploads/${products[i].image}` %> alt="product"></a>
-            <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart <%= products[i].price %>"><h2><%- products[i].product_name %></h2></a>
-            <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="add-to-cart <%= products[i].price %>"><p class="product-price"><%- products[i].price %></p></a>
+            <div class="image-container">
+                <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" class="product-image add-to-cart <%= products[i].price %>"><img src=<%- `/assets/uploads/${products[i].image}` %> alt="product"></a>
+            </div>
+            <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" id="productName" class="add-to-cart <%= products[i].price %>"><h2><%- products[i].product_name %></h2></a>
+            <% if(products[i].discount > 0) {%>
+                    <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" id="price" class="add-to-cart <%= products[i].price %>"><p class="product-price"><s><i>Rs <%- products[i].price %></s> </i>Rs <%- products[i].discount %></p></a>
+            <% } else {%> 
+                    <a href="/addInCart" data-product="<%= JSON.stringify(products[i]) %>" id="price" class="add-to-cart <%= products[i].price %>"><p class="product-price">Rs <%- products[i].price %></p></a>
+            <% } %>
         </div>
          <% } %>
-
+         <% } else {%>
+            <p style="text-align: center; ">No product available</p>
+        <% } %>
     </section>
     <%- include('footer'); -%>
 </body>
