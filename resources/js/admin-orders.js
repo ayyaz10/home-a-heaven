@@ -2,7 +2,6 @@ const select = document.querySelectorAll('.order-status-options');
 select.forEach((each) => {
     each.addEventListener('change', async (e) => {
     const getOrderStatus = async (e)=> {
-        // console.log(e.target.parentElement.parentElement.firstElementChild.firstElementChild.innerText)
         const orderId = parseInt(e.target.parentElement.parentElement.firstElementChild.firstElementChild.innerText)
         if(e.target.value === 'placed') {
             return {

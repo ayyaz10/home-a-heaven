@@ -11,7 +11,6 @@ const productsController = () => {
     },
     async collectionOfProducts(req, res) {
       try {
-        
         // A little fix for session.sortProduct.reqSortQuery = undefined value
         if(!req.session.categorySession.isFilterQueried) {
           if(!req.session.filterProduct) {
@@ -25,8 +24,7 @@ const productsController = () => {
       // ___________ fix end
 
         const categoryQuery = req.session.categorySession.categoryName;
-        let products;  
-        // console.log(req.session)
+        let products;
         if(req.session.categorySession.isSortQueried) {
           const whichProduct = req.session.categorySession.categoryName;
           const whichSort = req.session.sortProduct.reqSortQuery.order;
@@ -35,7 +33,7 @@ const productsController = () => {
 
           req.session.categorySession.isSortQueried = false
         } else if(req.session.categorySession.isFilterQueried){
-          // console.log(req.session)
+
           products = await filterSubCategories(req.session.filterProduct.reqFilterQuery)
           req.session.categorySession.isFilterQueried = true
         }else {
@@ -53,9 +51,7 @@ const productsController = () => {
             return subCategory
           }
         })
-        console.log(subCategory[0])
         const currentCategory = category[0];
-        // console.log(subCategories)
         res.render('products', {
           categories,
           subCategories,
@@ -65,7 +61,7 @@ const productsController = () => {
         })
       } catch (error) {
         res.redirect('/collections')
-        console.log(error)
+        console.error(error)
       }
 
     },
@@ -122,7 +118,6 @@ const productsController = () => {
       if(isValidText()) {
         const products = await searchProduct(product);
         const categories = await getAllCategories();
-        // console.log(product)
         res.render('product-search', {
           product,
           products,

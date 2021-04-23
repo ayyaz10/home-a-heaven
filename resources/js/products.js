@@ -4,7 +4,6 @@ const categoryName = document.querySelector('.category-name');
 addToCart.forEach(cartBtn => {
     cartBtn.addEventListener('click', async (e) => {
         let product = await JSON.parse(cartBtn.dataset.product);
-        // console.log(product)
         localStorage.removeItem('selectIndex')
         localStorage.setItem('productId', product.product_id)
         let items = {
@@ -104,7 +103,7 @@ for(let i = 0; i < filterSelect.length; i++) {
         }
         const toBeFiltered = await getSelectFilter(e)
         if(toBeFiltered !== 'filter') {
-            const response = await fetch('http://localhost:3333/sort', {
+            const res = await fetch('http://localhost:3333/sort', {
                 method: "post",
                 mode: 'cors',
                 credentials: 'include',
@@ -113,68 +112,10 @@ for(let i = 0; i < filterSelect.length; i++) {
                     toBeFiltered
                 })
              })
-             const result = await response.json();
+             const response = await res.json();
              if(result.isSet) {
                  window.location.reload();
              }
         }
     })
 }
-
-
-
-// })
-
-
-// const filterBtn = document.querySelector('.filter-btn')
-// filterBtn.addEventListener('click', async ()=>{
-//     const toBeFiltered = {
-//         filterCategory: 'Table'
-//     }
-//     localStorage.setItem('categoryArray', JSON.stringify('Table'))
-    
-//     const response = await fetch('http://localhost:3333/sort', {
-//         method: "post",
-//         mode: 'cors',
-//         credentials: 'include',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//             toBeFiltered,
-//             filter: true
-//         })
-//     })
-//     const categoryName = document.querySelector('.category-name');
-//     categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'))
-//      const result = await response.json();
-//      console.log(result.isSet)
-//      if(result.isSet) {
-//          window.location.reload();
-//      }
-// })
-
-
-
-
-
-
-
-// const logout = document.querySelector('.logout');
-// logout.addEventListener('click', ()=> {
-//     location.reload();
-//     reqByCategory()
-//     location.reload();
-// })
-
-// reqByCategory()
-
-// async function reqByCategory() {
-//     const response = await fetch('http://localhost:3333/add-data', {
-//         method: "post",
-//         mode: 'cors',
-//         credentials: 'include',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//             categoryName: JSON.parse(localStorage.getItem('categoryArray')),
-//         })
-//     })
-// }
