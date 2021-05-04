@@ -859,16 +859,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// const leftPanel = document.querySelector('.left-panel');
-// // const header = document.querySelector('.main_header')
-// // let headerHeight = header.offsetHeight;
-// window.onscroll = function (e) {
-//     if(window.scrollY > 0) {
-//         leftPanel.style.top = 0;
-//     } else {
-//         leftPanel.style.top = "initial";
-//     }
-// };
 // delete product
 var deleteButton = document.querySelectorAll('.delete-product');
 deleteButton.forEach(function (eachButton) {

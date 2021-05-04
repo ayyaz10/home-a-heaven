@@ -874,35 +874,10 @@ categories.forEach(function (category) {
 adminPanelAddCategoryInput.addEventListener('n', function () {
   categoryAddedMsg.classList.remove('success_response');
   adminPanelAddCategoryInput.value = "";
-}); // adminPanelForm.addEventListener('submit', async (e) => {
-//     e.preventDefault();
-//         // getting and uploading image file to server
-//         const fileField = document.querySelector('input[type="file"]');
-//         let formData = new FormData();
-//         formData.append('prodImage', fileField.files[0]);
-//         const res = await fetch('http://localhost:3333/product', {
-//             method: 'post',
-//             body: formData
-//          })
-//         const result = await res.json();
-// })
-// adminPanelForm.addEventListener('submit', async (e)=>{
-//     e.preventDefault();
-//          // getting and uploading image file to server
-//          const fileField = document.querySelector('input[type="file"]');
-//          let formData = new FormData();
-//          formData.append('prodImage', fileField.files[0]);
-//          const res = await fetch('http://localhost:3333/upload', {
-//              method: 'post',
-//              body: formData
-//           })
-//           const result = await res.json();
-//           console.log(result)
-//  })
-
+});
 adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-    var fileField, formData, productObj, subCategory, res, response, submitButton;
+    var fileField, formData, res, response, submitButton;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -911,8 +886,6 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
 
             fileField = document.querySelector('input[type="file"]');
             formData = new FormData();
-            productObj = {};
-            subCategory = {};
 
             if (clickedCategory) {
               formData.append('prodImage', fileField.files[0]);
@@ -933,19 +906,19 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
               formData.append('description', description.value);
             }
 
-            _context.prev = 6;
-            _context.next = 9;
+            _context.prev = 4;
+            _context.next = 7;
             return fetch('http://localhost:3333/product', {
               method: "post",
               body: formData
             });
 
-          case 9:
+          case 7:
             res = _context.sent;
-            _context.next = 12;
+            _context.next = 10;
             return res.json();
 
-          case 12:
+          case 10:
             response = _context.sent;
 
             if (response.isDbResponse && response.status.product) {
@@ -962,20 +935,20 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
             submitButton.disabled = true;
             submitButton.style.background = "#5e5e5e";
             window.location.reload();
-            _context.next = 23;
+            _context.next = 21;
             break;
 
-          case 20:
-            _context.prev = 20;
-            _context.t0 = _context["catch"](6);
+          case 18:
+            _context.prev = 18;
+            _context.t0 = _context["catch"](4);
             console.error(_context.t0);
 
-          case 23:
+          case 21:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[6, 20]]);
+    }, _callee, null, [[4, 18]]);
   }));
 
   return function (_x) {

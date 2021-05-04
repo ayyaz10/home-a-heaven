@@ -44,7 +44,16 @@
     flex: 1;
 }
 
-#adminPanelForm input {
+/* #adminPanelForm input {
+    color: var(--primary);
+    flex: 2;
+    margin-bottom: 0.3125rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.8125rem;
+    border: 1px solid var(--primary-border);
+} */
+
+#adminPanelForm .input {
     color: var(--primary);
     flex: 2;
     margin-bottom: 0.3125rem;
@@ -53,7 +62,7 @@
     border: 1px solid var(--primary-border);
 }
 
-#adminPanelForm p:last-child input{
+#adminPanelForm p:last-child .input{
     flex: 0;
     /* padding: 0px 40px; */
     margin: 0.9375rem 0 0 0;
@@ -88,12 +97,34 @@ textarea {
     text-decoration: underline;
 }
 
+.cat-radio label {
+    /* border: 1px solid red; */
+    padding: 0px 20px 20px 20px;
+    line-height: 1;
+
+}
+.cat-radio input, .cat-radio label {
+    cursor: pointer;
+}
+
+.categories-container {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    padding: 10px 0 10px 129px;
+    flex-direction: column;
+    /* height: 100px; */
+    /* overflow: scroll; */
+    /* padding:40px 0px 40px 0px; */
+}
+
 .hide {
     display: none;
 }
 
 .show {
-    display: block;
+    display: flex;
 }
 
 

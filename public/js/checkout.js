@@ -35,18 +35,14 @@ shippingForm.addEventListener('submit', function (e) {
       window.location = "http://localhost:3333/orders";
       localStorage.setItem('isOrdered', JSON.stringify(true));
     } else {
-      localStorage.removeItem('productArray'); // console.log('helo')
-
-      document.querySelector('.cart').innerText = ""; // console.log(data.result[0].full_name)
-
+      localStorage.removeItem('productArray');
+      document.querySelector('.cart').innerText = "";
       var userName = document.querySelector('.message span');
       userName.textContent = data.result[0].full_name + "!"; // Get the modal
 
-      var modal = document.getElementById("myModal"); // Get the <span> element that closes the modal
-
-      var span = document.getElementsByClassName("close")[0]; // When the user clicks the button, open the modal 
-
-      modal.style.display = "block"; // When the user clicks on <span> (x), close the modal
+      var modal = document.getElementById("myModal");
+      var span = document.getElementsByClassName("close")[0];
+      modal.style.display = "block";
 
       span.onclick = function () {
         modal.style.display = "none";
@@ -58,8 +54,7 @@ shippingForm.addEventListener('submit', function (e) {
         if (event.target == modal) {
           window.location.reload();
         }
-      }; // document.querySelector('.cart').innerText = "";
-
+      };
     }
   });
 });

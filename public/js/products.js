@@ -869,7 +869,6 @@ addToCart.forEach(function (cartBtn) {
 
             case 2:
               product = _context.sent;
-              // console.log(product)
               localStorage.removeItem('selectIndex');
               localStorage.setItem('productId', product.product_id);
               items = {
@@ -908,7 +907,8 @@ for (var i = 0; i < sortSelect.length; i++) {
 
   sortSelect[i].addEventListener('change', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
-      var getSelectedSort, selectedSort, response, result;
+      var getSelectedSort, selectedSort, response, _result;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -1036,9 +1036,9 @@ for (var i = 0; i < sortSelect.length; i++) {
               return response.json();
 
             case 10:
-              result = _context3.sent;
+              _result = _context3.sent;
 
-              if (result.isSet) {
+              if (_result.isSet) {
                 window.location.reload();
               }
 
@@ -1061,7 +1061,7 @@ var filterSelect = document.querySelectorAll('.filter-select');
 for (var _i = 0; _i < filterSelect.length; _i++) {
   filterSelect[_i].addEventListener('change', /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(e) {
-      var getSelectFilter, toBeFiltered, response, result;
+      var getSelectFilter, toBeFiltered, res, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
@@ -1112,12 +1112,12 @@ for (var _i = 0; _i < filterSelect.length; _i++) {
               });
 
             case 7:
-              response = _context5.sent;
+              res = _context5.sent;
               _context5.next = 10;
-              return response.json();
+              return res.json();
 
             case 10:
-              result = _context5.sent;
+              response = _context5.sent;
 
               if (result.isSet) {
                 window.location.reload();
@@ -1135,49 +1135,7 @@ for (var _i = 0; _i < filterSelect.length; _i++) {
       return _ref4.apply(this, arguments);
     };
   }());
-} // })
-// const filterBtn = document.querySelector('.filter-btn')
-// filterBtn.addEventListener('click', async ()=>{
-//     const toBeFiltered = {
-//         filterCategory: 'Table'
-//     }
-//     localStorage.setItem('categoryArray', JSON.stringify('Table'))
-//     const response = await fetch('http://localhost:3333/sort', {
-//         method: "post",
-//         mode: 'cors',
-//         credentials: 'include',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//             toBeFiltered,
-//             filter: true
-//         })
-//     })
-//     const categoryName = document.querySelector('.category-name');
-//     categoryName.innerText = JSON.parse(localStorage.getItem('categoryArray'))
-//      const result = await response.json();
-//      console.log(result.isSet)
-//      if(result.isSet) {
-//          window.location.reload();
-//      }
-// })
-// const logout = document.querySelector('.logout');
-// logout.addEventListener('click', ()=> {
-//     location.reload();
-//     reqByCategory()
-//     location.reload();
-// })
-// reqByCategory()
-// async function reqByCategory() {
-//     const response = await fetch('http://localhost:3333/add-data', {
-//         method: "post",
-//         mode: 'cors',
-//         credentials: 'include',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//             categoryName: JSON.parse(localStorage.getItem('categoryArray')),
-//         })
-//     })
-// }
+}
 })();
 
 /******/ })()

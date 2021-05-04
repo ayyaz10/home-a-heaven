@@ -854,7 +854,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 // main menu getting products by category functionality
-// const categoryName = JSON.parse(localStorage.getItem('categoryArray'))
 var headerMenu = document.querySelectorAll('.main-menu li');
 headerMenu.forEach(function (li) {
   li.addEventListener('click', function (e) {
@@ -931,8 +930,7 @@ logoutButton.addEventListener('click', function (e) {
       window.location.reload();
       window.location.reload();
     });
-  } // const result = await response.json();
-
+  }
 
   logout();
 });
@@ -970,7 +968,6 @@ closeIcon.addEventListener('click', function () {
 var role = localStorage.getItem('role');
 
 if (role === 'admin') {
-  //    const secondMenu = document.querySelector('.second-menu');
   var mainMenu = document.querySelector('.main-menu');
 
   var _search = document.querySelector('.search');
@@ -991,39 +988,6 @@ if (role === 'admin') {
   manageProduct.style.display = "none";
   manageCustOrders.style.display = "none";
 }
-
-{
-  /* <li><a href="/adminOrders">Customer Orders</a></li>
-  <li><a href="/manage-product">Manage Products</a></li>
-  <li><a href="/user-account">Account</a></li> */
-} // search backend
-// const searchInput = document.querySelector('#input-search')
-// searchInput.addEventListener('keyup', (e) => {
-//     // console.log(e.target.value)
-//     if(e.key === 'Enter') {
-//         searchText = e.target.value;
-//         // console.log(searchText)
-//         searchDB(searchText)
-//         localStorage.setItem('search', JSON.stringify(true));
-//         localStorage.setItem('searchProduct', JSON.stringify(searchText));
-//     }
-// })
-// async function searchDB(searchText) {
-//     const response = await fetch('http://localhost:3333/search-query', {
-//         method: "post",
-//         mode: 'cors',
-//         credentials: 'include',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//             searchText
-//         })
-//     })
-//     const result = await response.json();
-//     // if(result)
-//     if(result.validText) {
-//         window.location.reload();
-//     }
-// }
 })();
 
 /******/ })()

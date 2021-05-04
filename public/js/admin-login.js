@@ -50,7 +50,8 @@ loginForm.addEventListener('submit', function (e) {
     if (data.result) {
       localStorage.user_id = data.id;
       localStorage.role = data.role;
-      loginFail.style.display = "none"; // window.location = 'http://localhost:3333/adminOrders'
+      loginFail.style.display = "none";
+      window.location = 'http://localhost:3333/adminOrders';
     } else {
       loginFail.style.display = "block";
       loginFail.classList.add('failed_message');
@@ -90,7 +91,8 @@ signupForm.addEventListener('submit', function (e) {
       registrationSuccess.style.display = "block";
       registrationSuccess.classList.add('success_message');
       registrationFail.style.display = "none";
-      setInterval(function () {// window.location = 'http://localhost:3333/adminOrders'
+      setInterval(function () {
+        window.location = 'http://localhost:3333/adminOrders';
       }, 2000);
     } else {
       registrationSuccess.style.display = "none";
@@ -101,7 +103,8 @@ signupForm.addEventListener('submit', function (e) {
         // window.location = "http://localhost:3333/signup-login"
       }, 6000);
     }
-  })["catch"](function (err) {// console.log(err)
+  })["catch"](function (err) {
+    console.error(err);
   });
 });
 

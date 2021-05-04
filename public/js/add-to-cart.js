@@ -853,23 +853,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var categoryQuery = JSON.parse(localStorage.getItem('categoryArray'));
-; // // categoryName.innerText = categoryQuery;
-
-reqByCategory(categoryQuery);
-
-function reqByCategory(_x) {
-  return _reqByCategory.apply(this, arguments);
-}
-
-function _reqByCategory() {
-  _reqByCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(categoryQuery) {
-    var response, result;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+var reqByCategory = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(categoryQuery) {
+    var res, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context.prev = _context.next) {
           case 0:
-            _context2.next = 2;
+            _context.next = 2;
             return fetch('http://localhost:3333/req-by-category', {
               method: "post",
               mode: 'cors',
@@ -883,22 +874,29 @@ function _reqByCategory() {
             });
 
           case 2:
-            response = _context2.sent;
-            _context2.next = 5;
-            return response.json();
+            res = _context.sent;
+            _context.next = 5;
+            return res.json();
 
           case 5:
-            result = _context2.sent;
+            response = _context.sent;
 
           case 6:
           case "end":
-            return _context2.stop();
+            return _context.stop();
         }
       }
-    }, _callee2);
+    }, _callee);
   }));
-  return _reqByCategory.apply(this, arguments);
-}
+
+  return function reqByCategory(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var categoryQuery = JSON.parse(localStorage.getItem('categoryArray'));
+;
+reqByCategory(categoryQuery);
 
 function updateCart(_x2, _x3) {
   return _updateCart.apply(this, arguments);
@@ -906,7 +904,7 @@ function updateCart(_x2, _x3) {
 
 function _updateCart() {
   _updateCart = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(product, e) {
-    var cartCounter, response, result;
+    var cartCounter, res, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -922,23 +920,20 @@ function _updateCart() {
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({
-                product: product // productid: product.item.product_id,
-
+                product: product
               })
             });
 
           case 4:
-            response = _context3.sent;
+            res = _context3.sent;
             _context3.next = 7;
-            return response.json();
+            return res.json();
 
           case 7:
-            result = _context3.sent;
-            console.log(result); // notyf.success('Item added to cart');
-
+            response = _context3.sent;
             cartCounter.innerText = result.totalQty;
 
-          case 10:
+          case 9:
           case "end":
             return _context3.stop();
         }
@@ -950,27 +945,26 @@ function _updateCart() {
 
 var cartBtn = document.querySelector('.cart-btn');
 cartBtn.addEventListener('click', /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
     var product;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
-            // let product = await JSON.parse(cartBtn.dataset.product);
             product = JSON.parse(localStorage.getItem('itemsArray'));
             updateCart(product, e);
             addPriceToLocalStorage();
 
           case 3:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee);
+    }, _callee2);
   }));
 
   return function (_x4) {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }());
 
@@ -979,17 +973,7 @@ var addPriceToLocalStorage = function addPriceToLocalStorage() {
   console.log(productPrice);
   var oldItems = JSON.parse(localStorage.getItem('priceList')) || [];
   oldItems.push(parseInt(productPrice.innerText));
-  localStorage.setItem('priceList', JSON.stringify(oldItems)); // const product = JSON.parse(localStorage.getItem('itemsArray'));
-  // var oldItems = JSON.parse(localStorage.getItem('priceList')) || [];
-  // oldItems.push(product)
-  // localStorage.setItem('priceList', JSON.stringify(oldItems))
-  // let productArray = JSON.parse(localStorage.getItem('priceList'))
-  // productArray.forEach((p)=>{
-  //     if(p.item.product_id !== product.item.product_id){
-  //         oldItems.push(product)
-  //         localStorage.setItem('priceList', JSON.stringify(oldItems))
-  //     }
-  // })
+  localStorage.setItem('priceList', JSON.stringify(oldItems));
 };
 
 var loadContent = function loadContent() {
@@ -1008,25 +992,13 @@ var loadContent = function loadContent() {
     oldPrice.style.display = "block";
   } else {
     price.innerText = product.item.price;
-  } // if(product.item.discount.length)
-
+  }
 
   about.innerText = product.item.product_description;
   image.src = "/assets/uploads/".concat(product.item.image);
 };
 
-loadContent(); // stops user to go back
-// if (history.pushState) {
-//     //Chrome and modern browsers
-//     history.pushState(null, document.title, location.href);
-//     window.addEventListener('popstate', function (event) {
-//         history.pushState(null, document.title, location.href);
-//     });
-// }
-// else {
-//     //IE
-//     history.forward();
-// }
+loadContent();
 })();
 
 /******/ })()

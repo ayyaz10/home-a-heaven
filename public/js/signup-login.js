@@ -61,7 +61,8 @@ loginForm.addEventListener('submit', function (e) {
       //     loginFormData[1].value = "";
       // }, 2200)
     }
-  })["catch"](function (err) {// console.log(err)
+  })["catch"](function (err) {
+    console.error(err);
   });
 }); //collecting user data from signup form
 

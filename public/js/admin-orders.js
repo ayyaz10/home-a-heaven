@@ -869,7 +869,6 @@ select.forEach(function (each) {
                     while (1) {
                       switch (_context.prev = _context.next) {
                         case 0:
-                          // console.log(e.target.parentElement.parentElement.firstElementChild.firstElementChild.innerText)
                           orderId = parseInt(e.target.parentElement.parentElement.firstElementChild.firstElementChild.innerText);
 
                           if (!(e.target.value === 'placed')) {
@@ -943,12 +942,7 @@ select.forEach(function (each) {
             case 9:
               serverResponse = _context2.sent;
 
-              // console.log(serverResponse, clientStatus)
-              if (serverResponse.dbStatus === 1) {
-                console.log(e.target[1].innerText); // e.target[1].innerText = serverResponse.dbStatus
-              }
-
-            case 11:
+            case 10:
             case "end":
               return _context2.stop();
           }
@@ -976,8 +970,7 @@ logoutButton.addEventListener('click', function (e) {
       console.log(result);
       window.location = "http://localhost:3333/";
     });
-  } // const result = await response.json();
-
+  }
 
   logout();
 });

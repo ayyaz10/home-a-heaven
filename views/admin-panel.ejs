@@ -20,43 +20,43 @@
             <form class="form">
                 <p>
                     <label for="prod-name">Name</label>
-                    <input type="text" name="prodName" id="prod-name" class="product-name">
+                    <input type="text" name="prodName" id="prod-name" class="input product-name">
                 </p>
                 <p>
                     <label for="prod-price">Price</label>
-                    <input type="text" name="prodPrice" id="prod-price" class="product-price">
+                    <input type="text" name="prodPrice" id="prod-price" class="input product-price">
                 </p>
                 <p>
                     <label for="prod-discount-price">Discount</label>
-                    <input type="text" name="prodDiscountPrice" id="prod-discount-price" class="product-discount-price">
+                    <input type="text" name="prodDiscountPrice" id="prod-discount-price" class="input product-discount-price">
                 </p>
                 <p>
                     <label for="prod-image">Image</label>
-                    <input type="file" name="prodImage" id="prod-image" class="product-image">
+                    <input type="file" name="prodImage" id="prod-image" class="input product-image">
                 </p>
                 <p>
                     <label for="count-in-stock">Count in Stock</label>
-                    <input type="text" name="prodInStock" id="count-in-stock" class="product-in-stock">
+                    <input type="text" name="prodInStock" id="count-in-stock" class="input product-in-stock">
                 </p>
                 <p class="category">
                     <label for="prod-category">Category</label>
-                    <input type="text" name="prodCategory" id="prod-category" class="product-category"> 
+                    <input type="text" name="prodCategory" id="prod-category" class="input product-category"> 
                     <span>Add Sub Category</span>
                     <div class="categories-container hide">
                         <% for(let i = 0; i < categories.length; i++) { %>
-                            <p><input type="radio" name = "category" id="<%= i %>" value="<%= categories[i].category_name %>"><label for="<%= i %>"><%= categories[i].category_name %></label></p>
+                            <p class="cat-radio"><input type="radio" name = "category" id="<%= i %>" value="<%= categories[i].category_name %>"><label for="<%= i %>"><%= categories[i].category_name %></label></p>
                         <% } %>
                     </div>
                         </p>
                 <p>
                     <label for="prod-description">Description</label>
-                    <textarea name="prodDescription" id="prod-description" class="product-description" rows="2" cols="42"></textarea>
+                    <textarea name="prodDescription" id="prod-description" class="input product-description" rows="2" cols="42"></textarea>
                 </p>
                     <!-- <label for="category-name">Category</label> -->
                     <!-- <input type="text" name="catName" id="category-name" class="category"> -->
                     <!-- <span class="category_added_message">Category Added</span> -->
                 <!-- </p> -->
-                <p><input type="submit" class="submit-button" value="Add Product" id="update"></p>
+                <p><input type="submit" class="input submit-button" value="Add Product" id="update"></p>
             </form>
         </div>
     </section>

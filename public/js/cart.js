@@ -862,8 +862,7 @@ var totalAmount = document.querySelector('.total-amount');
 var cartQty = document.querySelector('.cart-count');
 var addButton = document.querySelectorAll('.add-btn');
 var subButton = document.querySelectorAll('.sub-btn');
-var productId = 0; // const actualPrice = JSON.parse(localStorage.getItem('priceLisd'));
-
+var productId = 0;
 var checkoutBtn = document.querySelector('.checkout-button');
 checkoutBtn.addEventListener('click', function () {
   var productName = document.querySelectorAll('.product-name');
@@ -900,12 +899,10 @@ checkoutBtn.addEventListener('click', function () {
 
 for (var i = 0; i < addButton.length; i++) {
   addButton[i].addEventListener('click', function (e) {
-    var productPrice = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value); // console.log(e.target.parentElement.parentElement.parentElement)
-
+    var productPrice = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value);
     var counter = e.target.nextElementSibling;
     var price = e.target.parentElement.parentElement.firstElementChild;
-    var total = parseInt(counter.innerText * price.innerText); //  const product = JSON.parse(localStorage.getItem('itemsArray'));
-
+    var total = parseInt(counter.innerText * price.innerText);
     price.innerText = parseInt(price.innerText) + productPrice;
     subtotalAmount.innerText = parseInt(subtotalAmount.innerText) + productPrice;
     totalAmount.innerText = parseInt(totalAmount.innerText) + productPrice;
@@ -919,7 +916,7 @@ for (var _i = 0; _i < subButton.length; _i++) {
   subButton[_i].addEventListener('click', function (e) {
     var productPrice = parseInt(e.target.parentElement.parentElement.parentElement.attributes[1].value);
     var counter = e.target.parentElement.firstElementChild.nextElementSibling;
-    var price = e.target.parentElement.parentElement.firstElementChild; // console.log(e.target.parentElement.parentElement.firstElementChild)
+    var price = e.target.parentElement.parentElement.firstElementChild;
 
     if (counter.innerText <= 0) {
       price.innerText = 0;
@@ -1009,18 +1006,17 @@ for (var _i2 = 0; _i2 < removeItem.length; _i2++) {
 
 var updateDelSession = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-    var cartqty, productid, counterval, obj, response, result;
+    var cartqty, productid, obj, response, result;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             cartqty = document.querySelector('.cart-count');
             productid = parseInt(e.target.attributes[1].value);
-            counterval = parseInt(e.target.parentElement.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.innerText);
             obj = {
               productid: productid
             };
-            _context2.next = 6;
+            _context2.next = 5;
             return fetch('http://localhost:3333/removeCartItem', {
               method: "post",
               mode: 'cors',
@@ -1031,34 +1027,34 @@ var updateDelSession = /*#__PURE__*/function () {
               body: JSON.stringify(obj)
             });
 
-          case 6:
+          case 5:
             response = _context2.sent;
-            _context2.prev = 7;
-            _context2.next = 10;
+            _context2.prev = 6;
+            _context2.next = 9;
             return response.json();
 
-          case 10:
+          case 9:
             result = _context2.sent;
-            console.log(result);
 
             if (result.totalQty < 1) {
               location += '';
             }
 
             cartqty.innerText = result.totalQty;
-            _context2.next = 18;
+            _context2.next = 17;
             break;
 
-          case 16:
-            _context2.prev = 16;
-            _context2.t0 = _context2["catch"](7);
+          case 14:
+            _context2.prev = 14;
+            _context2.t0 = _context2["catch"](6);
+            console.error(_context2.t0);
 
-          case 18:
+          case 17:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[7, 16]]);
+    }, _callee2, null, [[6, 14]]);
   }));
 
   return function updateDelSession(_x) {

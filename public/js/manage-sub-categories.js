@@ -863,8 +863,7 @@ deleteButton.forEach(function (eachButton) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              categoryName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText; // console.log(categoryName)
-
+              categoryName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText;
               isDeleteConfirm = confirm("Are you sure to delete the product ".concat(categoryName));
 
               if (!isDeleteConfirm) {

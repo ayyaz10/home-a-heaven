@@ -863,18 +863,16 @@ deleteButton.forEach(function (eachButton) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              categoryName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText; // console.log(categoryName)
-
+              categoryName = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.innerText;
               isDeleteConfirm = confirm("Are you sure to delete the product ".concat(categoryName));
 
               if (!isDeleteConfirm) {
-                _context.next = 12;
+                _context.next = 11;
                 break;
               }
 
               categoryId = e.target.getAttribute("data-categoryid-type");
-              console.log(categoryId);
-              _context.next = 7;
+              _context.next = 6;
               return fetch('http://localhost:3333/delete-category', {
                 method: "post",
                 mode: 'cors',
@@ -887,19 +885,19 @@ deleteButton.forEach(function (eachButton) {
                 })
               });
 
-            case 7:
+            case 6:
               res = _context.sent;
-              _context.next = 10;
+              _context.next = 9;
               return res.json();
 
-            case 10:
+            case 9:
               response = _context.sent;
 
               if (response.dbDelCatResponse.isDeleted) {
                 window.location.reload();
               }
 
-            case 12:
+            case 11:
             case "end":
               return _context.stop();
           }
@@ -912,7 +910,6 @@ deleteButton.forEach(function (eachButton) {
     };
   }());
 }); // edit category
-// edit product
 
 var editButton = document.querySelectorAll('.edit-category');
 editButton.forEach(function (eachButton) {
@@ -951,11 +948,9 @@ editButton.forEach(function (eachButton) {
               if (response.haveProduct) {
                 editCategoryForm[0].value = category.category_name; // Get the modal
 
-                modal = document.getElementById("myModal"); // Get the <span> element that closes the modal
-
-                span = document.getElementsByClassName("close")[0]; // When the user clicks the button, open the modal 
-
-                modal.style.display = "block"; // When the user clicks on <span> (x), close the modal
+                modal = document.getElementById("myModal");
+                span = document.getElementsByClassName("close")[0];
+                modal.style.display = "block";
 
                 span.onclick = function () {
                   modal.style.display = "none";
@@ -968,7 +963,7 @@ editButton.forEach(function (eachButton) {
                     window.location.reload();
                   }
                 };
-              } //     //  update product
+              } //  update product
 
 
               editForm = document.querySelector('#editCategoryForm');
