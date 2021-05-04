@@ -958,6 +958,8 @@ adminPanelForm.addEventListener('submit', /*#__PURE__*/function () {
 
 var addSubCatButton = document.querySelector('.category span');
 var categoriesContainer = document.querySelector('.categories-container');
+var subCategory = document.querySelector('.prod-subcategory');
+var category = document.querySelector('.prod-category');
 addSubCatButton.addEventListener('click', function () {
   categoriesContainer.classList.toggle('show');
 });

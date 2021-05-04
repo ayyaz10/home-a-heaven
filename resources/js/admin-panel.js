@@ -74,6 +74,8 @@ try {
 // subcategory functionality
 const addSubCatButton = document.querySelector('.category span');
 const categoriesContainer = document.querySelector('.categories-container');
+const subCategory = document.querySelector('.prod-subcategory');
+const category = document.querySelector('.prod-category');
 addSubCatButton.addEventListener('click', () => {
     categoriesContainer.classList.toggle('show');
 });
