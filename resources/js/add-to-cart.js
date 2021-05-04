@@ -26,7 +26,7 @@ async function updateCart(product, e) {
         })
     })
     const response = await res.json();
-    cartCounter.innerText = result.totalQty;
+    cartCounter.innerText = response.totalQty;
 }
 
 const cartBtn = document.querySelector('.cart-btn')

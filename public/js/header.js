@@ -916,6 +916,7 @@ function _reqByCategory() {
 
 var logoutHeader = document.querySelector('#logout');
 var loginHeader = document.querySelector('#login');
+var account = document.querySelector('#account');
 var userId = JSON.parse(localStorage.getItem('user_id'));
 var logoutButton = document.querySelector('.logout');
 logoutButton.addEventListener('click', function (e) {
@@ -939,6 +940,7 @@ if (userId) {
   loginHeader.style.display = "none";
   logoutHeader.style.display = "block";
 } else {
+  account.style.display = "none";
   logoutHeader.style.display = "none";
 } // search functionality
 
@@ -973,11 +975,13 @@ if (role === 'admin') {
   var _search = document.querySelector('.search');
 
   var cart = document.querySelector('.cart');
-  var account = document.querySelector('.account');
+
+  var _account = document.querySelector('.account');
+
   mainMenu.style.display = "none";
   _search.style.display = "none";
   cart.style.display = "none";
-  account.style.display = "none";
+  _account.style.display = "none";
 } else {
   var manageProduct = document.querySelector('.manage-product');
   var manageCustOrders = document.querySelector('.manage-cust-orders');

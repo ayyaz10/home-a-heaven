@@ -931,7 +931,7 @@ function _updateCart() {
 
           case 7:
             response = _context3.sent;
-            cartCounter.innerText = result.totalQty;
+            cartCounter.innerText = response.totalQty;
 
           case 9:
           case "end":

@@ -907,8 +907,7 @@ for (var i = 0; i < sortSelect.length; i++) {
 
   sortSelect[i].addEventListener('change', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
-      var getSelectedSort, selectedSort, response, _result;
-
+      var getSelectedSort, selectedSort, response, result;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -1036,9 +1035,9 @@ for (var i = 0; i < sortSelect.length; i++) {
               return response.json();
 
             case 10:
-              _result = _context3.sent;
+              result = _context3.sent;
 
-              if (_result.isSet) {
+              if (result.isSet) {
                 window.location.reload();
               }
 
@@ -1094,7 +1093,7 @@ for (var _i = 0; _i < filterSelect.length; _i++) {
               toBeFiltered = _context5.sent;
 
               if (!(toBeFiltered !== 'filter')) {
-                _context5.next = 12;
+                _context5.next = 13;
                 break;
               }
 
@@ -1118,12 +1117,13 @@ for (var _i = 0; _i < filterSelect.length; _i++) {
 
             case 10:
               response = _context5.sent;
+              console.log(response);
 
-              if (result.isSet) {
+              if (response.isSet) {
                 window.location.reload();
               }
 
-            case 12:
+            case 13:
             case "end":
               return _context5.stop();
           }

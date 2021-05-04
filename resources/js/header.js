@@ -31,6 +31,7 @@ async function reqByCategory(categoryName) {
 
 const logoutHeader  = document.querySelector('#logout');
 const loginHeader = document.querySelector('#login');
+const account = document.querySelector('#account');
 const userId = JSON.parse(localStorage.getItem('user_id'))
 const logoutButton = document.querySelector('.logout');
 logoutButton.addEventListener('click', (e)=>{
@@ -54,6 +55,7 @@ if(userId) {
     loginHeader.style.display = "none";
     logoutHeader.style.display = "block";
 } else {
+    account.style.display = "none";
     logoutHeader.style.display = "none";
 }
 

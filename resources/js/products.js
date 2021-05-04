@@ -113,7 +113,8 @@ for(let i = 0; i < filterSelect.length; i++) {
                 })
              })
              const response = await res.json();
-             if(result.isSet) {
+             console.log(response)
+             if(response.isSet) {
                  window.location.reload();
              }
         }
