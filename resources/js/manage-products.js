@@ -88,13 +88,11 @@ editButton.forEach(eachButton => {
                 productArray.push(eachInput.value) 
             })
             productArray.push(textArea.value)
-            console.log(productArray)
             const res = await fetch('http://localhost:3333/edit-product', {
                 method: "post",
                 mode: 'cors',
                 credentials: 'include',
-                body:
-                    formData
+                body: formData
              })
              const response = await res.json();
              if(response.dbResponse.isUpdated) {
